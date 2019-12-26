@@ -50,12 +50,6 @@ In both my teaching and my research, my guiding purpose is to improve lifetime l
 
 ---
 
-<script type="text/javascript" src="/bigfoot.min.js"></script>
-<script type="text/javascript" src="/bigfoot.js"></script>
-<script type="text/javascript">
-    $.bigfoot();
-</script>
-
 ### More about me
 
 I love learning[^5] and I *really* love learning about learning[^1]---the love of learning infuses my every moment with excitement and personal meaning. When you love learning, life is transformed from a thing that *happens to you* into a first-person *quest* for truth, beauty, and goodness: new experiences are mingled with old ones in the crucible of your imagination, producing ever-better mental models of reality, connecting previously unrelated ideas to form new patterns, new visions about the way things are... Once set aflame, this passion for personal truth is continually stoked by the small thrill of every realization and sustained by our profound need to bring order to ourselves and to the cosmos---the conviction that the universe will prove to make some final sense. A joy of learning suffuses life with meaning! It is the essence of education and the prerogative of every human being! We should all feel the tug of curiosity, the engulfing flow of discovery and problem-solving, the sheer awe of finally "getting it." Every little epiphany is worth its weight in gold: the final product of your every lesson-learned is far more what you know, it is who you are!

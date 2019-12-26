@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1577326680994.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2138709797",
+    "id" : "C331D5B4",
+    "lastKnownWriteTime" : 1577326774,
+    "last_content_update" : 1577326774044,
+    "path" : "~/Desktop/website/themes/hyde-hyde/assets/scss/_bigfoot-default.scss",
+    "project_path" : "themes/hyde-hyde/assets/scss/_bigfoot-default.scss",
+    "properties" : {
+        "cursorPosition" : "326,0",
+        "scrollLine" : "310"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 23,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "scss"
+}

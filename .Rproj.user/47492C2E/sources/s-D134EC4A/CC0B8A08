@@ -5,14 +5,14 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2118705199",
+    "hash" : "594508113",
     "id" : "CC0B8A08",
-    "lastKnownWriteTime" : 1577323931,
-    "last_content_update" : 1577323931430,
+    "lastKnownWriteTime" : 1577325555,
+    "last_content_update" : 1577325555994,
     "path" : "~/Desktop/website/themes/hyde-hyde/layouts/partials/header/custom.html",
     "project_path" : "themes/hyde-hyde/layouts/partials/header/custom.html",
     "properties" : {
-        "cursorPosition" : "10,31",
+        "cursorPosition" : "7,9",
         "scrollLine" : "0"
     },
     "read_only" : false,
