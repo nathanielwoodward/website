@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.60.1" />
+
+    
+    
+    
+
+<title>Basic Stats U Need #2: T-Test • Nathaniel Woodward</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Basic Stats U Need #2: T-Test"/>
+<meta name="twitter:description" content="Part 2: the t-Distribution We saw in the previous post that if X is a random variable and the population distribution of X is normal with mean \(\mu\) and standard deviation \(\sigma\) (variance \(\sigma^2\)), then the distribution of the sample mean \(\bar{X}\) for samples of a given size \(n\) is normal, with mean \(\mu\) and standard deviation of \(\frac{\sigma}{\sqrt{n}}\), which we can write \(\bar{X}_n \sim N(\mu,\frac{\sigma}{\sqrt{n}})\)."/>
+
+<meta property="og:title" content="Basic Stats U Need #2: T-Test" />
+<meta property="og:description" content="Part 2: the t-Distribution We saw in the previous post that if X is a random variable and the population distribution of X is normal with mean \(\mu\) and standard deviation \(\sigma\) (variance \(\sigma^2\)), then the distribution of the sample mean \(\bar{X}\) for samples of a given size \(n\) is normal, with mean \(\mu\) and standard deviation of \(\frac{\sigma}{\sqrt{n}}\), which we can write \(\bar{X}_n \sim N(\mu,\frac{\sigma}{\sqrt{n}})\)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/basic-stats-u-need-t-test/" />
+<meta property="article:published_time" content="2017-08-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2017-08-23T00:00:00+00:00" /><meta property="og:site_name" content=" " />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.b35dd3e835aecd417af94297503d23c4aa8c639318e0f4ae65e8a1caaaf41707.css" integrity="sha256-s13T6DWuzUF6&#43;UKXUD0jxKqMY5MY4PSuZeihyqr0Fwc=">
+
+
+<link rel="stylesheet" href="/scss/print.8c61428a4ae8b36c028e9198876312a2de5a2b3c80bbbdcceb98d738691c4f6b.css" integrity="sha256-jGFCikros2wCjpGYh2MSot5aKzyAu73M65jXOGkcT2s=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+    
+
+</head>
+
+
+    <body class="theme-base-09 ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+    
+      
+        
+        
+        
+        
+        <div class="author-image">
+           <a href="/"><img src="/img/headshot_cropped_f2019.png" alt="Nathaniel Woodward" class="img--circle img--headshot element--center"></a>
+        </div>
+        
+      
+      <p class="site__description">
+         Nathaniel Woodward 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Nathaniel Woodward</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/portfolio/">
+						<span>Portfolio</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="cv.pdf">
+						<span>Vitae</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <br>
+        <section class="social">
+	
+	<a href="https://twitter.com/Distributino" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="https://github.com/nraley" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<a href="https://last.fm/user/raleywoodward" rel="me"><i class="fab fa-lastfm fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://www.goodreads.com/user/show/44370058-nathaniel" rel="me"><i class="fab fa-goodreads fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="mailto:nathaniel.raley@utexas.edu" rel="me"><i class="fas fa-at fa-lg" aria-hidden="true"></i></a>
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2019  
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Basic Stats U Need #2: T-Test</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Aug 23, 2017
+    
+    
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/r-markdown">r markdown</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/introductory-stats">introductory stats</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/sampling-distribution">sampling distribution</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/t-test">t-test</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/students-t-distribution">student&#39;s t distribution</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 15 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    
+
+
+<div id="part-2-the-t-distribution" class="section level2">
+<h2>Part 2: the t-Distribution</h2>
+<p>We saw in <a href="http://www.nathanielwoodward.com/2017/08/08/basic-stats-u-need-z-scores/">the previous post</a> that if X is a random variable and the population distribution of X is normal with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span> (variance <span class="math inline">\(\sigma^2\)</span>), then the distribution of the sample mean <span class="math inline">\(\bar{X}\)</span> for samples of a given size <span class="math inline">\(n\)</span> is normal, with mean <span class="math inline">\(\mu\)</span> and standard deviation of <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span>, which we can write <span class="math inline">\(\bar{X}_n \sim N(\mu,\frac{\sigma}{\sqrt{n}})\)</span>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> More exciting, we saw that by the Central Limit Theorem, the sampling distribution will be normal <em>regardless of the original population distribution</em> if the sample size is large enough.</p>
+<p>Recall that a Z-score is computed <span class="math inline">\(Z=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\)</span>
+If you haven’t seen this before, realize that we are just rescaling our sampling distribution from the previous post, <span class="math inline">\(\bar{X} \sim N(\mu,\frac{\sigma}{\sqrt{n}})\)</span>, in order to preserve all of the information while setting the mean to 0 and the standard deviation to 1. Another way to think of it is that, instead of dealing in terms of the sample mean <span class="math inline">\(\bar{X}\)</span>, we want to deal in terms of the distances of the sample mean from the population mean <span class="math inline">\(\bar{X}-\mu\)</span> in units of standard deviation <span class="math inline">\(\sigma\)</span>, and we can do that by transforming <span class="math inline">\(\bar{X} \sim N(\mu,\sigma^2/n)\)</span> into <span class="math inline">\(Z=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\)</span>.</p>
+<p>We can do this because a normal random variable <span class="math inline">\(X\)</span> is still normal when it undergoes a linear transformation (multiplying it, adding to it, etc). This means that if <span class="math inline">\(X\sim N(\mu,\sigma)\)</span>, then <span class="math inline">\(Y=aX+b\)</span> is also normal, <span class="math inline">\(Y\sim N(a\mu+b,a\sigma)\)</span>. Using this property,</p>
+<p><span class="math display">\[\bar{X}-\mu \sim N(\mu-\mu,\frac{\sigma}{\sqrt{n}}) = N(0,\frac{\sigma}{\sqrt{n}})\]</span>
+And</p>
+<p><span class="math display">\[\frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \sim N(\frac{0}{\sigma/\sqrt{n}},\frac{\sigma/\sqrt{n}}{\sigma/\sqrt{n}})= N(0,1)\]</span>.</p>
+<p>Here’s a quick example just so you can see this in action: the heights (in inches) of adult women in the US are distributed as <span class="math inline">\(N(63.8,2.7)\)</span>. Let’s say you, <span class="math inline">\(X_1\)</span>, are a 5’8&quot; woman (68 inches tall).</p>
+<pre class="r"><code>dist&lt;-rnorm(10000,63.8,2.7)
+
+{hist(dist,breaks=100,main=&quot;&quot;,prob=T)
+curve(dnorm(x,63.8,2.7),add=T,col=&quot;blue&quot;)
+abline(v=68,col=&quot;red&quot;)
+text(68,.1,&quot;68&quot;)}</code></pre>
+<p><img src="/posts/2017-08-23-basic-stats-u-need-t-test_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code># Now we subtract the population mean from every observation in our sample
+
+dist.minus.mean&lt;-dist-63.8
+{hist(dist.minus.mean,breaks=100,main=&quot;&quot;,prob=T)
+  curve(dnorm(x+63.8,63.8,2.7),add=T,col=&quot;blue&quot;)
+#notice how adding the mean y=f(x+63.8)
+abline(v=68-63.8,col=&quot;red&quot;)
+text(4.2,.1,&quot;4.2&quot;)}</code></pre>
+<p><img src="/posts/2017-08-23-basic-stats-u-need-t-test_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<pre class="r"><code># See how nothing changed except the x-axis; we have effectively scooted the entire distribution right, so that it is centered at zero. Now let&#39;s divide each observation by the population standard deviation$
+
+dist.minus.mean.dividedby.sd&lt;-dist.minus.mean/2.7
+{hist(dist.minus.mean.dividedby.sd,breaks=100,main=&quot;&quot;,prob=T)
+curve(dnorm(x,0,1),add=T,col=&quot;blue&quot;)
+abline(v=(68-63.8)/2.7, col=&quot;red&quot;)
+text(2,.3,labels=&quot;1.555555&quot;)}</code></pre>
+<p><img src="/posts/2017-08-23-basic-stats-u-need-t-test_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
+<p>I drew a sample of 10,000 from such a distribution just to illustrate how subtracting the mean from <em>each</em> of those 10,000 values and then dividing <em>each</em> by the standard deviation preserves the normality of the sample (see distribution overlayed in blue).</p>
+<p>Recall too that, if our statistic is normally distributed, 95% of the density should lie within 1.96 standard deviations of the mean. Here, <code>pnorm</code> is the CDF for the normal distribution: it gives us the area under the curve from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(q\)</span>, where q is a Z-score.</p>
+<pre class="r"><code>pnorm(1.96)-pnorm(-1.96)</code></pre>
+<pre><code>## [1] 0.9500042</code></pre>
+<p>OK, now back to STUDENT:</p>
+<center>
+<img src="student1.png" />
+</center>
+<p><br></p>
+<p>Here’s what he means. Let’s take repeated samples of 10 students’ heights and calculate the <span class="math inline">\(\bar{X}\)</span> and <span class="math inline">\(s\)</span> for each.</p>
+<pre class="r"><code>samps10&lt;-matrix(nrow=10,ncol=10000)
+samps10&lt;-replicate(10000,sample(pop.height,10))
+samps.mean&lt;-apply(samps10,2,mean)
+samps.sd&lt;-apply(samps10,2,sd)</code></pre>
+<p>Now, is it really true that, when we substitute <span class="math inline">\(s\)</span> for <span class="math inline">\(\sigma\)</span> that 95% of the time the true population mean lies within <span class="math inline">\(\bar{X}\pm 1.96*s/\sqrt{n}\)</span>?</p>
+<pre class="r"><code>s10.s&lt;-mean(samps.mean-1.96*samps.sd/sqrt(10)&gt; pop.mean | pop.mean&gt;samps.mean+1.96*samps.sd/sqrt(10))
+s10.s</code></pre>
+<pre><code>## [1] 0.0854</code></pre>
+<p>Hmm, it looks like the population mean is actually outside this range 8.54% of the time. Clearly, when we do not know <span class="math inline">\(\sigma\)</span>, we cannot substitute <span class="math inline">\(s\)</span> with impunity. Again, had we known <span class="math inline">\(s\)</span>, things would have been fine:</p>
+<pre class="r"><code>samps10&lt;-matrix(nrow=10,ncol=10000)
+samps10&lt;-replicate(10000,sample(pop.height,10))
+samps.mean&lt;-apply(samps10,2,mean)
+s10.sigma&lt;-mean(samps.mean-1.96*pop.sd/sqrt(10)&gt; pop.mean | pop.mean&gt;samps.mean+1.96*pop.sd/sqrt(10))
+s10.sigma</code></pre>
+<pre><code>## [1] 0.0466</code></pre>
+<p>Using the population standard deviation, we find that the population mean falls outside two standard errors of the sample mean just 4.66% of the time. But this is no help to us in the real world!</p>
+<p>Things just get worse with smaller samples. Here’s what happens if we just have <span class="math inline">\(n=3\)</span></p>
+<pre class="r"><code>samps3&lt;-matrix(nrow=3,ncol=10000)
+samps3&lt;-replicate(10000,sample(pop.height,3))
+samps3.mean&lt;-apply(samps3,2,mean)
+samps3.sd&lt;-apply(samps3,2,sd)
+s3.s&lt;-mean(samps3.mean-1.96*samps3.sd/sqrt(3)&gt; pop.mean | pop.mean&gt;samps3.mean+1.96*samps3.sd/sqrt(3))
+s3.s</code></pre>
+<pre><code>## [1] 0.2059</code></pre>
+<p>Yikes, now the population mean falls outside our 95% confidence interval 20.59% of the time; clearly, assuming normality is inappropriate when samples are small and we are using <span class="math inline">\(s\)</span> instead of <span class="math inline">\(\sigma\)</span>.</p>
+<p>This problem was solved by William Sealy Gosset (“Student”&quot;) in 1908, whose paper is excerpted throughout this post</p>
+<center>
+<img src="student3.png" />
+</center>
+<p><br></p>
+<p>The “alternative” he furnishes is none other than the <span class="math inline">\(t\)</span> distribution.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> I will walk us through the derivations in his celebrated paper at the bottom, but as makes for an enormous, excruciating tangent, I will give a brief overview:</p>
+<ol style="list-style-type: decimal">
+<li><p>First, he determines the sampling distribution of standard deviations drawn from a normal population; he finds that this agrees with the Chi-squared distribution</p></li>
+<li><p>The, he shows that there is no correlation between the sample mean and the sample standard deviation (suggesting that the two random variables are independent).</p></li>
+<li><p>Finally, he determines the distribution of t (which he calls <span class="math inline">\(z\)</span>), which is the distance between the sample mean and the population mean, divided by the sample standard deviation <span class="math inline">\(\frac{\bar{x}-\mu}{s/\sqrt{n}}\)</span> (note the <em>n</em> in the denominator instead of our <em>n-1</em>)</p></li>
+</ol>
+<p>First, he shows that</p>
+<p><span class="math display">\[ 
+x=\frac{(n-1)}{\sigma^2}s^2 \sim \chi^2_{n-1}, \text{ that is, it has the density}\\
+p(x|n) =\frac{1}{2^{\frac{n-1}{2}}\Gamma(\frac{n-1}{2})}x^{\frac{n-1}{2}-1}e^{-\frac{x}{2}}
+\]</span></p>
+<p>Can we confirm this? Recall that our population variance <span class="math inline">\(\sigma^2\)</span> was 15.5544059, so let’s plot ’em and see if this density fits</p>
+<pre class="r"><code>#The distribution of sample variance when n=3
+n=3
+{hist((n-1)/(pop.sd^2)*samps3.sd^2,prob=T,breaks=50)
+curve(1/(2^((n-1)/2)*gamma((n-1)/2))*x^((n-1)/2-1)*exp(-x/2),xlim=c(0,30),add=T)
+curve(dchisq(x,df=2),add=T)}</code></pre>
+<p><img src="/posts/2017-08-23-basic-stats-u-need-t-test_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>#The distribution of the sample variance when n=10
+n=10
+{hist((n-1)/(pop.sd^2)*samps.sd^2,prob=T,breaks=50)
+curve(1/(2^((n-1)/2)*gamma((n-1)/2))*x^((n-1)/2-1)*exp(-x/2),xlim=c(0,30),add=T)
+curve(dchisq(x,df=9),add=T)}</code></pre>
+<p><img src="/posts/2017-08-23-basic-stats-u-need-t-test_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<p>Looks pretty good! Finally, he finds the distribution of the distances of the sample mean to the true mean <span class="math inline">\(\bar{X_n}-\mu\)</span>, divided by the standard deviation of the sample mean <span class="math inline">\(s/\sqrt{n}\)</span> (instead of dividing by <span class="math inline">\(\sigma/\sqrt{n}\)</span>; see previous post).</p>
+<p><span class="math display">\[
+t=\frac{\bar{X}-\mu}{s/\sqrt{n}}, \text{ which has the density}\\
+p(t|n)=\frac{\Gamma(\frac{n}{2})}{\Gamma(\frac{n-1}{2})} \frac{1}{\sqrt{(n-1)\pi}}\left(1+\frac{t^2}{n-1}\right)^{-n/2}
+\]</span></p>
+<p>Replacing <span class="math inline">\(\sigma\)</span> with <span class="math inline">\(s\)</span> in our Z-score formula gives a statistic that follows …you guessed it, the <em>t</em> distribution! The function itself looks way different that the normal density function <span class="math inline">\(p(x|\mu,\sigma)=\frac{1}{\sqrt{2 \pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)</span>. First of all, notice that it doesn’t depend on <span class="math inline">\(\mu\)</span> or <span class="math inline">\(\sigma\)</span> at all; let’s see how it actually looks compared to a normal distirbution</p>
+<pre class="r"><code>t.pdf&lt;-function(x,n){gamma(n/2)/(sqrt((n-1)*pi)*gamma((n-1)/2))*(1+x^2/(n-1))^(-n/2)}
+{curve(t.pdf(x,3),xlim=c(-4,4),ylim=c(0,.4),col=&quot;red&quot;)
+  curve(t.pdf(x,4),xlim=c(-4,4),ylim=c(0,.4),col=&quot;red&quot;,add=T,lty=2)
+  curve(t.pdf(x,6),xlim=c(-4,4),ylim=c(0,.4),col=&quot;red&quot;,add=T,lty=3)
+  curve(t.pdf(x,11),xlim=c(-4,4),ylim=c(0,.4),col=&quot;red&quot;,add=T,lty=4)
+  curve(t.pdf(x,26),xlim=c(-4,4),ylim=c(0,.4),col=&quot;red&quot;,add=T,lty=5)
+curve(dnorm(x,0,1),add=T,col=&quot;blue&quot;)}</code></pre>
+<p><img src="/posts/2017-08-23-basic-stats-u-need-t-test_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Above, we have plotted five <em>t</em> distributions (red) with 2, 3, 5, 10, and 25 degrees of freedom. Notice that the distribution with df=25 is almost indistinguishable from the normal distribution (blue). In fact, though it wasn’t proven until much later, <span class="math inline">\(t_n \rightarrow N(0,1)\ as \ n \rightarrow \infty\)</span></p>
+<p>Does this jibe with our observed data better than the normal?
+Let’s look at our samples of size 3 again and plot their respective t-statistics:</p>
+<pre class="r"><code>n=3
+ts=(samps3.mean-pop.mean)/(samps3.sd/sqrt(n))
+{hist(ts,prob=T,breaks=500,xlim=c(-10,10))
+curve(dt(x,df=2),add=T,col=&quot;red&quot;)
+curve(dnorm(x,0,samps3.sd[1]/sqrt(n)),add=T,col=&quot;blue&quot;)}</code></pre>
+<p><img src="/posts/2017-08-23-basic-stats-u-need-t-test_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>n=10
+ts=(samps.mean-pop.mean)/(samps.sd/sqrt(n))
+{hist(ts,prob=T,breaks=50,xlim=c(-5,5))
+curve(dt(x,df=9),add=T,col=&quot;red&quot;)
+curve(dnorm(x,0,samps.sd[1]/sqrt(n)),add=T,col=&quot;blue&quot;)}</code></pre>
+<p><img src="/posts/2017-08-23-basic-stats-u-need-t-test_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<p>Looks much better! Remember how when we assumed that the means of samples of size 3 were normally distributed, our 95% confidence interval (the interval from Z=-1.96 to Z=1.96) only included the mean 79.41% of the time? In a <span class="math inline">\(t\)</span> distribution with n-1 degrees of freedom, 95% of the distribution lies within 4.3 <em>sample</em> standard deviations of the population mean.</p>
+<pre class="r"><code>qt(c(.025,.975),2)</code></pre>
+<pre><code>## [1] -4.302653  4.302653</code></pre>
+<pre class="r"><code>x1&lt;-seq(-6,-4.3,len=100)
+x2&lt;-seq(4.3,6,len=100)
+y1&lt;-dt(x1,2)
+y2&lt;-dt(x2,2)
+x3&lt;-seq(-6,-1.96,len=100)
+x4&lt;-seq(1.96,6,len=100)
+y3&lt;-dnorm(x3)
+y4&lt;-dnorm(x4)
+{curve(dt(x,2), from=-6, to=6,ylim=c(0,.4),col=&quot;red&quot;)
+curve(dnorm(x),from=-6, to=6,add=T,col=&quot;blue&quot;)
+polygon(c(x1[1],x1,x1[100]),c(0,y1,0),col=&quot;red&quot;,border=NA)
+polygon(c(x2[1],x2,x2[100]),c(0,y2,0),col=&quot;red&quot;,border=NA)
+polygon(c(x3[1],x3,x3[100]),c(0,y3,0),col=&quot;blue&quot;,border=NA)
+polygon(c(x4[1],x4,x4[100]),c(0,y4,0),col=&quot;blue&quot;,border=NA)}</code></pre>
+<p><img src="/posts/2017-08-23-basic-stats-u-need-t-test_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>The plot above shows a normal <span class="math inline">\(N(0,1)\)</span> distribution in blue and a <span class="math inline">\(t\)</span> distribution with 2 degrees of freedom in red; note that the red areas under the <span class="math inline">\(t\)</span> add up to 5% and the blue areas under the <span class="math inline">\(N(0,1)\)</span> add up to 5%.</p>
+<p>Since the <span class="math inline">\(t\)</span>-statistic <span class="math inline">\(t=\frac{\bar{X}-\mu}{s/\sqrt{n}}\)</span> follows this distribution, we can rearrange it to find the confidence interval around the population mean.</p>
+<p><span class="math display">\[
+-t \le \frac{\bar{X}-\mu}{s/\sqrt{n}} \le t \\
+\frac{-ts}{\sqrt{n}} \le \bar{X}-\mu \le \frac{ts}{\sqrt{n}} \\
+\frac{-ts}{\sqrt{n}}-\bar{X} \le -\mu \le \frac{ts}{\sqrt{n}}-\bar{X} \\
+\frac{ts}{\sqrt{n}}+\bar{X} \ge \mu \ge \frac{-ts}{\sqrt{n}}+\bar{X} \\
+\bar{X}-\frac{ts}{\sqrt{n}} \le \mu \le \bar{X}+\frac{ts}{\sqrt{n}}
+\]</span></p>
+<p>Lets create 10,000 intervals just like the one above using random draws from our population of heights to find our <span class="math inline">\(\bar{X}\)</span> and <em>s</em> to see how many times they <em>don’t</em> actually contain the true mean <span class="math inline">\(\mu\)</span>. We will use <span class="math inline">\(t=4.3\)</span> because we saw that if the sample means follow a t-distribution, the 95% of the density should be within <span class="math inline">\(\bar{X}\pm 4.3\)</span> sample standard deviations (<span class="math inline">\(s/\sqrt{n}\)</span>) away.</p>
+<pre class="r"><code>samps3t&lt;-matrix(nrow=3,ncol=10000)
+samps3t&lt;-replicate(10000,sample(pop.height,3,replace=T))
+samps3t.mean&lt;-apply(samps3t,2,mean)
+samps3t.sd&lt;-apply(samps3t,2,sd)
+s3t.s&lt;-mean(samps3t.mean-4.303*samps3t.sd/sqrt(3)&gt; pop.mean | pop.mean&gt;samps3t.mean+4.303*samps3t.sd/sqrt(3))
+s3t.s</code></pre>
+<pre><code>## [1] 0.056</code></pre>
+<p>Yay! Assuming a t-distribution, the population mean falls outside our 95% confidence interval 5.6% of the time; clearly this distribution is a much better fit for a sampling distribution when samples are small and we are using <span class="math inline">\(s\)</span> instead of <span class="math inline">\(\sigma\)</span>.</p>
+<p>#Student’s “Simulations”</p>
+<p>Thanks to computers, we can easily check the results of our derivations by using monte carlo sampling techniques. Gosset obviously could not do this. Perhaps the most remarkable thing about his paper, however, is that it <em>does</em> contain one of the earliest simulation studies in history. He did this by hand, with “3000 pieces of cardbord, which were very thoroughly shuffled and drawn out at random.”</p>
+<center>
+<img src="student5.png" />
+</center>
+<p><br></p>
+<p>Below, he plots the observed distribution of the standard deviations of his samples of size <span class="math inline">\(n=4\)</span> and overlays his curve:</p>
+<center>
+<img src="studentplot1.png" />
+</center>
+<p>And here below, he plots his observed distribution of <span class="math inline">\(z=\frac{\bar{X}-\mu}{s/\sqrt{n}}\)</span>, where his <span class="math inline">\(s\)</span> divides by <span class="math inline">\(n\)</span> instead of <span class="math inline">\(n-1\)</span>,</p>
+<center>
+<img src="studentplot2.png" />
+</center>
+<p>#Hypothesis Testing with the T-Test</p>
+<p>The development of the <em>t</em> distribution was hugely important because it gave the enabled the t-test, commonly used as a location test for the mean. Recall that the <em>t</em> statistic <span class="math inline">\(t=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\)</span> follows a t-distribution (with <span class="math inline">\(n-1\)</span> degrees of freedom). Now, given that we have some data, the only unknown here is the parameter <span class="math inline">\(\mu\)</span>, the population mean. Let’s generate a null hypothesis: let <span class="math inline">\(\mu=\mu_0=0\)</span> and <span class="math inline">\(n=10\)</span>; this gives a distribution of the sample mean <span class="math inline">\(\bar{X}\)</span> for samples of size 10 around a “true” population mean of <span class="math inline">\(\mu_0=0\)</span>, while accounting for uncertainty in the sample variance. Thus, we can ask how likely we are to observe our sample mean <span class="math inline">\(\bar{X}_{10}\)</span>, given that the true population mean is actually 0. Let’s do this; we will take a random sample of size from a normal distribution with a mean of 1 and a standard deviation of 1; we will then calculate the mean and ask how likely this value would be if the true mean was actually equal to 0.</p>
+<pre class="r"><code>tsamp&lt;-rnorm(10,1,1)
+tsamp.mean&lt;-mean(tsamp)
+tsamp.sd&lt;-sd(tsamp)
+tstat&lt;-(tsamp.mean-0)/(tsamp.sd/sqrt(10))
+x1&lt;-seq(-5,-2.26,len=100)
+x2&lt;-seq(2.26,5,len=100)
+x3&lt;-seq(tstat,5,len=100)
+x4&lt;-seq(-5,-1*tstat,len=100)
+y1&lt;-dt(x1,9); y2&lt;-dt(x2,9); y3&lt;-dt(x3,9);y4&lt;-dt(x4,9)
+{curve(dt(x,9),main=&quot;&quot;,xlim=c(-4,4))
+polygon(c(x1[1],x1,x1[100]),c(0,y1,0),col=&quot;grey&quot;,border=NA)
+polygon(c(x2[1],x2,x2[100]),c(0,y2,0),col=&quot;grey&quot;,border=NA)
+polygon(c(x3[1],x3,x3[100]),c(0,y3,0),col=&quot;black&quot;,border=NA)
+polygon(c(x4[1],x4,x4[100]),c(0,y4,0),col=&quot;black&quot;,border=NA)
+abline(v=tstat,lty=2)}</code></pre>
+<p><img src="/posts/2017-08-23-basic-stats-u-need-t-test_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code>2*(1-pt(tstat,df=9))</code></pre>
+<pre><code>## [1] 0.02300813</code></pre>
+<p>The probability of observing a sample mean (i.e., a <em>t</em> statistic) at least this extreme (in either direction!) is .016 (this is the sum of the black areas under the <em>t</em> curve). The area under the curve to the right of our observed statistic is only <code>round(1-pt(tstat,df=9),3)</code>, but we have to double it to account for a just as extreme or more extreme observation happening in the other direction. We do this because we didn’t have any <em>a priori</em> hypothesis about the direction of the effect: our default alternative hypothesis was that <span class="math inline">\(\mu \ne 0\)</span>, or <span class="math inline">\(prob \gt |t|=p \lt -t + p &gt; t\)</span> where <em>t</em> is our observerd t-statistic <code>tstat</code>. The area shown in gray <em>plus</em> the area in black is equal to 5% of the distribution, 2.5% on each side. This represents the standard “rejection region” with a significance level of 0.05; thus, even if the null hypothesis is true and there is no effect (i.e., <span class="math inline">\(\mu =0\)</span>), 5% of the time we would still observe sample means that are at least this extreme: namely, more than <span class="math inline">\(t^*_{(1-\frac{\alpha}{2}=.975,n-1=9)}=2.262\)</span> sample standard deviation away from the true mean.</p>
+<p>#Assumptions: Independence, Normality, and Equality of Variances</p>
+<p>When the t-test is used to compare samples from two populations, the main assumptions that need to be met for this purpose are that the populations are (1) independent of one another, are (2) both normally distributed, and (3) both have the same variance. The first of these can often be fixed using a paired t-test (see below). The second–normality–is usually met in practice thanks to the central limit theorem, but if non-normality is a problem then non-parametric tests such as the Mann-Whitney <em>U</em> test can be used instead. The third–unequal variances–can be tricky, but there are fixes here as well (see Welch’s t-test below).</p>
+<p>In order to test for differences between two sample means, we need to find the distribution of <span class="math inline">\(\bar{X}_1 - \bar{X}_2\)</span>. For large samples (or when we know the populations are normal), we find that <span class="math inline">\(\bar{X}_1 - \bar{X}_2\)</span> is normally distributed, with a mean of <span class="math inline">\(\mu_1-\mu_2\)</span> and a pooled variance equal to <span class="math inline">\(\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}\)</span>. But when we don’t know <span class="math inline">\(\sigma\)</span> (which is like, always) and when samples are small (&lt; 30 or so, which is common), this becomes a t-test. Assuming the independence, normality, and equal variance (a.k.a. <em>homoscedasticity</em>) assumptions are met, you would compare two groups with sample means <span class="math inline">\(\bar{X}_1, \bar{X}_2\)</span>, sample standard deviations <span class="math inline">\(s_1, s_2\)</span>, and sample sizes <span class="math inline">\(n_1, n_2\)</span> using the statistic <span class="math inline">\(t=\frac{\bar{X}_1-\bar{X}_2}{s_p \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}\)</span>, where <span class="math inline">\(s_p\)</span> equals
+<span class="math display">\[
+s_p=\sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}}
+\]</span></p>
+<p>###Don’t Have Equal Variances? Welch’s
+If the assumption of equal variances is violated, you need to use what is often called <em>Welch’s t-test</em>, which uses the test statistic <span class="math inline">\(t=\frac{\bar{X_1}-\bar{X_2}}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}\)</span>. This formula may look pretty straightforward, but there’s a catch! The degrees of freedom you use are no longer <span class="math inline">\(n-1\)</span>, but are adjusted in the following manner
+$$
+df= </p>
+<p>$$</p>
+<p>This isn’t too hard to calculate by hand but most software will do it for you. You use the t-distribution with these <em>df</em> rounded down to the nearest whole number. A more conservative, albeit much faster, choice of <em>df</em> is to use the smaller of <span class="math inline">\(n-1\)</span> and <span class="math inline">\(n-2\)</span>.</p>
+<p>###Don’t Have Independence? Paired t-Test
+If the assumption of independence is violated, it is usually done so on purpose: for example, you may have collected pre-test scores before an intervention, and then afterwards given everyone a post-test. Here, your <span class="math inline">\(\bar{X}_{post}\)</span> is dependent on your <span class="math inline">\(\bar{X}_{pre}\)</span>, since students who had a higher score at pre-test will tend to have higher scores at post-test and vice versa. To get around the issue of dependent data, we use a dependent-samples (or “paired”) t-test. We subtract away any interdependence by calculating <em>n</em> “difference scores” (<span class="math inline">\(x_{1,post}-x_{1,pre}, ..., x_{n,post}-x_{n,pre}\)</span>) between the depedent samples (e.g., for each person, subtract their pre-test score from their post-test score). This gets rid of any person-specific effects and leaves of with a bunch of differences, of which we take the mean <span class="math inline">\(\bar{X}_D\)</span> and the sample standard deviation <span class="math inline">\(s_D\)</span> before calculating a t-statistic identical to a one-sample t-test: <span class="math inline">\(\frac{\bar{X}_D-\mu_0}{s_D/\sqrt{n}}\)</span>. The degrees of freedom, etc., are all just the same as in the one-sample case. Usually, <span class="math inline">\(\mu_0=0\)</span> because the null hypothesis is that the means do not differ between time 1 and time 2.</p>
+<p>###No Normality? Non-Parametrics
+Finally, if the assumption of normality is violated, we can use a nonparametric test (a test that, by definition, makes no distributional assumptions). Commonly, the <a href="https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test">Mann-Whitney <em>U</em> test</a> is used. Here, you calculate a <span class="math inline">\(U\)</span> for each sample by counting up the number of times a given observation <span class="math inline">\(x_i\)</span> from one sample is greater than each of the observations in the other sample (counting 0.5 for a tie). The sum of these <em>n</em> counts gives you the <span class="math inline">\(U\)</span> for one sample, and the <span class="math inline">\(U\)</span> for the other is calculated equivalently. Then you can look up the <a href="http://math.usask.ca/~laverty/S245/Tables/wmw.pdf">critical value of the U statistic</a>. Interestingly, for <span class="math inline">\(n&gt;20\)</span> <em>U</em> is approximately normally distributed, with <span class="math inline">\(z=\frac{U-m_U}{\sigma_U}\)</span>, where <span class="math inline">\(m_U=n_1n_2/2\)</span> and <span class="math inline">\(\sigma_U=\sqrt{\frac{n_1n_2(n_1+n_2+1)}{12}}\)</span>, unless there are lots of ties, in which case a correction exists for the term in the denominator.</p>
+<p>###No Normality or Independence
+In this case, another non-parametric tests can help: the <a href="https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test">Wilcoxon signed-rank test</a>.</p>
+<p>#Derivation</p>
+<p>He begins by deriving the distribution of the sample standard deviation <em>s</em> for samples of a given size <em>n</em> drawn from a standard normal distribution.
+If <span class="math inline">\(x_1, x_2, ...,x_n\)</span> is one of these samples then, using a property we derived in the previous post, for one sample we have</p>
+<p><span class="math display">\[
+\begin{align}
+s^2&amp;=\frac{\sum(x_i^2)}{n}-\left(\frac{\sum(x_i)}{n}\right)^2\\ &amp;= \frac{\sum(x_i^2)}{n} - \frac{\sum(x_i^2)}{n^2} - \frac{2\sum_{i&lt;j}(x_ix_j)}{n^2}\\
+\end{align}
+\]</span>
+So the expected value of the standard deviation across all such samples is
+<span class="math display">\[
+\begin{align}
+E\left[s^2\right]&amp;=E\left[\frac{\sum(x_i^2)}{n} - \frac{\sum(x_i^2)}{n^2} - \frac{2\sum_{i&lt;j}(x_ix_j)}{n^2}\right]\\
+&amp;=\frac{\sum E[x_i^2]}{n}-\frac{\sum E[x_i^2]}{n^2}-\frac{2\sum_{i&lt;j}E[x_ix_j]}{n^2} \\
+&amp;= \frac{n\mu&#39;_2}{n}- \frac{n\mu&#39;_2}{n^2}-0 \text{ , (since independent, }E[x_ix_j]=E[x_i]E[x_j]=0\times 0\text{)}\\
+&amp;=\frac{\mu&#39;_2(n-1)}{n} ,\text{ where }\mu&#39;_2 =E[x_i^2], \text{the second moment.}
+\end{align}
+\]</span>
+The he says OK, so we’ve got the expected value, or the mean, of <span class="math inline">\(s^2\)</span>. He goes on to find, “in the same tedious way,” that the means of <span class="math inline">\(s^4, s^6, s^8\)</span> are
+<span class="math display">\[ 
+\begin{align}
+E[s^4] &amp;= (\mu&#39;_2)^2 \frac{(n-1)(n+1)}{n^2}, \\
+E[s^6] &amp;= (\mu&#39;_2)^3 \frac{(n-1)(n+1)(n+3)}{n^3}, \\
+E[s^8] &amp;= (\mu&#39;_2)^4 \frac{(n-1)(n+1)(n+3)(n+5)}{n^4},\\
+...
+\end{align}
+\]</span>
+These are raw moments. To find the central moments of s^2 about its mean (that is, to find the variances), we do so in this way
+<span class="math display">\[
+\begin{align}
+M_2 &amp;=E\left[(s^2-E[s^2])^2\right]=V[s^2]=E[(s^2)^2]-\left(E[s^2]\right)^2= \\
+&amp;= E[(s^4)]-\left(E[s^2]\right)^2 \\
+&amp;= (\mu&#39;_2)^2 \frac{(n-1)(n+1)}{n^2} - \left(\frac{\mu&#39;_2(n-1)}{n} \right)^2 \\
+&amp;= (\mu&#39;_2)^2 \frac{(n-1)(n+1)}{n^2} - \frac{(\mu&#39;_2)^2(n-1)^2}{n^2} \\
+&amp;= (\mu&#39;_2)^2\frac{(n-1)}{n^2}\left[(n+1)-(n-1) \right] \\
+&amp;= 2 (\mu&#39;_2)^2\frac{(n-1)}{n^2}, \text{ remembering that }\mu&#39;_2=E[x_i^2].
+\end{align}
+\]</span>
+When you find the other moments <span class="math inline">\(M_3=V[s^4]\)</span> and <span class="math inline">\(M_4=V[s^6]\)</span>, you get
+<span class="math display">\[
+\begin{align}
+M_3&amp;=V[s^4]=8(\mu&#39;_2)^3\frac{(n-1)}{n^3},\\
+M_4&amp;=V[s^6]=12(\mu&#39;_2)^4\frac{(n-1)(n+3)}{n^4}
+\end{align}
+\]</span>
+Now it’s time to pause for a second. It turns out that Karl Pearson, STUDENT’s mentor, had already discovered the <em>t-</em>distribution in 1895/1901 (along with the gamma distribution and several others). Pearson parameterized his distributions using two quantites: <span class="math inline">\(\beta_1 = \gamma_1^2\)</span> (where <span class="math inline">\(\gamma_1\)</span> is the skewness, or third standardized moment) and <span class="math inline">\(\beta_2=\gamma_2+3\)</span>, where <span class="math inline">\(\gamma_2\)</span> is traditional kurtosis. Here,
+<span class="math display">\[
+\gamma_1=E\left[\left(\frac{s^2-E(s^2)}{\sqrt{Var[s^2]}}\right)^3\right]=\frac{M_3}{\sqrt{M_2^3}}
+\]</span>
+So
+<span class="math display">\[
+\beta_1=\gamma_1^2=\frac{M_3^2}{M_2^3}=\frac{8^2(\mu&#39;_2)^6\frac{(n-1)^2}{n^6}}{2^3 (\mu&#39;_2)^6\frac{(n-1)^3}{n^6}}=\frac{8}{n-1}
+\]</span>
+And
+<span class="math display">\[
+\beta_2=\gamma_2=E\left[\left(\frac{s^2-E(s^2)}{\sqrt{Var[s^2]}}\right)^4\right]=\frac{M_4}{M_2^2}=\frac{12(\mu&#39;_2)^4\frac{(n-1)(n+3)}{n^4}}{2^2 (\mu&#39;_2)^4\frac{(n-1)^2}{n^4}}=\frac{3(n+3)}{n-1}
+\]</span></p>
+<p>To make a long story short, he realized that the four moments he computed, scaled in this way, corresponded to one of Pearsons equations (which were parametrized withvalues of <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2)\)</span>. Can you find which one? For instance, when <span class="math inline">\(n=2\)</span>, <span class="math inline">\(\beta_1=8\)</span> and <span class="math inline">\(\beta_2=15\)</span></p>
+<center>
+<img src="pearsonsdistns.png" />
+</center>
+<p>STUDENT: “Consequently, a curve of Professor Pearson’s type III maybe expected to fit the distribution of s^2.” The curve in questions is <span class="math inline">\(y=Cx^pe^{-\gamma x}\)</span>, where <span class="math inline">\(\gamma=2\frac{M_2}{M_3}=\frac{n}{2\mu&#39;_2}\)</span> and <span class="math inline">\(p=\frac{4}{\beta_1}-1=\frac{n-3}{2}\)</span>, thus yielding
+<span class="math display">\[
+y=Cx^{\frac{n-3}{2}}e^{\frac{nx}{2\mu&#39;_2}}
+\]</span>
+“Which will give the distribution of <span class="math inline">\(s^2\)</span>” (i.e., <span class="math inline">\(x=s^2\)</span>)</p>
+<!--
+To get the distribution of the standard deviation he writes,
+
+If $\phi(s^2)$ is the pdf of $s^2$ and $\psi(s)$ is the pdf of $s$, then
+$$
+\begin{align}
+\phi(s^2)d(s^2)&=\psi(s)ds\\
+2s\phi(s^2)ds&=\psi(s)ds\\
+\psi(s)&=2s\phi(s)
+\end{align}
+$$
+So the distribution of *s* becomes
+$$
+\begin{align}
+y&=C(2s)(s^2)^{\frac{n-3}{2}}e^{\frac{ns^2}{2\mu'_2}}\\
+&=2Cs^{n-2}e^{-\frac{ns^2}{2\mu'_2}}\\
+&=Ax^{n-2}e^{\frac{-nx^2}{2\sigma^2}}
+\end{align}
+$$
+After integrating to find the constant A, STUDENT gives the final distribution of the standard deviation *s* of samples of size *n* drawn from a normally distributed population with standard deviation $\sigma$:
+$$
+\begin{align}
+y&=\frac{1}{(n-3)\times(n-5)...3\times2}\sqrt{\frac{2}{\pi}}\left(\frac{n}{\sigma^2} \right)^{\frac{n-1}{2}}x^{n-2}e^{\frac{nx^2}{2\sigma^2}} \text{ (if n is even),}\\
+y&=\frac{1}{(n-3)\times(n-5)...4\times1}\left(\frac{n}{\sigma^2} \right)^{\frac{n-1}{2}}x^{n-2}e^{\frac{nx^2}{2\sigma^2}} \text{ (if n is odd)}\\
+in \ general,\\
+y&= C \frac{s^{n-2}}{\sigma^{n-1}}e^{-\frac{ns^2}{2\sigma^2}}
+\end{align}
+$$
+
+$\frac{s(n-1)}{\sigma}$
+
+-->
+<p>Great, so now we’ve got our sampling distribution for the standard deviation! Recalling that the sampling distribution for the sample mean is just normal—<span class="math inline">\(N(\mu,\frac{\sigma}{\sqrt{n}})\)</span>,
+<span class="math display">\[
+y=\frac{1}{\sqrt{2\pi}(\sigma/\sqrt{n})}e^{-\frac{x^2}{2(\sigma/\sqrt{n})^2}}
+\]</span></p>
+<p>He says, “now let us suppose <span class="math inline">\(x\)</span> [which, recall, are observations measured as distances from the population mean] is measured in terms of <span class="math inline">\(s\)</span>, i.e. let us find the distribution of <span class="math inline">\(z=\frac{x}{s}\)</span>” which gives,</p>
+<p><span class="math display">\[
+y=\frac{s}{\sqrt{2\pi}(\sigma/\sqrt{n})}e^{-\frac{s^2z^2}{2(\sigma/\sqrt{n})^2}}
+\]</span></p>
+<p>To be continued (sorry y’all, this is taking me <em>forever</em>)… at this point I want to just do a change of variable and integrate but that’s not how he does it (at least… I don’t think so?)</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>The normal distribution is more often parameterized with a variance <span class="math inline">\(\sigma^2\)</span> like so: <span class="math inline">\(N(\mu,\frac{\sigma^2}{n})\)</span>. However, since this post and the last deal frequently with the standard deviation, I will be using this notation for the duration of the post. Notice that the base-R functions like rnorm(x,mean=0,sd=1) use the standard deviation. In general, it should be clear from context which one is being considered.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>It was actually derived by Friedrich Helmert about half a century earlier, but <a href="https://en.wikipedia.org/wiki/Stigler%27s_law_of_eponymy">such is the way with credting discoveries</a>).<a href="#fnref2" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/basic-stats-u-need-z-scores/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Basic Stats U Need #1: Z-Scores, Sampling Distns, LLN, CLT</span>
+    </a>
+    
+    
+    <a href="/posts/basic-stats-u-need-3-anova/" class="navigation-next">
+      <span class="navigation-tittle">Basic Stats U Need #3: ANOVA</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+    
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

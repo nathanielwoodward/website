@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.60.1" />
+
+    
+    
+    
+
+<title>The Math of Secrecy: RSA Cryptography (and Shapes You Can Draw!) • Nathaniel Woodward</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="The Math of Secrecy: RSA Cryptography (and Shapes You Can Draw!)"/>
+<meta name="twitter:description" content="When Gauss was 19, he discovered that of the infinite number of polygons that have a prime number of sides, a mere five of them can be constructed with a ruler and compass (i."/>
+
+<meta property="og:title" content="The Math of Secrecy: RSA Cryptography (and Shapes You Can Draw!)" />
+<meta property="og:description" content="When Gauss was 19, he discovered that of the infinite number of polygons that have a prime number of sides, a mere five of them can be constructed with a ruler and compass (i." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/the-math-of-secrecy-rsa-cryptography-and-shapes-you-can-draw/" />
+<meta property="article:published_time" content="2014-07-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2014-07-13T00:00:00+00:00" /><meta property="og:site_name" content=" " />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.b35dd3e835aecd417af94297503d23c4aa8c639318e0f4ae65e8a1caaaf41707.css" integrity="sha256-s13T6DWuzUF6&#43;UKXUD0jxKqMY5MY4PSuZeihyqr0Fwc=">
+
+
+<link rel="stylesheet" href="/scss/print.8c61428a4ae8b36c028e9198876312a2de5a2b3c80bbbdcceb98d738691c4f6b.css" integrity="sha256-jGFCikros2wCjpGYh2MSot5aKzyAu73M65jXOGkcT2s=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+    
+
+</head>
+
+
+    <body class="theme-base-09 ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+    
+      
+        
+        
+        
+        
+        <div class="author-image">
+           <a href="/"><img src="/img/headshot_cropped_f2019.png" alt="Nathaniel Woodward" class="img--circle img--headshot element--center"></a>
+        </div>
+        
+      
+      <p class="site__description">
+         Nathaniel Woodward 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Nathaniel Woodward</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/portfolio/">
+						<span>Portfolio</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="cv.pdf">
+						<span>Vitae</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <br>
+        <section class="social">
+	
+	<a href="https://twitter.com/Distributino" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="https://github.com/nraley" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<a href="https://last.fm/user/raleywoodward" rel="me"><i class="fab fa-lastfm fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://www.goodreads.com/user/show/44370058-nathaniel" rel="me"><i class="fab fa-goodreads fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="mailto:nathaniel.raley@utexas.edu" rel="me"><i class="fas fa-at fa-lg" aria-hidden="true"></i></a>
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2019  
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>The Math of Secrecy: RSA Cryptography (and Shapes You Can Draw!)</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Jul 13, 2014
+    
+    
+    
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 9 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>When <a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss">Gauss</a> was 19, he discovered that of the infinite number of polygons that have a prime number of sides, a mere five of them can be <a href="https://en.wikipedia.org/wiki/Constructible_polygon">constructed</a> with a ruler and compass (i.e., <a href="https://en.wikipedia.org/wiki/Compass-and-straightedge_construction">using only straight lines and circles</a>). These prime-sided polygons can have 3, 5, 17, 257, or 65537 sides, but only these five are possible (probably).</p>
+<p><a href="https://nrwoodward.files.wordpress.com/2014/07/064f5-pentagon.gif"><img src="https://nrwoodward.files.wordpress.com/2014/07/064f5-pentagon.gif" alt=""></a></p>
+<p>Indeed, the only shapes you can draw with an odd number of equal-length sides are the multiples of these 5 primes: 3, 5, 15, 17, 51, 85,&hellip;, 4294967295<br>
+(<em>amazingly, all constructable polygons must have a number of sides that is a multiple of a Fermat prime and a power of 2!</em>). There are <a href="http://mathworld.wolfram.com/TrigonometryAngles.html">good reasons</a> why this is true, but they are confusing and would belabor this post.</p>
+<p>Apparently, Gauss was so happy with his finding that he requested a regular <a href="https://en.wikipedia.org/wiki/Heptadecagon">heptadecagon</a> on his tombstone; the stonemason declined, stating that it would essentially look like a circle. After watching the requisite process below, one begins to sympathize with the stonemason (<a href="https://commons.wikimedia.org/wiki/User:Aldoaldoz">diligent wikipedian Aldoaldoz</a> made both of these; in case you want to build your own 17-gon, you can break out the compass and follow along at home). It's hypnotically beautiful, but the .gif alone is 462 frames and takes a full 1:26 to watch&hellip;</p>
+<p><a href="https://nrwoodward.files.wordpress.com/2014/07/e8377-17gon.gif"><img src="https://nrwoodward.files.wordpress.com/2014/07/e8377-17gon.gif" alt=""></a></p>
+<p>These strange numbers are known as <a href="https://en.wikipedia.org/wiki/Fermat_prime">Fermat primes</a>, and take the form <code>$2^{2n}+1$</code>. Though there are infinitely many numbers of this form, only the first 5 (above) are prime (the sixth is <code>$2^{2(5)}+1=1025 $</code>). As I was reading about these yesterday, I found that they have an important application in the most common form of public-key cryptosystems, whereby messages are encoded so as to conceal their meaning.</p>
+<p>This method of encryption is used to secure electronic communication over the internet; even if a third party somehow manages to nab your encrypted message, it will be almost impossible for them to crack it. If you've used SSH, SSL/HTTPS, PGP, or had to verify a digital signature, you've used <a href="https://en.wikipedia.org/wiki/RSA_encryption">RSA encryption</a> or one of its descendants.</p>
+<p>On personal websites, you may have run into these before:</p>
+<pre><code>&lt;code&gt;-----BEGIN PGP PUBLIC KEY BLOCK-----&lt;br&gt;&lt;/br&gt;Version: GnuPG v1.4.11 (GNU/Linux)&lt;br&gt;&lt;/br&gt;&lt;br&gt;&lt;/br&gt;mQENBFPCyXEBCACuHid62W3FI3DegXw3G6Xyjdj3SBl3+f/fBNIN4Yrx0auPjuZG&lt;br&gt;&lt;/br&gt;TqtA6opOH7jzAEBdBBysiQ+1frQlfiWlmdzJ/GQR7KGhuZNx33pyCwXV85bcKtno&lt;br&gt;&lt;/br&gt;A4CQK8r2sfrRF796voNWxW/MaStT7IWQfHrMYsgcl+7cZogBu/nl3nnHuZz+oMMG&lt;br&gt;&lt;/br&gt;ZZl+uziKF1+M4naOr6gH3UMTECk2Xib2lk58RFN4pmqPzbWG5gUU5ugN13c6hO7S&lt;br&gt;&lt;/br&gt;eKN/cbGSHRHPQci0aZo743rIoWgQZ+S88j3BweGFbD78tw5UYJUW+rnyYISzDbVi&lt;br&gt;&lt;/br&gt;R+i8luzVtVhkHZnetcQoz6IBsDyfnK0dKMLhABEBAAG0K05hdGhhbmllbCBSYWxl&lt;br&gt;&lt;/br&gt;eSA8bmF0aGFuaWVsLnJhbGV5QGdtYWlsLmNvbT6JATgEEwECACIFAlPCyXECGwMG&lt;br&gt;&lt;/br&gt;CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEH4levi+sCboeHoH/3IyNGGwxVWy&lt;br&gt;&lt;/br&gt;VVnjKj2vpbgysU4W4xieL9sWvMBFnKDhpHZsazBEhXnmhEbDouixZaFeMmul8C7J&lt;br&gt;&lt;/br&gt;2/5Ljync/fkPCKtyF+Ibovs3ALuHnY4Iu8vukxMbr7cmB1lOkVGxHIKcjGX4H9F7&lt;br&gt;&lt;/br&gt;6qnGYmJWpz+pgYIbq5xO07aCcwE9/EUQwh0MdDml0euRiDWio1HOM7XTVJJ7AmyX&lt;br&gt;&lt;/br&gt;MKroqF+Ik/93mSl4vGlKKqDhPr3hcxqFsE8LhHgMxeI2NGomhka064mwWqRpFf0f&lt;br&gt;&lt;/br&gt;ce33cWaFSgl+rRAqkQkZUdiMnbIj9P89OH/PqOQgaB/nXIVXmjMb6HluhJA/2ZnM&lt;br&gt;&lt;/br&gt;h+Y8e0pF2j+5AQ0EU8LJcQEIAK38D6Bnho1cennrFOVcCj1nmlG4UW9mWr2ox+WJ&lt;br&gt;&lt;/br&gt;QBEqw8IUsWg/0LEe5K3MPoOE3lO3VTHnKqLMJSbA9byjSwYxIE3Y1QoY1Uq43Da1&lt;br&gt;&lt;/br&gt;sYkeETVkMgnAGmIwSQgsdfdAGhXv5uF/Ck3O+QMdUW5qZ4s+WXUCMWcj4ZgomUxC&lt;br&gt;&lt;/br&gt;i0bQgE/w/TDc0JAisma2oOuOTVjpfyX5VCk6XtwmDxE+STHZTCIKvSnyodx3Hlke&lt;br&gt;&lt;/br&gt;1gr+f/ejpbAnYiyjjWpiQGS47YCjAzGAsn0CRJ4dQYsjv6RVL/O/EYEJDUs49cLW&lt;br&gt;&lt;/br&gt;ccYhj0BQZyeMqWxZqP8ZUIGsoPfzh/ahLNXnxlqVTD53eA8AEQEAAYkBHwQYAQIA&lt;br&gt;&lt;/br&gt;CQUCU8LJcQIbDAAKCRB+JXr4vrAm6OFPB/9P4GkEV+XpejL4TO17Sh7vj3nZvKxd&lt;br&gt;&lt;/br&gt;AoPKKG1qbJNuYqasz0d5C0hfZN4aLaKdiWide9sIMfjRrG1gbN8o34uR3i3887Eg&lt;br&gt;&lt;/br&gt;zrhZWS/E01jGqR4ey/iACyfXvDfEFEwthfChyS9qQVYw7fWWSBtpZqJ5iul7Jf7b&lt;br&gt;&lt;/br&gt;tHPeqizK2FqOSnJy9ovaHHcZL4Wt26Y+IDWq0WQKB89guhN6LhlaQQXrAhlbwW2N&lt;br&gt;&lt;/br&gt;DcvTrHm3g4sVxeuAujGJzJGRmf5hkV+YxG2OrpLQjx+n4XsZSFO3tdfNwTwDn1Xj&lt;br&gt;&lt;/br&gt;9AFqGhRzm9j1Cq3iqcTbJtQwwJknkNm7CLFeHuy4zurzP3gmwnRvZ2UM&lt;br&gt;&lt;/br&gt;=X1Q+&lt;br&gt;&lt;/br&gt;-----END PGP PUBLIC KEY BLOCK-----&lt;br&gt;&lt;/br&gt;&lt;/code&gt;
+</code></pre>
+<p>To the untrained eye someone's cat has been traipsing about on their keyboard, but in reality this string of characters represents two (big, random) numbers that allow you to communicate with it's provider in a completely secure fashion. It is a <em>&ldquo;public key&rdquo;</em> and is used to encrypt messages sent to its owner; it has a mathematically precise twin, a <em>&ldquo;private key&rdquo;</em> which only the owner has access to. This private key is required to decode the message originally encoded by the public key.</p>
+<p>For an extremely helpful analogy, consider a padlock. A public key can be thought of as an open padlock and a private key is the key that can unlock it once it is closed. In public key cryptosystems, you give your close friends copies of your personal padlock, open and unlocked (this is your public key). They can now send you messages securely by locking them in a box using your padlock (i.e., encrypting it with your public key) and sending it to you, because only you have the key (the private key) which can open it. Note that your friends don't need a key to close the padlock: they simply put their message in the box and shut the padlock.</p>
+<p>How does this work mathematically? Here's a technically correct but very basic run-through of RSA for didactic purposes:</p>
+<p>Let's say you want to communicate privately with another party. They're going to send you a secret message (message: &ldquo;PRIVATE&rdquo;) over the internet, and they want to be sure that no one else can read it. In order to do so, they can encrypt this message using your public key and send it to you; you can then use your private key to decrypt and read it.</p>
+<p>Let's assume you haven't yet generated public/private keys, and you want to do so by hand:</p>
+<ul>
+<li>
+<p><em>STEP 1</em><br>
+Choose a pair of prime numbers,** p** and **q**, at random.<br>
+To keep the math reasonable, let's take **p**=3 and **q**=17</p>
+</li>
+<li>
+<p><em>STEP 2</em><br>
+Multiply <strong>p</strong> and <strong>q</strong> together to get their product <strong>n</strong>.<br>
+Here <code>$n = 3 \times 17 = 51$</code> (This is the step that is hard to reverse in practice!)</p>
+</li>
+<li>
+<p><em>STEP 3</em><br>
+Multiply <code>$(q-1) \times (p-1)$</code> to get the totient of n, <code>$\phi(n)$</code>
+<code>$ \phi(n)= (3-1) \times (17-1) = (2) \times (16) = 32 $</code></p>
+</li>
+<li>
+<p><em>STEP 4</em><br>
+For the first key, choose any number <strong>e</strong> that is smaller than <code>$\phi(n)$</code> and has no common factors with <code>$\phi(n)$</code>. **Since <code>$\phi(n)=32$</code>, we can choose any number besides 1, 2, 4, 8, 16, and 32.<br>
+Lets pick <strong>e</strong> =11.</p>
+</li>
+<li>
+<p><em>STEP 5</em><br>
+Finally, the matching key <strong>d</strong> must be computed. This is achieved by taking the inverse of <em>e</em> <a href="https://en.wikipedia.org/wiki/Modular_arithmetic">modulo</a> <code>$\phi(n)$</code>. All this means is that we need to find the number <strong>d</strong> to  multiply <strong>e</strong>= 11 by so that when we divide their product by <code>$\phi(n)$=32</code>, we get a  remainder of 1. This isn't as hard as it sounds: <code>$\phi(n)=32$</code>, and <code>$e=11$</code>. Since 11 x 3 = 33, and 33 divided by 32 leaves a remainder of 1, we know that the <strong>d</strong>, &ldquo;the inverse of 11 modulo 32&rdquo; , equals <strong>3</strong>.</p>
+</li>
+</ul>
+<p>These keys <strong>e</strong>=11 and <strong>d</strong>=3 are mathematically linked through <strong>n</strong>=51, because<br>
+if you take the number you want to encrypt to the power of <strong>e</strong> and divide by <strong>n</strong>, you get a remainder. <em>This remainder the encrypted version of your original number</em>. To decode it, just raise it to power of <strong>d</strong> and divide by <strong>n</strong>.</p>
+<p>As quick example, say the secret message you want to send is the number 4. To encrypt it using our public key (<strong>e</strong>=11, <strong>n</strong>=51), do the following (with &ldquo;mod&rdquo; being the modulo operator):</p>
+<p><code>$4^{11}\mod 51 = 4194304 \mod 51 = 13$</code></p>
+<p>The number 13 is our encrypted message, which can only be unlocked if you have the private key (<strong>d</strong>=3, <strong>n</strong>=51). The same procedure used to encrypt is used to decrypt, but take 13 to the power of <strong>d</strong> and find the remainder when dividing by 51.</p>
+<p><code>$13^{3} \mod 51 = 2197\mod 51= 4$</code>, our original message</p>
+<p>Without factoring <strong>n</strong> = 51, you can't easily compute <code>$\phi(n)=32$</code> and thus knowing one key, you can't easily compute the other.</p>
+<p>But how do we send the secret message &ldquo;PRIVATE&rdquo;? First you should get a numerical representation of this message;  commonly, a much longer messages is being sent and it is converted from  <a href="https://en.wikipedia.org/wiki/ASCII#ASCII_printable_code_chart">ASCII</a> to its decimal representation. For now, we can just take the  number that corresponds to each letter's position in the alphabet, (A=1,  B=2,&hellip;, Z=26). Doing so for this message yields &ldquo;16 18 9 22 1 20 5&rdquo;.</p>
+<p>To encrypt our message (&ldquo;16 18 9 22 1 20 5&rdquo;) using one of the keys (now therefore the public key), we repeat the process used above for the number 4, but now we use it on each of the numbers in our numeric code:</p>
+<p>encrypted = original-public-key <em>mod</em> <strong>n</strong>.</p>
+<p><code>$$   \begin{align} 16^{11}\mod 51 &amp;= 17,592,186,044,416 \mod 51 &amp;= 16  \\ 18^{11} \mod 51 &amp;= 64,268,410,079,232 \mod 51 &amp;= 18  \\ 9^{11} \mod 51 &amp;= 31,381,059,609 \mod 51 &amp;= 15  \\ 22^{11} \mod 51 &amp;= 584,318,301,411,328 \mod 51 &amp;= 28\\   1^{11} \mod 51 &amp;= 1 \mod 51 &amp;= 1  \\ 20^{11} \mod 51 &amp;= 204,800,000,000,000 \mod 51 &amp;= 41  \\ 5^{11} \mod 51 &amp;= 48,828,125 \mod 51 &amp;= 11  \\ \end{align} $$</code></p>
+<p>So our encrypted message is (16 18 15 28 1 41 11). This is the message we send to our intended recipient. Even if it is intercepted in transit, it remains unintelligible without the private key.</p>
+<p>To decrypt the message, repeat the process except now we are raising the encrypted message to the power of the private key (3), which transforms it back into its original code.</p>
+<p>original = encrypted(privatekey) <em>mod</em> <strong>n</strong>.</p>
+<p><code>$$   \begin{align}   16^{3} \mod 51 &amp;= 4096\mod 51 &amp;= 16 \\  18^{3} \mod 51 &amp;= 5832\mod 51 &amp;= 18 \\  15^{3} \mod 51 &amp;= 3375\mod 51 &amp;= 9  \\ 28^{3} \mod 51 &amp;= 21952\mod 51 &amp;= 22  \\ 1^{3} \mod 51 &amp;= 1\mod 51 &amp;= 1  \\ 41^{3} \mod 51 &amp;= 68921\mod 51 &amp;= 20  \\ 11^{3} \mod 51 &amp;= 1331\mod51 &amp;= 5  \\ \end{align} $$</code></p>
+<p>Resulting in the original message, (16 18 15 28 1 41 11 = &ldquo;<strong>P R I V A T E</strong>&quot;).</p>
+<p>The way this works in practice is that you generate your own set of keys, one public and one private. The public key is made known to others with whom you wish to communicate privately (often by posting it somewhere online). Then, if someone wants to send you an encrypted message, they simply encode their message using your public key and send it to you. At this point, the message is garbled and can only be decoded using your private key. Remember that big block of garbled nonsense above? That's my public key, analogous to (11, 51) in the example above except that in decimal form it has over 300 digits!</p>
+<p>In the demonstrative example above, our <strong>n</strong> = 51. Numbers like 51, which are the product of two primes numbers, are called <a href="https://en.wikipedia.org/wiki/Semiprimes">semiprimes</a>. Its not hard to see that 51 = 17 x 3, and these factors are all you need to crack our code! So how is this secure? The strength of the security offered by RSA and similar cryptographic methods is that finding the original factors of a <a href="https://en.wikipedia.org/wiki/RSA_numbers">huge semiprime</a> is <a href="https://en.wikipedia.org/wiki/RSA_problem">computationally difficult</a>. For small semiprimes its no big deal, but when the two prime factors are large (~300 digits, which is more than a &ldquo;<a href="https://en.wikipedia.org/wiki/Googol">googol</a>&quot;!), randomly chosen, and about the same size, the search becomes impractical for even the most powerful computers. The number of operations required to perform the factorization exhausts all our of present computer power.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/RSA-768#RSA-768">largest RSA number that has even been successfully factored</a> is 768 bits (232 decimal digits), and this took hundreds of computers more than two years to accomplish! Indeed, much smaller RSA numbers, many with large bounties in their day, <a href="https://en.wikipedia.org/wiki/RSA_numbers">remain unfactored</a>. Still, this method of encryption is not &ldquo;uncrackable&rdquo; in theory, and the size of the numbers used will have to stay one step ahead of developments in computing power. There do exist <a href="https://en.wikipedia.org/wiki/One-time_pad">uncrackable codes</a>, however&hellip;</p>
+<p>Now, after that long aside, why then are Fermat primes (<code>$2^{2n}+1$</code>) useful in RSA cryptography? Often, the public key exponent is one of these five numbers, typically 65537. Consider their binary representation:</p>
+<p><code>$$   \begin{align}     3 &amp;= (11)_2  \\ 5 &amp;= (101)_2  \\ 17 &amp;= (10001)_2 \\  257 &amp;= (100000001)_2  \\ 65537 &amp;= (100000000000000001)_2 \\  \end{align} $$</code></p>
+<p>They are computationally convenient! There are probably other reasons too&hellip; let me know if you think of any!</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/circling-the-square-squaring-the-circle/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Circling the Square &amp; Squaring the Circle!</span>
+    </a>
+    
+    
+    <a href="/posts/2-x-2-statistics/" class="navigation-next">
+      <span class="navigation-tittle">2 x 2 Statistics</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+    
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

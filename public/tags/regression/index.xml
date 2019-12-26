@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>regression on Nathaniel Woodward</title>
+    <link>/tags/regression/</link>
+    <description>Recent content in regression on Nathaniel Woodward</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 09 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/regression/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Basic Stats U Need #4: Correlation &amp; Regression</title>
+      <link>/posts/basic-stats-u-need-4-correlation-and-regression/</link>
+      <pubDate>Wed, 09 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/basic-stats-u-need-4-correlation-and-regression/</guid>
+      <description>Correlation demonstration! Regression Why normally distributed errors?  Normal-errors assumption and homoskedasticity Confidence (and prediction) intervals for a given X What’s the relationship between correlation and regression? Multiple regression: multiple predictors Multiple \(R\) and \(R^2\) \(R^2\) in one bang using correlation matricies  Semipartial and Partial Correlations Semipartial correlations: the residuals approach Increments to \(R^2\) when adding predictors Multicollinearity  Regression assumptions Partial correlations   .</description>
+    </item>
+    
+  </channel>
+</rss>

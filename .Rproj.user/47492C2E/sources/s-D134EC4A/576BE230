@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1576871830433.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2146897870",
+    "id" : "576BE230",
+    "lastKnownWriteTime" : 1577320597,
+    "last_content_update" : 1577320597147,
+    "path" : "~/Desktop/website/themes/hyde-hyde/layouts/partials/sidebar.html",
+    "project_path" : "themes/hyde-hyde/layouts/partials/sidebar.html",
+    "properties" : {
+        "cursorPosition" : "28,12",
+        "scrollLine" : "16"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "html"
+}

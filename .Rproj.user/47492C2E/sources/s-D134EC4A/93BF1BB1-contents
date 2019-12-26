@@ -1,0 +1,22 @@
+---
+title: Home
+output: blogdown::html_page
+---
+```{R echo=F}
+par(mai=c(0,0,0,0),pin=c(6.5,4))
+{plot(1,ylab="",xlab="",ylim=c(0,1),xlim=c(0,90),type='l',axes=F)
+  rect(par("usr")[1],par("usr")[3],par("usr")[2],par("usr")[4],col = "gray96")
+segments(1,0,1,1,lw=2)
+for (i in seq(1,90,3)){x<-seq(i,i+3,.001); lines(x,exp(-(x-(i))/((i)^(1.5))),lw=2); segments(i+3,exp(-(x-(i))/((i)^(1.5))),i+3,exp(-(x-(i))/((i)^(1.5))), lw=2)}
+for (i in seq(1,90,3)){x<-seq(i,90,.001); lines(x,exp(-(x-(i))/((i)^(1.5))), lty=2)}
+for (i in seq(1,90,3)){x<-seq(i,i+3,.001); lines(x,exp(-(x-(i))/((i)^(1.5))),lw=2)}}
+
+```
+<center><h2>NOLI OBLIVISCI</h2></center>
+
+$$%{\sqrt {n}}\left(\left({\frac {1}{n}}\sum _{i=1}^{n}X_{i}\right)-\mu \right)\ {\xrightarrow {d}}\ N\left(0,\sigma ^{2}\right)$$
+
+
+```{R echo=F}
+
+```

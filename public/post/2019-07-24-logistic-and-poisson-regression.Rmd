@@ -1,0 +1,909 @@
+---
+title: Binary and Count Prediction
+author: Nathaniel Woodward
+date: '2019-07-24'
+slug: logistic-and-poisson-regression
+categories: []
+tags: []
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.align="center",warning=FALSE, message=FALSE)
+```
+
+Let's enrich our previous discussion of linear regression by considering outcome data that is binary/dichotomous (e.g., success/failure, whether someone recovered or not) and data that is count-based (e.g., number of distinct species per survey site).
+
+In a regular linear regression, we model an outcome $Y$ as a linear function of explanatory variables $X_i$ and error $e$, like this
+
+$$
+Y=\beta_0+\beta_1X_1+\dots+\beta_nX_n+e, \phantom{xxxxx} e\sim N(0,\sigma)
+$$
+Let's focus on the case of just a single predictor,
+
+$$
+Y=\beta_0+\beta_1X_1+e, \phantom{xxxxx} e\sim N(0,\sigma)
+$$
+
+Recall that the residuals (deviations from data to prediction) are normally distributed, since you can rearrange the above to $Y-\beta_0+\beta_1X_1=e, \phantom{xxxxx} e\sim N(0,\sigma)$
+
+Also, recall that $\beta_0+\beta_1X_1$ is equal to the mean of $Y$ where $X_1=x_i$. That is $\mu=E[Y|X]=\beta_0+\beta_1X_1$, and therefore we are modeling the response variable $Y\sim N(\beta_0+\beta_1X_1,\sigma)$
+
+What happens if we try to run a linear regression on binary response data? Let's use the `biopsy` dataset include with the MASS package. This dataset includes nine attributes of tumors and whether they were malignant (1) or benign (0). Let's predict this outcome from the clump thickness using simple linear regression.
+
+```{R}
+library(dplyr)
+library(MASS)
+library(ggplot2)
+
+data<-biopsy%>%transmute(clump_thickness=V1,
+                         cell_uniformity=V2,
+                         marg_adhesion=V3,
+                         bland_chromatin=V7,
+                         outcome=class,
+                         y=as.numeric(outcome)-1)
+head(data)
+
+fit<-lm(y~clump_thickness,data=data)
+summary(fit)
+
+ggplot(data, aes(clump_thickness,y))+geom_jitter(width=.3,height=0)+geom_smooth(method='lm')
+```
+
+Well, it runs! But as you can see, we are violating many assumptions here (the residuals will certainly not be normal). Also, your outcome data can only be 0/1, but predicted values can be greater than 1 or less than 0, which is not appropriate. For example, someone with a clump thickness of $X=10$ would have a predicted probability of $-.190+.121(10)=1.02$, or 102%. This is clearly the wrong tool for the job.
+
+Above, we used the structural part of the model (i.e., the part without the error) $\mu=\beta_0+\beta_1X_1$, where $\mu$ is the mean of $Y$ at a specific value of $X_1$. This works when the response is continuous and the assumption of normality is met. Instead, however, we could use $g(\mu)=\beta_0+\beta_1X_1$, where $g()$ is some function that links the response to the predictors in an acceptable, continuous fashion.
+
+In the case of binary outcome data, $g()$ would need to take $[0,1]$ data and output continuous data (or vice versa). One idea is to use a cumulative distribution function (CDF). For example, the normal distribution is defined over $(-\infty, \infty)$, but the cumulative probability (the area under the distribution) is defined over $[0,1]$, since $\int_{-\infty}^a \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}dx \in [0,1]$ for all $a$. Since the normal CDF $\Phi(z)=P(Z\le z), Z \sim N(0,1)$ maps from all real numbers $z$ to $[0,1]$, it's inverse $\Phi^{-1}(x)$ will do the opposite.
+
+```{R}
+#normal CDF
+curve(pnorm(x,0,1),-4,4)
+
+#inverse
+curve(qnorm(x,0,1),0,1)
+```
+
+Let's regress $y$ using the probit link function
+
+```{R}
+fit<-glm(y~clump_thickness,data=data,family=binomial(link="probit"))
+summary(fit)
+```
+This equation tells us that for every 1 unit increase in clump thickness (X), the z score increases by .514 on average. 
+
+$$
+\begin{aligned}
+\Phi^{-1}(\widehat{P(\text{malignant} | X)})&=-2.839+0.514X\\
+\widehat{P(\text{malignant} | X)}&=\Phi(-2.839+0.514X)\\
+\end{aligned}
+$$
+
+If a patient has a clump thickness of 10, our predicted probability of malignancy is $\Phi(-2.839+0.514*10)=P(Z\le2.301)=.989$
+
+We can get everyone's predicted z-score (and probability) in this fashion
+
+```{R}
+data$z_pred<-predict(fit)
+data$prob_pred<-predict(fit,type = "response")
+
+head(data)
+
+ggplot(data, aes(clump_thickness,y))+geom_jitter(width=.3,height=0)+
+  stat_smooth(method="glm",method.args=list(family=binomial(link="probit")),se=F)
+```
+
+## Cross validation of probit model 
+
+Let's use cross-validation to see how this simple model performs when we train it to part of our full 699 dataset and test how well it predicts the rest. Let's split the dataset into 10 roughly equal pieces, leave one piece (or "fold") out (70 observations), fit the model to the remaining 9 folds (629 observations), see how well it classifies the test set by computing false-positive and false-negative rates, and repeat the process so that each fold gets a turn being the one left out (i.e., retrain the model on a new training set, test it on a new test set). Since we get predicted z-scores (or probabilities) from the model, we say the model predicts 1 if $z\ge 0\ (p\ge.5)$, and 0 otherwise.
+
+```{R}
+set.seed(1234)
+
+k=10
+
+acc<-fpr<-fnr<-NULL
+
+data1<-data[sample(nrow(data)),]
+folds<-cut(seq(1:nrow(data)),breaks=k,labels=F)
+
+for(i in 1:k){
+  train<-data1[folds==i,]
+  test<-data1[folds!=i,]
+  truth<-test$y
+  
+  fit<-glm(y~clump_thickness,data=train,family=binomial(link="probit"))
+  
+  pred<-ifelse(predict(fit,newdata = test)>0,1,0)
+  
+  acc[i]<-mean(truth==pred)
+  fpr[i]<-mean(pred[truth==0])
+  fnr[i]<-mean(1-pred[truth==1])
+}
+
+mean(acc); mean(fnr); mean(fpr)
+```
+
+The probit regression is classifying correctly about 85.49% of the time using just the clump thickness predictor variable. The false negative rate (the percentage of malignancies it identified as benign) was 29.71%; the false positive rate (the percentage of benign tumors it identified as malignant) was 6.45%.
+
+## Logistic regression
+
+There is another, more widely used link function for binary data, and that is the logit (or log odds) function. This approach is based on odds. Recall that the odds are calculated from a probability like so: $odds(p)=\frac{p}{1-p}$. The nice thing about this is that we can take a variable $p$ from $[0,1]$ and transform it. However, as $p$ approaches 0, the odds approach 0, and as $p$ approaches 1, the odds approach $\infty$.
+
+```{R}
+curve(x/(1-x),from = 0, 1)
+```
+
+
+If we take the logarithm of the odds (use the natural log for convenience), you now have variable taking values from $[-\infty,\infty]$. This function, the logarithm of the odds, is called the *logit* function (it's inverse is the *logistic* function): it is where logistic regression gets its name. Below is a graph of $y=log(\frac{p}{1-p})$ shown alongside the dotted normal quantile function (i.e., $\Phi^{-1}(x)$
+
+```{R}
+curve(log(x/(1-x)),0,1)
+curve(qnorm(x,0,1),0,1,add=T,lty=2)
+```
+
+Very similar! Using this link function to convert our 0, 1 values to a continuous scale, we write the logistic regression equation
+
+$$
+log(\frac{p}{1-p})=\beta_0+\beta_1X
+$$
+Where $p$ is the $p(Y=1 \mid X=x)$.
+
+Let's try using this link function in our regression of malignancy on clump thickness.
+
+```{R}
+fit<-glm(y~clump_thickness,data=data,family=binomial(link="logit"))
+summary(fit)
+
+data$logit_pred<-predict(fit)
+```
+
+What does this tell us? Well first, clump thickness appears to be strongly and positively predictive of malignancy. The equation with the parameter estimates is $log(\frac{p}{1-p})=-5.160+0.935X$. You can see that for every one-unit increase in X (clump thickness), the log-odds goes up by .935, which means that the odds change by a factor of $e^{.935}=2.55$ (i.e., they go up by 155%)! If you go up two clump-thickesses, we get a change in odds of $e^{2\times.935}=e^{.935}e^{.935}=2.55\times 2.55\approx6.50$, which is $2.55\times 2.55$.
+
+How about getting a predicted probability for a person with a clump thickness of $X$? For a person with $X=10$, for example, we get a logit score of $4.19$ (by plugging into the equation above). But how do we invert the logit function to get the predicted probability out? Just use algebra: first exponentiate to remove the log, then multiply both sides by the denominator, then distribute, the get all terms with *p* on the same side, then factor out the *p*, then solve for it!
+
+$$
+\begin{aligned}
+log(\frac{p}{1-p})&=\beta_0+\beta_1X\\
+\frac{p}{1-p}&=e^{\beta_0+\beta_1X}\\
+p&=(1-p)e^{\beta_0+\beta_1X}\\
+p&=e^{\beta_0+\beta_1X}-pe^{\beta_0+\beta_1X}\\
+p+pe^{\beta_0+\beta_1X}&=e^{\beta_0+\beta_1X}\\
+p(1+e^{\beta_0+\beta_1X})&=e^{\beta_0+\beta_1X}\\
+p&=\frac{e^{\beta_0+\beta_1X}}{1+e^{\beta_0+\beta_1X}}\\
+\end{aligned}
+$$
+
+In general, $p=\frac{odds}{1+odds}$. Note that if you multiply top and bottom of the RHS by $e^{-\beta_0+\beta_1X}$ (note the negative), you get the alternative formulation $p=\frac{1}{1+e^{-\beta_0+\beta_1X}}$.
+
+So we take what the regression evaluates to, raise $e\approx2.71828$ to that power, and divide the result by $1 +$ itself. 
+
+```{R}
+exp(4.19)/(1+exp(4.19))
+```
+
+A 98.5% chance! A bit smaller than what the probit model predicted. We can also get this directly from R. Let's ask R for the probability of malignancy at each level of clump thickness (i.e., from 1 to 10).
+
+```{R}
+predict(fit,newdata=data.frame(clump_thickness=1:10),type="response")
+```
+
+```{R}
+data$logit<-predict(fit)
+
+ggplot(data, aes(clump_thickness,y))+geom_jitter(width=.3,height=0)+stat_smooth(method="glm",method.args=list(family="binomial"),se=F)
+
+data$outcome<-factor(data$outcome,levels=c("malignant","benign"))
+ggplot(data,aes(logit, fill=outcome))+geom_density(alpha=.3)
+```
+
+
+Let's see how it fares under cross-validation. We will start by using the exact same procedure as we did above.
+
+```{R}
+acc<-fpr<-fnr<-NULL
+
+for(i in 1:k){
+  train<-data1[folds==i,]
+  test<-data1[folds!=i,]
+  truth<-test$y
+  
+  fit<-glm(y~clump_thickness,data=train,family=binomial(link="logit"))
+  
+  pred<-ifelse(predict(fit,newdata = test)>0,1,0)
+  
+  acc[i]<-mean(truth==pred)
+  fpr[i]<-mean(pred[truth==0])
+  fnr[i]<-mean(1-pred[truth==1])
+}
+
+mean(acc); mean(fnr); mean(fpr)
+```
+
+The logistic regression accurately predicted out of sample exactly as accurately as the probit model; the false negative and false positive rates were the same as well!
+
+I'm curious what we will see using another supervised classification approach: linear discriminant analysis (LDA). I won't go into details here, but just for the sake of comparison let's run it.
+
+```{R}
+acc<-fpr<-fnr<-NULL
+
+for(i in 1:k){
+  train<-data1[folds==i,]
+  test<-data1[folds!=i,]
+  truth<-test$y
+  
+  fit<-lda(y~clump_thickness,data=train)
+ 
+  pred<-predict(fit,test)
+  tab<-table(pred$class,test$outcome)
+  
+  acc[i]=sum(diag(tab))/sum(tab)
+  fpr[i]<-tab[2,1]/sum(tab[,1])
+  fnr[i]<-tab[1,2]/sum(tab[,2])
+}
+
+mean(acc); mean(fnr); mean(fpr)
+```
+
+Hmm, ever so slightly worse in the accuracy and false negative department, but slightly lower false positive rate. Still, very close!
+
+#### Leave-One-Out CV
+
+Let's take this opportunity to introduce another kind of cross-validation technique: Leave-one-out cross-validation (or LOOCV).
+
+Just like it sounds we train the model on $n-1$ datapoints and use it to predict the omitted point. We do this for every observation in the dataset (i.e., each point gets a turn being left out and we try to predicted it from all of the rest). Let's try it on the logistic regression.
+
+```{R}
+acc<-fpr<-fnr<-NULL
+
+for(i in 1:length(data)){
+
+  train<-data[-i,]
+  test<-data[i,]
+  truth<-test$y
+  
+  fit<-glm(y~clump_thickness,data=train,family=binomial(link="logit"))
+  
+  pred<-ifelse(predict(fit,newdata = test)>0,1,0)
+  
+  acc[i]<-truth==pred
+  if(truth==0 & pred==1) fpr[i]<-1
+  if(truth==1 & pred==0) fnr[i]<-1
+}
+
+mean(acc)
+```
+
+### Categorical predictor variables
+
+Imagine that instead, clump size was a categorical variable with three levels, say *small*, *medium*, and *large*. I will artificially create this variable using terciles because the dataset doesn't actually contain any categorical variables for us to play with (and the interpretation of the coefficients is slightly different).
+
+```{R}
+data$clump_cat<-cut(data$clump_thickness,breaks=quantile(data$clump_thickness,0:3/3),include.lowest = T)
+data$clump_cat<-factor(data$clump_cat,labels=c("S","M","L"))
+
+fit1<-glm(y~clump_cat, data=data, family=binomial(link="logit"))
+summary(fit1)
+```
+
+First of all, notice that the residual deviance and the AIC are *higher* now than the were before we artificially discretized this variable. This serves to illustrate the value of keeping your data numeric rather than using it to create groups: here, we are wasting good information and getting poorer model fit.
+
+Notice that there are two effect estimates in the output: one for the medium category (M) and one for the large category (L). By default, regressions are dummy coded such that the estimates are compared to the reference category (the one not listed; in this case, the small category). Here, the coefficients are log odds ratios; if we exponentiate, we get odds ratios compared to the reference category. For example, $e^{1.717}=5.57$, so the odds of malignancy are 5.57 times as high for those with medium clump sizes as those with small clump sizes, and this difference is significant. This difference is of course more pronounced for the large clump sizes: compared to those with small clump sizes, the odds of malignancy among those with large clump sizes are $e^{4.766}=117.45$ times as high!
+
+To see that this is true, let's calculate the odds ratios by hand. 
+
+```{R}
+table(data$y,data$clump_cat)
+```
+
+The odds of cancer (y=1) if you have small clump thickness is $19/284=.0669$ and the odds for medium and large are $57/153=.3725$ and $7.8571$. The odds ratio of M-to-S is $\frac{.3725}{.0669}=5.57$ and L-to-S is $\frac{7.8571}{.0669}=117.45$
+
+We can even use these numbers to calculate the standard errors. The estimated standard error of a $log\ OR$ is just $\sqrt{\frac 1a + \frac 1b +\frac 1c + \frac 1d}$ where $a, b, c,$ and $d$ are the counts with/without cancer in each of the two conditions being compared. For example, comparing M-to-S, $SE=\sqrt{\frac{1}{284}+\frac{1}{19}+\frac{1}{153}+\frac{1}{57}}=.2833$, which matches the output above. You can use this to perform hypothesis tests using the normal distribution.
+
+### Multiple predictor variables
+
+Let's add more variables to our model to try to improve prediction. Let's try adding bland chromatin and marginal adhesion. Our model becomes
+
+```{R}
+fit2<-glm(y~clump_thickness+marg_adhesion+bland_chromatin, data=data, family="binomial")
+summary(fit2)
+```
+
+Notice that you can be lazy with your ``family=`` specification for logistic regression. Wow, so all of these variables are significant. Notice that the AIC is 173.23, compared to our previous model's 468.05! Lower AIC/deviance is better. We could formally test the additional explanatory value of the new variables by performing an analysis of deviance with the null hypothesis that the more basic model is the true model. 
+
+Without going into too much detail, the way this works under the hood is that we compute the likelihood of the data given the saturated model (i.e., estimating a parameter for every data point) and compare it to the likelihood of the data under the basic (null) model (i.e., estimating just a single intercept parameter). We take the ratio of these likelihoods (full to null), take the log of these ratios, and multiply them each by $-2$, resulting in something called the `null deviance` (the smaller, the better the null model explains the data). We also compare the saturated model to each of our actual model(s) in the same, resulting in `residual deviance`: the smaller it is, the better the proposed model explains the data. We can compute residual deviances for two models and compare them: For example, the residual deviance of the first model is 464.05 (from the output below), while the deviance for the model with three predictors is 165.23 (smaller: a good thing!). The difference in residual deviances follows a chi-squared distribution with DF equal to the number of additional parameters in the larger model. That is, we compute
+
+```{R}
+fit<-glm(y~clump_thickness,data=data,family=binomial(link="logit"))
+anova(fit,fit2,test="LRT")
+```
+Yes, it appears that the full model is better! We can get a goodness-of-fit estimate analogous to $R^2$ by seeing what proportion of the total deviance in the null model can be accounted for by the full model. You just put the difference in deviances in the numerator and the null deviance in the denominator, like this.
+
+```{R}
+(fit2$null.deviance-fit2$deviance)/fit2$null.deviance
+```
+
+Wow, quite high! This quantity is known as the Hosmer and Lemeshow pseudo $R^2$; it is analogous to traditional $R^2$, but there are alternatives (e.g., Nagelkerke).
+
+Here is the fitted model with the parameter estimates:
+
+$$
+log(\frac{p}{1-p})=-9.09+0.61Clump+0.85MargAd+0.74BlandChrom
+$$
+
+Holding marginal adhesion and bland chromatin constant, we see an $e^{.61}=1.84$ change in the odds of developing breast cancer for every one-unit increase in clump thickness. Specifically, we see an 84% increase in the odds of cancer for each increase in clump thickness.
+
+How much better does this perform? Let's rerun our cross-validation. First, 10-fold:
+
+```{R}
+acc<-fpr<-fnr<-NULL
+
+for(i in 1:k){
+  train<-data[folds==i,]
+  test<-data[folds!=i,]
+  truth<-test$y
+  
+  fit<-glm(y~clump_thickness+marg_adhesion+bland_chromatin,data=train,family=binomial(link="logit"))
+  
+  pred<-ifelse(predict(fit,newdata = test)>0,1,0)
+  
+  acc[i]<-mean(truth==pred)
+  fpr[i]<-mean(pred[truth==0])
+  fnr[i]<-mean(1-pred[truth==1])
+}
+
+mean(acc); mean(fnr); mean(fpr)
+```
+
+Wow, very good prediction! We are accurately predicting out-of-sample 94.3% of the time, with a 9.4% false negative rate and a 3.7% false positive rate. 
+
+
+## Sensitivity, Specificity, and ROC Curves
+
+We could try to visualize this logistic regression, but we would need an axis for each additional predictor variable. We could just plot one predictor at a time on the x-axis. Instead, let's use PCA to find the best linear combination of our three predictors, resulting in a single variable that summarizes as much of the variability in the set of three as possible. We can this use this as a predictor (note this is really just for visualization purposes; just pretend we ran the logistic regression with a single variable called `predictor`).
+
+```{R}
+pca1<-princomp(data[c('clump_thickness','marg_adhesion','bland_chromatin')])
+data$predictor<-pca1$scores[,1]
+
+fit<-glm(y~predictor,data=data,family="binomial")
+data$prob_pred<-predict(fit,type="response")
+
+ggplot(data, aes(predictor,prob_pred))+geom_point(aes(color=outcome),alpha=.5,size=3)
+```
+
+If we give anyone above $p(y=1|x)=.5$ a prediction of malignancy, and anyone below a prediction of benign, we can calculate the true positive rate (Sensitivity), the true negative rate (Specificity), and the corresponding false positive/negative rates.
+
+```{R}
+ggplot(data, aes(predictor,prob_pred))+geom_point(aes(color=outcome),alpha=.5,size=3)+geom_rug(aes(color=outcome),sides="right")+geom_hline(yintercept=.5)
+```
+
+Any blue dots above the line are false positives: any reds below the line are false negatives. For example, the Sensitivity (or true positive rate, TPR) is the number of red dots above the line (which are predicted positive, since $p(y=1)>.5$) out of the total number of red dots. 
+
+```{R}
+sens<-sum(data[data$y==1,]$prob_pred>=.5)/sum(data$y)
+sens
+```
+
+Think of it as the probability of detecting the disease, given that it exists (i.e., probability of detection). It is the percentage of *actual positives* (e.g., people with the disease) that are correctly flagged as positive. Thus, Sensitivity is the degree to which actual positives are not overlooked: A test that is highly sensitive (e.g., $>.90$) rarely overlooks a thing it is looking for. The higher the Sensitivity, the lower the false negative rate (type II error).
+
+Compare this to the Specificity (true negative rate, TNR), the proportion of actual negatives (e.g., healthy people) that are correctly flagged as negative. It is the probability of detecting the absence of the disease, given that it does not exist! Thus, it indexes the avoidance of false positives: the higher the Specificity, the lower the false positive rate (1-Specificity, or type I error). A test that is highly specific rarely mistakes something else for the thing it is looking for. 
+
+Here, Specificity is the percentage of blue dots that fall below the horizontal cut-off (i.e., of those with $p(y=1)<.5$, the percentage that are actually $y=0$).
+
+```{R}
+spec<-sum(data[data$y==0,]$prob_pred<.5)/sum(data$y==0)
+spec
+```
+
+You can put confidence intervals on these estimates (e.g., using large-sample approximations for binomial)
+
+```{R}
+#sensitivity
+sens+c(-1.96,1.96)*sqrt(sens*(1-sens)/sum(data$y))
+
+#specificity
+spec+c(-1.96,1.96)*sqrt(spec*(1-spec)/sum(data$y==0))
+```
+
+
+This quickly gets confusing, so it is a good idea to make a table like this (indeed, it is referred to as a confusion matrix):
+
+```{R}
+data$test<-as.factor(ifelse(predict(fit)>0,"positive","negative"))
+data$disease<-data$outcome
+
+with(data, table(test,disease))%>%addmargins
+```
+
+As before, Sensitivity is the proportion of those with the desease who test positive, $p(+|malignant)=\frac{227}{241}=.942$, while Specificity is the proportion of those who do *not* have the disease who test negative, $p(-|benign)=\frac{444}{458}=.969$.
+
+Here is a helpful plot of the proportions testing positive/negative in each disease category, to help keep things straight visually:
+
+```{R}
+library(magrittr)
+
+plotdat<-data.frame(rbind(
+  cbind(density(data$logit_pred[data$outcome=="malignant"])%$%data.frame(x=x,y=y),disease="malignant"),
+  cbind(density(data$logit_pred[data$outcome=="benign"])%$%data.frame(x=x,y=y),disease="benign")))%>%
+  mutate(test=ifelse(x>0,'positive','negative'),`disease.test`=interaction(disease,test))
+
+plotdat%>%ggplot(aes(x,y,fill=`disease.test`))+geom_area(alpha=.6,color=1)+geom_vline(xintercept=0,size=1)+
+    theme(axis.title.y=element_blank(),legend.position=c(.87,.8))+xlab("Predicted logit")+
+    geom_text(x=-3,y=.1,label="TN")+
+    geom_text(x=-1,y=.015,label="FN")+
+    geom_text(x=.5,y=.015,label="FP")+
+    geom_text(x=3,y=.05,label="TP")
+```
+
+This shows the density of benign (hump on left side: green + purple) and the density of malignant (right side: blue + red): both humps add up to 100%. 
+
+- green represents the proportion of benign that got a negative test result (True Negative rate: Specificity)
+- purple represents the proportion of benign that got a positive test result (False Positive rate)
+- blue represents the proportion of malignant that got a positive test results (True Positive rate: Sensitivity)
+- red represents the proportion of malignant that got a negative test result (False Negative rate)
+
+
+Just like in traditional null hypothesis testing, there is a trade-off between type I and type II error (and so there is a trade-off between sensitivity and specificity). The stricter your test, the fewer false positives it will make (and thus the higher the Specificity), but the more false negatives. The laxer your test, the fewer false negatives it will make (and thus the higher the Sensitivity or Power), but it will allow in more false positives.
+
+Notice that a lot depends on the cut-off! For example, if we set the cut-off at 10% (thus making it a laxer criterion), so that a predicted probability of 10% or more means we predict malignant (i.e., 1), otherwise benign (0), we get
+
+```{R}
+ggplot(data, aes(predictor,prob_pred))+geom_point(aes(color=outcome),alpha=.5,size=3)+geom_rug(aes(color=outcome),sides="right")+geom_hline(yintercept=.1)
+
+#sensitivity
+sum(data[data$y==1,]$prob_pred>.1)/sum(data$y)
+#specificity
+sum(data[data$y==0,]$prob_pred<.1)/sum(data$y==0)
+```
+
+By lowering our cut-off we have improved sensitivity (and lowered the false negative rate: very few red dots are below the line), but we have worsened our specificity (we have increased the false positive rate: we are more likely to say a patient doesn't have cancer when they do; there is a greater proportion of blue dots above the line). This tradeoff always occurs:
+
+```{R}
+true_pos<-function(x,data=data) sum(data[data$y==1,]$prob_pred>x)/sum(data$y)
+false_pos<-function(x,data=data) sum(data[data$y==0,]$prob_pred>x)/sum(data$y==0)
+
+TPR<-sapply(seq(0,1,.01),true_pos,data)
+FPR<-sapply(seq(0,1,.01),false_pos,data)
+
+ROC1<-data.frame(TPR,FPR,cutoff=seq(0,1,.01))
+
+library(tidyr)
+ROC1%>%gather(key,value,-cutoff)%>%ggplot(aes(cutoff,value,color=key))+geom_path()
+```
+
+What happens if we plot the true positive rate (Sensitivity) versus the false positive rate (1-Specificity) for all possible cut-offs?
+
+```{R}
+ROC1%>%ggplot(aes(FPR,TPR))+geom_path(size=1.5)+geom_segment(aes(x=0,y=0,xend=1,yend=1),lty=2)+scale_x_continuous(limits = c(0,1))
+```
+
+
+This is an ROC (Receiver Operating Characteristic) curve. If we were predicting perfectly with no mistakes, the TPR wouldbe 1 while the FPR would be 0 regardless of the cutoff and thus the curve would extend all the way to the upper right corner (100% sensitivity and 100% specificity). The dotted line shows the worst-case scenario (the FPR equal to the TPR, so our test is just as good as randomly assigning people positive and negative results), while the thick curve is our emprical ROC (pretty good!).
+
+You can use this plot to find the optimal cutoff. Usually, this is defined as $max(TPR-FPR)$ but there are lots of alternatives. We can find out what this is quickly
+
+```{R}
+ROC1[which.max(ROC1$TPR-ROC1$FPR),]
+```
+
+### AUC 
+
+The area under the curve (AUC) quantifies how well we are predicting overall and it is easy to calculate: just connect every two adjacent points with a line and then drop a vertical line from each point to the x-axis to form a trapezoid. Then just calculate the area of each trapezoid, $(x_1-x_0)(y_0+y_1)/2$ and add them all together.
+
+```{R}
+#order dataset from least to greatest
+ROC1<-ROC1[order(-ROC1$cutoff),]
+
+widths<-diff(ROC1$FPR)
+heights<-vector()
+
+for(i in 1:100) heights[i]<-ROC1$TPR[i]+ROC1$TPR[i+1]
+
+AUC<-sum(heights*widths/2)
+AUC%>%round(4)
+```
+
+You can interpret the AUC as the probability that a randomly selected person *with cancer* has a higher predicted probability of having cancer than a randomly selected person *without cancer*. 
+
+By way of an important, interesting aside, you might be thinking that this sounds like the usual interpretation for a Wilcoxon test statistic W (the non-parametric alternative to Student's t test, sometimes called Mann-Whitney U). To refresh, this is a nonparametric statistic used to test whether the level of some numeric variable in one population tends to be greater/less than in another population without making any assumptions about how the variable is distributed, with the null hypothesis that the numeric variable is a useful discriminator: that a value of the numeric variable is just as likely to be from an individual in the first population as from an individual in the second. To calculate this statistic, you compare every observation in your first sample to every observation in your second sample, recording 1 if the first is bigger, 0 if the second is bigger, and 0.5 if they are equal. Then you average these across all possible combinations to get your U statistic.
+
+Let's calculate this statistic for a binary prediction situation: We will compute how well the scores (i.e., the predicted probabilities of cancer) discriminate between those with cancer (sample 1) and those without (sample 2). Our malignant sample consists of 241 individuals and our benign sample consists of 458 individuals. Comparing each individual's predicted outcome in one sample to each individual's predicted outcome in the other means we make $241\times 458=110378$ comparisons. Using the base R function `expand.grid()` we generate a row for every possible comparison. Then we check if predicted probability of disease is higher for malignant than for benign for every row and sum up the yesses.  
+
+```{R}
+pos<-data[which(data$disease=="malignant"),]$prob_pred
+neg<-data[which(data$disease=="benign"),]$prob_pred
+
+n1<-length(pos)
+n2<-length(neg)
+
+expand.grid(pos=pos,neg=neg)%>%summarize(W=sum(ifelse(pos>neg,1,ifelse(pos==neg,.5,0))),n=n(),W/n)
+
+wilcox.test(pos,neg)
+
+wilcox.test(pos,neg)$stat/(n1*n2)
+```
+
+The W (or U) statistic itself counts the number of times that the predicted probability for malignant individuals is higher than for benign individuals. Here we can see that the proportion of times that malignant individuals have a higher predicted probability than beningn individuals is .9903 (for all possible comparisons). This quantity is the same as the AUC! 
+
+The nice thing is, we can calculate a standard error for the AUC using the large-sample normal aproximation
+
+```{R}
+#see Fogarty, Baker, and Hudson 2005 for details
+Dp<-(n1-1)*((AUC/(2-AUC))-AUC^2)
+Dn<-(n2-1)*((2*AUC^2)/(1+AUC)-AUC^2)
+
+sqrt((AUC*(1-AUC)+Dp+Dn)/(n1*n2))
+```
+
+Several packages have out-of-the-box ROC curve plotters and AUC calculators. For example, here's the package `plotROC`'s `geom_roc()` function that plays nicely with ggplot2, and it's `calc_auc()` function, which you can use on a plot object that uses `geom_roc()`
+
+```{R}
+library(plotROC)
+ROCplot<-ggplot(data,aes(d=disease,m=predictor))+geom_roc(n.cuts=0)+coord_fixed()
+ROCplot
+
+calc_auc(ROCplot)
+```
+
+Just for comparison, here is the ROC curve from our logistic regression using only clump thickness as a predictor
+
+```{R}
+library(plotROC)
+ROCplot<-ggplot(data,aes(d=disease,m=clump_thickness))+geom_roc(n.cuts=0)+coord_fixed()
+ROCplot
+
+calc_auc(ROCplot)
+```
+
+Here is another package called `auctestr` which gives you standard errors as well (using the large-sample approximation above)
+
+```{R}
+#install.packages("auctestr")
+library(auctestr)
+AUC<-.9903
+se_auc(AUC,n1,n2)
+
+sqrt((AUC*(1-AUC)+(n1-1)*((AUC/(2-AUC))-AUC^2)+(n2-1)*((2*AUC^2)/(1+AUC)-AUC^2))/(n1*n2))
+```
+
+The package `pROC gives bootstrap SE estimates too
+
+```{R}
+#install.packages("pROC")
+library(pROC)
+
+data$test_num<-data$test%>%as.numeric()-1
+
+roc(response=data$y,predictor=data$prob_pred,print.auc=T,ci=T,plot=T)
+
+ci.auc(response=data$y,predictor=data$prob_pred,method="bootstrap")
+```
+
+I'm curious if we can replicate this bootstrap ourselves by resampling cases with replacement. Let's try it!
+
+```{R}
+AUCboots<-replicate(1000, {
+  samp<-data[sample(1:dim(data)[1],replace=T),]
+  fit<-glm(y~predictor,data=samp,family=binomial)
+  samp$prob_pred<-predict(fit,type="response")
+  
+  TPR<-sapply(seq(0,1,.01),true_pos,samp)
+  FPR<-sapply(seq(0,1,.01),false_pos,samp)
+  ROC1<-data.frame(TPR,FPR,cutoff=seq(0,1,.01)) 
+
+  #compute AUC
+  ROC1<-ROC1[order(-ROC1$cutoff),]
+  widths<-diff(ROC1$FPR)
+  heights<-vector()
+  for(i in 1:100) heights[i]<-ROC1$TPR[i]+ROC1$TPR[i+1]
+  sum(heights*widths/2)%>%round(4)
+})
+
+mean(AUCboots)
+sd(AUCboots)
+mean(AUCboots)+c(-1,1)*sd(AUCboots)
+```
+
+### Some other metrics
+
+#### Positive predictive value (PPV or PV+, aka Precision)
+
+Another metric that is commonly calculated is the PPV, or positive predictive value. This is just what it sounds like: the predictive value of a positive test result, or the probability of actually having the disease given a positive test result. Therefore, it is simply $p(disease \mid positive)=\frac{p(disease\ \&\ positive)}{p(positive)}=\frac{TP}{TP+FP}$. In this case (from the confusion matrix), there are 227 TPs and 14 FPs, for a PPV of 94.19. Thus, if you get a positive test result, there is a 94% chance that you actually have the disease. In this case, the Precision is the same as the Sesitivity because FP=FN.
+
+```{R}
+with(data, table(test,disease))%>%addmargins
+```
+
+#### Positive/negative likelihood ratios
+
+These are simply TP/FP for the positive LR and FN/TN for negative LR. So in this case, $LR_+=\frac{227}{14}=16.214$ and $LR_-=\frac{14}{444}=.0315. Thus, true positives are 16.2 times as likely as false positives and false negatives are .0315 times as likely as true negatives. 
+
+The ratio of LR+ and LR- is the **diagnostic odds ratio**: it is the ratio of the odds of testing positive if you have the disease relative to the odds of testing positive if you do not have the disease
+
+$$
+DOR=\frac{LR_+}{LR_-}=\frac{TP/FP}{FN/TN}=\frac{TP/FN}{FP/TN}=\frac{odds(+|disease)}{odds(+|no\ disease)}=\frac{227/14}{14/444}=514.225
+$$
+So the odds of testing positive are 514 times greater if you have the disease than if you do not!
+
+It can be shown that the logarithm of an odds ratio is approximately normal with a standard error of $SE(ln OR)=\sqrt{\frac{1}{TP}+\frac{1}{FP}+\frac{1}{TN}+\frac{1}{FN}}$.
+
+So we have $\sqrt{\frac{1}{227}+\frac{1}{14}+\frac{1}{14}+\frac{1}{444}}=.3867$, so our 95% CI for $lnOR$ is 
+
+```{R}
+log(514.225)+(c(-1.96,1.96)*(.3867))
+```
+
+And exponentiating to get back to the original scale,
+
+````{R}
+exp(c(5.485,7.001))
+```
+
+## Poisson Regression
+
+In my Biostatistics course, students have to conduct their own research project, which requires data. Many students choose to collect their own data and often their response variable is count-based. For example, they might ask how many times per month a student eats at a restaurant. However, in this course we only cover up to multiple regression and we do not broach the topic of link functions at all. Just like the binary cases above, we can't very well model count data using a linear model, since a line has negative y-values for certain x values. Counts have a minimum value of 0! 
+
+Just like a linear regression models the average outcome as $\mu_i=\beta_0+\beta_1x_i$, we could try to model the average of the count data in the same way, $\lambda_i=\beta_0+\beta_1x_i$, where $\lambda$ is the average (and variance) of a Poisson distribution, often called the "rate". But this is linear, so to avoid the problem of negative values, we use a link function that maps a domain of $(-\infty,\infty)$ to a range of $[0,\infty)$, the natural log.
+
+$$
+log(\lambda_i)=\beta_0+\beta_1x_i
+$$
+
+We are also assuming that our observed counts $Y_i$ come from a Poisson distribution with $\lambda=\lambda_i$ for a given $x_i$. Note that there is no separate error term: this is because $\lambda$ determines both the mean and the variance of our response variable.
+
+Below we have the famous Prussian horse kicks dataset, compiled by Ladislaus Bortkiewicz, the father of Poisson applications (see his book Das Gezets der kleinen Zahlen, or *the Law of Small Numbers*).
+This dataset gives the number of personnel in the Prussian army killed by horse kicks per year from 1875 to 1895 from 10 different corps. Each corps is given its own column, so we will need to rearrange a bit. 
+
+
+```{R}
+prussian<-read.table("http://www.randomservices.org/random/data/HorseKicks.txt",header = T)
+
+prussian<-gather(prussian,Corps,Kicks,-Year)
+prussian$Corps<-as.factor(prussian$Corps)
+prussian%>%head()
+```
+
+Good! Notice that most of the Kicks per year are close to zero. For a Poisson distribution, recall that the pmf is given as
+
+$$
+P(y|\lambda)=\frac{\lambda^ye^{-\lambda}}{y!}
+$$
+And $E(y)=\lambda$ and $Var(Y)=\lambda$. Thus, using `mean(y)` is a good estimate for $\lambda$ (indeed, it can be shown that it is the maximum likelihood estimate). Let's quickly do this. There are 280 observations, and assuming they arise from a poisson distribution, we have the following likelihood function, which we take the log of for convenience, then take the deriviative with respect to $\lambda$ so we can solve for the critical point (in this case, the maximum of the likelihood function).
+
+$$
+\begin{aligned}
+L(\lambda,y)&=\prod_{i=1}^{280}\frac{\lambda^{y_i}e^{-\lambda}}{y_i!}\\
+log(L(\lambda,y))&=-280\lambda+log(\lambda)\sum_{i=1}^{280} y-\sum log(y!)\\
+\frac{d}{d\lambda}log(L(\lambda,y))&=-280+\frac1\lambda\sum_{i=1}^{280}y \phantom{xxxxx}\text{set equal to zero to find maximum}\\
+0&:=-280+\frac1\lambda\sum_{i=1}^{280}y\\
+\rightarrow \lambda&=\sum_{i=1}^{280}y/280\\
+\end{aligned}
+$$
+Thus, the maximum probability occurs when we set $\lambda$ to the mean of the data $y$, which is exactly what we see.
+
+```{R}
+loglik<-function(lambda){sum(log(lambda^prussian$Kicks*exp(-lambda)/factorial(prussian$Kicks)))}
+loglik<-sapply(seq(.1,5,.1),FUN=loglik)
+
+plot(seq(.1,5,.1),loglik,type="l")
+abline(v=.7)
+```
+
+```{R}
+mean(prussian$Kicks)
+
+prussian%>%ggplot(aes(Kicks))+geom_histogram(aes(y=..density..),bins=5)+stat_function(geom="point",fun=dpois,n=5,args=list(lambda=.7),color="red",size=3)
+```
+
+These data clearly follow a Poisson distribution (as do most low-count data). Let's test the null hypothesis that the observed counts are not different from the counts expected under a poisson distribution with a $\lambda=.7$. We can get our observed counts by simply tabling our response variable. The expected couns of 0, 1, 2, 3, and 4 in a sample of 280 can be calculated using the poisson pmf $p(y|\lambda=.7)=\frac{.7^ye^{-.7}}{y!}$ and the total sample size.
+
+```{R}
+obs<-table(prussian$Kicks)
+exp<-dpois(0:4,.7)*280
+cbind(obs,exp)
+```
+
+Now we just have to calculate a chi-squared test statistic quantifying how far these counts are from each other and see if it is large enough to warrant rejecting the null hypothesis that they were generated with this probabilities.
+
+```{R}
+chisq<-sum((obs-exp)^2/exp)
+pchisq(chisq,df = 3,lower.tail = F)
+```
+
+Fail to reject: we don't have evidence that the data differ from this expected distribution.
+
+#### Poisson Regression
+
+For Poisson random variables, the variance is equal to the mean. Let's look within groups of years and see if this holds
+
+```{R}
+prussian$Group<-cut(prussian$Year,breaks = seq(1875,1895,5),include.lowest = T)
+prussian%>%ggplot(aes(Kicks))+geom_histogram(bins=5)+facet_wrap(~Group)
+
+prussian%>%group_by(Group)%>%summarize(mean(Kicks),var(Kicks),n())
+```
+
+This looks OK. Another assumption is the $log(\lambda_i)$ is a linear function of Year, since we are modeling it as such. Let's look at the average number of kicks per year and see if it is a linear function of year.
+
+```{R}
+prussian%>%group_by(Year)%>%summarize(Kicks=mean(Kicks))%>%ggplot(aes(Year,log(Kicks),group))+geom_point()+geom_smooth()
+```
+
+Hmm, it doesn't look especially linear. Perhaps including a quadratic term is appropriate. Still, the assumption is about the true means, not the empirical means. Let's go ahead and run our regressions.
+
+Now, a Poisson regression differs from a regular regression in two ways: the errors should follow a Poisson distribution, and the link function is logarithmic. Let's examine the effect of Year just to use a continuous predictor.
+
+```{R}
+fit3<-glm(Kicks~Year,data=prussian,family="poisson")
+summary(fit3)
+```
+
+Because of the (log) link function, the coefficient estimate will need to be transformed via exponentiation. Here, $e^{.019}=1.02$, so every additional year increases the expected number of horse-kick deaths by a *factor of 1.02*, or a yearly increase of 2%, which is not significant. Note that the increase is multiplicative rather than additive as in linear regression.
+
+To get our 95% CI, we take our estimate $\pm 1.96 SE$ and then exponentiate. So here we have $.01875 \pm 1.96*.1243=[-.0055,.0432]$, and we exponentiate each limit, $[.9945, 1.0441]$. It contains 1, so no effect!
+
+```{R echo=F}
+prussian$pred<-predict(fit3,type="response")
+
+prussian%>%ggplot(aes(Year,Kicks))+geom_point()+geom_line(aes(y=pred))
+
+breaks <- seq(min(prussian$Year), max(prussian$Year), len=8)
+prussian$section <- cut(prussian$Year, breaks)
+dens <- do.call(rbind, lapply(split(prussian, prussian$section), function(x) {
+    res <- data.frame(y=0:5,x= max(x$Year)-3*dpois(0:5,lambda=mean(x$Kicks)))
+    res
+}))
+dens$section <- rep(levels(prussian$section), each=6)
+
+prussian%>%ggplot(aes(Year,Kicks))+geom_point(alpha=.5)+geom_line(aes(y=pred))+
+ # geom_path(data=dens, aes(x, y, group=interaction(section,type), color=type), lwd=1)+
+  geom_step(data=dens,aes(x,y,group=section),lwd=1,color='red',direction="vh")+
+  theme_bw() + theme(legend.position="none")+
+  geom_vline(xintercept=breaks, lty=2,color='gray50')
+```
+
+We can see the same thing by comparing this model to the null model and seeing if we significantly decrease deviance (we get the same p-value).
+
+```{R}
+nullfit<-glm(Kicks~1, data=prussian, family="poisson")
+anova(nullfit,fit3,test="LRT")
+```
+
+Because of our quadratic looking plot above, let's add a term that let's Year affect Kicks quadratically
+
+```{R}
+fit3quad<-glm(Kicks~Year+I(Year^2),data=prussian,family="poisson")
+summary(fit3quad)
+
+anova(fit3,fit3quad,test="LRT")
+```
+
+Looks like it does: the quadratic model definitely fits better. Our model is $log(Kicks)=-2376+25.2Year-.0067Year^2$, and maximizing this function shows that the year with the most deaths was $\frac{25.2}{.0135]=1866.67$ 
+
+
+We could also examine the differences among corps:
+
+```{R}
+fit4<-glm(Kicks~Corps,data=prussian,family="poisson")
+summary(fit4)
+```
+
+No corps differ significantly from C1, but there do appear to be some differences. For example, a person in corps C11 is $e^{4.46}=1.56$, or 56% more likely to die from horse kicks than C1, but corps C8 is $e^{-.827}=.44$, or about 66% *less* likely to die from horse kicks than C1. We should be mindful of multiple comparisons, but let's see if C11 differs from C8 by releveling
+
+```{R}
+prussian$Corps<-relevel(prussian$Corps,ref="C8")
+
+fit4<-glm(Kicks~Corps,data=prussian,family="poisson")
+summary(fit4)
+```
+
+Wow, it looks like lots of Corps differ from C8: C8 had surprisingly few horse deaths! Since we have a factor variable, to test if the overall factor is significant, let's use deviances to compare this model to the null model and test the overall effect of Corps.
+
+```{R}
+anova(nullfit,fit4,test="LRT")
+```
+
+### Offsets and Overdispersion
+
+If you are dealing with counts across groups whose sizes are different, you must explicitly take this into account. For example, assume that corps sizes vary. I am just going to make up some corps sizes for the purposes of illustration. If $\lambda$ is the mean number of kicks per year, we can adjust for corps size by including its log as an offset.
+
+```{R}
+prussian<-prussian%>%mutate(Size=round(runif(n=280,min = 5000, max=10000)))
+prussian%>%dplyr::select(Year,Corps,Kicks,Size)%>%head()
+
+fitoffset<-glm(Kicks~Year,data=prussian,family="poisson", offset=log(Size))
+summary(fitoffset)
+```
+
+Now we have estimates that are correctly adjusted for corps size.
+
+#### Overdispersion
+
+Sometimes it will happen that there will be more variation in the response variable than is expected from the Poisson distribution. Recall that we expect $E(Y)=Var(Y)$. Let $\phi$ be an overdispersion parameter such that $E(Y)=\phi Var(Y)$. If $\phi=1$, there is no overdispersion, but if it is greater than 1, there is overdispersion. Overdispersion is problematic in that if it exists, the standard errors will be too small, leading to a greater type I error rate. We can get an estimate of the overdispersion by dividing the model deviance (sum of squared pearson residuals) by its degrees of freedom,
+
+```{R}
+sum(residuals(fitoffset,"pearson")^2)/df.residual(fitoffset)
+sqrt(1.1628)
+```
+
+We would need to multiply our standard errors by $\sqrt{\hat \phi}$ to correct for overdispersion, so $.01247\times \sqrt{1.1628}=.01247*1.0783=.01345$. We can get this directly by setting `family="quasipoisson"`, as below. Note that tests are now based on the *t* distribution.
+
+
+```{R}
+fitquasi<-glm(Kicks~Year,data=prussian,family="quasipoisson", offset=log(Size))
+summary(fitquasi)
+```
+
+Perhaps a simpler technique is to use robust standard errors.
+
+Another common way of handling overdispersion is to use a negative binomial model, NegBinom(. You might know this distribution as modeling the number of (Bernoulli) trials before a certain number of failures occurs, but mathematically it is a Poisson model where $\lamda$ is itself random, following a gamma distribution, $\lambda\sim Gamma(r, \frac{1-p}{p})$. So instead of $Y\sim Poisson(\lambda)$, we model our responses as $Y\sim NegBinom(r,p)$ where $E(Y)=pr/(1-p)=\mu$ and $Var(Y)=\mu+\frac{\mu^2}{r}$, where $\frac{\mu^2}{r}$ is our overdispersion parameter.
+
+
+```{R}
+fitnb<-glm.nb(Kicks~Year,data=prussian, weights=offset(log(Size)))
+summary(fitnb)
+```
+
+
+This generates incredibly small standard errors and makes me skeptical... Because the results are now so much better than our unadjusted model, I really don't trust it.
+
+#### Zero-Inflated Poisson
+
+Sometimes you get count data with loads of zeros. For example, a former student of mine was looking at how social life (hours per week spent socializing) and stress (credit hours + work hours per week) predicted number of alcoholic beverages consumed each week. But many students do not consume any alcohol at all!
+
+```{R}
+drinkdat<-read.csv("~/Downloads/drink_data_total.csv")
+drinkdat<-drinkdat%>%filter(Drinks<20)
+drinkdat%>%ggplot(aes(Drinks))+geom_bar()
+```
+
+What are we to do? Well, we get creative! Think of trying to emulate the data-generating process: there are two overlapping populations here, drinkers and non-drinkers. Among drinkers, we may see a poisson distribution for drinks consumed in a week, but not among non-drinkers. However, non-drinkers are contributing to the zeros in our data. 
+
+
+```{R}
+poisfit<-glm(Drinks~Social*Stress,data=drinkdat,family="poisson")
+summary(poisfit)
+pchisq(440.71,99,lower.tail = F)
+
+
+exp<-dpois(0:14,mean(drinkdat$Drinks))*length(drinkdat$Drinks)
+obs<-table(factor(drinkdat$Drinks,levels=0:14))
+chisq<-sum((obs-exp)^2/exp)
+pchisq(chisq,df = 13,lower.tail = F)
+
+library(pscl)
+zip_fit<-zeroinfl(Drinks~Social*Stress|1,data=drinkdat)
+summary(zip_fit)
+```
+
+This model fits much better than the non-zero-inflated poisson,
+
+```{R}
+vuong(zip_fit,poisfit)
+```
+
+Here the test statistic is significant across the board indicating that the zero-inflated Poisson model fits better than the standard Poisson model.
+
+
+#### Zero-Truncated Poisson 
+
+Sometimes, instead of an abundance of true zeros, you have strictly non-zero data (e.g., count data where the minimum value is 1). An ordinary Poisson regression will try to predict zero counts, which would be inappropriate for this data.
+
+What if you were interested in the affect of socializing and stress on number of drinks consumed *among students who drink*.
+
+```{R}
+drinkdat_nozero<-drinkdat%>%filter(Drinks>0)
+
+#install.packages("VGAM")
+library(VGAM)
+
+trunc_fit<-vglm(Drinks~Social*Stress,family=pospoisson(),data=drinkdat_nozero)
+summary(trunc_fit)
+
+#AIC
+-2*-105.574+2*3
+
+summary(glm(Drinks~Social*Stress,family=poisson,data=drinkdat_nozero))
+```
+
+Slightly lower AIC, slightly better fit compared to using a poisson regression. Results are extremely comparable.

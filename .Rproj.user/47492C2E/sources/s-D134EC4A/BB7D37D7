@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1576876009870.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "BB7D37D7",
+    "lastKnownWriteTime" : 1577322396,
+    "last_content_update" : 1577322396619,
+    "path" : "~/Desktop/website/content/about.Rmd",
+    "project_path" : "content/about.Rmd",
+    "properties" : {
+        "cursorPosition" : "58,9",
+        "last_setup_crc32" : "D134EC4A47b2ec32",
+        "scrollLine" : "47"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 16,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

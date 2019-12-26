@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Introductory Stats on Nathaniel Woodward</title>
+    <link>/tags/introductory-stats/</link>
+    <description>Recent content in Introductory Stats on Nathaniel Woodward</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 23 Aug 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/introductory-stats/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Basic Stats U Need #2: T-Test</title>
+      <link>/posts/basic-stats-u-need-t-test/</link>
+      <pubDate>Wed, 23 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/basic-stats-u-need-t-test/</guid>
+      <description>Part 2: the t-Distribution We saw in the previous post that if X is a random variable and the population distribution of X is normal with mean \(\mu\) and standard deviation \(\sigma\) (variance \(\sigma^2\)), then the distribution of the sample mean \(\bar{X}\) for samples of a given size \(n\) is normal, with mean \(\mu\) and standard deviation of \(\frac{\sigma}{\sqrt{n}}\), which we can write \(\bar{X}_n \sim N(\mu,\frac{\sigma}{\sqrt{n}})\).</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,119 @@
+---
+title: "Karaoke"
+author: "Nathaniel Woodward"
+output:
+  blogdown::html_page:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+In Fall 2018 I discovered that I enjoy a certain kind of bar-style karaoke: [Karaoke Underground](http://karaokeunderground.com) specializes in tracks from somewhat obscure indie and punk artists, though there are a fair number of more popular jams. See here for the slowly growing [song list](http://karaokeunderground.com/?page_id=16). Below, I list the songs I have sung by date in chronological order.
+
+## The Songs I've Sung (Last Updated 1/22/2019)
+
+ <font size="2">
+
+
+| Count | Date      |          Song                     |     Artist           | Notes                          |
+|:-----:|-----------|:----------------------------------|:---------------------|:-------------------------------|
+|   1   | 9/5/18    |      Capri Pants                  |  Bikini Kill         |  2nd time ever sung at KU      |
+|   2   | 9/5/18    | California Uber Alles             | Dead Kennedys        |                                |
+|   3   | 9/5/18    |        Tunnels                    | Arcade Fire          | Three-way: NW, LW, MK          |
+|   4   | 9/5/18    |My Slow Descent into Alcoholism    | New Pornographers    | Duet: NW, LW                   |
+|   5   | 11/17/18  |War on the East Coast              | New Pornographers    |                                |
+|   6   | 11/17/18  |Neverending Math Equation          | Modest Mouse         |                                |
+|   7   | 11/17/18  |Power Out                          | Arcade Fire          | Duet: NW, LW                   |
+|   8   | 12/13/18  |Cotton                             | Mountain Goats       | 5th Annual Sad Songs Only      |
+|   9   | 12/13/18  |John Wayne Gacy, Jr                | Sufjan Stevens       | 5th Annual Sad Songs Only      |
+|   10  | 1/19/19   |Psychic Trauma                     | Cloud Nothings       | Never been sung (KU debut)     |
+|   11  | 1/19/19   |Kill the Poor                      | Dead Kennedys        | Never been sung (KU debut)     |
+|   12  | 1/19/19   |Poison                             | Waxahatchee          | Never been sung (KU debut)     |
+|   13  | 1/19/19   |Modern Man                         | Arcade Fire          | Duet: NW, LW                   |
+|   14  | 1/19/19   |True Trans Soul Rebel              | Against Me!          |                                |
+|   15  | 3/2/19    |Hatebreeders                       | Misfits              | Never been sung (KU debut)     |
+|   16  | 3/2/19    |Belong                              | Pains of Being...   | Never been sung (KU debut)     |
+|   17  | 5/18/19   | Lost Coastlines                   | Okkervil River       |                                |
+|   18  | 5/18/19   | No Children                       | Mountain Goats       |  Duet with Alexx B       |
+|   19  | 5/18/19   | Letter From An Occupant           | New Pornographers    |  Duet: LW, LW      |
+|   20  | 5/18/19   | All the Pretty Girls Go to the City| Spoon              |  Never been sung (KU debut)    |    
+</font> 
+
+## To-Sing List (Also Slowly Growing)
+
+FuckMyLife666 - Against Me!  
+Amoeba - Adolescents  
+Archie, Marry Me - Alvvays  
+Coffee - Aesop Rock  
+Hate, Rain On Me - AJJ  
+Laika - Arcade Fire  
+7/4 (Shoreline) - Broken Social Scene  
+Carry the Zero - Built to Spill
+TV Set - The Cramps  
+I Fought the Law - Dead Kennedys 
+Nazi Punks Fuck Off - Dead Kennedys  
+The Very Modern Dance - Destroyer  
+Time Bomb - Dismemberment Plan  
+San Francisco - Foxygen  
+Head Rolls Off - Frightened Rabbit  
+Seasons - Future Islands  
+Start Wearing Purple - Gogol Bordello  
+Oblivion - Grimes  
+Obstacle 1 - Interpol  
+Love Will Tear Us Apart - Joy Division  
+Sweat Descends - Les Savy Fav  
+Let's Get Out of Here - Les Savy Fav  
+Combat Baby - Metric  
+We Are 138 - Misfits  
+Dramamine - Modest Mouse  
+I will - Mitski  
+Dance Music - Mountain Goats  
+This Year - Mountain Goats  
+No Children - Mountain Goats  
+See America Right - Mountain Goats  
+Communist Daugher - Neutral Milk Hotel  
+Ghost - Neutral Milk Hotel  
+In the Aeroplane Over the Sea - Neutral Milk Hotel  
+Bizarre Love Triange - New Order  
+Brill Bruisers - New Pornographers  
+Challengers - New Pornographers  
+These Are The Fables - New Pornographers  
+Old 97s - Timebomb  
+Young Adult Friction - Pains of Being Pure at Heart  
+Spit On A Stranger - Pavement  
+Debaser - Pixies  
+Gigantic - Pixies  
+\*Kill City - Iggy Pop  
+Anchorless - Propagandhi  
+Back to the Motorleague - Propagandhi  
+\*Disappointed - Public Image Ltd.  
+I Wanna Be Sedated - Ramones  
+Bastards of Young - Repalcements  
+Can't Hardly Wait - Replacements  
+For Want of - Rites of Spring  
+Virginia Plain - Roxy Music  
+Anarchy in the UK - Sex Pistols  
+At Your Funeral - Saves the Day  
+Gloria - Patti Smith  
+Believing is Art - Spoon    
+\*The Way We Get By - Spoon    
+Inside Out - Spoon    
+\*Don't Let It Get You Down - Spoon    
+Jonathan Fisk - Spoon  
+\*Someone Something - Spoon  
+Cruel - St. Vincent  
+Chicago - Sufjan Stevens 
+I Wanna Be Your Dog - The Stooges  
+Psycho Killer - Talking Heads  
+16 Shells... - Tom Waits  
+Singapore - Tom Waits  
+The Rat - Walkmen  
+Fightboat - The World Is A Beautiful Place and I am Not Afraid to Die  
+\*True Love - X  
+Autumn Sweater - Yo La Tengo   
+
+
+\*unsung as of 1/22/19

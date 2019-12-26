@@ -1,0 +1,41 @@
+---
+title: Teaching
+author: ''
+slug: teaching
+output:
+  blogdown::html_page
+---
+
+This page is under construction!  
+For now, here are **twenty-five heuristics for promoting learning.**
+
+<sub><sup>From: Winne & Nesbit (2010). <a href="http://www.ncbi.nlm.nih.gov/pubmed/19575616">The Psychology of Academic Achievement</a>. <em>Ann.. Rev. of Psych.</em>, <em>61</em>(1), 653&ndash;678 </sub></sup>
+             
+                                                                                
+| **Heuristic** | **Description** |
+|----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| Contiguity effects | Ideas to be associated should be presented contiguously in space and time |
+| Perceptual-motor grounding | Concepts benefit from being grounded in perceptual motor experiences, particularly at early stages of learning |
+| Dual code and multimedia effects | Materials presented in verbal, visual, and multimedia form richer representations than a single medium |
+| Testing effect | Testing enhances learning, particularly when the tests are alligned with important content |
+| Spacing effect | Spaced schedules of studying and testing produce better long-term retention than a single study session or test |
+| Exam expectations | Students benefit more form repeated testing when they expect a final exam |
+| Generation effects | Learning is enhanced when learners produce answers compared to having them recognize answers |
+| Organization effects | Outlining, integrating, and synthesizing information produces better learning than rereading materials or other more passive strategies |
+| Coherence effect | Materials and multimedia should explicitly link related ideas and minimize distsracting irrelevant material |
+| Stories and example cases | Stories and example cases tend to be remembered better than didactic facts and abstract principles |
+| Multiple examples | An understanding of an abstract concept improves with multiple and varied examples |
+| Feedback effects | Students benefit from feedback on their performance in a learning task, but the timing of the feedback can depend on the task |
+| Negative suggestion effects | Learning wrong information can be reduced when feedback is immediate |
+| Desirable difficulties | Challenges make learning and retrieval effortful and thereby have posotive effects on long-term retention |
+| Manageable cognitive load | The information presented to the learner should not overload working memory |
+| Segmentation principle | A complex lesson should be broken down into manageable subparts |
+| Explanation effects | Students benefit more from constructing deep coherent explanations (mental models) of the material than memorizing shallow isolated facts |
+| Deep questions | Students benefit more from asking and answering deep questions that elicit explanations (e.g., why, how, what if) than shallow questions (e.g., who, what, when, where) |
+| Cognitive disequilibrium | Deep reasoning and learning is stimulated by problems that create cognitive disequilibrium, such as obstacles to goals, contradictions, conflict, and anomalies |
+| Cognitive flexibility | Cognitive flexibility improves with multiple viewpoints that link facts, skills, procedures, and deep conceptual principles |
+| Goldilocks principle | Assignments should not be too hard or too easy, but at the right level of difficulty for the student's level of skill or prior knowledge |
+| Imperfect metacognition | Students rarely have an accurate knowledge of their cognition, so their ability to calibrate their comprehension, learning, and memory should not be trusted |
+| Discovery learning | Most students have trouble discovering important principles on their own, without careful guidance, scaffolding, or materials with well-crafted affordances |
+| Self-regulated learning | Most students need training in how to self-regulate their learning and other cognitive processes |
+| Anchored learning | Learning is deeper and students are more motivated when the materials and skills are anchored in real-world problems that matter to the learner |

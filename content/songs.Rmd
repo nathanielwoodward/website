@@ -1,0 +1,17 @@
+---
+title: "Songs"
+author: "Nathaniel Raley"
+output:
+  blogdown::html_page:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+I love learning about new music! 
+
+Submit your music recommendations/requests to me through the google forms link below:
+
+[https://goo.gl/forms/gSnEckR1pvYp9g5g2](https://goo.gl/forms/gSnEckR1pvYp9g5g2)

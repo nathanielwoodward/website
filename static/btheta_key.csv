@@ -1,0 +1,29 @@
+Well,Rep,Genotype,Growth_condition
+ERR2265543,C,relA_mut,Gluc_MM
+ERR2265546,A,relA_mut,Mouse
+ERR2265547,B,relA_mut,Mouse
+ERR2265548,C,relA_mut,Mouse
+ERR2265549,D,relA_mut,Mouse
+ERR2265550,A,relA_mut,carbon_starved
+ERR2265551,B,relA_mut,carbon_starved
+ERR2265552,C,relA_mut,carbon_starved
+ERR2265553,A,multi_mut,Gluc_MM
+ERR2265554,B,multi_mut,Gluc_MM
+ERR2265555,C,multi_mut,Gluc_MM
+ERR2265556,A,multi_mut,Mouse
+ERR2265557,B,multi_mut,Mouse
+ERR2265558,C,multi_mut,Mouse
+ERR2265559,D,multi_mut,Mouse
+ERR2265560,A,multi_mut,carbon_starved
+ERR2265561,B,multi_mut,carbon_starved
+ERR2265562,A,wild type genotype,Gluc_MM
+ERR2265563,B,wild type genotype,Gluc_MM
+ERR2265564,C,wild type genotype,Gluc_MM
+ERR2265565,A,wild type genotype,Mouse
+ERR2265566,B,wild type genotype,Mouse
+ERR2265567,C,wild type genotype,Mouse
+ERR2265568,D,wild type genotype,Mouse
+ERR2265569,A,wild type genotype,carbon_starved
+ERR2265571,B,wild type genotype,carbon_starved
+ERR2265544,A,relA_mut,Gluc_MM
+ERR2265545,B,relA_mut,Gluc_MM

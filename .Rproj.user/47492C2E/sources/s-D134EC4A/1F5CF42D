@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1577035862102.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "1F5CF42D",
+    "lastKnownWriteTime" : 1577035958,
+    "last_content_update" : 1577035958804,
+    "path" : "~/Desktop/website/themes/hyde-hyde/assets/scss/hyde-hyde/_base.scss",
+    "project_path" : "themes/hyde-hyde/assets/scss/hyde-hyde/_base.scss",
+    "properties" : {
+        "cursorPosition" : "72,1",
+        "scrollLine" : "67"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 16,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "scss"
+}

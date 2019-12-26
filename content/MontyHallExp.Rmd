@@ -1,0 +1,174 @@
+---
+title: "Monty Hall Explanation"
+author: Nathaniel Raley Woodward
+date: '2019-03-01'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## The Monty Hall Problem is Very Counterintuitive
+
+- If you still don't believe it, you are in good company:
+
+<center>![](../images/erdos.png)</center>
+
+<center>![](../images/erdos_montyhall.jpg){width=250px}</center>
+
+
+## Simplest Explanation
+
+- Your first choice has a 1/3 chance of having the car
+- So there's a 2/3 it is behind one of the other doors
+
+<center>![](../images/monty1.png)</center>
+
+- Monty will never open the door with the car behind it 
+- After he opens a door, the entire 2/3 probability shifts to the other closed door 
+
+<center>![](../images/monty2.png)</center>
+
+## Monty is Key!
+
+- Imagine you chose door 1, and you are asked whether you want the prize behind door 1 or *the better of* the prizes behind doors 2 and 3
+
+- This is exactly what you get when you switch (because Monty always removes the worse prize of the two when he opens a door)!
+
+## Another Appeal to Intuition
+
+- Imagine there are 100 doors, 99 goats, and 1 car
+- You pick a door, so you have a 1/100 chance of winning the car
+- Then Monty opens 98 of the doors revealing 98 of the goats
+- There is still one other unopened door: Should you switch? 
+
+- If you pick a goat on your first choice (99/100), you will always get the car if you switch
+- By switching, you only get a goat if you had the car at first, and that's super rare (1/100)
+
+## More Involved (and More Satisfying) Explanation
+
+### Consider the Following Scenario:
+
+- Say **you pick door 1** and then **Monty opens door 3**
+- Should you stay with door 1 or switch to door 2? 
+
+- Before Monty opened door 3, the car had a $1/3$ chance of being behind each door
+
+$$
+p(car1)=\frac 13,\ \ \ p(car2)= \frac 13, \ \ \ p(car3)=\frac 13
+$$
+
+- But Monty is not opening doors at random: He will *always* open a goat door (and never the car)!
+
+- What is the probability Monty opens door 3, the true location of the car?
+
+- If you were right initially (the car is actually behind door 1), Monty can open either door 2 or door 3 (and picks one at random):
+
+$$
+p(open3 \mid car 1) = \frac 12 \\
+\text{(in words: the probability Monty opens #3 given that the car is behind #1 is 1/2)}
+$$
+
+- However, if you chose door 1 and the car is behind door 2, Monty has no choice but to open door 3! 
+
+$$
+p(open3 \mid car2) = 1
+$$
+
+- Finally, if you chose door 1 and the car is behind door 3, Monty cannot open door three without revealing the car! This has no chance of happening.
+
+$$
+p(open3 \mid car3) = 0
+$$
+
+
+## Bayes' Rule
+
+- OK, so you chose door 1 and then monty opened door 3
+- What are the chances that the car is behind door 2 (i.e., should you switch)?
+
+- We are interested in $p(car2 \mid open3)$
+- From above, we already have the flip of it, but this is not the same: $p(open3 \mid car2)$
+
+- We can turn it around using Bayes' rule, which states that
+
+$$
+p(A\mid B)=\frac{p(A)p(B\mid A)}{p(B)}
+$$
+
+In our case, 
+
+$$
+p(car2 \mid open3)=\frac{p(car2)p(open3 \mid car2)}{p(open3)}
+$$
+
+- We already have the two pieces in the numerator (from above):
+
+$$
+p(car2 \mid open3)=\frac{(\frac 13 )\left(1\right)}{p(open3)}
+$$
+
+
+- We just need the denominator (the probability Monty opens door 3)
+- We can get this by adding together the probabilities of all the different situations in which Monty opens door 3 (this is the Law of Total Probability):
+
+$$
+\begin{aligned}
+p(open3)&=p(open3\ \& \ car1)+p(open3\ \& \ car2)+p(open3\ \& \ car3)\\
+&=p(car1)p(open3 \mid car1)+p(car2)p(open3 \mid car2)+p(car3)p(open3 \mid car3)\\
+&=(\frac13)(\frac 12)+(\frac13)(1)+(\frac13)(0)\\
+&=(\frac16)+(\frac13)+(0)\\
+&=\frac 12
+\end{aligned}
+$$
+
+- Now we have the denominator, so
+
+$$
+p(car2 \mid open3)=\frac{(\frac 13 )\left(1\right)}{(\frac12)}=2/3
+$$
+
+- This tells us that, if we picked door 1 and Monty opened door 3, then there is a $\frac23$ chance that the car is behind door 2
+
+- That means there is only a $\frac13$ chance the car is behind door 1 (let's use Bayes' rule again)
+
+$$
+p(car1 \mid open3)=\frac{(\frac 13 )(\frac 12)}{(\frac12)}=1/3
+$$
+
+- Thus, we would be much better off switching!
+
+- This will be true no matter which door you pick initially!
+
+
+
+```{R}
+car1<-1/3
+car2<-1/3
+car3<-1/3
+
+# Say you choose door 1
+
+# Monty will never open the door with the car behind it (!)
+# What is the probability Monty opens door 3, given your choice and the actual location of the car?
+
+open3_car1<-1/2
+open3_car2<-1
+open3_car3<-0
+
+## Monty is CERTAIN to open door 3 if the car is behind door 2
+## Monty is only 50:50 to open door 3 if the car is behind door 1
+## Therefore, Monty opening door 3
+
+## What is the probability that the car is behind door 1, given door 3 was opened?
+
+car1_open3=car1*open3_car1/(car1*open3_car1+car2*open3_car2+car3*open3_car3)
+
+## What is the probability that the car is behind door 2, given door 3 was opened?
+
+car2_open3=car2*open3_car2/(car1*open3_car1+car2*open3_car2+car3*open3_car3)
+```
+
+
+

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.60.1" />
+
+    
+    
+    
+
+<title>Hey, Eigenface! (DIY face recognition) • Nathaniel Woodward</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hey, Eigenface! (DIY face recognition)"/>
+<meta name="twitter:description" content="I&#39;ve been recently acquainted with a statistical technique of amazing utility and versatility that has its roots in matrix decomposition, a basic&mdash;though profound&mdash;concept in linear algebra.
+For the purposes of this discussion, we&#39;re going to consider it a very elegant way of taking a large, confusing dataset with many variables and transforming it so that you can find patterns based on the correlations among the variables, thus allowing you to describe your data with fewer of them."/>
+
+<meta property="og:title" content="Hey, Eigenface! (DIY face recognition)" />
+<meta property="og:description" content="I&#39;ve been recently acquainted with a statistical technique of amazing utility and versatility that has its roots in matrix decomposition, a basic&mdash;though profound&mdash;concept in linear algebra.
+For the purposes of this discussion, we&#39;re going to consider it a very elegant way of taking a large, confusing dataset with many variables and transforming it so that you can find patterns based on the correlations among the variables, thus allowing you to describe your data with fewer of them." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/hey-eigenface-diy-face-recognition/" />
+<meta property="article:published_time" content="2014-02-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2014-02-15T00:00:00+00:00" /><meta property="og:site_name" content=" " />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.4733d07e620800a3e95c172a10d18626c442980942fcf389b804765f7627385c.css" integrity="sha256-RzPQfmIIAKPpXBcqENGGJsRCmAlC/POJuAR2X3YnOFw=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+    
+
+</head>
+
+
+    <body class="theme-base-09 ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+    
+      
+        
+        
+        
+        
+        <div class="author-image">
+           <a href="/"><img src="/img/headshot_cropped_f2019.png" alt="Nathaniel Woodward" class="img--circle img--headshot element--center"></a>
+        </div>
+        
+      
+      <p class="site__description">
+         Nathaniel Woodward 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Nathaniel Woodward</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/portfolio/">
+						<span>Portfolio</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="cv.pdf">
+						<span>Vitae</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/Distributino" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="https://github.com/nraley" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<a href="https://last.fm/user/raleywoodward" rel="me"><i class="fab fa-lastfm fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://www.goodreads.com/user/show/44370058-nathaniel" rel="me"><i class="fab fa-goodreads fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="mailto:nathaniel.raley@utexas.edu" rel="me"><i class="fas fa-at fa-lg" aria-hidden="true"></i></a>
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2019  
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Hey, Eigenface! (DIY face recognition)</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Feb 15, 2014
+    
+    
+    
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 13 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>I've been recently acquainted with a statistical technique of amazing utility and versatility that has its roots in matrix decomposition, a basic&mdash;though profound&mdash;concept in linear algebra.</p>
+<p>For the purposes of this discussion, we're going to consider it a very elegant way of taking a large, confusing dataset with many variables and transforming it so that you can find patterns based on the correlations among the variables, thus allowing you to describe your data with fewer of them.</p>
+<p>Though it comes in several of flavors which go by various names, we'll call it Principal Component Analysis (PCA), and later I'm going to show you how you can use it to implement a sort of computer vision/face recognition thing using either Matlab or GNU Octave.</p>
+<p>Before this, though, we need to be comfortable with two concepts: (co)variance and eigen-things. If you are already, SKIP TO PCA  or SKIP TO EIGENFACES (this is a very long post).</p>
+<hr>
+<h3 id="variance--covariance">Variance &amp; Covariance</h3>
+<p>Look at the two datasets below; both have a mean of 50, but different variances. Even if you are utterly unfamiliar with the concept, try to guess which has more variance (i.e., variability):</p>
+<p><code>$$ \{48, 43, 52, 57, 50\} \ \ vs.\ \{10, 25, 90, 75, 50\} $$</code></p>
+<p>The numbers on the right are way more spread out from the mean, right? In fact, if you take each number's distance from the mean, square it, and average those values, you get the variance of the data. So, for the one on the left you have</p>
+<p><code>$$ \begin{align} &amp;= (48-50)^2+(43-50)^2+(52-50)^2+(57-50)^2+(50-50)^2 \\ &amp;= 4+49+4+49+0 \\ &amp;= 106 \\ \end{align} $$</code></p>
+<p>And on the right side you have</p>
+<p><code>$$ \begin{align} &amp;= (10-50)^2+(25-50)^2+(90-50)^2+(75-50)^2+(50-50)^2 \\ &amp;= 1600+625+1600+625+0 \\ &amp;= 4450 \\ \end{align} $$</code></p>
+<p>Now divide both by 5 to get the average squared deviation from the mean</p>
+<p><em>variance for left set</em> <code>$= 106/5 = 21.2$</code></p>
+<p><em>variance for right set</em> <code>$= 4450/5 = 890 $</code></p>
+<p>In general, the equation for calculating the variance of a <em>sample</em> of data is</p>
+<!-- raw HTML omitted -->
+<p>Notice that here, the numerator is exactly what we did above, but the denominator is (<em>n-1</em>) instead of just <em>n</em>. In stat-speak, that's because, in our case, we aren't interested in estimating population variance from our sample; if we were, dividing by <em>(n-1)</em> would give a better (unbiased) estimate. In this example, we are effectively treating our sample as a population.</p>
+<hr>
+<h3 id="covariance">Covariance</h3>
+<p>It's helpful to start by thinking of variance this way, expanding the numerator</p>
+<!-- raw HTML omitted -->
+<p>Variance is only useful when we're dealing with one dimension; often, though, we want to know about relationships between the dimensions. Covariance tells us how much the dimensions vary together:</p>
+<!-- raw HTML omitted -->
+<p>Seen in this way, variance is just a special case of covariance, where you calculate the covariance of the dimension with itself.</p>
+<p>Below are two scatterplots illustrating a linear relationship between two variables; I have included the least-squares line of best fit for each  relationship. Even if you are utterly unfamiliar with the concept, guess  which relationship has more covariance (i.e., how much the variables change together):</p>
+<!-- raw HTML omitted -->
+<p>The plot on the left shows a much neater, tighter relationship, with changes in one variable corresponding closely to changes in the other (varying_ together; _heavier people also tend to be taller people); the one on the right, while still having positive covariance (more hours spent on homework tends to result in higher grades), doesn't look quite as tight. A negative covariance would mean that the variables do _not_ change together; that increases in one are associated with decreases in the other.</p>
+<p>The covariance for height and weight is 92.03 and the covariance for homework and grades is 5.13; while we should be pretty convinced by this disparity that height &amp; weight vary together more closely than do homework &amp; grades, in order to confirm this the covariances should be standardized. To do this, we divide each covariance by the standard deviation of each of its variables, resulting in the correlation coefficient, Pearson's <em>r</em>. For height vs. weight, r = 0.77 and for grades vs. homework, r = 0.33, confirming our observations.</p>
+<h3 id="covariance-matrix">Covariance matrix</h3>
+<p>If you have three variables (x, y, z), a covariance matrix for your data is just a matrix with each cell being cov(row,column). It would look like this:</p>
+<!-- raw HTML omitted -->
+<p>You can see that the diagonal consists of the variance of each variable because, as you can see from the formula above, cov(x,x)=var(x). Also note that a covariance matrix is redundant, because cov(x,y)=cov(y,x). I'll make it look more matrix-y for you:</p>
+<!-- raw HTML omitted -->
+<p>These will be crucial later, so keep them in mind.</p>
+<hr>
+<h2 id="eigenvectors-and-eigenvalues">Eigenvectors and eigenvalues</h2>
+<p>In German &ldquo;eigen&rdquo; means &ldquo;self-&rdquo; or &ldquo;unique to&rdquo;, giving us some initial clues&mdash;we've got a vector that is unique to <em>something</em> and a value that is unique to <em>something</em>. That <em>something</em> is a square matrix (same # of rows &amp; cols). An vector <em>v</em> is an eigenvector for a square matrix <em>M</em> if, when multiplied by <em>M</em>, it yields a vector that is an integer multiple of <em>v</em>. That is,</p>
+<p><code>$Mv=xv$</code>, where <em>x</em> is any integer.</p>
+<p>An example should make this clear. Say we have the following square matrix; we want to find the vector [a b] such that x is an integer.</p>
+<!-- raw HTML omitted -->
+<p>Any such vector [a b] we call an eigenvector of this matrix, and any such integer x an eigenvalue.</p>
+<!-- raw HTML omitted -->
+<p>Here, [1 2] is an eigenvector and 6 is an eigenvalue of our matrix. These aren't easy to come by, and solving for them by hand is usually infeasible. An <code>$n \times n$</code> matrix will have <em>n</em> eigenvalues. In this case, 1 is the other, and an example of an eigenvector is [1 -3]. See?</p>
+<p><a href="http://mathurl.com/km6a639.png"><img src="http://mathurl.com/km6a639.png" alt=""></a></p>
+<p>OK, that's probably enough to &ldquo;get&rdquo; PCA; just remember covariance matrices and eigenvectors, and you're set.</p>
+<hr>
+<h3 id="principal-component-analysis">Principal Component Analysis</h3>
+<p>PCA was independently proposed by Karl Pearson (of correlation fame) and Harold Hotelling in the early 1900s. It is used to turn a set of possibly correlated variables into a smaller set of uncorrelated variables, the idea being that a high-dimensional dataset is often described by correlated variables and therefore only a few meaningful dimensions account for most of the information. PCA  finds the directions with the greatest variance in the data, which are called principal components.</p>
+<p>Here's a overview/recipe for PCA:</p>
+<ol>
+<li>collect data for many dimensions (i.e, variables)</li>
+<li>subtract the mean from each data dimension (normalize it)</li>
+<li>calculate the covariance matrix</li>
+<li>calculate the eigenvectors and eigenvalues of the covariance matrix</li>
+<li>decide which dimensions to keep based on eigenvalue</li>
+<li>get new data by multiplying transposed eigenvector with transposed data</li>
+</ol>
+<p>You wont always get good results when you reduce the dimensionality of your data, especially if it's just to get a 2D/3D graph; sometimes there is just no simpler underlying structure.</p>
+<p>I'll walk you through one using data from a class I'm taking; for now, I'm just going to use R so I can provide some visualizations. There are three dimensions here (grades, parents education, and homework); note that this is lame/inappropriate data for this sort of technique, but it'll suffice for illustration.</p>
+<p>Here's the data:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">str</span>(data2) 
+<span style="color:#e6db74">&#39;</span><span style="color:#e6db74">data.frame&#39;</span><span style="color:#f92672">:</span>     <span style="color:#ae81ff">100</span> obs. of <span style="color:#ae81ff">3</span> variables<span style="color:#f92672">:</span>  
+<span style="color:#f92672">$</span> grades<span style="color:#f92672">:</span> num <span style="color:#ae81ff">78</span> <span style="color:#ae81ff">79</span> <span style="color:#ae81ff">79</span> <span style="color:#ae81ff">89</span> <span style="color:#ae81ff">82</span> <span style="color:#ae81ff">77</span> <span style="color:#ae81ff">88</span> <span style="color:#ae81ff">70</span> <span style="color:#ae81ff">86</span> <span style="color:#ae81ff">80</span> <span style="color:#66d9ef">...</span> 
+<span style="color:#f92672">$</span> pared <span style="color:#f92672">:</span> num <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">14</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">14</span> <span style="color:#66d9ef">...</span>  
+<span style="color:#f92672">$</span> hwork <span style="color:#f92672">:</span> num <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">5</span> <span style="color:#66d9ef">...</span> 
+<span style="color:#75715e">#let&#39;s graph it, too</span>
+  
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">library</span>(scatterplot3d)
+<span style="color:#f92672">&gt;</span> s3d<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">scatterplot3d</span>(new<span style="color:#f92672">$</span>pared,new<span style="color:#f92672">$</span>hwork,new<span style="color:#f92672">$</span>grades, pch<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>, xlab<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Parent&#39;s Education&#34;</span>, ylab<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Homework (Hours/Day)&#34;</span>, zlab<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Grade in Class&#34;</span>, type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">h&#34;</span>) 
+<span style="color:#75715e">#regress grades on parent education and home work</span>
+<span style="color:#f92672">&gt;</span> model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(grades<span style="color:#f92672">~</span>pared<span style="color:#f92672">+</span>hwork) 
+<span style="color:#f92672">&gt;</span> s3d<span style="color:#f92672">$</span><span style="color:#a6e22e">plane</span>(model) <span style="color:#75715e">#here I just fit the regression plane</span>
+</code></pre></div><!-- raw HTML omitted -->
+<p>The OLS best-fitting plane is shown; it minimizes the squared deviations of actual Grades from Grades predicted from Parent's Education and Homework (Hours/Day).</p>
+<p>Now we've got to subtract the mean from each datum:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">  
+<span style="color:#f92672">&gt;</span> new<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">scale</span>(data2,scale<span style="color:#f92672">=</span>F) 
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">head</span>(new) 
+   grades pared hwork  
+[1,] <span style="color:#ae81ff">-2.47</span> <span style="color:#ae81ff">-1.03</span> <span style="color:#ae81ff">-3.09</span>  
+[2,] <span style="color:#ae81ff">-1.47</span> <span style="color:#ae81ff">-0.03</span> <span style="color:#ae81ff">0.91</span> 
+[3,] <span style="color:#ae81ff">-1.47</span> <span style="color:#ae81ff">-1.03</span> <span style="color:#ae81ff">-4.09</span>  
+[4,]  <span style="color:#ae81ff">8.53</span> <span style="color:#ae81ff">-1.03</span> <span style="color:#ae81ff">-0.09</span>  
+[5,]  <span style="color:#ae81ff">1.53</span> <span style="color:#ae81ff">1.97</span> <span style="color:#ae81ff">-2.09</span>  
+[6,] <span style="color:#ae81ff">-3.47</span> <span style="color:#ae81ff">-1.03</span> <span style="color:#ae81ff">-1.09</span>  
+</code></pre></div><p>&hellip;and calculate the covariance matrix</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> cm<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">cov</span>(new)
+<span style="color:#f92672">&gt;</span> cm
+       grades    pared    hwork
+grades <span style="color:#ae81ff">58.110202</span> <span style="color:#ae81ff">4.329192</span> <span style="color:#ae81ff">5.128990</span> 
+pared  <span style="color:#ae81ff">4.329192</span>  <span style="color:#ae81ff">3.726364</span> <span style="color:#ae81ff">1.098283</span> 
+hwork  <span style="color:#ae81ff">5.128990</span>  <span style="color:#ae81ff">1.098283</span> <span style="color:#ae81ff">4.224141</span> 
+</code></pre></div><p>&hellip;and calculate the eigenstuff for the covariance matrix</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> eigs<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">eigen</span>(cm) 
+<span style="color:#f92672">&gt;</span> eigs 
+<span style="color:#f92672">$</span>values 
+[1] <span style="color:#ae81ff">58.946803</span> <span style="color:#ae81ff">4.265718</span> <span style="color:#ae81ff">2.848187</span>
+<span style="color:#f92672">$</span>vectors
+     [,<span style="color:#ae81ff">1</span>]        [,<span style="color:#ae81ff">2</span>]       [,<span style="color:#ae81ff">3</span>]
+[1,] <span style="color:#ae81ff">0.99232104</span>  <span style="color:#ae81ff">0.1235818</span>  <span style="color:#ae81ff">0.005147218</span> 
+[2,] <span style="color:#ae81ff">0.07967798</span> <span style="color:#ae81ff">-0.6068504</span> <span style="color:#ae81ff">-0.790812257</span> 
+[3,] <span style="color:#ae81ff">0.09460639</span> <span style="color:#ae81ff">-0.7851498</span>  <span style="color:#ae81ff">0.612037156</span> 
+
+</code></pre></div><p>&hellip;turns out the princomp function does this all for you! As a sanity check,  lets confirm our eigenguys&hellip;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">
+ <span style="color:#f92672">&gt;</span> pc<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">princomp</span>(new, scores<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>) 
+ <span style="color:#f92672">&gt;</span> pc<span style="color:#f92672">$</span>loadings 
+ 
+ Loadings<span style="color:#f92672">:</span> 
+        Comp.1 Comp.2 Comp.3 
+ grades <span style="color:#ae81ff">0.992</span>  <span style="color:#ae81ff">0.124</span>      
+ pared        <span style="color:#ae81ff">-0.607</span> <span style="color:#ae81ff">-0.791</span> 
+ hwork        <span style="color:#ae81ff">-0.785</span>  <span style="color:#ae81ff">0.612</span>  
+ 
+</code></pre></div><p>Great, everything looks good!</p>
+<p>Now check to see which components to keep</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">summary</span>(pc) 
+Importance of components<span style="color:#f92672">:</span>  
+                       Comp.1    Comp.2    Comp.3  
+Standard deviation     <span style="color:#ae81ff">7.6391973</span> <span style="color:#ae81ff">2.05500866</span> <span style="color:#ae81ff">1.67919764</span>  
+Proportion of Variance <span style="color:#ae81ff">0.8923126</span> <span style="color:#ae81ff">0.06457269</span> <span style="color:#ae81ff">0.04311468</span>  
+Cumulative Proportion  <span style="color:#ae81ff">0.8923126</span> <span style="color:#ae81ff">0.95688532</span> <span style="color:#ae81ff">1.00000000</span>  
+
+</code></pre></div><p>A single eigenvector accounts for ~90% of the variance in the data! We'll keep the others around, just to see what happens, but at this point you might eliminate weaker components.</p>
+<p>Transform the original data on the basis of the principal components</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e">#multiply transpose of eigenvectors by transpose of original, normalized data </span>
+ <span style="color:#f92672">&gt;</span> scores <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">t</span>(eigs<span style="color:#f92672">$</span>vectors) <span style="color:#f92672">%*%</span> <span style="color:#a6e22e">t</span>(new)   
+ <span style="color:#f92672">&gt;</span> 
+ <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">head</span>(scores) 
+       grades    pared      hwork  
+ [1,] <span style="color:#ae81ff">-2.825435</span>  <span style="color:#ae81ff">2.7459217</span> <span style="color:#ae81ff">-1.0893718</span> 
+ [2,] <span style="color:#ae81ff">-1.375010</span> <span style="color:#ae81ff">-0.8779460</span>  <span style="color:#ae81ff">0.5731118</span>  
+ [3,] <span style="color:#ae81ff">-1.927720</span>  <span style="color:#ae81ff">3.6546532</span> <span style="color:#ae81ff">-1.6962618</span>  
+ [4,]  <span style="color:#ae81ff">8.373916</span>  <span style="color:#ae81ff">1.7498719</span>  <span style="color:#ae81ff">0.8033591</span>  
+ [5,]  <span style="color:#ae81ff">1.477489</span>  <span style="color:#ae81ff">0.6345479</span> <span style="color:#ae81ff">-2.8291826</span> 
+ [6,] <span style="color:#ae81ff">-3.628543</span>  <span style="color:#ae81ff">1.0520404</span>  <span style="color:#ae81ff">0.1295553</span>  
+
+</code></pre></div><p>Let's visualize our eigenvectors by overlaying them on the transformed data, using the <code>rgl</code> package</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">library</span>(rgl)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">plot3d</span>(pc<span style="color:#f92672">$</span>scores)  
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">text3d</span>(<span style="color:#ae81ff">6</span><span style="color:#f92672">*</span>pc<span style="color:#f92672">$</span>loadings,texts<span style="color:#f92672">=</span><span style="color:#a6e22e">colnames</span>(pc<span style="color:#f92672">$</span>scores),col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">red&#34;</span>) 
+<span style="color:#f92672">&gt;</span> coords <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">NULL</span>  
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">for </span>(i in <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">nrow</span>(pc<span style="color:#f92672">$</span>loadings)) {  
+<span style="color:#f92672">+</span>  coords <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rbind</span>(coords, <span style="color:#a6e22e">rbind</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>),pc<span style="color:#f92672">$</span>loadings[i,<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>])) 
+<span style="color:#f92672">+</span> } 
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">lines3d</span>(<span style="color:#ae81ff">6</span><span style="color:#f92672">*</span>coords, col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">red&#34;</span>, lwd<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>)  <span style="color:#f92672">&lt;</span>br<span style="color:#f92672">&gt;</span><span style="color:#f92672">&lt;</span><span style="color:#f92672">/</span>br<span style="color:#f92672">&gt;</span><span style="color:#f92672">&lt;</span><span style="color:#f92672">/</span>code<span style="color:#f92672">&gt;</span>
+</code></pre></div><!-- raw HTML omitted -->
+<p>This is a still from the interactive plot which is much more convincing, so run it yourself! The eigenvectors are the axes of the transformed data, thus providing a better characterization.</p>
+<p>In summary, we have transformed our data so that it is expressed in terms of the patterns between them (lines that best describe the relationships among the variables); essentially, we have classified our data points as combinations of the contributions from all three lines, which can be thought of as representing the best possible coordinate system for the data: the greatest variance of some projection of the data comes lies on the first coordinate (called the first principal component), the second greatest variance on the second coordinate, etc.</p>
+<hr>
+<h2 id="eigenfaces">Eigenfaces</h2>
+<p>Many face-recognition techniques treat the pixels of a each face-picture as a vector of values; this one does <a href="pca">PCA</a> on many such vectors to abstract characteristic features which can then be used to classify new faces.</p>
+<p>Think of an image as a matrix of pixels; let's restrict our attention to grayscale for clarity. Each pixel in a grayscale image is assigned an intensity value from 0 to 255, where &ldquo;0&rdquo; is completely black and &ldquo;255&rdquo; is completely white. The pictures I am using are 92px by 112px, meaning that there are 92 pixels along each of 112 rows, or equivalently, 112px in each of 92 columns. So, each image comprises a total of 112 * 92 = 10,304 pixels. You can think of each face as a point in a space of 10,304 dimensions! Or rather, you can't very easily think of this, but that's exactly what we've got!</p>
+<p>How can we use this information to compute similarities and differences between two pictures? PCA! Take each &ldquo;row&rdquo; of pixels in each image and concatenate them to make a single vector of pixel values, like this:</p>
+<p><code>$$ pixelVector =&lt;px1, px2, ... ,px93, px94, ... ,px10302, px10304&gt;$$</code></p>
+<p>&hellip;where each <code>$px$</code> is a single pixel with a grayscale intensity value ranging from 0 to 225. At this point, we have a vector full of numbers&hellip; a single dimension. Now, the idea is you take a bunch of these image vectors (made from different images), slap them all into a matrix, normalize them, generate a covariance matrix, find the eigenvectors/values for the matrix, and use these values to measure the difference between a new image and the originals. If the distance is small enough (per some threshold value), then a match condition is satisfied!</p>
+<p>I'll show you how all of this works in GNU Octave, but the code should work in Matlab too. In Octave, you need to have the images package installed.</p>
+<p>First, we need a &ldquo;training set&rdquo; of small grayscale images, all the same size. Many computer vision databases exist, with many such sets to choose from. I'm using 200 images from the <a href="http://www.cl.cam.ac.uk/research/dtg/attarchive/facedatabase.html">AT&amp;T face database</a> (20 subjects, 10 images each).</p>
+<p>Here's an example image from the training set, a grayscale image 92 pixels wide by 112 pixels tall (I've got no idea who this guy is):</p>
+<!-- raw HTML omitted -->
+<p>First, we have to read in <em>all 200</em> of these images. I have adapted the procedure  from this <a href="http://www.mathworks.com/matlabcentral/fileexchange/38268-eigen-face-recognition">Matlab source code,</a> which was really great and required only modest modification: here's <a href="http://www.nathanielraley.com/eigenfaces.txt">the exact code I ended up using</a> in Octave v3.8</p>
+<p>We then take the mean of all of the image vectors, which results in the following image vector:</p>
+<!-- raw HTML omitted -->
+<p>Good! Now we subtract this mean image from each image in our training-set and compute the covariance matrix exactly as shown in the discussion above on PCA. The clincher is that for any distribution of data with <em>n</em> variables, we can describe them with a basis of eigenvectors, and because these are necessarily orthogonal, the variables will be uncorrelated.</p>
+<p>Below are the eigenfaces*, and boy are they ghastly! Think of them as the pixel representation of each eigenvector formed from the covariance matrix of all images; these faces represent the most similar parts of some faces, and the most dramatic differences between others.</p>
+<!-- raw HTML omitted -->
+<p>Now that we have facespace, how do we go about recognizing a new face?  The recognition procedure is as follows: once we have projected every sample image into  the eigenface subspace, we have a bunch of points in a 20 dimensional space. When given a new image (a new picture of someone in the training set), all we need do is project it into face space and find the smallest distance between the new point and each of the  projections of the sample images: of the people pictured in the training set, this gives us the one that best matches the input picture.</p>
+<p>I kept one image of each individual out of the training set for a confirmatory test of our eigenfaces. Here's the first and second input image alongside the image reconstructed from their</p>
+<!-- raw HTML omitted -->
+<p><img src="https://nrwoodward.files.wordpress.com/2014/02/32e4e-input2.png" alt=""></p>
+<p><img src="https://nrwoodward.files.wordpress.com/2014/02/72d1b-inputface.png" alt=""></p>
+<!-- raw HTML omitted -->
+<p>These graphs show the distance of each input image to each person on the training set (along the x-axis, 1-20); both matched! The first input image had the shortest distance to other images of that person, and so did the second (see the red dot in the figure below)!</p>
+<!-- raw HTML omitted -->
+<p>I decided to try a picture of myself that was already in black and white, to see if it could reconstruct it; with a large enough data set, it could produce a perfect reconstruction, much in the way that Fourier transforms/decompositions work.</p>
+<!-- raw HTML omitted -->
+<p>Not good at all, really, is it? I probably screwed something up&hellip; this is one of my first forays into GNU Octave and I'm just fumbling my way through someone else's Matlab code. Still, we were able to positively classify two untrained images! That's not too bad for a first go.</p>
+<p>What could this technique be used for, practically? It's actually <a href="http://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;ved=0CCcQFjAA&amp;url=http%3A%2F%2Fwww.cs.ucsb.edu%2F~mturk%2FPapers%2Fmturk-CVPR91.pdf&amp;ei=W8r_UoXMJ6XayAHz3YDYBg&amp;usg=AFQjCNFtnl7qU4TEAjdwSIWdNYNvqLSPEg&amp;sig2=wpUgPleNvELlK1QSJzvaAQ">pretty old</a>, and has been largely supplanted by newer, more accurate recognition methods. One immediate use for eigenfaces would be to implement a face-recognition password system for your computer, <a href="http://techcrunch.com/2011/05/18/cornell-students-show-off-a-diy-eigenface-access-system/">like these guys did</a>. You can also use it for face detection, not just recognition.</p>
+<p>Phew, I'm totally spent: this took me forever! I apologize if I have egregiously misrepresented or oversimplified any of the mathematics involved.
+If you're interested in this technique, here's a list of webpages I consulted while writing this post:</p>
+<p><a href="http://www.bytefish.de/pdf/facerec_octave.pdf">http://www.bytefish.de/pdf/facerec_octave.pdf</a><br>
+<a href="http://jmcspot.com/Eigenface/Default">http://jmcspot.com/Eigenface/Default</a><br>
+<a href="https://en.wikipedia.org/wiki/Eigenface">https://en.wikipedia.org/wiki/Eigenface</a><br>
+<a href="http://www.pages.drexel.edu/~sis26/Eigenface%20Tutorial.htm">http://www.pages.drexel.edu/~sis26/Eigenface%20Tutorial.htm</a><br>
+<a href="http://jeremykun.com/2011/07/27/eigenfaces/">http://jeremykun.com/2011/07/27/eigenfaces/</a><br>
+<a href="http://codeformatter.blogspot.com/">http://codeformatter.blogspot.com/</a></p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/post/idea-density-or-teenage-essays-predict-old-age-alzheimers/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Idea Density, or, &#34;teenage essays predict old-age Alzheimer&#39;s&#34;</span>
+    </a>
+    
+    
+    <a href="/post/the-piteous-and-worsening-state-of-kellers-academic-decathlon-program/" class="navigation-next">
+      <span class="navigation-tittle">The Piteous and Worsening State of Keller&#39;s Academic Decathlon Program</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+    
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

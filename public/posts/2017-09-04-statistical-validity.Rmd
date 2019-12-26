@@ -1,0 +1,344 @@
+---
+title: Validity in Research
+author: Nathaniel Raley Woodward
+date: '2017-09-04'
+slug: statistical-validity
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 3
+---
+
+<sup><sub>In this post I reboot a page I had written for my old website back in 2013. It is based almost entirely on the excellent text by [Shadish, Cook, and Campbell (2002)](http://www.amazon.com/Experimental-Quasi-Experimental-Designs-Generalized-Inference/dp/0395615569). Very little (if any) of the following represents my own ideas; indeed, I am often quoting verbatim! My intent here is only to summarize the main points of their validity discussion to make these ideas more accessible, and I would greatly recommend checking out their book (it is one of my favorites).</sub></sup>
+
+### What is an Experiment?
+
+Experimentation refers to a systematic study designed to examine the consequences of deliberately varying a potential causal agent. Experiments require
+
+1. variation in the treatment
+2. posttreatment measures of outcomes
+3. at least one unit on which observation is made
+4. a mechanism for inferring what the outcome would have been without treatment---the so-called "counterfactual inference" against which we infer that the treatment produced an effect that otherwise would not have occurred. 
+
+### Research in a Perfect World
+
+Causal inferences about treatment effects are always of central importance, but different validity issues take priority at different phases of research. Early on, the search for possibly effective treatments permits weaker experimental designs and tolerates many false positives so as not to overlook a potentially effective treatment. As knowledge accumulates, internal validity gets higher priority to sort out those treatments that really do work under at least some ideal circumstances (efficacy studies). In the later phases of a program of research, external validity is the priority, especially exploring how well the treatment works under conditions of actual application (effectiveness studies).
+
+Scientists make causal generalizations in their work by using five closely related principles:  
+
+1. **Surface similarity**: They assess the apparent similarities between study operations and the prototypical characteristics of the target of generalization
+2. **Ruling out irrelevancies**: They identify those things that are irrelevant because they do not change a generalization
+3. **Making discriminations**: They clarify key discriminations that limit generalization
+4. **Interpolation and extrapolation**: They make interpolations to unsampled values within the range of the sampled instances and, much more difficult, they explore extrapolations beyond the sampled range
+5. **Causal explanation**: They develop and test explanatory theories about the pattern of effects, causes, and mediational processes that are essential to the transfer of a causal relationship. 
+
+### What is Validity?
+
+Below is an extremely useful typology of validity (Shadish, Cook, & Campbell 2002);[^1] each of the four types is expanded upon below at length.
+
+| **Validity Type** | **Relevant Research Question** |
+|:--------------------:|------------------------------------------------|
+| [Internal Validity](#internal-validity) | Is the covariation causal, or would the same covariation have been obtained without the treatment? |
+| [External Validity](#external-validity)| How generalizable is the locally embedded causal relationship over varied persons, treatments, observations, and settings?| 
+| [Construct Validity](#construct-validity) | Which general constructs are invovled in the persons, settings, treatments, and observations used in the experitment?
+|[Statistical Validity](#statistical-validity) | How large and reliable is the covariation between the presumed cause and the presumed effect?|
+
+
+
+## Internal Validity
+
+Internal validity is of utmost importance in experimentation: it is concerned with how confident one can be that a relationship between variables is causal. Causal inferences are inferences about whether observed covariation between $A$ and $B$ represents a causal relationship  $A \rightarrow B$. To begin to infer that $A$ caused $B$, it must be shown that 
+
+- $A$ covaries with $B$
+- $A$ preceded $B$ in time
+- *no other explanations for the relationship are plausible*
+
+Shadish, Cook, and Campbell (2002, hereafter S-C-C) refer to internal validity as **local molar causal** validity:
+
+- **causal** because internal validity is concerned with causes
+- **local** because causal conclusions are limited to the context of particular treatments, outcomes, times, settings, and people 
+- **molar** because any experimental treatment actually consists of many components which are tested as a whole in the treatment condition
+
+Thus, they say that internal validity is about
+
+>"Whether a complex and inevitably multivariate treatment package caused a difference in some variable-as-it was-measured within the particular setting, time frame, and kind of units that were sampled in the study"
+
+### Threats to Internal Validity
+Reasons why inferring that $A$ caused $B$ may be incorrect:
+
+| Threat                        | Description                                                                                                                                        |
+|:----------------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Ambiguous Temporal Precedence** | Lack of clarity about which variable occurred first may make determination of cause and effect confusing; some causation is bidirectional!                                                                                                                                                                                 |
+| **Selection Bias**                | Systematic differences over conditions in respondent characteristics could also have caused the observed effect; sometimes at the start of an experiment the average person in one condition already differs from the average person in another, a difference which may account for the observed effect                    |
+| **History**                       | Any events occurring concurrently with the treatment could cause the observed effect; treat all groups the same during testing                                                                                                                                                                                             |
+| **Maturation**                    | Naturally occuring changes over time could be confused with a treatment effect, such as participants growing older, hungrier, wiser, stronger, more experienced, more fatigued...                                                                                                                                          |
+| **Regression (to the mean)**      | When participants/units are selected for their extreme scores, they tend to get less extreme scores upon a retest, or on other related variables; this change can be confused with a treatment effect (OK if all extreme scores are randomly assigned to conditions)                                                       |
+| **Attrition**                     | Loss of participants can produce artificatual effects if that loss is systematically correlated with conditions; if different kinds of people remain to be measured in one condition versus another, then such differences could produce outcome differences even in the absence of treatment                              |
+| **Testing**                       | Exposure to a test can affect scores on subsequent exposures to the test (e.g., practice, familiarity, reactivity), and this can be confused with a treatment effect. For instance, weighing someone may cause the person to become weight-conscious, or to try to lose weight when they otherwise might not have done so. |
+| **Instrumentation**               | A change in a measuring instrument can occur over time even in the absence of treatment, mimicking the treatment effect. For example, the spring on a press-lever may become weaker and easier to push over time.                                                                                                          |
+| **Additive or Interactive Effects**  | The impact of a threat can be added to that of another threat or may depend on the level of another threat; the net bias depends on the direction and magnitude of each individual bias plus whether they combine additively or multiplicatively                                                                           |
+
+
+### Random Assignment
+
+Fortunately, randomly assigning subjects to treatments protects against many threats to internal validity. Random assignment eliminates selection bias by definition, leaving initial group differences completely to chance! Random assignment also reduces some of the other threats to internal validity: because the experimental groups are randomly formed, any initial group differences in maturational rates, in regression-to-the-mean, and experience of concurrent extra-treatment events, should be due to chance alone. And if the same tests are administered to each group, testing effects and instrumentation changes should be experienced equally by both conditions (and thus not differentially impact the outcome). 
+
+Indeed, given random assignment, difficulties with causal inference arise in only two situations
+
+1. If the number of people dropping out of the experiment differs by group, in which case the outcomes could be due to differential attrition rather than to treatment
+2. If testing must be different in each group (e.g., if only the treatment group gets a pre-test)
+
+#### Relationship between Internal Validity and Statistical Validity
+
+Both of these types of validity are primarily concerned with the relationship between treatment and outcome, and with study *operations* rather than the *constructs* those operations reflect (see [construct validity](#construct-validity)). [Statistical validity](#statistical-validity) is concerned with errors in assessing statistical covariation, while internal validity is concerned with errors in assessing a causal relationship. Even when all the statistical analyses are done perfectly, compromised internal validity could still lead to the wrong conclusion.
+
+## External Validity
+
+>"...the essence of creative science is to move a program of research forward by incremental extensions of both theory and experiment into untested realms that the scientist believes are likely to have fruitful yields given past knowledge. Usually, such extrapolations are justified because they are incremental variations in some rather than all study features"  
+>*--Shadish, Cook, & Campbell (2002)*
+
+External validity concerns the extent to which a causal relationship holds true over variations in *people, settings, treatments,* and *outcomes* that were used in the experiment. This is conceptually akin to interaction effects in statistics: if an interaction exists between, say, an educational intervention and the socio-economic class of the children, then it cannot be said that the same result holds across all social classes. Types of generalizations include the following:
+
+* **Narrow to Broad:**   
+For instance, from the persons, settings, treatments, and outcomes in an experiment to a larger population  
+  $\rightarrow$ e.g., when a policymaker asks of the findings from the income maintenance experiments in New Jersey, Seattle, and Denver would generalize to the US population if adopted nationally.
+* **Broad to Narrow:**  
+From the experimental sample to a smaller group or even to a single person  
+  $\rightarrow$ e.g., a cancer patient asks whether a newly-developed treatment that improves survival in general would improve her survival in particular, given her pathology, her clinical stage, her prior treatments, etc.
+* **At a Similar Level:**   
+From the experimental sample to another sample at about the same level of aggregation  
+  $\rightarrow$ e.g., a state governor considers adapting a new welfare reform based on experimental findings supportin gthat reform in a nearby state of a similar size.
+* **To a Similar or Different Kind:**   
+In all of the above cases, the targets of generalization might be similar to the experimental samples (e.g., from male job applicants in Seattle to male job applicants in the US), or very different e.g., Afircan American males in New Jersey to Hispanic females in Houston)
+* **Random Sample to Population Members:**   
+In those rare cases with random sampling, a generalization can be made from the random sample to other members of the population from which the sample was drawn.
+
+### Threats to External Validity  
+Reasons why inferences about how study results would hold over variations in subjects, settings, treatments, and outcomes may be incorrect:
+
+| Threat                                                           | Description                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Interaction of the Causal Relationship with Units                | An effect found with certain subjects may not hold if other subjects had been studied.                                                                                                                                                                                                                                                                                                                                              |
+| Interaction of the Causal Relationship with Treatment Variations | An effect found with one treatment variation might not hold with other variations of that treatment, when that treatment is used only in part, or when it is combined with other treatments(e.g., because experiments are usually of limited duration, people may react differently if treatments were extended; a small-scale experiment may have effects quite different from a large-scale implementation of the same treatment) |
+| Interaction of the Causal Relationship with Outcomes             | An effect found on one kind of outcome observation may not hold if other outcome observations are used (e.g., in cancer research, treatments vary in effectiveness depending on whether the outcome is quality of life, 5-year metastasis-free survivial, or overall survival)                                                                                                                                                      |
+| Interactionof the Causal Relationship with Settings              | An effect found in one kind of setting may not hold if other kinds of settings were to be used (e.g., a program for drug abusers that was effective in rural areas but did not work in urban areas)                                                                                                                                                                                                                                 |
+| Context-dependent Mediation:                                     | An explanatory mediator of a causal relationship in one context may not mediate the relationship in another context.                                                                                                                                                                                                                                                                                                                |
+
+
+
+With respect to external validity, it is important to watch out for *convenience sampling* and non-response bias. S-C-C note that
+
+>"...participants who are successfully recruited into an experiment may differ systematically from those who are not. They may be volunteers, exhibitionists, hypochondriacs, scientific do-gooders, those who want the cash, those who need course credit, those who are desperate for help, or those who have nothing else to do."
+
+The real world is riddled with interactions, and statistical main effects will almost *never* describe anything with perfect accuracy. If generalizability (or *robustness*) were equated with constancy of effect sizes, few causal relationships in the world could be said to generalize. Generalizability is best thought of as "constancy of causal direction"---that the *sign* of the causal relationship is constant across levels of a moderator. For instance, examination of meta-analyses reveal that causal signs tend to be similar across studies, even while effect sizes vary considerably.
+
+
+## Construct Validity
+
+Construct validity deals with making inferences from the *specific attributes* of a study to the higher-order constructs they represent. That is: "are you actually measuring what you claim to be measuring?!" As S-C-C note, psychotherapists are seldom concerned only with the answers to the 21 items on the Beck Depression Inventory (the so-called "operation"); no, they want to know whether their client is depressed (the "construct)! 
+Construct validity asks whether the labels, terms, and theoretical descriptions are appropriate representations of what was actually done in the study. Proper specification of a construct is important because it is the central means we have of connecting the operations used in a study to relevant theory and to those who will use the results to inform policy decisions, etc.
+
+The creation and defense of basic constructs is a fundamental task of all science. Examples from the physical sciences include the development of the periodic table, identifying the composition of water, classifying genera and species of plants and animals, and the discovery of the structure of genetic material; naming things is a key problem in all of science because names reflect category memberships that themselves have implications about relationships to other concepts, theories, and uses. But no attributes are foundational. Rather, we use a [pattern-matching logic to decide whether a given instance sufficiently matches the prototypical features](http://lesswrong.com/lw/nl/the_cluster_structure_of_thingspace/) to warrant using the category label, especially given alternative category labels that could be used.
+
+Difficulties in deciding which features are prototypical are exacerbated in the social sciences, partly because of the abstract nature of the entities with which social scientists typically work: violence, incentive, decision, intention... This renders largely irrelevant a theory of categorization that is widely used in some areas---the theory of *natural kinds*. This theory postulates that nature cuts things at the joint, and so we evolve names and shared understandings for the entities separated by joints. Thus, we have separate words of a tree's trunk and its branches, or a twig and a leaf, but no word for the bottom left section of a tree, or a half-twig/half-leaf segment. There are many fewer "joints" in the social sciences---what would they be for intentions or aggression, for instance?
+
+Insisting on calling things by their proper names is no mean act of pedantry: it is crucial to avoid taking in circles and making baseless claims. When one uses common but loosely applied terms as constructs (e.g., "the disadvantaged"), it is common to find dramatically different kinds of persons represented under the same label, both within and between studies. Similarly, to describe an experimental setting as "the Psychology Department Psychological Services Center" conveys virtually no information about about the setting's size, finding, client flow, staff, or the range of diagnoses encountered. These difficulties are one reason that qualitative researchers value the ["thick description"](https://en.wikipedia.org/wiki/Thick_description) of study instances, so that readers of a study can rely more on their own "naturalistic generalizations" than on one researcher's labels. 
+
+By way of a set of best practices for construct validity, before beginning an experiment researchers should
+
+1. think through how constructs should be defined, 
+2. differentiate them from related (and unrelated!) constructs, 
+3. decide how to index each construct
+4. conisder using multiple operations to index each construct when possible or when no single way is clearly best  
+$\rightarrow$ e.g., multiple measures, manipulations, settings, samples
+5. ensure that each of the multiple operations reflects multiple methods so that single-method confounds can be better assessed.
+
+
+
+### Threats to Construct Validity
+
+As usual, here is a list of threats concerning the match between study operations and constructs used to describe those operations (from Shadish, Cook, and Campbell, 2002):
+
+| **Fourteen threats to construct validity (not exhaustive!)** |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1. **Inadequate Explication of Constructs:** Failure to adequately explicate a construct may lead to incorrect inferences about the relationship between operation and construct; constructs may be defined too generally, defined too specifically, actually reflect two or more constructs operating together, or simply be incorrect.                                                                                                                                                                                                                                                                                     |
+| 2. **Construct Confounding:** Operations usually involve more than one construct, and failure to describe all the constructs may result in incomplete construct inferences (e.g., applying the label "unemployed" to a study population whose family incomes are below the poverty level, or who participate in government welfare programs, it may also be the case that these people were disproportionately African-American or victims of racial prejudice; these latter characteristics were not part of the intended construct "unemployed" but were nonetheless confounded with it.                                   |
+| 3. **Mono-Operation Bias:** Any one operationalization of a construct both underrepresents the construct of interest and measures irrelevant constructs, complicating inference. Experiments typically use several measures of a given outcome, but use only a single sample, treatment, and setting; each construct should be multiply operationalized.                                                                                                                                                                                                                                                                     |
+| 4. **Mono-Method Bias:** When all operationalizations use the same method (e.g., self-report, interview, survey), that method is part of the construct actually being studied and the method used could be influencing the results (e.g., using only interviews, using only hospital records...)                                                                                                                                                                                                                                                                                                                                  |
+| 5. **Confounding Constructs with Levels of Constructs:** Inferences about the constructs that best represent study operations may fail to describe the limited levels of the construct that were actually studied                                                                                                                                                                                                                                                                                                                                                                                                            |
+| 6. **Treatment Sensitive Factorial Structure:** The structure of a measure may change as a result of treatment, and these changes in the factorial structure may be hidden if the same scoring is always used, or if all items are summed to a total for both groups                                                                                                                                                                                                                                                                                                                                                         |
+| 7. **Reactive Self-Report Changes:** Self-reports can be affected by participant motivation to be in the treatment condition, motivation that can change after assignment is made; applicants wanting treatment may make themselves look either more needy or more meritorious, depending on which they think will get them access to their preferred condition. Once assignment is made, motivational changes between the two groups are likely to occur, and post-test differences then reflect this differential motivation                                                                                                |
+| 8. **Reactivity to the Experimental Situation:** Participant responses reflect not just treatments and measures but also participants' perceptions of the experimental situation, and those perceptions are part of the treatment construct actually tested; participants might try to guess what the experimenter is studying, or may be apprehensive about being evaluated by experts and so may respond in ways they think will be seen as healthy and competent. This can be avoided by making outcomes less obvious, by reducing experimenter interaction with participants, and by making experiments non-threatening. |
+| 9. **Experimenter Expectancies:** The experimenter can influence participant responses by conveying expectations about desirable responses, and those expectations are part of the treatment construct as actually tested; similar to the Pygmalion effect, whereby teacher expectancies about student achievements become self-fulfilling prophesies. Reduce the problem by using more experimenters, masking procedures (in which those who administer the treatments do not know the hypotheses), or control groups.                                                                                                      |
+| 10. **Novelty and Disruption Effects:** Participants may responsd unusually well to a novel innovation or unusually poorly to one that disrupts their routine, a response that must then be included as part of the treatment construct description; when an innovation is introduced, it can breed excitement, energy, and enthusiasm that may differentially affect outcomes, either by enhancing performance or disrupting it (see "Hawthorne effect").                                                                                                                                                                   |
+| 11. **Compensatory Equalization:** When treatment provides desirable goods or services to one group but not another, administrators, staff, or constituents might be tempted to provide compensatory goods or services to those not receiving treatment, thus ruining the experimental control.                                                                                                                                                                                                                                                                                                                              |
+| 12. **Compensatory Rivalry:** Participants not receiving treatment may be motivated to show they can do as well as those receiving treatment, and this compensatory rivalry must then be included as part of the treatment construct description (see "John Henry effect").                                                                                                                                                                                                                                                                                                                                                  |
+| 13. **Resentful Demoralization:** Participants not receiving a desirable treatment may be so resentful or demoralized that they may respond more negatively than otherwise, and this resentful demoralization may change their responses to outcome measures                                                                                                                                                                                                                                                                                                                                                                 |
+| 14. **Treatment Diffusion:** Participants may receive goods or services from a condition to which they were not assigned and may conceal this fact from researchers, making construct descriptions of both conditions more difficult.                                                                                                                                                                                                                                                                                                                                                                                        |
+
+Finally, how does construct validity differ from external validity? They primarily differ in the kind of inferences being made: in construct validity, the inference is that a certain measure, setting, sample, etc. actually represents the coherent construct you claim that it does. 
+For external validity generalizations, the inference concerns whether the size or direction of a causal relationship changes across people, treatments, settings, or outcomes. With construct validity, we don't need to talk about the size of the causal relationship: for example, an issue of *construct* validity might be that a study mischaracterized a setting as a "private sector hospitals" when it would have been more accurate to describe them as "private non-profit hospitals" to distinguish them from the for-profit hospitals in the study. External validity generalizations, on the other hand, are always made in reference to a causal relationship
+
+
+## Statistical Validity
+
+Statistical validity is concerned with errors in assessing statistical covariation (not with inferring a causal relationship: see [internal validity](#internal-validity) above). Here are some reasons why inferences about the covariation between variables may be incorrect:
+
+### Threats to Statistical Validity 
+
+1. **Low Statistical Power**  	
+An insufficiently powered experiment may incorrectly conclude that the relationship between treatment and outcome is not significant. (see below for [ways to increase power](#ways-to-increase-power)!)
+2. **Violated Assumptions of Statistical Tests**  	
+Violations of statistical test assumptions, especially independence, can lead to either overestimating or underestimating the size and significance of an effect.
+3. **Fishing and the Error Rate Problem**  
+Repeated tests for significant relationships, if uncorrected for the number of tests, can artifactually inflate statistical significance.
+4. **Unreliability of Measures** 	
+Measurement error attenuates the relationship between two variables and strengthens or weakens the relationships among three or more variables.
+5. **Restriction of Range** 	
+Reduced range on a variable usually weakens the relationship between it and another variable; avoid [floor and ceiling effects](https://en.wikipedia.org/wiki/Ceiling_effect_(statistics)); avoid discretizing continuous variables
+6. **Unreliability of Treatment Implementation** 	
+If a treatment that is intended to be implemented in a standardized manner is implemented only partially for some respondents, effects may be underestimated compared with full implementation.
+7. **Extraneous Variance in the Experiment Setting**  	
+Some features of an experimental setting (noise, temperature, interruptions) may inflate error, making detection of an effect more difficult.
+8. **Heterogeneity of Units**  	
+Increased variability on the outcome variable within conditions increases error variance, making detection of a relationship more difficult.
+9. **Inaccurate Effect Size Estimation**  	
+Some statistics systematically overestimate or underestimate the size of an effect; watch for outliers; consider using odds ratios.
+
+
+### Power!
+
+>"Results in the literature that are not significant may simply be due to poor or inadequate power, whereas results that are significant but have been obtained with huge sample sizes may not be practically significant" 
+>(Stevens, 2009)[^2]
+
+Power $(1-\beta)$ is the probability of rejecting the null hypothesis when it is false. Power is the probability of detecting differences given that they exist, or saying groups differ when they actually do.
+
+#### Quick Review of Hypothesis Testing
+
+Suppose we randomly assign $15$ subjects to a treatment group and $15$ subjects to a control, and we want to compare the two groups on a single measure of performance; we wish to determine if the groups differ on average in their performance, and if so, if the difference is large enough to suggest that the underlying populations are different.The null hypothesis ($H_0$) is that the population means are equal: the treatment group's performance is equal to the control group's performance across the entire population. Our alternative hypothesis ($H_A$) is that the population means are different. 
+
+Now, if we had populations with equal means ($\mu_1=\mu_2$), and we drew samples of size $15$ repeatedly and computed a $t$-statistic each time, then $95%$ of the time we would obtain $t$-statistics in the range $-2.05$ to $2.05$. What that means is, we can take our own experimental sample and compute a t-statistic based on our data: if we get a number larger than $2.05$ (or smaller than $-2.05$), our result would be very unlikely ($\lt 5\%$ chance) *if the null hypothesis was true.* If the data we observe are highly unlikely under the null hypothesis, it is reasonable to *reject* that hypothesis. But we take a risk here: there is still that $5\%$ chance of observing a result as extreme as ours if the null hypothesis was true. This is the $\alpha$ level, the maximum risk we are willing to take in rejecting a true null hypothesis (making a Type I error). In this example, as in lots of research (for ~~better or~~ worse), $\alpha$ is set to $.05$. 
+
+There is one other type of error we can make: we can *fail to reject* the null hypothesis when there actually *are* differences between groups (that is, we can say the groups don't differ when they actually do)! This is called a Type II error, and symbolized by $\beta$. Clearly, we want to have this be as small as possible, because we would like to be able to detect real differences between groups!
+
+Null Hypothesis ($H_0$): $\mu_1=\mu_2$, no difference between population means, no treatment effect.
+
+Alt. Hypothesis ($H_A$): $\mu_1 \ne \mu_2$, difference between population means, treatment effect (?!)
+
+$$
+\begin{array}{c | c | c |}
+& H_0\ True & H_0\ False \\
+\hline
+\text{Reject }H_0 & \text{Type I Error }(\alpha) & \text{Correct! (Power: } 1-\beta) \\
+\text{Fail to reject }H_0 & \text{Correct! (}1-\alpha) & \text{Type II Error } (\beta)\\
+\hline
+\end{array}
+$$
+
+Power depends predominately on **three things:**
+
+* $\alpha$ level
+* sample size ($n$)
+* effect size (the extent to which groups *actually* differ in the population)
+
+Type I and Type II error are inversely related: if you lower one, the other increases. Therefore, a challenge for experimenters is to find an acceptable balance between the two. Here's a striking example from Stevens (2009) for a two-group $t$-test with 15 subjects per group.
+
+$$
+\begin{array}{| c | c | c |}
+\hline
+\alpha & \beta & 1-\beta \\
+\hline
+.10 &.37& .63\\
+.05&.52&.48\\
+.01&.78&.22\\
+\hline
+\end{array}
+$$
+
+Power increases considerably as sample size increases, ceteris paribus. Consider a $t-$test at $\alpha=.05$ (i.e., a $5\%$ risk of saying groups differ when in fact they don't), and assume a population difference of $0.5$ standard deviations between the two groups. The probability of detecting this difference (the power) increases as you increase the sample size:
+
+$$
+\begin{array}{| c | c |}
+\hline
+ subjects/group & power \ (1-\beta)\\
+\hline
+10& .18\\
+20&.33\\
+50&.70\\
+100& .94\\
+\hline
+\end{array}
+$$
+
+One important and often overlooked consequence of this fact is that *even the tiniest effect sizes can be declared "statistically significant" given a large enough sample size*; therefore, it is always imporant to keep the *practical significance* of the effect in mind, perhaps by converting from standard deviation units into something more meaningful. Cohen (1977)[^3] gives the following rule of thumb for *t*-test effect sizes in the social sciences: 0.2 is a small effect, 0.5 is a medium effect, and greater than 0.8 is a large effect. 
+
+
+### Ways to Increase Power
+
+These ways to increase power are recommendations from S-C-C.[^1]
+
+*Use matching, stratifying, or blocking*
+
+1.  Be sure the variable used for matching, stratifying, or blocking is correlated with the outcome, or use a variable on which subanalyses are planned
+2. If sample size is small, power can decrease when matching is used!
+
+*Measure and correct for covariates*
+
+1. Measure covariates that are correlated with the outcome and adjust for them in the analysis
+2. Consider cost and power tradeoffs between adding covariates and increasing sample size
+3. Choose covariates that are nonredundant with other covariates
+4. Use covariance to analyze variables used for blocking, matching, or stratifying
+
+*Use larger samples* (if only it were so easy...)
+
+1. If the number of treatment participants is fixed, increase the number of control participants
+2. If the budget is fixed and treatment is more expensive than control, compute optimal distribution of resources for power
+3. With a fixed total sample size in which aggregates are assigned to conditions, increase the number of aggregates and decrease the number of units within aggregates.
+
+*Use (roughly) equal cell sizes*
+
+1. Unequal cell splits do not affect power greatly until they exceed 2:1 splits
+2. For some effects, unequal cell size splits can be more powerful!
+
+*Improve measurement*
+
+1. Increase measurement reliability or use latent variable modeling
+2. Eliminate unnecessary restriction of range; rarely discretize continuous variables
+3. Allocate more resources to posttest than to pretest measurement
+4. Addition additional waves of measurement
+5. Avoid floor/ceiling effects
+
+*Increase the strength of treatment* (where appropriate)
+
+1. Increase dose differential between conditions
+2. Reduce diffusion over conditions
+3. Ensure reliable treatment delivery, receipt, and adherence
+
+*Increase the variability of the treatment*
+
+1. Extend the range of levels of treatment that are used
+2. In some cases, oversample from extreme levels of treatment
+
+*Use a within-subjects or repeated measures design*
+
+1. Less feasible outside laboratory settings
+2. Subject to fatigue, practice, and contamination effects
+
+*Use homogenous participants selected to be responsive to treatment*
+
+1. Can compromise external validity
+
+*Reduce random setting irrelevancies*
+
+1. Can also compromise external validity
+
+*Ensure that powerful statistical tests are used* (and assumptions are met)
+
+1. Transforming data to meet normality assumptions can improve power even though it may not affect Type I error rates much
+2. Consider alternative statistical methods (e.g., parametric)
+
+[^1]: William R.. Shadish, Cook, T. D., & Campbell, D. T. (2002). <i>Experimental and quasi-experimental designs for generalized causal inference.</i> Wadsworth Cengage learning.
+
+[^2]:Stevens, J. P. (2009). Applied multivariate statistics for the social sciences. Routledge.
+
+[^3]:Cohen, J. (1977). Statistical power analysis for the behavioral sciences (revised ed.).

@@ -1,0 +1,168 @@
+---
+title: "Monty Hall Explanation"
+author: Nathaniel Raley Woodward
+date: '2019-03-01'
+output: html_document
+---
+
+
+
+<div id="the-monty-hall-problem-is-very-counterintuitive" class="section level2">
+<h2>The Monty Hall Problem is Very Counterintuitive</h2>
+<ul>
+<li>If you still don’t believe it, you are in good company:</li>
+</ul>
+<center>
+<img src="../images/erdos.png" />
+</center>
+<center>
+<img src="../images/erdos_montyhall.jpg" width="250" />
+</center>
+</div>
+<div id="simplest-explanation" class="section level2">
+<h2>Simplest Explanation</h2>
+<ul>
+<li>Your first choice has a 1/3 chance of having the car</li>
+<li>So there’s a 2/3 it is behind one of the other doors</li>
+</ul>
+<center>
+<img src="../images/monty1.png" />
+</center>
+<ul>
+<li>Monty will never open the door with the car behind it</li>
+<li>After he opens a door, the entire 2/3 probability shifts to the other closed door</li>
+</ul>
+<center>
+<img src="../images/monty2.png" />
+</center>
+</div>
+<div id="monty-is-key" class="section level2">
+<h2>Monty is Key!</h2>
+<ul>
+<li><p>Imagine you chose door 1, and you are asked whether you want the prize behind door 1 or <em>the better of</em> the prizes behind doors 2 and 3</p></li>
+<li><p>This is exactly what you get when you switch (because Monty always removes the worse prize of the two when he opens a door)!</p></li>
+</ul>
+</div>
+<div id="another-appeal-to-intuition" class="section level2">
+<h2>Another Appeal to Intuition</h2>
+<ul>
+<li>Imagine there are 100 doors, 99 goats, and 1 car</li>
+<li>You pick a door, so you have a 1/100 chance of winning the car</li>
+<li>Then Monty opens 98 of the doors revealing 98 of the goats</li>
+<li><p>There is still one other unopened door: Should you switch?</p></li>
+<li>If you pick a goat on your first choice (99/100), you will always get the car if you switch</li>
+<li><p>By switching, you only get a goat if you had the car at first, and that’s super rare (1/100)</p></li>
+</ul>
+</div>
+<div id="more-involved-and-more-satisfying-explanation" class="section level2">
+<h2>More Involved (and More Satisfying) Explanation</h2>
+<div id="consider-the-following-scenario" class="section level3">
+<h3>Consider the Following Scenario:</h3>
+<ul>
+<li>Say <strong>you pick door 1</strong> and then <strong>Monty opens door 3</strong></li>
+<li><p>Should you stay with door 1 or switch to door 2?</p></li>
+<li><p>Before Monty opened door 3, the car had a <span class="math inline">\(1/3\)</span> chance of being behind each door</p></li>
+</ul>
+<p><span class="math display">\[
+p(car1)=\frac 13,\ \ \ p(car2)= \frac 13, \ \ \ p(car3)=\frac 13
+\]</span></p>
+<ul>
+<li><p>But Monty is not opening doors at random: He will <em>always</em> open a goat door (and never the car)!</p></li>
+<li><p>What is the probability Monty opens door 3, the true location of the car?</p></li>
+<li><p>If you were right initially (the car is actually behind door 1), Monty can open either door 2 or door 3 (and picks one at random):</p></li>
+</ul>
+<p><span class="math display">\[
+p(open3 \mid car 1) = \frac 12 \\
+\text{(in words: the probability Monty opens #3 given that the car is behind #1 is 1/2)}
+\]</span></p>
+<ul>
+<li>However, if you chose door 1 and the car is behind door 2, Monty has no choice but to open door 3!</li>
+</ul>
+<p><span class="math display">\[
+p(open3 \mid car2) = 1
+\]</span></p>
+<ul>
+<li>Finally, if you chose door 1 and the car is behind door 3, Monty cannot open door three without revealing the car! This has no chance of happening.</li>
+</ul>
+<p><span class="math display">\[
+p(open3 \mid car3) = 0
+\]</span></p>
+</div>
+</div>
+<div id="bayes-rule" class="section level2">
+<h2>Bayes’ Rule</h2>
+<ul>
+<li>OK, so you chose door 1 and then monty opened door 3</li>
+<li><p>What are the chances that the car is behind door 2 (i.e., should you switch)?</p></li>
+<li>We are interested in <span class="math inline">\(p(car2 \mid open3)\)</span></li>
+<li><p>From above, we already have the flip of it, but this is not the same: <span class="math inline">\(p(open3 \mid car2)\)</span></p></li>
+<li><p>We can turn it around using Bayes’ rule, which states that</p></li>
+</ul>
+<p><span class="math display">\[
+p(A\mid B)=\frac{p(A)p(B\mid A)}{p(B)}
+\]</span></p>
+<p>In our case,</p>
+<p><span class="math display">\[
+p(car2 \mid open3)=\frac{p(car2)p(open3 \mid car2)}{p(open3)}
+\]</span></p>
+<ul>
+<li>We already have the two pieces in the numerator (from above):</li>
+</ul>
+<p><span class="math display">\[
+p(car2 \mid open3)=\frac{(\frac 13 )\left(1\right)}{p(open3)}
+\]</span></p>
+<ul>
+<li>We just need the denominator (the probability Monty opens door 3)</li>
+<li>We can get this by adding together the probabilities of all the different situations in which Monty opens door 3 (this is the Law of Total Probability):</li>
+</ul>
+<p><span class="math display">\[
+\begin{aligned}
+p(open3)&amp;=p(open3\ \&amp; \ car1)+p(open3\ \&amp; \ car2)+p(open3\ \&amp; \ car3)\\
+&amp;=p(car1)p(open3 \mid car1)+p(car2)p(open3 \mid car2)+p(car3)p(open3 \mid car3)\\
+&amp;=(\frac13)(\frac 12)+(\frac13)(1)+(\frac13)(0)\\
+&amp;=(\frac16)+(\frac13)+(0)\\
+&amp;=\frac 12
+\end{aligned}
+\]</span></p>
+<ul>
+<li>Now we have the denominator, so</li>
+</ul>
+<p><span class="math display">\[
+p(car2 \mid open3)=\frac{(\frac 13 )\left(1\right)}{(\frac12)}=2/3
+\]</span></p>
+<ul>
+<li><p>This tells us that, if we picked door 1 and Monty opened door 3, then there is a <span class="math inline">\(\frac23\)</span> chance that the car is behind door 2</p></li>
+<li><p>That means there is only a <span class="math inline">\(\frac13\)</span> chance the car is behind door 1 (let’s use Bayes’ rule again)</p></li>
+</ul>
+<p><span class="math display">\[
+p(car1 \mid open3)=\frac{(\frac 13 )(\frac 12)}{(\frac12)}=1/3
+\]</span></p>
+<ul>
+<li><p>Thus, we would be much better off switching!</p></li>
+<li><p>This will be true no matter which door you pick initially!</p></li>
+</ul>
+<pre class="r"><code>car1&lt;-1/3
+car2&lt;-1/3
+car3&lt;-1/3
+
+# Say you choose door 1
+
+# Monty will never open the door with the car behind it (!)
+# What is the probability Monty opens door 3, given your choice and the actual location of the car?
+
+open3_car1&lt;-1/2
+open3_car2&lt;-1
+open3_car3&lt;-0
+
+## Monty is CERTAIN to open door 3 if the car is behind door 2
+## Monty is only 50:50 to open door 3 if the car is behind door 1
+## Therefore, Monty opening door 3
+
+## What is the probability that the car is behind door 1, given door 3 was opened?
+
+car1_open3=car1*open3_car1/(car1*open3_car1+car2*open3_car2+car3*open3_car3)
+
+## What is the probability that the car is behind door 2, given door 3 was opened?
+
+car2_open3=car2*open3_car2/(car1*open3_car1+car2*open3_car2+car3*open3_car3)</code></pre>
+</div>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>links on Nathaniel Woodward</title>
+    <link>/categories/links/</link>
+    <description>Recent content in links on Nathaniel Woodward</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 07 Dec 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/links/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>First post: a couple links</title>
+      <link>/posts/first-post-a-couple-links/</link>
+      <pubDate>Sat, 07 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/first-post-a-couple-links/</guid>
+      <description>&amp;ldquo;O Muses, O high genius, aid me now!&amp;rdquo; -Inferno, Canto II
+ While I&#39;ve nothing interesting to say right now, I do have a few things to show you: a few tools I&#39;ve found.</description>
+    </item>
+    
+  </channel>
+</rss>

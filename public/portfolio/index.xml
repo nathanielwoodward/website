@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Nathaniel Woodward</title>
+    <link>/portfolio/</link>
+    <description>Recent content in Projects on Nathaniel Woodward</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 17 Aug 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/portfolio/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Educational Practices in Large College Classrooms— What Really Goes On?</title>
+      <link>/portfolio/dissertation1/</link>
+      <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/dissertation1/</guid>
+      <description>A large-scale characterization of normative educational practices (e.g., course structure, teaching methods, learning activities) across more than 1,000 high-enrollment undergraduate courses at a large public institution over the last 5 years.</description>
+    </item>
+    
+    <item>
+      <title>Estimating the Causal Effect of Retrieval Practice on Future Course Performance</title>
+      <link>/portfolio/dissertation2/</link>
+      <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/dissertation2/</guid>
+      <description>This research builds directly upon my descriptive analysis (see below) by combining the syllabus dataset with student records to assess how prerequisite-course features affect student performance in their subsequent courses. Specifically, introductory courses high and low in retrieval-practice requirements were compared in terms of their students subsequent success using inverse propensity-score weighted logistic regressions with cluster-robust standard errors to improve causal inference.</description>
+    </item>
+    
+    <item>
+      <title>Learning Analytics in Large College Classrooms</title>
+      <link>/portfolio/masters/</link>
+      <pubDate>Mon, 30 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/masters/</guid>
+      <description>Recently, a large undergraduate course at the University of Texas has implemented a new class structure that replaces high-stakes tests with daily quizzes administered during class via computer. I propose an algorithmic innovation to optimize content delivery to improve learning outcomes.</description>
+    </item>
+    
+    <item>
+      <title>Teaching</title>
+      <link>/portfolio/teaching/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/teaching/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

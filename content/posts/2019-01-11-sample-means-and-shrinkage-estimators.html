@@ -1,0 +1,211 @@
+---
+title: Sample Means and Shrinkage Estimators
+author: Nathaniel Woodward
+date: '2019-01-11'
+slug: sample-means-and-shrinkage-estimators
+categories: []
+tags: []
+---
+
+
+
+<div id="why-do-we-use-sample-means" class="section level2">
+<h2>Why do we use sample means?</h2>
+<p>The sample mean, <span class="math inline">\(\bar x = \frac 1 N\sum x_i\)</span>, is a workhorse of modern statistics. For example, t tests compare two sample means to judge if groups are likely different at the population level, and ANOVAs compare sample means of more groups to achieve something similar. But does <span class="math inline">\(\bar x\)</span> actually deserve the great stature is has inherited?</p>
+<p>I recently heard a talk by Dr. Clintin Davis-Stober at the 2018 Psychonomics Annual Meeting that was really fun, and got me thinking about this question. For a preprint of a relevant paper, see <a href="https://osf.io/2ukxj/">here</a></p>
+<p>Let’s assume we have four groups, A, B, C, and D, and we want to estimate the true difference between the groups. Assume there is a true difference between groups of 0.5 (group B is slightly higher).</p>
+</div>
+<div id="steins-paradox-and-regularization-estimators" class="section level2">
+<h2>Stein’s Paradox and Regularization Estimators</h2>
+<p>Though the sample mean is unbiased, Stein (1956) showed that better accuracy could be obtained using <em>biased</em> estimators. This result lead to many modern techniques (including lasso/ridge regression).</p>
+<p>Let’s assume we have four groups, A, B, C, and D, and we want to estimate the true difference between the groups. Assume there is a true difference between groups of 0.5 (group A is slightly lower than group B, which is in turn slightly lower that group C, which is in turn slightly lower than group D).</p>
+<pre class="r"><code>popA=rnorm(10000,mean=0,sd = 4)
+popB=rnorm(10000,mean=0.5,sd = 4)
+popC=rnorm(10000,mean=1.0, sd = 4)
+popD=rnorm(10000,mean=1.5, sd = 4)
+
+
+A=sample(popA, 10)
+B=sample(popB, 10)
+C=sample(popC, 10)
+D=sample(popD, 10)
+
+
+dat&lt;-data.frame(A,B,C,D)
+#dat&lt;-read.csv(&quot;dat.csv&quot;)
+#dat$X&lt;-NULL
+dat1&lt;-gather(dat,key = group)
+dat1$true&lt;-c(rep(0,10),rep(.5,10),rep(1,10),rep(1.5,10))
+dat1$samp.mean&lt;-c(rep(mean(A),10),rep(mean(B),10),rep(mean(C),10),rep(mean(D),10))
+
+ggplot(dat1,aes(y=value,x=group,color=group))+geom_point()+scale_x_discrete()+geom_hline(aes(yintercept = true,color=group),lty=2)+geom_point(aes(x=group,y=samp.mean),pch=8,size=3)</code></pre>
+<p><img src="/posts/2019-01-11-sample-means-and-shrinkage-estimators_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>The traditional approach would be to find the sample means of the groups, call them <span class="math inline">\(\bar x_A, \bar x_B, \bar x_C, \bar x_D\)</span> (colored asterisks, above), and find the differences between them.</p>
+<p>Stein’s Paradox reveals that this approach is suboptimal, because each sample mean is isolated from the others. If instead you took into account information from the other groups and “shrunk” your estimates toward the grand mean, you would achieve greater overall accuracy.</p>
+<p>It’s only paradoxical because the groups don’t have to have anything to do with each other. Davis-Stober, Dana, and Rouder (2018) relate an example</p>
+<blockquote>
+<p>…the goal is to measure the true mean of three populations: the weight of all hogs in Montana, the per-capita tea consumption in Taiwan, and the height of all redwood tress in California. These values could be estimated separately by getting a sample of hogs, a sample of Taiwanese households, and a sample of redwood trees and using each sample mean as an estimate of the corresponding population mean… the <em>total</em> error of these three estimates is expected to be reduced if, rather than using sample means to estimate each individual population mean, scale information from all three samples is pooled. <strong>To be clear,</strong> pooling only helps in overall estimation—hog weight information does not reduce the error of the redwood tree heights estimate. Rather, pooling will leave some individual estimates worse off (say hog weight) with other individual estimates better off, and the gains outweigh the losses on balance.</p>
+</blockquote>
+<p>Let’s demonstrate this by comparing the accuracy of different estimators, measuring accuracy using root-mean-square error (RSME) between the measured values and the true values, i.e.,</p>
+<p><span class="math display">\[
+RMSE=\sqrt{\frac 1 K\sum_i^K{(\widehat \mu_i- \mu_i)^2}}
+\]</span></p>
+<p>Here, the RMSE for sample means is</p>
+<pre class="r"><code>dat1%&gt;%group_by(group)%&gt;%summarize(sampmean=mean(value))%&gt;%summarize(RMSE=sqrt(mean((sampmean-c(0,.5,1,1.5))^2)))</code></pre>
+<pre><code>## # A tibble: 1 x 1
+##    RMSE
+##   &lt;dbl&gt;
+## 1  1.20</code></pre>
+</div>
+<div id="made-up-shrinkage-estimator" class="section level2">
+<h2>Made up shrinkage estimator</h2>
+<p>If we use some kind of shrinkage estimator to combine individual and pooled averages, say <span class="math inline">\(\widehat \mu=w_i\bar x_i+(1-w_i)\bar x_\cdot\)</span> where <span class="math inline">\(\bar x_\cdot\)</span> denotes the overall mean, do we see the expected improvement? Let’s set <span class="math inline">\(w=.8\)</span> just for fun.</p>
+<pre class="r"><code>w=.8
+dat1$shrinkmean&lt;-w*dat1$samp.mean+(1-w)*mean(dat1$samp.mean)
+
+ggplot(dat1,aes(y=value,x=group,color=group))+geom_point()+scale_x_discrete()+geom_hline(aes(yintercept = true,color=group),lty=2)+geom_point(aes(x=group,y=samp.mean),pch=8,size=3)+geom_point(aes(x=group,y=shrinkmean),pch=8,size=3,color=&quot;black&quot;)+geom_hline(aes(yintercept=mean(dat1$value)))</code></pre>
+<p><img src="/posts/2019-01-11-sample-means-and-shrinkage-estimators_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>The black line represents the grand mean and the colored asterisks represent the group means. The black asterisks represent the shrinkage estimators for each group. The distance from the dashed lines (the true means) is what it’s all about!</p>
+<pre class="r"><code>shrinkest&lt;-dat1%&gt;%group_by(group)%&gt;%summarize(shrinkest=unique(shrinkmean))%&gt;%.$shrinkest
+sqrt(mean((shrinkest-c(0,.5,1,1.5))^2))</code></pre>
+<pre><code>## [1] 1.076894</code></pre>
+</div>
+<div id="hierarchical-bayes-shrinkage-estimates" class="section level2">
+<h2>Hierarchical Bayes shrinkage estimates</h2>
+<p>We do get an RMSE improvement, but arbitrarily picking <span class="math inline">\(w\)</span> is not ideal: it is better to get our shrikage estimates from a hierarchical bayesian model. Don’t worry! We will walk through this, but feel free to skip to the good stuff.</p>
+<p>We can consider our observations to be modeled follows: <span class="math inline">\(Y_{ij}\)</span> is the response for the <span class="math inline">\(j\)</span>th participant in the <span class="math inline">\(i\)</span>th group, and we use</p>
+<p><span class="math display">\[
+Y_{ij}=\mu+c_i+e_{ij}
+\]</span>
+Where <span class="math inline">\(\mu\)</span> is the grand mean, <span class="math inline">\(c_i\)</span> is how far the mean of group <span class="math inline">\(i\)</span> is from the grand mean, and <span class="math inline">\(e_{ij}\)</span> is a noise parameter with mean 0 and variance <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>This is really just an ANOVA model</p>
+<pre class="r"><code>fit&lt;-lm(value~group,data=dat1, contrasts=list(group=contr.sum))
+summary(fit)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = value ~ group, data = dat1, contrasts = list(group = contr.sum))
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -11.6302  -2.7673   0.0476   2.4210   8.2231 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)   1.1192     0.6898   1.622    0.113
+## group1       -0.0256     1.1948  -0.021    0.983
+## group2        1.1161     1.1948   0.934    0.356
+## group3       -0.2314     1.1948  -0.194    0.848
+## 
+## Residual standard error: 4.363 on 36 degrees of freedom
+## Multiple R-squared:  0.02888,    Adjusted R-squared:  -0.05205 
+## F-statistic: 0.3569 on 3 and 36 DF,  p-value: 0.7844</code></pre>
+<p>Let’s give <span class="math inline">\(\mu\)</span> and <span class="math inline">\(c_i\)</span> their own prior distributions. Specifically, assume both are normal, with mean zero and and separate variance hyperparameters.</p>
+<p><span class="math display">\[
+\mu \sim N(0,\sigma_{\mu}^2) \\
+c_i\sim N(0,\sigma_{c}^2)
+\]</span></p>
+<pre class="r"><code>y&lt;-data.frame(dat)
+
+library(rjags)
+
+modelstring&lt;-&quot;model{
+  for(j in 1:4){
+    for(i in 1:10){
+       y[i,j]~dnorm(mean+dist[j],tau)
+    }
+  }
+mean~dnorm(0,1)
+for(j in 1:4){dist[j]~dnorm(0,1)}
+tau~dgamma(1,.0001)
+}&quot;
+
+
+model &lt;- jags.model(textConnection(modelstring), data = list(y = y), n.chains = 3, n.adapt= 10000)</code></pre>
+<pre><code>## Compiling model graph
+##    Resolving undeclared variables
+##    Allocating nodes
+## Graph information:
+##    Observed stochastic nodes: 40
+##    Unobserved stochastic nodes: 6
+##    Total graph size: 53
+## 
+## Initializing model</code></pre>
+<pre class="r"><code>update(model, 10000); # Burnin for 10000 samples
+mcmc_samples &lt;- coda.samples(model, variable.names=c(&quot;mean&quot;,&quot;dist&quot;, &quot;tau&quot;), n.iter=20000)
+
+print(summary(mcmc_samples)$statistics)</code></pre>
+<pre><code>##                Mean         SD     Naive SE Time-series SE
+## dist[1]  0.15392124 0.83049116 3.390466e-03   3.727025e-03
+## dist[2]  0.56946392 0.83284712 3.400084e-03   3.707196e-03
+## dist[3]  0.08402375 0.83141159 3.394224e-03   3.724341e-03
+## dist[4] -0.14371737 0.83187105 3.396099e-03   3.709378e-03
+## mean     0.65681952 0.64023722 2.613758e-03   3.358874e-03
+## tau      0.05765514 0.01285363 5.247472e-05   5.435118e-05</code></pre>
+<pre class="r"><code>shrink_ests&lt;-summary(mcmc_samples)$statistics[,1]
+shrinkmean&lt;-shrink_ests[1:4]+shrink_ests[5]</code></pre>
+<p>The RMSE for the shrinkage estimator is</p>
+<pre class="r"><code>sqrt(mean((shrinkmean-c(0,.5,1,1.5))^2))</code></pre>
+<pre><code>## [1] 0.7459755</code></pre>
+<pre class="r"><code>ggplot(dat1,aes(y=value,x=group,color=group))+geom_point()+scale_x_discrete()+geom_hline(aes(yintercept = true,color=group),lty=2)+geom_point(aes(x=group,y=samp.mean),pch=8,size=3)+geom_point(aes(x=group,y=shrinkmean),pch=8,size=3,color=&quot;black&quot;)+geom_hline(aes(yintercept=mean(dat1$value)))</code></pre>
+<p><img src="/posts/2019-01-11-sample-means-and-shrinkage-estimators_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="doing-better-than-sample-means-with-random-noise" class="section level2">
+<h2>Doing better than sample means with random noise!</h2>
+<p>The point of this write-up is that sometimes you can do better than sample means by using an estimator based on random noise.</p>
+<p>For each condition, we begin by drawing a random number from a uniform distribution, say <span class="math inline">\(U(-1,1)\)</span>, call them <span class="math inline">\(u_1, u_2, u_3, u_4\)</span>.</p>
+<p>Now, let us define our random estimator for the true mean <span class="math inline">\(\mu_i\)</span> for group <span class="math inline">\(i\)</span> as</p>
+<p><span class="math display">\[
+\hat \mu_i = \bar{x_\cdot}+b+u_i
+\]</span>
+Where <span class="math inline">\(\bar x_\cdot\)</span> is the grand mean, the <span class="math inline">\(u_i\)</span> are the random draws defined above, and <span class="math inline">\(b\)</span> is defined as follows: <span class="math inline">\(b=\frac{p-\sqrt{(p(p-1)})}{\sqrt{\sum u_i^2}}\sum u_i\bar x_i\)</span>, where <span class="math inline">\(p\)</span> equals the number of groups (here, 4; see Stober, Dana, and Rouder 2018 for more details).</p>
+<pre class="r"><code>sampmeans&lt;-dat1%&gt;%group_by(group)%&gt;%summarize(mean=mean(value))%&gt;%.$mean
+grandmean&lt;-mean(dat1$value)
+u&lt;-runif(4,-1,1)
+b=((4-sqrt(4*3))/sqrt(sum(u^2)))*sum(u*(sampmeans-grandmean))
+                                    
+
+rand_ests&lt;-grandmean+b+u
+dat1$rand_ests&lt;-rep(rand_ests,each=10)</code></pre>
+<p>Lets see how this random estimator worked out:</p>
+<pre class="r"><code>sqrt(mean((rand_ests-c(0,.5,1,1.5))^2))</code></pre>
+<pre><code>## [1] 1.070817</code></pre>
+<pre class="r"><code>ggplot(dat1,aes(y=value,x=group,color=group))+geom_point()+scale_x_discrete()+geom_hline(aes(yintercept = true,color=group),lty=2)+geom_point(aes(x=group,y=samp.mean),pch=8,size=3)+geom_point(aes(x=group,y=rand_ests),pch=8,size=3,color=&quot;black&quot;)+geom_hline(aes(yintercept=mean(dat1$value)))</code></pre>
+<p><img src="/posts/2019-01-11-sample-means-and-shrinkage-estimators_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Better than our original of .892, which we get using the group means!</p>
+</div>
+<div id="simulation" class="section level2">
+<h2>Simulation</h2>
+<p>Let’s repeat this RMSE calculation with the group means and with the random estimator very many times.</p>
+<pre class="r"><code>RMSE1&lt;-vector()
+RMSE2&lt;-vector()
+
+for(i in 1:5000){
+A=sample(popA, 10)
+B=sample(popB, 10)
+C=sample(popC, 10)
+D=sample(popD, 10)
+
+sampmean=apply(data.frame(A,B,C,D),2,mean)
+
+RMSE1[i]&lt;-sqrt(mean((sampmean-c(0,.5,1,1.5))^2))
+
+grandmean&lt;-mean(c(A,B,C,D))
+u&lt;-runif(4,-1,1)
+b=((4-sqrt(4*3))/sqrt(sum(u^2)))*sum(u*(sampmean-grandmean))
+rand_ests&lt;-grandmean+b+u
+
+RMSE2[i]&lt;-sqrt(mean((rand_ests-c(0,.5,1,1.5))^2))
+}
+
+mean(RMSE2&lt;RMSE1)</code></pre>
+<pre><code>## [1] 0.5296</code></pre>
+<p>This means that more than half the time, the random estimator is outperforming the sample means!</p>
+<p>It is important to realize that sample size and sample variance both affect this result. The larger the sample size (or the smaller the variance), the less of an effect shrinkage has on overall estimation accuracy.</p>
+<p>In the present example, the effect size <span class="math inline">\(f^2=\frac{\frac 1 p\sum (\mu_i-\mu_{\cdot})^2}{\sigma^2}=\frac{R^2}{1-R^2}\)</span> is 0.0297404</p>
+<p>It can be shown that the minimum sample size per condition needed to ensure that the sample means are more accurate than random estimators on average is equal to</p>
+<p><span class="math display">\[
+n_r = \frac{\sqrt{p(p-1)}}{pf^2}
+\]</span></p>
+<p>It can be helpful to consider values of <span class="math inline">\(f^2=.02, .15,\)</span> and <span class="math inline">\(.35\)</span> for small, medium, and large effects, respectively.</p>
+<p>Thus, given an expected <span class="math inline">\(f^2=.02\)</span> and <span class="math inline">\(p=4\)</span> conditions, the minimum sample size is given by <span class="math inline">\(\frac{\sqrt{4(3)}}{4*.02}=43.3\)</span> or <span class="math inline">\(44\)</span> people per condition.</p>
+</div>

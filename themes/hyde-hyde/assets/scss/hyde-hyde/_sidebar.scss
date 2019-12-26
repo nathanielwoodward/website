@@ -1,0 +1,89 @@
+.sidebar {
+  background-color: $sidebar-color;
+  color: rgb(255, 255, 255);
+  color: rgba(255, 255, 255, 0.5);
+  padding: 0rem 0rem;
+  text-align: center;
+  a {
+    color: $gray-1;
+    border: none;
+    &:hover {
+      color: $link-color;
+    }
+    &:focus {
+      color: $link-color;
+    }
+  }
+  .sidebar-about {
+    text-align: center;
+  }
+  .author-image {
+    display: block;
+    margin-top: 15px;
+  }
+}
+
+.sidebar-nav {
+  text-align: center;
+  list-style: none;
+  margin-bottom: 0rem;
+  margin-top: 0rem;
+  padding-left: 0;
+}
+
+.sidebar-nav-item {
+  display: block;
+  line-height: 1.75;
+  .active {
+    font-weight: bold;
+  }
+}
+.site__title {
+  font-size: 0rem;
+  margin-bottom: 0rem;
+  a:hover {
+    border: none;
+  }
+}
+
+.site__description {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.social {
+  text-align: center;
+  a {
+    padding: 0 4px;
+    @include link-no-decoration();
+  }
+}
+
+/*
+.img--circle {
+	border-radius: 50%;
+}
+.img--headshot {
+	height: 115px;
+	width: 115px;
+}
+*/
+
+.img--caption {
+	font-style: italic;
+}
+
+%small-center-text {
+  font-size: $font-scale-dot7;
+  line-height: 1.1rem;
+  text-align: center;
+}
+
+.copyright {
+  padding-top: 1rem;
+	@extend %small-center-text;
+}
+.builtwith {
+  padding-top: .2rem;
+  @extend %small-center-text;
+}

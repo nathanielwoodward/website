@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.60.1" />
+
+    
+    
+    
+
+<title>MANOVA and A Cool Thing Called PERMANOVA • Nathaniel Woodward</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MANOVA and A Cool Thing Called PERMANOVA"/>
+<meta name="twitter:description" content="MANOVA MANOVA stands for Multivariate (or Multiple) Analysis of Variance, and it’s just what it sounds like. You have multiple response variables, and you want to test whether any of them differ across levels of your explanatory variable(s) (i."/>
+
+<meta property="og:title" content="MANOVA and A Cool Thing Called PERMANOVA" />
+<meta property="og:description" content="MANOVA MANOVA stands for Multivariate (or Multiple) Analysis of Variance, and it’s just what it sounds like. You have multiple response variables, and you want to test whether any of them differ across levels of your explanatory variable(s) (i." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/a-cool-thing-called-permanova/" />
+<meta property="article:published_time" content="2019-07-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-07-01T00:00:00+00:00" /><meta property="og:site_name" content=" " />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.4733d07e620800a3e95c172a10d18626c442980942fcf389b804765f7627385c.css" integrity="sha256-RzPQfmIIAKPpXBcqENGGJsRCmAlC/POJuAR2X3YnOFw=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+    
+
+</head>
+
+
+    <body class="theme-base-09 ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+    
+      
+        
+        
+        
+        
+        <div class="author-image">
+           <a href="/"><img src="/img/headshot_cropped_f2019.png" alt="Nathaniel Woodward" class="img--circle img--headshot element--center"></a>
+        </div>
+        
+      
+      <p class="site__description">
+         Nathaniel Woodward 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Nathaniel Woodward</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/portfolio/">
+						<span>Portfolio</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="cv.pdf">
+						<span>Vitae</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/Distributino" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="https://github.com/nraley" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<a href="https://last.fm/user/raleywoodward" rel="me"><i class="fab fa-lastfm fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://www.goodreads.com/user/show/44370058-nathaniel" rel="me"><i class="fab fa-goodreads fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="mailto:nathaniel.raley@utexas.edu" rel="me"><i class="fas fa-at fa-lg" aria-hidden="true"></i></a>
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2019  
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>MANOVA and A Cool Thing Called PERMANOVA</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Jul 1, 2019
+    
+    
+    
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 17 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    
+
+
+<div id="manova" class="section level2">
+<h2>MANOVA</h2>
+<p>MANOVA stands for Multivariate (or Multiple) Analysis of Variance, and it’s just what it sounds like. You have multiple <em>response</em> variables, and you want to test whether any of them differ across levels of your explanatory variable(s) (i.e., your groups). The null hypothesis here is that the means of each response variable are equal at every level of the explanatory variable(s); the alternative is that at least one response variable differs.</p>
+<p>It’s very similar to Univariate ANOVA, except we generalize it into <span class="math inline">\(p\)</span> dimensions, where <span class="math inline">\(p\)</span> is the number of response variables. Let’s build some intuition!</p>
+<p>Say you want to know whether horsepower or gas mileage differ based on whether a car has a manual or automatic transmission. We will use the built-in dataset <code>mtcars</code> to make following along at home easier to do. Note that this dataset comes from 1974 Motor Trend magazine and has several car performance variables for each of 32 different makes/models of car. It’s super easy to run a MANOVA, but it takes a bit of effort to understand what is going on. Let’s run it first, and then dissect what’s actually happening, erm, under the hood.</p>
+<pre class="r"><code>summary(manova(cbind(hp,mpg)~am,data=mtcars))</code></pre>
+<pre><code>##           Df  Pillai approx F num Df den Df    Pr(&gt;F)    
+## am         1 0.48417    13.61      2     29 6.781e-05 ***
+## Residuals 30                                             
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Notice the response variables (hp, mpg) have to be entered as <span class="math inline">\(p\)</span>-column matrix (where <span class="math inline">\(p\)</span> is the number of variables): That’s what the <code>cbind()</code> is for. The short answer is yes, there is a mean difference in either horsepower or mpg for cars with automatic transmissions compared to those with manual transmissions. Which one is it? Is it both?</p>
+<pre class="r"><code>summary(aov(hp~am,data=mtcars))</code></pre>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## am           1   8619    8619   1.886   0.18
+## Residuals   30 137107    4570</code></pre>
+<pre class="r"><code>summary(aov(mpg~am,data=mtcars))</code></pre>
+<pre><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## am           1  405.2   405.2   16.86 0.000285 ***
+## Residuals   30  720.9    24.0                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Looks like there is a difference in gas mileage between automatics and manuals, but no difference in horsepower.</p>
+</div>
+<div id="whats-going-on-here" class="section level2">
+<h2>What’s going on here?</h2>
+<p>If you understand the logic of ANOVA (i.e., partitioning the total variation into a component attributable to differences <em>between groups</em> and an error component attributable to differences <em>within groups</em>), the MANOVA shouldn’t be too big of a leap: we just have to add dimension(s) for the additional response variables.</p>
+<p>With an ANOVA, we calculate the total sum of squares (SST) by taking the distance of each subject’s response value from the mean response value, square these distances, and add them up.</p>
+<p>With a MANOVA, we do something similar, but in two-dimensions: we calculate how far each subjects’ <code>response vector</code> is from the <code>mean vector</code>. Just imagine plotting both response variables against eachother in a coordinate plane, and then plotting the point that corresponds to the average value of each (large gray dot), like so</p>
+<pre class="r"><code>library(ggplot2)
+library(dplyr)
+
+ggplot(mtcars,aes(hp,mpg))+geom_point()+geom_point(aes(x=mean(hp),y=mean(mpg)),col=&#39;gray50&#39;,size=3)</code></pre>
+<p><img src="/post/2019-06-19-a-cool-thing-called-permanova_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div id="total-sum-of-squares" class="section level3">
+<h3>Total Sum of Squares</h3>
+<p>The total sum of squares (SST) corresponds to the sum of the squared (euclidean) distances from each point to the mean point (called the <em>centroid</em>). A euclidean distance is just the distance formula you learned in school: <span class="math inline">\(d=\sqrt{(y_1-y_2)^2+(x_1-x_2)^2}\)</span> (just the hypotenuse of a triangle created by the points, from the pythagorean theorem).</p>
+<pre class="r"><code>ggplot(mtcars,aes(hp,mpg))+geom_point()+geom_segment(aes(x=mean(hp),y=mean(mpg), xend=hp,yend=mpg))+
+  geom_point(aes(x=mean(hp),y=mean(mpg)),col=&#39;gray50&#39;,size=3)</code></pre>
+<p><img src="/post/2019-06-19-a-cool-thing-called-permanova_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Square those distances, add them up, and you’ve got your SST!</p>
+<pre class="r"><code>SST&lt;-with(mtcars, sum((hp-mean(hp))^2+(mpg-mean(mpg))^2))
+SST</code></pre>
+<pre><code>## [1] 146852.9</code></pre>
+<p>One interesting equality is that the sum of the squared distances from every point to the centroid is equal to sum of the squared distances from each point to each other point, divided by the number of points</p>
+<p><span class="math display">\[\sum d_{\text{i-to-centroid}}^2=\frac1N\sum d^2_{\text{i-to-j}}\]</span></p>
+<pre class="r"><code>rows&lt;-expand.grid(1:32,1:32)
+respdat&lt;-cbind(mtcars$hp,mtcars$mpg)
+
+temp&lt;-cbind(respdat[rows[,1],],respdat[rows[,2],])
+dists&lt;-sqrt((temp[,1]-temp[,3])^2+(temp[,2]-temp[,4])^2)
+dists&lt;-matrix(dists,nrow=32)
+dists&lt;-dists[lower.tri(dists)]
+sum(dists^2)/32</code></pre>
+<pre><code>## [1] 146852.9</code></pre>
+<pre class="r"><code>#a shortcut using the built-in dist() function
+dists&lt;-dist(respdat,&quot;euclid&quot;)^2
+sum(dists)/32</code></pre>
+<pre><code>## [1] 146852.9</code></pre>
+</div>
+</div>
+<div id="between-group-sum-of-squares" class="section level2">
+<h2>Between-Group Sum of Squares</h2>
+<p>But what about the between-groups sum of squares (SSB)? Same idea! You just calculate how far the centroid for each group is from the grand centroid, square those distances, multiply each distance by the number of subjects in that group, and then add those numbers together</p>
+<pre class="r"><code>mtcars$am&lt;-as.factor(mtcars$am)
+
+mtcars%&gt;%group_by(am)%&gt;%mutate(meanhp=mean(hp),meanmpg=mean(mpg))%&gt;%ggplot(aes(hp,mpg,color=am))+geom_point()+geom_point(aes(x=mean(hp),y=mean(mpg)),col=&#39;gray50&#39;,size=4)+geom_point(aes(meanhp,meanmpg),size=4)+geom_segment(aes(x=mean(hp),y=mean(mpg), xend=meanhp,yend=meanmpg),color=&#39;black&#39;)</code></pre>
+<p><img src="/post/2019-06-19-a-cool-thing-called-permanova_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>grandmean&lt;-mtcars%&gt;%summarize(meanhp=mean(hp),meanmpg=mean(mpg))
+groupmeans&lt;-mtcars%&gt;%group_by(am)%&gt;%summarize(n=n(),meanhp=mean(hp),meanmpg=mean(mpg))
+SSB&lt;-sum((cbind(groupmeans$n,groupmeans$n)*(rbind(grandmean,grandmean)-groupmeans[,-c(1,2)])^2))
+SSB</code></pre>
+<pre><code>## [1] 9024.649</code></pre>
+<div id="within-group-sum-of-squares" class="section level3">
+<h3>Within-Group Sum of Squares</h3>
+<p>The Sum of Squares within (SSW) is also analogous to the univariate ANOVA case. Just add up the squared distances of each subjects point in “response space” from it’s own group’s centroid</p>
+<pre class="r"><code>SSW&lt;-mtcars%&gt;%group_by(am)%&gt;%mutate(grpmeanhp=mean(hp),grpmeanmpg=mean(mpg))%&gt;%ungroup()%&gt;%summarize(sum((hp-grpmeanhp)^2+(mpg-grpmeanmpg)^2))</code></pre>
+<p>You can also just subtract the SSB from SST to find the residual SSW</p>
+<pre class="r"><code>SST-SSB</code></pre>
+<pre><code>## [1] 137828.3</code></pre>
+<pre class="r"><code>mtcars%&gt;%group_by(am)%&gt;%mutate(meanhp=mean(hp),meanmpg=mean(mpg))%&gt;%ggplot(aes(hp,mpg,color=am))+geom_point()+
+  geom_point(aes(x=meanhp,y=meanmpg),size=4)+geom_segment(aes(x=hp,y=mpg,xend=meanhp,yend=meanmpg))</code></pre>
+<p><img src="/post/2019-06-19-a-cool-thing-called-permanova_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+</div>
+<div id="matrix-formulation" class="section level2">
+<h2>Matrix Formulation</h2>
+<p>The above helps sketch the logic of MANOVA, but rather than these sum-of-squares calculations, in practice matricies are used to compute the test statistic. These matricies are known as Sum-of-Squares-and-Cross-Products (SSCP) matricies. The sum of their diagonal elements (i.e., the trace of the matrix) gives you the sum-of-squares values we just obtained.</p>
+<p>How do we calculate them? Each individual subject has a response vector containing their values for each of the response variables. You can subtract the mean of each response variable from each value. Then you take the outer product of each person’s centered response vector with itself, resulting in a <span class="math inline">\(p \times p\)</span> matrix for each person, where <span class="math inline">\(p\)</span> is the number of response variables. Just add these up across every person to get the total SSCP matrix. Recall that the outer product of a vector with itself is symmetric and calculated, for some matrix <span class="math inline">\(Z\)</span>, as follows:</p>
+<p><span class="math display">\[
+\mathbf{ZZ&#39;}=
+\begin{pmatrix}
+z_1 \\
+z_2 \\
+\end{pmatrix}
+\begin{pmatrix}
+z_1 &amp;z_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+z_1z_1 &amp;z_1z_2 \\
+z_1z_2 &amp;z_2z_2
+\end{pmatrix}
+\]</span></p>
+<p>In this context, each person <span class="math inline">\(i\)</span> has their own outer-product matrix, and we add them up to get the total</p>
+<p><span class="math display">\[
+\mathbf{ZZ&#39;}=
+\begin{bmatrix}
+y_{1ij}-\bar y_{1\cdot \cdot} \\
+y_{2ij}-\bar y_{2\cdot \cdot} \\ 
+\end{bmatrix}
+\begin{bmatrix}
+y_{1ij}-\bar y_{1\cdot \cdot} &amp;y_{2ij}-\bar y_{2\cdot \cdot}
+\end{bmatrix}
+=
+\begin{bmatrix}
+(y_{1ij}-\bar y_{1\cdot \cdot})^2 &amp;(y_{1ij}-\bar y_{1\cdot \cdot})(y_{2ij}-\bar y_{2\cdot \cdot}) \\
+(y_{1ij}-\bar y_{1\cdot \cdot}) (y_{2ij}-\bar y_{2\cdot \cdot}) &amp; (y_{2ij}-\bar y_{2\cdot \cdot})^2
+\end{bmatrix}
+\]</span></p>
+<p>You get one of these for each person <span class="math inline">\(i\)</span>. Summing up across all people <span class="math inline">\(i\)</span> (and groups <span class="math inline">\(j\)</span>),</p>
+<p><span class="math display">\[
+\mathbf{T}=\sum_i \sum_j \begin{bmatrix}y_{1ij}-\bar y_{1\cdot \cdot}\\ y_{2ij}-\bar y_{2\cdot \cdot} \end{bmatrix}\begin{bmatrix}y_{1ij}-\bar y_{1\cdot \cdot}\\ y_{2ij}-\bar y_{2\cdot \cdot}\end{bmatrix}&#39;
+\]</span></p>
+<p>Here’s a way to calculate this by hand in R:</p>
+<pre class="r"><code>Y&lt;-cbind(mtcars$hp,mtcars$mpg)
+head(Y)</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]  110 21.0
+## [2,]  110 21.0
+## [3,]   93 22.8
+## [4,]  110 21.4
+## [5,]  175 18.7
+## [6,]  105 18.1</code></pre>
+<pre class="r"><code>Ycent&lt;-cbind(Y[,1]-as.matrix(grandmean[1]),Y[,2]-as.matrix(grandmean[2]))
+head(Ycent)</code></pre>
+<pre><code>##          [,1]      [,2]
+## [1,] -36.6875  0.909375
+## [2,] -36.6875  0.909375
+## [3,] -53.6875  2.709375
+## [4,] -36.6875  1.309375
+## [5,]  28.3125 -1.390625
+## [6,] -41.6875 -1.990625</code></pre>
+<pre class="r"><code>Ycent[1,]%*%t(Ycent[1,])</code></pre>
+<pre><code>##           [,1]        [,2]
+## [1,] 1345.9727 -33.3626953
+## [2,]  -33.3627   0.8269629</code></pre>
+<pre class="r"><code>Tmat&lt;-matrix(c(0,0,0,0),nrow=2)
+
+for(i in 1:32){
+Tmat&lt;-Tmat+Ycent[i,]%*%t(Ycent[i,])
+}
+
+Tmat</code></pre>
+<pre><code>##            [,1]      [,2]
+## [1,] 145726.875 -9942.694
+## [2,]  -9942.694  1126.047</code></pre>
+<pre class="r"><code>sum(diag(Tmat))</code></pre>
+<pre><code>## [1] 146852.9</code></pre>
+<p>Notice that the diagonal elements of <code>Tmat</code> sum to SST. Furthermore, just like SST, this matrix can be partitioned into a part due to differences between groups and a part due to error. Traditionally, the part due to differences between groups (analogous to the SSB) is called the hypothesis matrix H, while the part due to error (analogous to the SSW) is called the error matrix E.</p>
+<p>We can calculate them using a procedure similar to the one used above. For the SSE, we do the exact same thing except we center each person’s response vector using the <em>group</em> mean (<span class="math inline">\(\bar y_{1\cdot j}\)</span>) rather than the grand mean (<span class="math inline">\(\bar y_{1\cdot \cdot}\)</span>)</p>
+<p><span class="math display">\[\mathbf{E}=\sum_i \sum_j \begin{bmatrix}y_{1ij}-\bar y_{1\cdot j}\\ y_{2ij}-\bar y_{2\cdot j} \end{bmatrix}\begin{bmatrix}y_{1ij}-\bar y_{1\cdot j}\\ y_{2ij}-\bar y_{2\cdot j}\end{bmatrix}&#39;\]</span></p>
+<pre class="r"><code>groupmeans&lt;-mtcars%&gt;%group_by(am)%&gt;%mutate(meanhp=mean(hp), meanmpg=mean(mpg))%&gt;%ungroup()%&gt;%select(meanhp,meanmpg)
+
+Ycent&lt;-cbind(Y[,1]-as.matrix(groupmeans[,1]),Y[,2]-as.matrix(groupmeans[,2]))
+head(Ycent)</code></pre>
+<pre><code>##         meanhp    meanmpg
+## [1,] -16.84615 -3.3923077
+## [2,] -16.84615 -3.3923077
+## [3,] -33.84615 -1.5923077
+## [4,] -50.26316  4.2526316
+## [5,]  14.73684  1.5526316
+## [6,] -55.26316  0.9526316</code></pre>
+<pre class="r"><code>Ycent[1,]%*%t(Ycent[1,])</code></pre>
+<pre><code>##         meanhp  meanmpg
+## [1,] 283.79290 57.14734
+## [2,]  57.14734 11.50775</code></pre>
+<pre class="r"><code>Emat&lt;-matrix(c(0,0,0,0),nrow=2)
+for(i in 1:32){
+Emat&lt;-Emat+Ycent[i,]%*%t(Ycent[i,])
+}
+
+Emat</code></pre>
+<pre><code>##          meanhp    meanmpg
+## [1,] 137107.377 -8073.9522
+## [2,]  -8073.952   720.8966</code></pre>
+<pre class="r"><code>sum(diag(Emat))</code></pre>
+<pre><code>## [1] 137828.3</code></pre>
+<p>For the hypothesis matrix, it’s easier still. We need only to take the outer product of the vector containing the difference between the group mean and the grand mean for each variable and weight each entry by the number of people in that group. Since there are only two groups, we only have to add two matricies!</p>
+<p><span class="math display">\[
+\mathbf{E}=\sum_j n_j \begin{bmatrix}\bar y_{1\cdot \cdot}-\bar y_{1\cdot j}\\ \bar y_{2\cdot \cdot}-\bar y_{2\cdot j} \end{bmatrix}\begin{bmatrix}\bar y_{1\cdot \cdot}-\bar y_{1\cdot j}\\ \bar y_{2\cdot \cdot}-\bar y_{2\cdot j}\end{bmatrix}&#39;
+\]</span></p>
+<pre class="r"><code>Ycent&lt;-unique(groupmeans)-rbind(grandmean,grandmean)
+Ycent&lt;-as.matrix(Ycent)
+Ycent</code></pre>
+<pre><code>##         meanhp   meanmpg
+## [1,] -19.84135  4.301683
+## [2,]  13.57566 -2.943257</code></pre>
+<pre class="r"><code>#how many in each transmission group?
+table(mtcars$am)</code></pre>
+<pre><code>## 
+##  0  1 
+## 19 13</code></pre>
+<pre class="r"><code>Hmat &lt;-13*Ycent[1,]%*%t(Ycent[1,]) + 19*Ycent[2,]%*%t(Ycent[2,])
+Hmat</code></pre>
+<pre><code>##         meanhp    meanmpg
+## [1,]  8619.498 -1868.7415
+## [2,] -1868.742   405.1506</code></pre>
+<p>Notice first that <span class="math inline">\(T=E+H\)</span></p>
+<pre class="r"><code>Tmat</code></pre>
+<pre><code>##            [,1]      [,2]
+## [1,] 145726.875 -9942.694
+## [2,]  -9942.694  1126.047</code></pre>
+<pre class="r"><code>Emat+Hmat</code></pre>
+<pre><code>##          meanhp   meanmpg
+## [1,] 145726.875 -9942.694
+## [2,]  -9942.694  1126.047</code></pre>
+<p>We can get these matricies straight from the <code>manova</code> commanda in R</p>
+<pre class="r"><code>summary(manova(cbind(hp,mpg)~am,data=mtcars))$SS</code></pre>
+<pre><code>## $am
+##            hp        mpg
+## hp   8619.498 -1868.7415
+## mpg -1868.742   405.1506
+## 
+## $Residuals
+##             hp        mpg
+## hp  137107.377 -8073.9522
+## mpg  -8073.952   720.8966</code></pre>
+<p>Also, if you are more comfortable thinking in terms of covariance matricies, you can calculate the SSCPs like this</p>
+<pre class="r"><code>#Tmat
+31*cov(cbind(mtcars$hp,mtcars$mpg))</code></pre>
+<pre><code>##            [,1]      [,2]
+## [1,] 145726.875 -9942.694
+## [2,]  -9942.694  1126.047</code></pre>
+<pre class="r"><code>#Emat
+automatic&lt;-mtcars%&gt;%filter(am==&quot;1&quot;)%&gt;%select(hp,mpg)
+manual&lt;-mtcars%&gt;%filter(am==&quot;0&quot;)%&gt;%select(hp,mpg)
+
+((13-1)*cov(automatic)+(19-1)*cov(manual))</code></pre>
+<pre><code>##             hp        mpg
+## hp  137107.377 -8073.9522
+## mpg  -8073.952   720.8966</code></pre>
+</div>
+<div id="from-the-sscp-matricies-to-hypothesis-tests" class="section level2">
+<h2>From the SSCP matricies to hypothesis tests</h2>
+<p>So we’ve got these matricies: now what? We use them to calculate test statistics! Recall that in a univariate ANOVA, an F-statistic is a ratio of the variation between groups to the variation within groups, and thus that ratio is close to 1 when those quantities are similar. Analogously, since <span class="math inline">\(\mathbf{H}\)</span> represents the variation between groups and <span class="math inline">\(\mathbf{E}\)</span> represents the variation within groups, then if they are very simliar we would expect <span class="math inline">\(\mathbf{H}\mathbf{E}^{-1}]\approx\mathbf{I}\)</span>, where <span class="math inline">\(\mathbf{I}\)</span> is the identity matrix (ones along the diagonal, zeros elsewhere). The extent to which the diagonal elements of this matrix differ from ones indicate some difference in outcome variation between groups compared to that within groups, but how are we to distill that down into a test statistic?</p>
+<p>There are four common test statistics, each of which is representable as a pseudo-F statistic. They all yield roughly the same pseudo-F.</p>
+<div id="wilks-lambda" class="section level4">
+<h4>Wilks Lambda</h4>
+<p>Wilks lambda is a common test statistic. It is calculated using the determinant of the <span class="math inline">\(\mathbf{E}\)</span> matrix divided by the determinant of the <span class="math inline">\(\mathbf{T}\)</span> matrix (recall that <span class="math inline">\(\mathbf{T}=\mathbf{H}+\mathbf{E}\)</span>) <span class="math inline">\(\Lambda=\frac{|\mathbf{E}|}{|\mathbf{T}|}\)</span>. Recall that a determinant of a two-by-two matrix <span class="math inline">\(\begin{bmatrix}a &amp; b \\ c &amp; d \end{bmatrix}\)</span> is just <span class="math inline">\(ad-bc\)</span> or the difference between the product of the main diagonal and of off-diagonal.</p>
+<p>If <span class="math inline">\(\mathbf{E}\)</span> is large relative to <span class="math inline">\(\mathbf{T}\)</span>, then Wilks lambda will be large (thus, you reject the null hypothesis when <span class="math inline">\(\Lambda\)</span> is close to zero).</p>
+<pre class="r"><code>det(Emat)/det(Tmat)</code></pre>
+<pre><code>## [1] 0.5158258</code></pre>
+</div>
+<div id="hotelling-lawley" class="section level4">
+<h4>Hotelling-Lawley</h4>
+<p>This one is a little different. Here we multiply the hypothesis matrix <span class="math inline">\(\mathbf{H}\)</span> by the inverse of the error matrix <span class="math inline">\(\mathbf{E}\)</span> (similar to division with scalars), and then take the trace of the resulting matrix (i.e., the sum of the diagonals). Because multiplying by the inverse of a matrix is analogous to dividing by that matrix, if <span class="math inline">\(\mathbf{H}\)</span> is large relative to <span class="math inline">\(\mathbf{E}\)</span>, then <span class="math inline">\(T^2_0=trace(\mathbf{\mathbf{HE}^{-1}})\)</span> will be large, and so large values of this statistic reject H0.</p>
+<pre class="r"><code>sum(diag(Hmat%*%solve(Emat)))</code></pre>
+<pre><code>## [1] 0.9386389</code></pre>
+<p>Recall that for a <span class="math inline">\(2\times2\)</span> matrix, the inverse of a matrix <span class="math inline">\(\mathbf{X}\)</span> is just the matrix such that <span class="math inline">\(\mathbf{XX^{-1}=}\begin{bmatrix}1 &amp; 0 \\ 0 &amp; 1\end{bmatrix}\)</span></p>
+</div>
+<div id="pillai" class="section level4">
+<h4>Pillai</h4>
+<p>Another trace-based method, this one simply takes the matrix ratio of <span class="math inline">\(\mathbf{H}\)</span> to <span class="math inline">\(\mathbf{T}\)</span> rather than <span class="math inline">\(\mathbf{H}\)</span> to <span class="math inline">\(\mathbf{E}\)</span>: <span class="math inline">\(V=trace(\mathbf{HT^{-1}})\)</span></p>
+<pre class="r"><code>sum(diag(Hmat%*%solve(Tmat)))</code></pre>
+<pre><code>## [1] 0.4841742</code></pre>
+</div>
+<div id="roys-maximum-root" class="section level4">
+<h4>Roy’s Maximum Root</h4>
+<p>This final method takes the largest eigenvalue of the <span class="math inline">\(\mathbf{HE}^{-1}\)</span> matrix. Recall that eigenvalues of a matrix <span class="math inline">\(\mathbf{X}\)</span> are solutions <span class="math inline">\(\lambda\)</span> to the equation <span class="math inline">\(\mathbf{Xv}=\lambda\mathbf{v}\)</span>. Basically, it means that there is a vector <span class="math inline">\(\mathbf{v}\)</span> and scalars <span class="math inline">\(\lambda\)</span> such that, when <span class="math inline">\(\mathbf{X}\)</span> multiplies <span class="math inline">\(\mathbf{v}\)</span>, it will only scale the vector (by <span class="math inline">\(\lambda\)</span> amount) and not rotate it. That equation will only have solutions if <span class="math inline">\(|\mathbf{X}-\lambda \mathbf{I}|=0\)</span>, where <span class="math inline">\(\mathbf{I}\)</span> is the identity matrix. And can be used to find <span class="math inline">\(\lambda\)</span> with a bit of algebra.</p>
+<pre class="r"><code>max(eigen(Hmat%*%solve(Emat))$values)</code></pre>
+<pre><code>## [1] 0.9386389</code></pre>
+</div>
+<div id="in-r" class="section level3">
+<h3>In R</h3>
+<pre class="r"><code>summary(manova(cbind(hp,mpg)~am,data=mtcars),test=&quot;Wilks&quot;)</code></pre>
+<pre><code>##           Df   Wilks approx F num Df den Df    Pr(&gt;F)    
+## am         1 0.51583    13.61      2     29 6.781e-05 ***
+## Residuals 30                                             
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>summary(manova(cbind(hp,mpg)~am,data=mtcars),test=&quot;Hotelling-Lawley&quot;)</code></pre>
+<pre><code>##           Df Hotelling-Lawley approx F num Df den Df    Pr(&gt;F)    
+## am         1          0.93864    13.61      2     29 6.781e-05 ***
+## Residuals 30                                                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>summary(manova(cbind(hp,mpg)~am,data=mtcars),test=&quot;Pillai&quot;)</code></pre>
+<pre><code>##           Df  Pillai approx F num Df den Df    Pr(&gt;F)    
+## am         1 0.48417    13.61      2     29 6.781e-05 ***
+## Residuals 30                                             
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>summary(manova(cbind(hp,mpg)~am,data=mtcars),test=&quot;Roy&quot;)</code></pre>
+<pre><code>##           Df     Roy approx F num Df den Df    Pr(&gt;F)    
+## am         1 0.93864    13.61      2     29 6.781e-05 ***
+## Residuals 30                                             
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Each of these four statistics can be translated into an F-statistic for convenience (note that here, it’s around 13.61). In this example, they all agree, but they don’t have to. When this happens, Pillai’s trace is the most robust (note that it is the default in R’s <code>manova</code> function).</p>
+</div>
+</div>
+<div id="permanova" class="section level2">
+<h2>PERMANOVA</h2>
+<p>MANOVA is a little restrictive: it makes all of the ANOVA assumptions, and then some! It would be nice not to have to make these assumptions! This would permit us to use the technique on count data (e.g., abundances, percentage cover, frequencies, biomass), which for example would allow us answer many questions in ecology (e.g., do abundances of several bird species differ based on the tree composition of a sampling site?). We could also get around the weird multivariate statistics this way and compute familiar F-ratios. Let me show you what I mean.</p>
+<p>We will start off with the distance matrix. This tells you how far each multivariate response is from each other. For example, how far is a single car’s <span class="math inline">\((hp_1, mpg_1)\)</span> from another car’s <span class="math inline">\((hp_2, mpg_2)\)</span> in the 2D plane? An easy way is to use the euclidean distance described above, <span class="math inline">\(d=\sqrt{(hp_1-hp_2)^2+(mpg_1-mpg_2)^2}\)</span>.</p>
+<p>We use the distance matrix to calculate the pseudo F-ratio: the ratio of the variation between centroids to the variation within clusters. Note that this is the same as the ratio of the trace of <span class="math inline">\(\mathbf{H}\)</span> to the trace of <span class="math inline">\(\mathbf{E}\)</span>.</p>
+<pre class="r"><code>euc_dist&lt;-dist(mtcars[,c(&quot;hp&quot;,&quot;mpg&quot;)],method=&quot;euclid&quot;)
+euc_dist_auto&lt;-dist(mtcars[mtcars$am==&quot;1&quot;,c(&quot;hp&quot;,&quot;mpg&quot;)],method=&quot;euclid&quot;)
+euc_dist_manual&lt;-dist(mtcars[mtcars$am==&quot;0&quot;,c(&quot;hp&quot;,&quot;mpg&quot;)],method=&quot;euclid&quot;)
+
+SSE&lt;-sum(euc_dist_auto^2)/13+sum(euc_dist_manual^2)/19
+SST&lt;-sum(euc_dist^2)/32
+
+Fstat=(SST-SSE)/(SSE/30)
+Fstat</code></pre>
+<pre><code>## [1] 1.964325</code></pre>
+<p>To free ourselves from the assumption of normality, we can do a <em>permutation test</em> instead of using the F distribution to do a MANOVA. This technique, known as PERMANOVA, was developed by Marti Anderson of Auckland, NZ: <a href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781118445112.stat07841">original paper</a>.</p>
+<p>To do a PERMANOVA, we will shuffle our data randomly, re-compute f ratio, and repeat these two steps many times, saving the F each time. This gives us a large set of Fs that arise in a situation where there is no systematic difference between groups. All we have to do is just this null distribution and see how unusually our original F would be! If our actual F statistic is far away from the majority of the F statistics that arise in the simulationed distribution whwere there is no difference between groups, then we have evidence that our response variables differ between those groups!</p>
+<p>In the <code>mtcars</code> example, we are comparing whether horsepower, milage, or both differ between cars with automatic versus manual transmissions. To generate the null distribution, we just randomly scramble the groups (automatic vs. manual) before we calculate each F statistic. We are literally just making up which <code>hp, mpg</code> data go with manual and which go with automatic. Thus, in the long run (after many repetitions), the two groups should have equal Fs on average. See the distribution of Fs after such a process below</p>
+<pre class="r"><code>set.seed(123)
+perm.sampdist&lt;-replicate(5000,{
+
+randcars&lt;-mtcars
+randcars$am&lt;-sample(randcars$am)
+
+euc_dist&lt;-dist(randcars[,c(&quot;hp&quot;,&quot;mpg&quot;)],method=&quot;euclid&quot;)
+euc_dist_auto&lt;-dist(randcars[randcars$am==&quot;1&quot;,c(&quot;hp&quot;,&quot;mpg&quot;)],method=&quot;euclid&quot;)
+euc_dist_manual&lt;-dist(randcars[randcars$am==&quot;0&quot;,c(&quot;hp&quot;,&quot;mpg&quot;)],method=&quot;euclid&quot;)
+
+SSR&lt;-sum(euc_dist_auto^2)/13+sum(euc_dist_manual^2)/19
+SST&lt;-sum(euc_dist^2)/32
+
+(SST-SSR)/(SSR/30)
+} )
+
+mean(perm.sampdist&gt;Fstat)</code></pre>
+<pre><code>## [1] 0.1802</code></pre>
+<pre class="r"><code>hist(perm.sampdist,breaks=20); abline(v = Fstat,col=&#39;red&#39;)</code></pre>
+<p><img src="/post/2019-06-19-a-cool-thing-called-permanova_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>Thus, 16.88% of the simulated sampling distribution is greater than our observed F-stat. Since this distribution was created under the null hypothesis of no difference between groups, we have a nearly 17% chance of seeing an F-stat this large under the null, so we cannot reject this hypothesis as inconsistent with our data.</p>
+<p>In the R package <code>vegan</code>, there is a built-in function which conducts a permanova on a distance matrix (doesn’t need to be euclidean either)!</p>
+<pre class="r"><code>library(vegan)
+adonis(euc_dist~am,data=mtcars)</code></pre>
+<pre><code>## 
+## Call:
+## adonis(formula = euc_dist ~ am, data = mtcars) 
+## 
+## Permutation: free
+## Number of permutations: 999
+## 
+## Terms added sequentially (first to last)
+## 
+##           Df SumsOfSqs MeanSqs F.Model      R2 Pr(&gt;F)
+## am         1      9025  9024.6  1.9643 0.06145  0.177
+## Residuals 30    137828  4594.3         0.93855       
+## Total     31    146853                 1.00000</code></pre>
+<p>Note that these results are the same. However, the results do differ from those of a traditional MANOVA: making parametric assumptions does give us more power, and in this case produces significant results.</p>
+<pre class="r"><code>summary(manova(cbind(hp,mpg)~am,data=mtcars))</code></pre>
+<pre><code>##           Df  Pillai approx F num Df den Df    Pr(&gt;F)    
+## am         1 0.48417    13.61      2     29 6.781e-05 ***
+## Residuals 30                                             
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The only time the results will agree is in the univarate ANOVA case. That is to say, you can do permutational ANOVAs too, allowing you to relax assumptions. For example, assume we just want to know whether horsepower differs between cars with automatic and manual transmissions. The one-dimensional distances are simply differences between each horsepower measurement and every other. Square them all add them up and you have the total sum of squares! Divide by the number of datapoints to get your mean-squares</p>
+<pre class="r"><code>#parametric ANOVA
+summary(aov(hp~am, mtcars))</code></pre>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## am           1   8619    8619   1.886   0.18
+## Residuals   30 137107    4570</code></pre>
+<pre class="r"><code>#permutation ANOVA
+
+## f stat by hand
+euc_dist&lt;-dist(mtcars[,c(&quot;hp&quot;)],method=&quot;euclid&quot;)
+euc_dist_auto&lt;-dist(mtcars[mtcars$am==&quot;1&quot;,c(&quot;hp&quot;)],method=&quot;euclid&quot;)
+euc_dist_manual&lt;-dist(mtcars[mtcars$am==&quot;0&quot;,c(&quot;hp&quot;)],method=&quot;euclid&quot;)
+
+SSR&lt;-sum(euc_dist_auto^2)/13+sum(euc_dist_manual^2)/19
+SST&lt;-sum(euc_dist^2)/32
+
+Fstat&lt;-(SST-SSR)/(SSR/30)
+
+## sampling distributino
+perm.sampdist&lt;-replicate(5000,{
+
+randcars&lt;-mtcars
+randcars$am&lt;-sample(randcars$am)
+
+euc_dist&lt;-dist(randcars[,c(&quot;hp&quot;)],method=&quot;euclid&quot;)
+euc_dist_auto&lt;-dist(randcars[randcars$am==&quot;1&quot;,c(&quot;hp&quot;)],method=&quot;euclid&quot;)
+euc_dist_manual&lt;-dist(randcars[randcars$am==&quot;0&quot;,c(&quot;hp&quot;)],method=&quot;euclid&quot;)
+
+SSR&lt;-sum(euc_dist_auto^2)/13+sum(euc_dist_manual^2)/19
+SST&lt;-sum(euc_dist^2)/32
+
+(SST-SSR)/(SSR/30)
+} )
+
+mean(perm.sampdist&gt;Fstat)</code></pre>
+<pre><code>## [1] 0.1784</code></pre>
+<pre class="r"><code>hist(perm.sampdist,breaks=20); abline(v = Fstat,col=&#39;red&#39;)</code></pre>
+<p><img src="/post/2019-06-19-a-cool-thing-called-permanova_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<div id="a-better-example" class="section level3">
+<h3>A Better Example</h3>
+<p>Now let’s do a real, more complicated example. Say we are interested in whether the presence of trees in the legume family affect the abundance of bird species. (See the following post for lots of cool additional information about this example: <a href="https://rpubs.com/collnell/manova" class="uri">https://rpubs.com/collnell/manova</a>).</p>
+<p>The data we will use has 7 different bird species groups (columns): for each, abundance data was recorded for 32 different plots (thus, we have a 7-dimensional response variable). Also, for each of these plots, it was noted whether the trees were all part of the same species (DIVERSITY==M, for monoculture), or whether different species of trees were present (DIVERSITY==P, for polyculture). We will do a two-way PERMANOVA on this abundance data, testing whether tree diversity is associated with bird species abundance across these plots.</p>
+<pre class="r"><code>birds&lt;-read.csv(&#39;https://raw.githubusercontent.com/collnell/lab-demo/master/bird_by_fg.csv&#39;)
+head(birds)</code></pre>
+<pre><code>##   DIVERSITY PLOT CA FR GR HE IN NE OM
+## 1         M    3  0  0  0  0  2  0  0
+## 2         M    9  0  0  2  0  6  0  4
+## 3         M   12  0  0  0  0  2  0  2
+## 4         M   17  0  0  0  0  7  0  4
+## 5         M   20  0  0  0  0  1  0  4
+## 6         M   21  0  0  3  0 14  0  7</code></pre>
+<p>For example, we can visualize two species at a time in two dimensions. The average abundances for both of these two species appear higher in polyclonal plots (blue dots) than in monoclonal plots (red dots):</p>
+<pre class="r"><code>birds1&lt;-birds%&gt;%group_by(DIVERSITY)%&gt;%select(IN,OM)%&gt;%mutate(meanIN=mean(IN),meanOM=mean(OM))%&gt;%ungroup()%&gt;%mutate(GmeanIN=mean(IN),GmeanOM=mean(OM))
+
+ggplot(birds1,aes(IN,OM,color=DIVERSITY))+geom_point(aes(x=GmeanIN,y=GmeanOM),size=4,color=&quot;gray50&quot;)+geom_segment(aes(x=GmeanIN, y=GmeanOM, xend=IN, yend=OM),color=&quot;gray50&quot;,lty=2)+geom_point()+geom_point(aes(x=meanIN,y=meanOM),size=4)+geom_segment(aes(x=meanIN, y=meanOM, xend=IN, yend=OM))</code></pre>
+<p><img src="/post/2019-06-19-a-cool-thing-called-permanova_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>But let’s test to see if this is true: are there any differences across all 7 species? We could use euclidean distances, but it is more appropriate to use an abundance-weighted distance/dissimilarity measure like Bray-Curtis. It is a good idea to take the square (or even fourth) root of the abundance counts to minimize influential observations.</p>
+<pre class="r"><code>## WORKING
+euc_dist&lt;-vegdist(sqrt(birds[,-c(1:2)]),method=&quot;bray&quot;)
+euc_distM&lt;-vegdist(sqrt(birds[birds$DIVERSITY==&quot;M&quot;,-c(1:2)]),method=&quot;bray&quot;)
+euc_distP&lt;-vegdist(sqrt(birds[birds$DIVERSITY==&quot;P&quot;,-c(1:2)]),method=&quot;bray&quot;)
+
+SSR&lt;-sum(euc_distM^2)/12+sum(euc_distP^2)/20
+SST&lt;-sum(euc_dist^2)/32
+
+Fstat&lt;-(SST-SSR)/(SSR/30)
+
+sum(euc_dist[1:12]^2)</code></pre>
+<pre><code>## [1] 3.181082</code></pre>
+<pre class="r"><code>Fstat</code></pre>
+<pre><code>## [1] 4.158511</code></pre>
+<pre class="r"><code>perm.sampdist&lt;-replicate(5000,{
+
+randbirds&lt;-birds
+randbirds$DIVERSITY&lt;-sample(birds$DIVERSITY)
+
+euc_dist&lt;-vegdist(sqrt(birds[,-c(1:2)]),method=&quot;bray&quot;)
+euc_distM&lt;-vegdist(sqrt(birds[birds$DIVERSITY==&quot;M&quot;,-c(1:2)]),method=&quot;bray&quot;)
+euc_distP&lt;-vegdist(sqrt(birds[birds$DIVERSITY==&quot;P&quot;,-c(1:2)]),method=&quot;bray&quot;)
+
+SSR&lt;-sum(euc_distM^2)/12+sum(euc_distP^2)/20
+SST&lt;-sum(euc_dist^2)/32
+
+(SST-SSR)/(SSR/30)
+} )
+
+mean(perm.sampdist&gt;Fstat)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code>adonis(euc_dist~DIVERSITY,data=birds, method=&quot;bray&quot;)</code></pre>
+<pre><code>## 
+## Call:
+## adonis(formula = euc_dist ~ DIVERSITY, data = birds, method = &quot;bray&quot;) 
+## 
+## Permutation: free
+## Number of permutations: 999
+## 
+## Terms added sequentially (first to last)
+## 
+##           Df SumsOfSqs MeanSqs F.Model      R2 Pr(&gt;F)   
+## DIVERSITY  1   0.32857 0.32857  4.1585 0.12174  0.005 **
+## Residuals 30   2.37033 0.07901         0.87826          
+## Total     31   2.69890                 1.00000          
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/post/worlds-greatest-monty-hall-simulation-app/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">World&#39;s Greatest Monty Hall Simulation App</span>
+    </a>
+    
+    
+    <a href="/post/repeated-measures-anova-in-r/" class="navigation-next">
+      <span class="navigation-tittle">Repeated Measures ANOVA in R</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+    
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

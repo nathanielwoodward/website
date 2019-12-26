@@ -1,0 +1,152 @@
+---
+title: Thoughts from one American mind upon closing "Closing of the American Mind"
+author: Nathaniel Raley
+comments: true
+date: 2015-01-27
+link: https://nrwoodward.wordpress.com/2015/01/27/thoughts-from-one-american-mind-upon-closing-closing-of-the-american-mind/
+slug: thoughts-from-one-american-mind-upon-closing-closing-of-the-american-mind
+wordpress_id: 27
+---
+
+I have just finished reading a very strange book, and I want to try to make some personal sense out of it because it was a little unsettling. I'm really not sure what I just read, and I don't think I agree with much of it. But I know that there were some _extremely_ provocative ideas presented here and intellectual honesty compels me to confront them, hence the present post.  
+  
+The book is titled "The Closing of the American Mind." It was written by Allan Bloom, a philosopher and classicist at the University of Chicago who died a few years after its publication in 1987. If you have read Plato's Republic, chances are good you read his translation of it. Anyway, I first noticed TCotAM this on a shelf in the office of my graduate advisor and was piqued (in both senses) by the title; I saw it again in a box labelled "free books" out in the hall after she had retired, so I took it.   
+  
+Let me start by saying that this was NOT at all the book I was expecting to read. I was expecting criticisms of higher education, not realizing that this was going to entail questioning the privileged place of freedom, equality, and science provided for by democracy and social contract theory. Thus, by its content alone the book is sure to offend almost everyone. Only about a tenth of it deals with education directly; all the rest is a philosophical critique of modern society. Worse, the author's tone is, well...  imagine your curmudgeonly old neighbor saying "you kids have it too easy these days, with your easy sex and your rock music" and at the same time John Keating, the Robin Williams character in Dead Poets Society, saying,   
+
+
+<blockquote>"Boys, you must strive to find your own voice. Because the longer you wait to begin, the less likely you are to find it at all. ...We don't read and write poetry because it's cute. We read and write  poetry because we are members of the human race. And the human race is  filled with passion. And medicine, law, business, engineering, these are  noble pursuits and necessary to sustain life. But poetry, beauty,  romance, love, these are what we stay alive for. To quote from Whitman,  "O me! O life!... of the questions of these recurring... carpe diem, seize the day boys, make your lives extraordinary" </blockquote>
+
+I am _emphatically not_ saying that I am persuaded by his arguments (which are often hard to follow and scattered over many pages) or that I agree with him on any of the issues I'm about to raise. He is an idealist and perhaps even a bona fide dualist, but he is nothing if not open-minded; I have tried to approach the book in a similar spirit. I know I have been intrigued and unsettled by his book, largely because it forced me to consider may of the "good" things about our modern world that I had accepted uncritically and now take for granted. This is not to say that he is right about any of this; in fact, I think he is quite wrong about a lot of it. I want to summarize and perhaps explore some of these seemingly heretical challenges, especially the idea that science and democracy, for all they good they have done us, have come to have some serious downsides that require our consideration, not just our blind and passive acceptance.  
+  
+
+
+#### The Thesis? The Main Idea? Oh, Boy...
+
+The thesis of the Closing, as I have read it, is so knotty that it will take at least a few paragraphs to cobble together some approximation of the thing, and the rest of this blog post to explain what it all means. There are many links in the chain, and while many of them are tenuous, the chain itself is a startling thing that compels inspection. So here goes:  
+
+
+  
+***
+
+The social contract, which is the foundation of modern democracy, is based on the worst parts of humanity (selfishness, greed, bestial pleasures...). Acceptance of these things as fundamental aspects of the human condition denies us the ability to exercise individual virtue and to experience deep connections to ideas eternity or even to past nobility. It provides for freedom and equality, but these ideals have silently destroyed the possibility of "true religion" and "culture" by putting them all on even footing. Freedom and equality cannot preserve cultures and religions because these latter are based on real differences in fundamental beliefs about good and evil, mutually exclusive claims about what is highest. Thus, there can be no religion; but inasmuch as man needs culture, the deeper spiritual impulse remains. Are we, in fact, happier now? Is this the best of all possible worlds?
+
+Wholesale equality is a happy fiction that kills claims of true goodness, of betterness, in short of any possibility of rank-ordering things. A fundamentally relativistic society has emerged where to discriminate between good and evil is wrong, and therefore everyone is to be indiscriminate. In modernity, we again find ourselves in the state of nature; self-preservation is codified in our laws, but we are still carrying out the old war of all-against-all through a society based on commercial acquisitiveness; further, our increasing openness to everything has led to a hedonism which prematurely and incompletely satisfies our most important human passions and desires, removing their real significance and leaving young people feckless and jaded. The passions should be bound up in the glorious project of fulfilling human nature and searching for final truth, and this binding should be the goal of education.  
+
+
+In a society of rampant freedom and equality whose relativism denies the special claim of reason (for to give priority is anti-equality!), the University provides a necessary counterpoint where unequal things can be pursued by unequal talents; where reason can reign, and where the human spirit can reach great heights in the search for truth and return with the spoils of its labors to benefit humanity at large. Bloom worries that this last bastion of creativity and human exaltation is being threatened.
+
+
+Bloom asks, "What is man?" Are we, finally, truth-seeking creatures who live for the purpose of discovering the good, or are we comfort-seeking creatures who live only to satisfy animal urges and avoid what is bad? Life presents a chaos of opposites:   reason-revelation, freedom-necessity, democracy-aristocracy, good-evil, body-soul, self-other, city-man, eternity-time, being-nothing.  He maintains that "a serious life means being fully aware of the alternatives, thinking about them with all the intensity one brings to bear on life-and-death questions, in full recognition that every choice is a great risk with necessary consequences that are hard to bear."
+***
+
+####  Vulnerable Man Seeks Means to His Preservation
+
+Bloom begins by noting that the US has one of the longest uninterrupted political traditions of any nation in the world; that is, we have hit upon a good scheme for self-preservation. With the success of political regimes founded on freedom and equality, questions of political principle and of right seem to have been solved once and for all.    
+
+
+  
+
+
+Following the teachings of Hobbes, Locke, and Rousseau, the Founders saw that men in the “state of nature” are solitary, selfish savages united only by an animal instinct for self-preservation (i.e., a healthy fear of death). The fear of death is stronger than the desire to dominate others, and so people agree to respect others' lives and property, so long as those others can be forced to reciprocate. "Prudence points towards a good police force to protect men from one another", not toward regimes dedicated to the cultivation of rare and difficult human virtues.
+
+  
+
+
+This was actually a pretty radical take on the old political problem; before the social contract, man was thought of as a dual being: one part concerned with the common good and the other part concerned with private interest. For the sake of society, man has to overcome the selfish part of himself in order to be virtuous. A virtue governs a passion, as moderation governs lust or courage governs fear. A man of great virtue was one who was able to conduct himself accordingly.  Now, man no longer has to regulate his self-interest; the social contract removes individual virtue by codifying it into law. There's a world of difference between doing something because you personally believe it is right and doing something because external factors force you to do it.  
+  
+Worse still, self-interest and domination of others still carries the day, only instead of competing for survival and reproduction, violence is now played out in a token economy for status and material wealth. The primacy of self-concern is no longer questioned, much less denied; it is evident in our fundamental institutions, where the original selfishness of the state of nature remains and where concern for the common good is hypocritical. According to Bloom, “**Locke had illegitimately selected those parts of man he needed for his social contract and suppressed all the rest, a theoretically unsatisfactory procedure and a practically costly one”**(176). For all of its many success, the social contract seems to be based on the worst part of human nature and to eliminate the exercise of individual virtue.  
+  
+  
+
+
+#### Freedom! Equality! Freedom! Equality!
+
+In America, consent of the governed is based on freedom and equality. But does "equality" mean only the equal opportunity for unequal talents to acquire property? Should these mercenary skills be better rewarded than moral goodness or other high human traits? Does "freedom" simply mean the ability to exercise our baser impulses at leisure, provided they don't harm others? These ideals have assumed a sacred status in our society; they are, like religions of old, beyond the reach of criticism and not up for discussion. I certainly had never thought to cast a critical eye on them before; they seem to be "good", certainly better than most everything that came before them.  
+
+  
+
+
+If freedom is not a natural right, it is at least a very insidious meme (or self-perpetuating cultural phenomenon). The American Founders wanted to mitigate extreme beliefs, particularly religious beliefs, because these inevitably lead to civil strife. So all religious sects have to obey a common law and be loyal to the Constitution, and if they do so, everyone else had to leave them alone, regardless of their beliefs. “Freedom of religion,” however, is based on the sneaky premise that there is no single true religion and everyone is entitled to practice their own. Thus, Religion belongs to the realm of opinion and choice, not the realm of knowledge and truth. Freedom itself, however, is no matter of opinion; it is a fundamental right and an ultimate Truth. You are free do anything except challenge freedom; all ideas have equal status, except equality. Bloom notes, “The most successful tyranny is not the one that uses force to assure uniformity, but the one that removes the awareness of other possibilities, that makes it seem inconceivable that other ways are viable, that removes the sense that there is an outside” (249). 
+
+
+<blockquote>Here again we live with two contradictory understandings of what counts for man. One tells us that what is important is what all men have in common; the other that what men have in common is low, while what they have from separate cultures gives them their depth and their interest...Human rights are connected with one school, respect for cultures with the other. Sometimes the United States is attacked for failing to promote human rights; sometimes for wanting to impose "the American way of life" on all people without respect for their cultures. To the extent that it does the latter, the US does so in the name of self-evident truths that apply to the good of all men. But its critics argue that there are no such truths, that they are prejudices of American culture.  (191)
+</blockquote>
+
+Privileging freedom and equality above all else means that we are not permitted to seek natural human greatness and admire it when it is found, nor permitted to recognize badness and have real contempt for it. Everyone is entitled to their own, and no one's is any better than another's.  
+  
+The Founders constructed this elaborate political machinery in order to contain minority beliefs and factions in such a way that they would cancel each other out and allow for the pursuit of the common good. The goal was to achieve a national majority concerning the fundamental rights, and once achieved, to prevent that majority from using its power to overturn those rights. That dominant majority gave the country a dominant culture with its own traditions and special claims to knowledge and taste.   
+  
+The Constitution guarantees protection for the rights of individual human beings, irrespective of race or creed. It does not promise respect for minority belief, but merely toleration. But from the very beginning, there have been individual factions demanding unique respect for their own unique beliefs and ways of life. To these groups, the founding principles of freedom and equality were impediments, and they tried to overcome the principle of majoritarianism in favor of a nation of minority groups each pursuing their own interests.   
+  
+An unexpected early example of the challenge of majoritarianism was the South and the question of slavery. The Constitution was clearly a document with a moral commitment to equality and hence condemned slavery. Yet southerners were quite successful at characterizing their "peculiar institution" as part of a charming diversity and individuality of culture which was being threatened. Openness and relativism was just what was needed to defend their way of life against the intrusions of others who called for equal rights.    
+  
+Bloom's final argument against openness and relativism is this:  
+
+
+<blockquote>Herodotus was aware of the rich diversity of cultures... but he took that observation to be an invitation to investigate all of them to see what was good and bad from them. Modern relativists take that same observation as proof that all such investigation is impossible and that we must be respectful to them all. ...I know that men are likely to bring what are only their prejudices to the judgment of alien peoples. Avoiding that is one of the main purposes of education. But trying to prevent it by removing the authority of men's reason is to render ineffective the instrument that can correct their prejudices. True openness is the accompaniment of the desire to know, hence of the awareness of ignorance. To deny the possibility of knowing good and bad is to suppress true openness.
+</blockquote>
+
+
+
+#### Nihilism, Science, and Human Dignity.
+
+I am, for the record, a flaming reductionist and a life-long atheist; I believe that through natural science, everything is explicable in terms that we can finally understand and that the realities of life and nature are accessible to us if we can discover them. Things like "dualism" and "soul" are anathema to my worldview. What this book has impressed upon me is that that, while I still hold fast to this belief and have amassed much convincing evidence that I am correct, it is still my particular belief -- my vision of the way things really are -- and it may, in the last analysis, be a bad choice of polestar by which to guide a human life to say nothing of its truth-value. After all, my beliefs, values, and allegiances largely reflect those of middle-class American society circa 1990 onward; in the whole belief/value possibility space, ours is almost certainly NOT a global optimum. (Do we even know what to maximize? Happiness?)   
+
+
+  
+Science is fundamentally reductionistic and deterministic; it denies any special place for human dignity. Humans appear to have some kind of special status, at least in their capacity to reason, but their capacity to reason has left them out in the cold. Bloom poignantly writes,
+
+<blockquote>"God is dead, Nietzsche proclaimed. But he did not say this on a note of triumph, in the style of earlier atheism -- the tyrant has been overthrown and man is now free. Rather, he said it in the anguished tones of the most powerful and delicate piety deprived of its proper object. Man, who loved and needed God, has lost his Father and Savior without possibility of resurrection." (195)</blockquote>
+
+  
+Reason has discerned that all previous cultures were founded by gods or belief in gods. Only if our new Enlightened regimes are extremely successful, able to rival the creative genius and splendor of these cultures, could reason's rational foundations be equal or superior to the kinds of foundings that reason knows were made elsewhere. Since this superiority is questionable, reason recognizes its own inadequacy. Nihilism seems to be the call to abandon reason on rational grounds; the old worlds of meaning have crumbled in the light of truth. Man as creator can overcome this void, but only by accepting checks-and-balances on freedom and equality:  
+
+
+<blockquote>Nietzsche... held that inequality among men is proved by the fact  that there is no common experience accessible in principle to all... The  individual value of one man becomes the polestar for many others whose  own experience provides them with no guidance. The rarest of men is a  creator, and all other men need and follow him... 
+<br>
+<br>
+Authentic  values are those by which a life can be lived, which can form a people  that produces great deeds and thoughts. Moses, Jesus, Homer, Buddha:  these are the creators, the men who formed horizons, the founders of  Jewish, Christian, Greek, and Indian culture. It is not the truth of  their thought that distinguished them, but its capacity to generate  culture. A value is only a value if it is life-preserving and  life-enhancing. The quasi-totality of men's values consists of more or  less pale carbon copies of the originator's values. Egalitarianism means  conformism, because it gives power to the sterile who can only make use  of old values, other men's ready-made values, which are not alive and to  which their promoters are not committed. Egalitarianism is founded on  reason, which denies creativity. </blockquote>
+
+He goes on to argue (I think) that, if all of this is taken as true, then our regime --founded on reason and dedicated to the protection of freedom and equality above all-- is doomed. I am a little out of my league talking about this stuff, and I am not particularly sympathetic to it, so I'll leave it at that. It is not particularly convincing to me, and it's probably not convincing to you either. However, I will close this section with a single passage that I think begins to illustrate the point he wants to make, and in which I see a glimmer of truth:  
+
+
+
+<blockquote>My grandparents were ignorant people by our standards, and my grandfather held only lowly jobs. But their home was spiritually rich because all the things done in it, not only what was specifically ritual, found their origin in the Bible's commandments, and their explanation in the Bible's stories and the commentaries on them, and had their imaginative counterparts in the deeds of myriad exemplary heroes. My grandparents found reasons for the existence of their family and the fulfilment of their duties in serious writings, and they interpreted their special sufferings with respect to a great and ennobling past. Their simple faith and practices linked them to great scholars and thinkers who dealt with the same material, not from outside or from an alien perspective, but believing as they did, while simply going deeper and providing guidance. There was a respect for real learning, because it had a felt connection with their lives. This is what a community and a history mean, a common experience inviting high and low into a single body of belief. 
+<br>
+I do not believe that my generation, my cousins who have been educated in the American way, all of whom are MDs or PhDs, have any comparable learning...I am not saying anything so trite as that life is fuller when people have myths to live by. I mean rather that a life based on the Book is closer to the truth, that it provides the material for deeper research in and access to the real nature of things. Without the great revelations, epics, and philosophies as part of our natural vision, there is nothing to see out there, and eventually little left inside. The Bible is not the only means to furnish a mind, but without a book of similar gravity, read with the gravity of the potential believer, it will remain unfurnished. (60)
+</blockquote>
+
+  
+
+
+####  Education? Isn't This a Book About Education?
+
+#### 
+
+#### 
+
+If I agree with nothing else Bloom says, I can at least give my unqualified support to his central message about education: students learn best when they are _passionate_ about their learning. Now here's something I can really get behind!   
+  
+He finds, however, that the relativism and openness of society has sapped students' curiosity about final things. Everything's settled, isn't it? When your truth is as good as mine, when your good is as true as mine, what's left to think about? And since our social status quo gives selfishness free reign (e.g., capitalism), we have thereby accepted its primacy in human nature. Boom, done. People are selfish and there is no truth, case closed. All that's left is to wage a status war with our fellow man, the spoils of which allow us to find ever more exotic ways of satisfying our lowest instincts (hunger, sex, comfort). This sort of jaded thinking, Bloom argues, is relatively new and has some upsetting consequences for human nature. Taking the pulse of the student body, Bloom would ask his class questions like “What books really count for you? Who are your heroes? Who do you think is evil?” Most have no answer.  
+
+
+  
+Bloom thinks Idealism should have primacy in education, for we must take our orientation by our possible perfection. "Utopianism is, as Plato taught us at the outset, the fire with which we must play because it is the only way we can find out what we are." Deprived of literary guidance and its examples of high human types, students no longer have any image of a perfect soul, and hence do not long to have one. They do not even imagine that there is such a thing. And neither do they have any idea of evil; they doubt its existence. Hitler is just another abstraction, an item to fill up an empty category." Bloom argues that "the most common student view lacks an awareness of the depths as well as the heights, and hence lacks gravity" (67).
+
+  
+
+
+But why? Easy satisfaction of basic pleasures make material desire the proper goal of a life. Bloom maintains that the premature cheapening of human passions "ruins the imagination of young people and makes it very difficult for them to have a passionate relationship to the art and thought that are the substance of liberal education." Today's youth experience premature ecstasy through casual sex and drug use. These things, he argues, "artificially induce the exaltation naturally attached to the completion of the greatest endeavors--victory in a just war, consummated love, artistic creation, religious devotion, and discovery of truth. Without effort, without talent, without virtue, without exercise of the faculties, anyone and everyone is according the equal right to the enjoyment of their fruits." (80) 
+
+  
+
+
+Education is not sermonizing to children against their instincts and pleasures, but providing a natural continuity between what they feel and what they can and should be. By giving kids nothing to believe in, we give them no basis for discontent with their understanding of the world and no awareness of alternatives. They are made complacent by an acceptance of self-interest as the defining feature of humanity (perhaps it is?), leading to a culture of all-relativism and instant gratification. Who needs any more meaning than this?  
+
+
+  
+
+
+  
+

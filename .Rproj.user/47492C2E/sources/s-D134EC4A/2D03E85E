@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1576877323207.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1102506595",
+    "id" : "2D03E85E",
+    "lastKnownWriteTime" : 1576860162,
+    "last_content_update" : 1576860162,
+    "path" : "~/Desktop/website/themes/hyde-hyde/layouts/_default/single.html",
+    "project_path" : "themes/hyde-hyde/layouts/_default/single.html",
+    "properties" : {
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 17,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "html"
+}

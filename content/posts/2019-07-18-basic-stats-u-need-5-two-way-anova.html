@@ -1,0 +1,1206 @@
+---
+title: 'Basic Stats U Need #5: Two-Way ANOVA'
+author: "Nathaniel Woodward"
+date: '2019-05-18'
+slug: basic-stats-u-need-5-two-way-anova
+tags: []
+categories: []
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 2
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#two-way-anova">Two-Way ANOVA</a><ul>
+<li><a href="#assumptions">Assumptions</a></li>
+<li><a href="#partitioning-the-total-sum-of-squares-ss_t">Partitioning the Total Sum of Squares (<span class="math inline">\(SS_T\)</span>)</a></li>
+<li><a href="#two-way-anova-table">Two-Way ANOVA Table</a></li>
+<li><a href="#mechanics-of-two-way-anova">Mechanics of Two-Way ANOVA</a></li>
+<li><a href="#interactions-in-two-way-anova-8-possibilities">Interactions in Two-Way ANOVA: 8 Possibilities</a></li>
+</ul></li>
+<li><a href="#full-example-effect-of-vitamin-c-on-guinea-pig-tooth-growth">Full Example: Effect of Vitamin C on Guinea Pig Tooth Growth</a><ul>
+<li><a href="#sum-of-squares-calculations">Sum of Squares Calculations</a></li>
+<li><a href="#example-two-way-anova-no-interaction">Example: Two-Way ANOVA, no Interaction</a></li>
+<li><a href="#calculation-of-dose-times-supplement-interaction-effect">Calculation of Dose <span class="math inline">\(\times\)</span> Supplement Interaction Effect</a></li>
+<li><a href="#example-two-way-anova-with-interaction">Example: Two-Way ANOVA with Interaction</a></li>
+<li><a href="#full-anova-table-for-guinea-pig-example">Full ANOVA table for Guinea Pig example</a></li>
+<li><a href="#post-hoc-tests-only-do-comparisons-of-interest">Post Hoc Tests (only do comparisons of interest!)</a></li>
+<li><a href="#r2-eta2"><span class="math inline">\(R^2\)</span> (<span class="math inline">\(\eta^2\)</span>)</a></li>
+<li><a href="#type-iiiiii-sums-of-squares">Type I/II/III sums of squares</a></li>
+</ul></li>
+</ul>
+</div>
+
+<p>Hey y’all! Welp, this isn’t really a <em>basic</em> topic, and it will probably be my last “Stats U Need” post, but I did promise a follow-up to our discussion of <a href="http://www.nathanielwoodward.com/2017/08/27/basic-stats-u-need-3-anova/">one-way ANOVA</a>. We will mostly be focused on how to perform this in R, but fear not! We will deal conceptually and computationally about sums of squares calculations, interactions, …all the good stuff!</p>
+<p>I also want to take the time to address two annoying issues with more complex ANOVAs: the three types of sums of squares (I/II/III) and setting contrasts for linear models in R.</p>
+<div id="two-way-anova" class="section level1">
+<h1>Two-Way ANOVA</h1>
+<ul>
+<li>Simultaneously tests effects of two categorical explanatory variables (“factors”) on a numeric response variable</li>
+<li>Test the effect of Factor A controlling for Factor B (and vice versa)</li>
+<li><p>Test interaction between Factors A and B</p></li>
+<li>Each factor/interaction has its own set of <strong>hypotheses</strong></li>
+<li>Each factor/interaction has its own <strong>F-statistic</strong></li>
+<li><p>Each factor/interaction has its own <strong>p-value</strong></p></li>
+<li><p>An interaction tests if the effect of one factor on the response differs across levels of the other factor (this will make sense shortly)</p></li>
+</ul>
+<div id="assumptions" class="section level2">
+<h2>Assumptions</h2>
+<ol style="list-style-type: decimal">
+<li>Random sample, independent observations</li>
+<li>Each group within each factor is roughly normal (or <span class="math inline">\(n&gt;25\)</span>)</li>
+<li>Each group within each factor has equal variance</li>
+</ol>
+<p>To assess normality, look at boxplots, histograms, qq-plots for each group</p>
+<p>To assess homoskedasticity, use Levene’s test or look at sample variances (<span class="math inline">\(\forall i,j: s_i^2 &lt; 4s_j^2\)</span>), boxplots</p>
+</div>
+<div id="partitioning-the-total-sum-of-squares-ss_t" class="section level2">
+<h2>Partitioning the Total Sum of Squares (<span class="math inline">\(SS_T\)</span>)</h2>
+<div class="figure">
+<img src="../../static/ANOVAs2.png" />
+
+</div>
+<ul>
+<li><p>One-Way ANOVA, <strong>two</strong> sources of variation: between-groups, within-groups/error</p></li>
+<li><p>Two-Way ANOVA, <strong>four</strong> sources: factor A, factor B, A<span class="math inline">\(\times\)</span>B interaction, within-cell/error</p></li>
+<li>For a two-way ANOVA, <span class="math inline">\(SS_T=SS_A+SS_B+SS_{A\times B}+SS_E\)</span></li>
+<li><p>If you know four of these, you can solve for the other</p></li>
+</ul>
+</div>
+<div id="two-way-anova-table" class="section level2">
+<h2>Two-Way ANOVA Table</h2>
+<p>This is a two-way ANOVA table. It should look almost exactly the same as a one-way ANOVA table except for the fact that here we have two additional rows: one for the main effect of the second factor, and one for the interaction. Notice that we will be conducting three different F-tests, each with their own degrees of freedom calculations.</p>
+<table style="width:83%;">
+<colgroup>
+<col width="15%" />
+<col width="12%" />
+<col width="19%" />
+<col width="27%" />
+<col width="8%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="left">SS</th>
+<th align="center">df</th>
+<th align="left">MS</th>
+<th align="left">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Factor A</td>
+<td align="left"><span class="math inline">\(SS_A\)</span></td>
+<td align="center"><span class="math inline">\(a-1\)</span></td>
+<td align="left"><span class="math inline">\(MS_A=\frac{SS_A}{a-1}\)</span></td>
+<td align="left"><span class="math inline">\(\frac{MS_A}{MS_E}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Factor B</td>
+<td align="left"><span class="math inline">\(SS_B\)</span></td>
+<td align="center"><span class="math inline">\(b-1\)</span></td>
+<td align="left"><span class="math inline">\(MS_B=\frac{SS_B}{b-1}\)</span></td>
+<td align="left"><span class="math inline">\(\frac{MS_B}{MS_E}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">A<span class="math inline">\(\times\)</span>B</td>
+<td align="left"><span class="math inline">\(SS_{AB}\)</span></td>
+<td align="center"><span class="math inline">\((a-1)(b-1)\)</span></td>
+<td align="left"><span class="math inline">\(MS_{AB}=\frac{SS_{AB}}{(a-1)(b-1)}\)</span></td>
+<td align="left"><span class="math inline">\(\frac{MS_{A\times B}}{MS_E}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Error</td>
+<td align="left"><span class="math inline">\(SS_E\)</span></td>
+<td align="center"><span class="math inline">\(N-ab\)</span></td>
+<td align="left"><span class="math inline">\(MS_E=\frac{SS_E}{N-ab}\)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="left"><span class="math inline">\(SS_T\)</span></td>
+<td align="center"><span class="math inline">\(N-1\)</span></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="mechanics-of-two-way-anova" class="section level2">
+<h2>Mechanics of Two-Way ANOVA</h2>
+<p>Below I illustrate the full cross of your two factors (A and B). The big dots used as subscripts for the means indicate the mean of your response variable averaged across the dotted factors.</p>
+<p><span class="math display">\[
+\begin{array}{c|c|c|c|c|c}
+&amp; \mathbf{B_1} &amp; \mathbf{B_2} &amp; \dots &amp; \mathbf{B_b} &amp;  \\ \hline
+\mathbf{A_1} &amp; x_{_{1,1,1}},\dots,x_{_{1,1,r}} &amp; x_{_{1,2,1}},\dots,x_{_{1,2,r}} &amp; \dots &amp; x_{_{1,b,1}},\dots,x_{_{1,3,r}} &amp; \bar x_{1 \bullet \bullet} \\ \hline
+\mathbf{A_2} &amp; x_{_{2,1,1}},\dots,x_{_{2,1,r}} &amp; x_{_{2,2,1}},\dots,x_{_{2,2,r}} &amp; \dots &amp; x_{_{2,b,1}},\dots,x_{_{2,3,r}} &amp; \bar x_{2 \bullet \bullet} \\ \hline
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots \\ \hline
+\mathbf{A_a} &amp; x_{_{a,1,1}},\dots,x_{_{2,1,r}} &amp; x_{_{2,2,1}},\dots,x_{_{2,2,r}} &amp; \dots &amp; x_{_{2,3,1}},\dots,x_{_{2,3,r}} &amp; \bar x_{a \bullet \bullet} \\ \hline
+ &amp; \bar x_{\bullet 1 \bullet} &amp; \bar x_{\bullet 2 \bullet} &amp; \dots &amp; \bar x_{ \bullet b \bullet} &amp; \bar x_{\bullet \bullet \bullet} \\
+\end{array}
+\]</span></p>
+<ul>
+<li>There are <span class="math inline">\(a\)</span> levels of factor <span class="math inline">\(A\)</span> (indexed by <span class="math inline">\(i\)</span>)</li>
+<li>There are <span class="math inline">\(b\)</span> levels of factor <span class="math inline">\(B\)</span> (indexed by <span class="math inline">\(j\)</span>)</li>
+<li>Thus, there are <span class="math inline">\(a \times b\)</span> cells (indexed by <span class="math inline">\(k\)</span>)</li>
+<li>Each cell contains <span class="math inline">\(r\)</span> observations</li>
+<li><p>Thus, there are a total of <span class="math inline">\(N=a\times b \times r\)</span> observations!</p></li>
+<li>Observation <span class="math inline">\(x_{ijk}\)</span> is the <span class="math inline">\(k^{th}\)</span> observation in row <span class="math inline">\(i\)</span> and column <span class="math inline">\(j\)</span></li>
+<li><span class="math inline">\(\bar x_{\bullet \bullet \bullet}=\)</span> grand mean; <span class="math inline">\(\bar x_{i \bullet \bullet} =\)</span> row <span class="math inline">\(i\)</span> mean; <span class="math inline">\(\bar x_{ \bullet j \bullet} =\)</span> column <span class="math inline">\(j\)</span> mean</li>
+<li><p><span class="math inline">\(\bar x_{ij\bullet}=\)</span> cell <span class="math inline">\(ij\)</span> mean</p></li>
+</ul>
+<div id="calculating-the-sums-of-squares-by-hand" class="section level3">
+<h3>Calculating the Sums of Squares by Hand</h3>
+<p>Below, I give formulas for calculating each of the sum-of-squares for two-way ANOVA, and then below I give a brief verbal description of what the formula is doing in terms of deviations.</p>
+<ul>
+<li><span class="math inline">\(\mathbf{SS_A}=r b \sum_i^a (\bar x_{i\bullet \bullet}-\bar x_{\bullet \bullet \bullet})^2\)</span><br />
+</li>
+<li><p>Deviations of the means of Factor A from the grand mean</p></li>
+<li><span class="math inline">\(\mathbf{SS_B}=r a \sum_j^b (\bar x_{\bullet j \bullet}-\bar x_{\bullet \bullet \bullet})^2\)</span></li>
+<li><p>Deviations of the means of Factor B from the grand mean</p></li>
+<li><span class="math inline">\(\mathbf{SS_{A\times B}}= r \sum_i^a \sum_j^b \overbrace{((\bar x_{i j \bullet }-\bar x_{\bullet \bullet \bullet})-(\bar x_{i\bullet \bullet}-\bar x_{\bullet \bullet \bullet})-(\bar x_{\bullet j \bullet}-\bar x_{\bullet \bullet \bullet}))^2}^{(\bar x_{i j \bullet }-\bar x_{i\bullet \bullet}-\bar x_{\bullet j \bullet}+\bar x_{\bullet \bullet \bullet})^2}\)</span></li>
+<li><p>Deviations of the cell means from the grand mean, minus the effects of factors A and B</p></li>
+<li><span class="math inline">\(\mathbf{SS_W}=\sum_i^a \sum_j^b \sum_k^r (x_{ijk}-\bar x_{ij\bullet})^2\)</span></li>
+<li><p>Deviations of the observations from their cell means</p></li>
+<li><span class="math inline">\(\mathbf{SS_T}=\sum_i^a \sum_j^b \sum_k^r (x_{ijk}-\bar x_{\bullet \bullet \bullet})^2\)</span></li>
+<li><p>Deviations of the observations from the grand mean</p></li>
+</ul>
+</div>
+<div id="cell-means" class="section level3">
+<h3>Cell Means</h3>
+<p><span class="math display">\[
+\begin{array}{c|c|c|c|c|c}
+&amp; \mathbf{B_1} &amp; \mathbf{B_2} &amp; \dots &amp; \mathbf{B_b} &amp;  \\ \hline
+\mathbf{A_1} &amp; \bar x_{1,1 \bullet} &amp; \bar x_{1,2 \bullet} &amp; \dots &amp; \bar x_{1,b \bullet} &amp; \bar x_{1 \bullet \bullet} \\ \hline
+\mathbf{A_2} &amp; \bar x_{2,1 \bullet} &amp; \bar x_{2,2 \bullet} &amp; \dots &amp; \bar x_{2,b \bullet} &amp; \bar x_{2 \bullet \bullet} \\ \hline
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots \\ \hline
+\mathbf{A_a} &amp; \bar x_{a,1 \bullet} &amp; \bar x_{a,2 \bullet} &amp; \dots &amp; \bar x_{a,b \bullet} &amp; \bar x_{a \bullet \bullet} \\ \hline
+ &amp; \bar x_{\bullet 1 \bullet} &amp; \bar x_{\bullet 2 \bullet} &amp; \dots &amp; \bar x_{ \bullet b \bullet} &amp; \bar x_{\bullet \bullet \bullet} \\
+\end{array}
+\]</span></p>
+</div>
+</div>
+<div id="interactions-in-two-way-anova-8-possibilities" class="section level2">
+<h2>Interactions in Two-Way ANOVA: 8 Possibilities</h2>
+<ul>
+<li>No effects</li>
+<li>Main effect of A</li>
+<li>Main effect of B</li>
+<li>Main effect of A and B</li>
+<li>A<span class="math inline">\(\times\)</span>B Interaction, No main effects</li>
+<li>A<span class="math inline">\(\times\)</span>B Interaction, Main effect of A</li>
+<li>A<span class="math inline">\(\times\)</span>B Interaction, Main effect of B</li>
+<li>A<span class="math inline">\(\times\)</span>B Interaction, Main effects of A and B</li>
+</ul>
+<p>What follows is an interaction tutorial: I go through each of these scenarios in turn using two made-up factors: <em>Age</em> (Adolescent vs. Adult) and <em>Condition</em> (Treatment vs. Control). Assume the response variable is something like a quality-of-life score. We will examine the main effect of each of the two factors, as well as the effect of their interaction, on this response variable.</p>
+<div id="no-interactions-no-main-effects" class="section level3">
+<h3>1. No Interactions, No Main Effects</h3>
+<ul>
+<li>Notice that each dot corresponds to a cell mean</li>
+<li>No differences in cell means or group means (they are overlapping)</li>
+</ul>
+<pre class="r"><code>library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+
+intdat&lt;-data.frame(Condition=c(&quot;Treatment&quot;,&quot;Treatment&quot;,&quot;Control&quot;,&quot;Control&quot;), Age=c(&quot;Adolescent&quot;,&quot;Adult&quot;,&quot;Adolescent&quot;,&quot;Adult&quot;),Outcome=c(3,3,3,3))
+intdat$Condition&lt;-as.character(intdat$Condition)
+
+wide&lt;-spread(data=intdat, Age, Outcome)
+tab1&lt;-cbind(wide,&quot; &quot;=rowMeans(wide[,-1]))
+rbind(tab1,c(&quot;&quot;,colMeans(tab1[,-1])))%&gt;%format_cells(3,2:3, &quot;bold&quot;)%&gt;%format_cells(1:2,4, &quot;bold&quot;)%&gt;%format_cells(3,4, &quot;bold&quot;) %&gt;%knitr::kable(.,align = &#39;lccc&#39;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Condition</th>
+<th align="center">Adolescent</th>
+<th align="center">Adult</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Control</td>
+<td align="center">3</td>
+<td align="center">3</td>
+<td><strong>3</strong></td>
+</tr>
+<tr class="even">
+<td align="left">Treatment</td>
+<td align="center">3</td>
+<td align="center">3</td>
+<td><strong>3</strong></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center"><strong>3</strong></td>
+<td align="center"><strong>3</strong></td>
+<td><strong>3</strong></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>ggplot(intdat,aes(x=Condition,y=Outcome,color=Age,lty=Age))+
+  geom_line(aes(group=Age),size=1)+
+  geom_point()+scale_y_continuous(limits=c(1,5))</code></pre>
+<p><img src="/post/2019-07-18-basic-stats-u-need-5-two-way-anova_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="no-interaction-main-effect-of-treatment" class="section level3">
+<h3>2. No Interaction, Main Effect of Treatment</h3>
+<pre class="r"><code>intdat&lt;-data.frame(Condition=c(&quot;Treatment&quot;,&quot;Treatment&quot;,&quot;Control&quot;,&quot;Control&quot;), Age=c(&quot;Adolescent&quot;,&quot;Adult&quot;,&quot;Adolescent&quot;,&quot;Adult&quot;),Outcome=c(4,4,2,2))
+intdat$Condition&lt;-as.character(intdat$Condition)
+
+wide&lt;-spread(data=intdat, Age, Outcome)
+tab1&lt;-cbind(wide,&quot; &quot;=rowMeans(wide[,-1]))
+rbind(tab1,c(&quot;&quot;,colMeans(tab1[,-1])))%&gt;%format_cells(3,2:3, &quot;bold&quot;)%&gt;%format_cells(1:2,4, &quot;bold&quot;)%&gt;%format_cells(3,4, &quot;bold&quot;) %&gt;%knitr::kable(.,align = &#39;lccc&#39;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Condition</th>
+<th align="center">Adolescent</th>
+<th align="center">Adult</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Control</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td><strong>2</strong></td>
+</tr>
+<tr class="even">
+<td align="left">Treatment</td>
+<td align="center">4</td>
+<td align="center">4</td>
+<td><strong>4</strong></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center"><strong>3</strong></td>
+<td align="center"><strong>3</strong></td>
+<td><strong>3</strong></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>ggplot(intdat,aes(x=Condition,y=Outcome,color=Age,lty=Age))+
+  geom_line(aes(group=Age),size=1)+
+  geom_point()+scale_y_continuous(limits=c(1,5))</code></pre>
+<p><img src="/post/2019-07-18-basic-stats-u-need-5-two-way-anova_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="no-interaction-main-effect-of-age" class="section level3">
+<h3>3. No Interaction, Main Effect of Age</h3>
+<pre class="r"><code>intdat&lt;-data.frame(Condition=c(&quot;Treatment&quot;,&quot;Treatment&quot;,&quot;Control&quot;,&quot;Control&quot;), Age=c(&quot;Adolescent&quot;,&quot;Adult&quot;,&quot;Adolescent&quot;,&quot;Adult&quot;),Outcome=c(4,2,4,2))
+intdat$Condition&lt;-as.character(intdat$Condition)
+
+wide&lt;-spread(data=intdat, Age, Outcome)
+tab1&lt;-cbind(wide,&quot; &quot;=rowMeans(wide[,-1]))
+rbind(tab1,c(&quot;&quot;,colMeans(tab1[,-1])))%&gt;%format_cells(3,2:3, &quot;bold&quot;)%&gt;%format_cells(1:2,4, &quot;bold&quot;)%&gt;%format_cells(3,4, &quot;bold&quot;) %&gt;%knitr::kable(.,align = &#39;lccc&#39;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Condition</th>
+<th align="center">Adolescent</th>
+<th align="center">Adult</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Control</td>
+<td align="center">4</td>
+<td align="center">2</td>
+<td><strong>3</strong></td>
+</tr>
+<tr class="even">
+<td align="left">Treatment</td>
+<td align="center">4</td>
+<td align="center">2</td>
+<td><strong>3</strong></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center"><strong>4</strong></td>
+<td align="center"><strong>2</strong></td>
+<td><strong>3</strong></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>ggplot(intdat,aes(x=Condition,y=Outcome,color=Age,lty=Age))+
+  geom_line(aes(group=Age),size=1)+
+  geom_point()+scale_y_continuous(limits=c(1,5))</code></pre>
+<p><img src="/post/2019-07-18-basic-stats-u-need-5-two-way-anova_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Notice that each dot corresponds to a cell mean!</li>
+</ul>
+</div>
+<div id="no-interaction-two-main-effects" class="section level3">
+<h3>4. No Interaction, Two Main Effects</h3>
+<pre class="r"><code>intdat&lt;-data.frame(Condition=c(&quot;Treatment&quot;,&quot;Treatment&quot;,&quot;Control&quot;,&quot;Control&quot;), Age=c(&quot;Adolescent&quot;,&quot;Adult&quot;,&quot;Adolescent&quot;,&quot;Adult&quot;),Outcome=c(5,3,3,1))
+intdat$Condition&lt;-as.character(intdat$Condition)
+
+wide&lt;-spread(data=intdat, Age, Outcome)
+tab1&lt;-cbind(wide,&quot; &quot;=rowMeans(wide[,-1]))
+rbind(tab1,c(&quot;&quot;,colMeans(tab1[,-1])))%&gt;%format_cells(3,2:3, &quot;bold&quot;)%&gt;%format_cells(1:2,4, &quot;bold&quot;)%&gt;%format_cells(3,4, &quot;bold&quot;) %&gt;%knitr::kable(.,align = &#39;lccc&#39;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Condition</th>
+<th align="center">Adolescent</th>
+<th align="center">Adult</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Control</td>
+<td align="center">3</td>
+<td align="center">1</td>
+<td><strong>2</strong></td>
+</tr>
+<tr class="even">
+<td align="left">Treatment</td>
+<td align="center">5</td>
+<td align="center">3</td>
+<td><strong>4</strong></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center"><strong>4</strong></td>
+<td align="center"><strong>2</strong></td>
+<td><strong>3</strong></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>ggplot(intdat,aes(x=Condition,y=Outcome,color=Age,lty=Age))+
+  geom_line(aes(group=Age),size=1)+
+  geom_point()+scale_y_continuous(limits=c(1,5))</code></pre>
+<p><img src="/post/2019-07-18-basic-stats-u-need-5-two-way-anova_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="interaction-no-main-effects" class="section level3">
+<h3>5. Interaction, No Main Effects</h3>
+<pre class="r"><code>intdat&lt;-data.frame(Condition=c(&quot;Treatment&quot;,&quot;Treatment&quot;,&quot;Control&quot;,&quot;Control&quot;), Age=c(&quot;Adolescent&quot;,&quot;Adult&quot;,&quot;Adolescent&quot;,&quot;Adult&quot;),Outcome=c(2,4,4,2))
+intdat$Condition&lt;-as.character(intdat$Condition)
+
+wide&lt;-spread(data=intdat, Age, Outcome)
+tab1&lt;-cbind(wide,&quot; &quot;=rowMeans(wide[,-1]))
+rbind(tab1,c(&quot;&quot;,colMeans(tab1[,-1])))%&gt;%format_cells(3,2:3, &quot;bold&quot;)%&gt;%format_cells(1:2,4, &quot;bold&quot;)%&gt;%format_cells(3,4, &quot;bold&quot;) %&gt;%knitr::kable(.,align = &#39;lccc&#39;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Condition</th>
+<th align="center">Adolescent</th>
+<th align="center">Adult</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Control</td>
+<td align="center">4</td>
+<td align="center">2</td>
+<td><strong>3</strong></td>
+</tr>
+<tr class="even">
+<td align="left">Treatment</td>
+<td align="center">2</td>
+<td align="center">4</td>
+<td><strong>3</strong></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center"><strong>3</strong></td>
+<td align="center"><strong>3</strong></td>
+<td><strong>3</strong></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>ggplot(intdat,aes(x=Condition,y=Outcome,color=Age,lty=Age))+
+  geom_line(aes(group=Age),size=1)+
+  geom_point()+scale_y_continuous(limits=c(1,5))</code></pre>
+<p><img src="/post/2019-07-18-basic-stats-u-need-5-two-way-anova_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="interaction-and-main-effect-of-treatment" class="section level3">
+<h3>6. Interaction and Main Effect of Treatment</h3>
+<pre class="r"><code>intdat&lt;-data.frame(Condition=c(&quot;Treatment&quot;,&quot;Treatment&quot;,&quot;Control&quot;,&quot;Control&quot;), Age=c(&quot;Adolescent&quot;,&quot;Adult&quot;,&quot;Adolescent&quot;,&quot;Adult&quot;),Outcome=c(5,3,1,3))
+intdat$Condition&lt;-as.character(intdat$Condition)
+
+wide&lt;-spread(data=intdat, Age, Outcome)
+tab1&lt;-cbind(wide,&quot; &quot;=rowMeans(wide[,-1]))
+rbind(tab1,c(&quot;&quot;,colMeans(tab1[,-1])))%&gt;%format_cells(3,2:3, &quot;bold&quot;)%&gt;%format_cells(1:2,4, &quot;bold&quot;)%&gt;%format_cells(3,4, &quot;bold&quot;) %&gt;%knitr::kable(.,align = &#39;lccc&#39;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Condition</th>
+<th align="center">Adolescent</th>
+<th align="center">Adult</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Control</td>
+<td align="center">1</td>
+<td align="center">3</td>
+<td><strong>2</strong></td>
+</tr>
+<tr class="even">
+<td align="left">Treatment</td>
+<td align="center">5</td>
+<td align="center">3</td>
+<td><strong>4</strong></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center"><strong>3</strong></td>
+<td align="center"><strong>3</strong></td>
+<td><strong>3</strong></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>ggplot(intdat,aes(x=Condition,y=Outcome,color=Age,lty=Age))+
+  geom_line(aes(group=Age),size=1)+
+  geom_point()+scale_y_continuous(limits=c(1,5))</code></pre>
+<p><img src="/post/2019-07-18-basic-stats-u-need-5-two-way-anova_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="interaction-and-main-effect-of-age" class="section level3">
+<h3>7. Interaction and Main Effect of Age</h3>
+<ul>
+<li>Interaction is what’s important, not main effect.</li>
+</ul>
+<pre class="r"><code>intdat&lt;-data.frame(Condition=c(&quot;Treatment&quot;,&quot;Treatment&quot;,&quot;Control&quot;,&quot;Control&quot;), Age=c(&quot;Adolescent&quot;,&quot;Adult&quot;,&quot;Adolescent&quot;,&quot;Adult&quot;),Outcome=c(5,1,3,3))
+intdat$Condition&lt;-as.character(intdat$Condition)
+
+wide&lt;-spread(data=intdat, Age, Outcome)
+tab1&lt;-cbind(wide,&quot; &quot;=rowMeans(wide[,-1]))
+rbind(tab1,c(&quot;&quot;,colMeans(tab1[,-1])))%&gt;%format_cells(3,2:3, &quot;bold&quot;)%&gt;%format_cells(1:2,4, &quot;bold&quot;)%&gt;%format_cells(3,4, &quot;bold&quot;) %&gt;%knitr::kable(.,align = &#39;lccc&#39;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Condition</th>
+<th align="center">Adolescent</th>
+<th align="center">Adult</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Control</td>
+<td align="center">3</td>
+<td align="center">3</td>
+<td><strong>3</strong></td>
+</tr>
+<tr class="even">
+<td align="left">Treatment</td>
+<td align="center">5</td>
+<td align="center">1</td>
+<td><strong>3</strong></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center"><strong>4</strong></td>
+<td align="center"><strong>2</strong></td>
+<td><strong>3</strong></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>ggplot(intdat,aes(x=Condition,y=Outcome,color=Age,lty=Age))+
+  geom_line(aes(group=Age),size=1)+
+  geom_point()+scale_y_continuous(limits=c(1,5))</code></pre>
+<p><img src="/post/2019-07-18-basic-stats-u-need-5-two-way-anova_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="interaction-and-both-main-effects" class="section level3">
+<h3>8. Interaction and Both Main Effects</h3>
+<ul>
+<li>The interaction is what’s important, not main effect.</li>
+</ul>
+<pre class="r"><code>intdat&lt;-data.frame(Condition=c(&quot;Treatment&quot;,&quot;Treatment&quot;,&quot;Control&quot;,&quot;Control&quot;), Age=c(&quot;Adolescent&quot;,&quot;Adult&quot;,&quot;Adolescent&quot;,&quot;Adult&quot;),Outcome=c(5,1,1,1))
+intdat$Condition&lt;-as.character(intdat$Condition)
+
+wide&lt;-spread(data=intdat, Age, Outcome)
+tab1&lt;-cbind(wide,&quot; &quot;=rowMeans(wide[,-1]))
+rbind(tab1,c(&quot;&quot;,colMeans(tab1[,-1])))%&gt;%format_cells(3,2:3, &quot;bold&quot;)%&gt;%format_cells(1:2,4, &quot;bold&quot;)%&gt;%format_cells(3,4, &quot;bold&quot;) %&gt;%knitr::kable(.,align = &#39;lccc&#39;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Condition</th>
+<th align="center">Adolescent</th>
+<th align="center">Adult</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Control</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td><strong>1</strong></td>
+</tr>
+<tr class="even">
+<td align="left">Treatment</td>
+<td align="center">5</td>
+<td align="center">1</td>
+<td><strong>3</strong></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center"><strong>3</strong></td>
+<td align="center"><strong>1</strong></td>
+<td><strong>2</strong></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>ggplot(intdat,aes(x=Condition,y=Outcome,color=Age,lty=Age))+
+  geom_line(aes(group=Age),size=1)+
+  geom_point()+scale_y_continuous(limits=c(1,5))</code></pre>
+<p><img src="/post/2019-07-18-basic-stats-u-need-5-two-way-anova_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="interaction-and-both-main-effects-ii" class="section level3">
+<h3>8. Interaction and Both Main Effects (II)</h3>
+<ul>
+<li>Main effect of age holds for both conditions, so it is interpretable</li>
+</ul>
+<pre class="r"><code>intdat&lt;-data.frame(Condition=c(&quot;Treatment&quot;,&quot;Treatment&quot;,&quot;Control&quot;,&quot;Control&quot;), Age=c(&quot;Adolescent&quot;,&quot;Adult&quot;,&quot;Adolescent&quot;,&quot;Adult&quot;),Outcome=c(5,1,3,1))
+intdat$Condition&lt;-as.character(intdat$Condition)
+
+wide&lt;-spread(data=intdat, Age, Outcome)
+tab1&lt;-cbind(wide,&quot; &quot;=rowMeans(wide[,-1]))
+rbind(tab1,c(&quot;&quot;,colMeans(tab1[,-1])))%&gt;%format_cells(3,2:3, &quot;bold&quot;)%&gt;%format_cells(1:2,4, &quot;bold&quot;)%&gt;%format_cells(3,4, &quot;bold&quot;) %&gt;%knitr::kable(.,align = &#39;lccc&#39;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Condition</th>
+<th align="center">Adolescent</th>
+<th align="center">Adult</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Control</td>
+<td align="center">3</td>
+<td align="center">1</td>
+<td><strong>2</strong></td>
+</tr>
+<tr class="even">
+<td align="left">Treatment</td>
+<td align="center">5</td>
+<td align="center">1</td>
+<td><strong>3</strong></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="center"><strong>4</strong></td>
+<td align="center"><strong>1</strong></td>
+<td><strong>2.5</strong></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>ggplot(intdat,aes(x=Condition,y=Outcome,color=Age,lty=Age))+
+  geom_line(aes(group=Age),size=1)+
+  geom_point()+scale_y_continuous(limits=c(1,5))</code></pre>
+<p><img src="/post/2019-07-18-basic-stats-u-need-5-two-way-anova_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+</div>
+<div id="full-example-effect-of-vitamin-c-on-guinea-pig-tooth-growth" class="section level1">
+<h1>Full Example: Effect of Vitamin C on Guinea Pig Tooth Growth</h1>
+<p>This dataset comes preinstalled with base R. The explanatory variables/factors are <code>dose</code> of vitamin C (three levels: 0.5, 1, or 2 mg/day) and delivery method (<code>supp</code>: orange juice or a vitamin C supplement). The response is a measurement of tooth growth (<code>len</code>, numeric). Let’s look at the data.</p>
+<pre class="r"><code>gpigs&lt;-ToothGrowth
+gpigs$dose&lt;-as.factor(gpigs$dose)
+
+table(gpigs$supp,gpigs$dose)</code></pre>
+<pre><code>##     
+##      0.5  1  2
+##   OJ  10 10 10
+##   VC  10 10 10</code></pre>
+<p>It’s a full-factorial design with ten guineas in each cross. Let’s grab the means to make a table like the one above</p>
+<pre class="r"><code>gpigs%&gt;%group_by(supp,dose)%&gt;%summarize(cellmean=mean(len))%&gt;%spread(supp,cellmean)%&gt;%
+  rowwise()%&gt;%mutate(mean=mean(c(OJ,VC)))%&gt;%ungroup()%&gt;%
+  bind_rows(summarize_all(.,.funs=mean))</code></pre>
+<pre><code>## # A tibble: 4 x 4
+##   dose     OJ    VC  mean
+##   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.5    13.2  7.98  10.6
+## 2 1      22.7 16.8   19.7
+## 3 2      26.1 26.1   26.1
+## 4 &lt;NA&gt;   20.7 17.0   18.8</code></pre>
+<div id="guinea-pig-tooth-growth-interaction-plot" class="section level3">
+<h3>Guinea Pig Tooth Growth Interaction Plot</h3>
+<pre class="r"><code>gpigs %&gt;% group_by(supp,dose) %&gt;%summarize(length = mean(len))%&gt;%
+ggplot() + aes(x = supp, y = length, color = dose) + geom_line(aes(group = dose)) + geom_point()</code></pre>
+<p><img src="/post/2019-07-18-basic-stats-u-need-5-two-way-anova_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="plot-of-the-cell-means-interaction-plot" class="section level3">
+<h3>Plot of the cell means (interaction plot)</h3>
+<p>Or plot them like this:</p>
+<pre class="r"><code>gpigs %&gt;% group_by(supp,dose) %&gt;%summarize(length = mean(len))%&gt;%
+ggplot() + aes(x = dose, y = length, color = supp) + geom_line(aes(group = supp)) + geom_point()</code></pre>
+<p><img src="/post/2019-07-18-basic-stats-u-need-5-two-way-anova_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hypotheses" class="section level3">
+<h3>Hypotheses</h3>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(H_0:\)</span> No effect of supplement type: <span class="math inline">\(\mu_{OJ}=\mu_{VC}\)</span> <span class="math inline">\(H_A:\)</span> Effect of dose: at least group mean one differs</p></li>
+<li><p><span class="math inline">\(H_0:\)</span> No effect of dose: <span class="math inline">\(\mu_{0.5mg}=\mu_{1mg}=\mu_{2mg}\)</span> <span class="math inline">\(H_A:\)</span> Effect of dose: at least group mean one differs</p></li>
+<li><p><span class="math inline">\(H_0:\)</span> No <span class="math inline">\(dose \times supplement\)</span> interaction effect <span class="math inline">\(H_A:\)</span> There is a significant interaction</p></li>
+</ol>
+</div>
+<div id="assumptions-1" class="section level3">
+<h3>Assumptions</h3>
+<pre class="r"><code>library(car)
+
+fit&lt;-lm(len ~ dose * supp, data=gpigs)
+leveneTest(fit)</code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  5  1.7086 0.1484
+##       54</code></pre>
+<pre class="r"><code>#normality looks OK
+qplot(fit$residuals,bins=8)+xlab(&quot;Residuals&quot;) </code></pre>
+<p><img src="/post/2019-07-18-basic-stats-u-need-5-two-way-anova_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>shapiro.test(fit$residuals)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  fit$residuals
+## W = 0.98499, p-value = 0.6694</code></pre>
+</div>
+<div id="sum-of-squares-calculations" class="section level2">
+<h2>Sum of Squares Calculations</h2>
+<div id="sums-of-squares-for-supplement-type-oj-vs-vc" class="section level3">
+<h3>Sums of Squares for Supplement Type (OJ vs VC)</h3>
+<p><span class="math display">\[
+\begin{aligned}
+SS_{supp}&amp;=rb\sum_i^{2}(\bar x_{i\bullet\bullet}-\bar x_{\bullet\bullet\bullet})^2\\
+&amp;=10*3*\sum_i^{2}(\bar x_{i\bullet\bullet}-18.813)^2\\
+&amp;=10*3*\left((20.663-18.813)^2+(16.963-18.813)^2\right)\\
+&amp;=205.35
+\end{aligned}
+\]</span></p>
+<ul>
+<li>Overall effect of supplement type:</li>
+</ul>
+<pre class="r"><code>fit&lt;-lm(len ~ supp, data=gpigs)
+Anova(fit)</code></pre>
+<pre><code>## Anova Table (Type II tests)
+## 
+## Response: len
+##           Sum Sq Df F value  Pr(&gt;F)  
+## supp       205.4  1  3.6683 0.06039 .
+## Residuals 3246.9 58                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="sums-of-squares-for-dose-0.5-1-or-2" class="section level3">
+<h3>Sums of Squares for Dose (0.5, 1, or 2)</h3>
+<p><span class="math display">\[
+\begin{aligned}
+SS_{dose}&amp;=ra\sum_j^{3}(\bar x_{\bullet j \bullet}-\bar x_{\bullet\bullet\bullet})^2\\
+&amp;=10\times 2\times \sum_j^{3}(\bar x_{\bullet j\bullet}-18.813)^2\\
+&amp;=20\times\left((10.605-18.813)^2+(19.735-18.813)^2+(26.1-18.813)^2\right)\\
+&amp;=2426.434
+\end{aligned}
+\]</span></p>
+<ul>
+<li>Overall effect of dose:</li>
+</ul>
+<pre class="r"><code>fit&lt;-lm(len ~ dose, data=gpigs)
+Anova(fit)</code></pre>
+<pre><code>## Anova Table (Type II tests)
+## 
+## Response: len
+##           Sum Sq Df F value    Pr(&gt;F)    
+## dose      2426.4  2  67.416 9.533e-16 ***
+## Residuals 1025.8 57                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+<div id="example-two-way-anova-no-interaction" class="section level2">
+<h2>Example: Two-Way ANOVA, no Interaction</h2>
+<ul>
+<li>Effect of supplement type, <em>controlling for dose</em> (it’s significant now!)</li>
+<li>Effect of dose, <em>controlling for supplement type</em></li>
+</ul>
+<pre class="r"><code>fit&lt;-lm(len ~ supp + dose, data=gpigs)
+Anova(fit)</code></pre>
+<pre><code>## Anova Table (Type II tests)
+## 
+## Response: len
+##            Sum Sq Df F value    Pr(&gt;F)    
+## supp       205.35  1  14.017 0.0004293 ***
+## dose      2426.43  2  82.811 &lt; 2.2e-16 ***
+## Residuals  820.43 56                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="calculation-of-dose-times-supplement-interaction-effect" class="section level2">
+<h2>Calculation of Dose <span class="math inline">\(\times\)</span> Supplement Interaction Effect</h2>
+<p>Shortcut: </p>
+<ul>
+<li><span class="math inline">\(SS_{cells}=r\sum_i^a\sum_j^b(\bar x_{ij\bullet}-\bar x_{\bullet\bullet\bullet})^2\)</span> (deviations of cell means around grand mean)</li>
+<li><span class="math inline">\(SS_{A\times B}=SS_{cells}-SS_{A}-SS_{B}\)</span> </li>
+</ul>
+<p><span class="math display">\[
+\begin{aligned}
+SS_{cells}&amp;=10\sum_i^2\sum_j^3(\bar x_{ij\bullet}-18.813)^2\\
+&amp;=10 \times ((13.23-18.813)^2+(22.7-18.813)^2+(26.06-18.813)^2+  \\
+&amp; \ \ \ \ \ \ ...(7.98-18.813)^2+(16.77-18.813)^2+(26.14-18.813)^2)\\
+&amp;=10\times (31.170+15.109+52.519+4.174+53.685)\\
+&amp;=2740.103
+\end{aligned}
+\]</span></p>
+<blockquote>
+<ul>
+<li><span class="math inline">\(SS_{supp \times dose}=SS_{cells}-SS_{supp}-SS_{dose}\)</span></li>
+<li><span class="math inline">\(SS_{supp \times dose}=2740.103-205.35-2426.434=\mathbf{108.32}\)</span></li>
+</ul>
+</blockquote>
+</div>
+<div id="example-two-way-anova-with-interaction" class="section level2">
+<h2>Example: Two-Way ANOVA with Interaction</h2>
+<ul>
+<li>Effect of <span class="math inline">\(supplement\)</span>, controlling for dose</li>
+<li>Effect of <span class="math inline">\(dose\)</span>, controlling for supplement</li>
+<li>Effect of <span class="math inline">\(dose\times supp\)</span></li>
+</ul>
+<pre class="r"><code>fit&lt;-lm(len ~ supp + dose + supp:dose, data=gpigs) #or just len~supp*dose
+Anova(fit)</code></pre>
+<pre><code>## Anova Table (Type II tests)
+## 
+## Response: len
+##            Sum Sq Df F value    Pr(&gt;F)    
+## supp       205.35  1  15.572 0.0002312 ***
+## dose      2426.43  2  92.000 &lt; 2.2e-16 ***
+## supp:dose  108.32  2   4.107 0.0218603 *  
+## Residuals  712.11 54                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<hr />
+<pre class="r"><code>#Here&#39;s a quick way to get all means
+model.tables(aov(fit), type = &quot;means&quot;)</code></pre>
+<pre><code>## Tables of means
+## Grand mean
+##          
+## 18.81333 
+## 
+##  supp 
+## supp
+##     OJ     VC 
+## 20.663 16.963 
+## 
+##  dose 
+## dose
+##    0.5      1      2 
+## 10.605 19.735 26.100 
+## 
+##  supp:dose 
+##     dose
+## supp 0.5   1     2    
+##   OJ 13.23 22.70 26.06
+##   VC  7.98 16.77 26.14</code></pre>
+</div>
+<div id="full-anova-table-for-guinea-pig-example" class="section level2">
+<h2>Full ANOVA table for Guinea Pig example</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="left">SS</th>
+<th align="center">df</th>
+<th align="left">MS</th>
+<th align="left">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">dose</td>
+<td align="left">2426.43</td>
+<td align="center">2</td>
+<td align="left"><span class="math inline">\(\frac{2426.43}{2}=1213.215\)</span></td>
+<td align="left"><span class="math inline">\(\frac{1213.215}{13.18}=92.05\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">supp</td>
+<td align="left">205.35</td>
+<td align="center">1</td>
+<td align="left"><span class="math inline">\(\frac{205.35}{1}=205.35\)</span></td>
+<td align="left"><span class="math inline">\(\frac{205.35}{13.18}=15.58\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">dose<span class="math inline">\(\times\)</span>supp</td>
+<td align="left">108.32</td>
+<td align="center">2</td>
+<td align="left"><span class="math inline">\(\frac{108.32}{2}=54.16\)</span></td>
+<td align="left"><span class="math inline">\(\frac{54.16}{13.18}=4.11\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">error</td>
+<td align="left">712.11</td>
+<td align="center">54</td>
+<td align="left"><span class="math inline">\(\frac{712.11}{54}=13.18\)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">total</td>
+<td align="left">3452.21</td>
+<td align="center">59</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<ul>
+<li>Critical value for main effect of <em>dose</em>: <span class="math inline">\(F^*_{(2,54)}= 3.16\overbrace{\approx 3.18}^{table\ F_{(2,50)}}\)</span></li>
+<li>Critical value for main effect of <em>supplement</em>: <span class="math inline">\(F^*_{(1,54)}= 4.02\overbrace{\approx 4.03}^{table\ F_{(1,50)}}\)</span></li>
+<li>Critical value for interaction effect: <span class="math inline">\(F^*_{(2,54)}= 3.16\overbrace{\approx 3.18}^{table\ F_{(2,50)}}\)</span></li>
+<li><strong>Decisions?</strong></li>
+</ul>
+</blockquote>
+</div>
+<div id="post-hoc-tests-only-do-comparisons-of-interest" class="section level2">
+<h2>Post Hoc Tests (only do comparisons of interest!)</h2>
+<pre class="r"><code>TukeyHSD(aov(fit))</code></pre>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = fit)
+## 
+## $supp
+##       diff       lwr       upr     p adj
+## VC-OJ -3.7 -5.579828 -1.820172 0.0002312
+## 
+## $dose
+##         diff       lwr       upr   p adj
+## 1-0.5  9.130  6.362488 11.897512 0.0e+00
+## 2-0.5 15.495 12.727488 18.262512 0.0e+00
+## 2-1    6.365  3.597488  9.132512 2.7e-06
+## 
+## $`supp:dose`
+##                diff        lwr        upr     p adj
+## VC:0.5-OJ:0.5 -5.25 -10.048124 -0.4518762 0.0242521
+## OJ:1-OJ:0.5    9.47   4.671876 14.2681238 0.0000046
+## VC:1-OJ:0.5    3.54  -1.258124  8.3381238 0.2640208
+## OJ:2-OJ:0.5   12.83   8.031876 17.6281238 0.0000000
+## VC:2-OJ:0.5   12.91   8.111876 17.7081238 0.0000000
+## OJ:1-VC:0.5   14.72   9.921876 19.5181238 0.0000000
+## VC:1-VC:0.5    8.79   3.991876 13.5881238 0.0000210
+## OJ:2-VC:0.5   18.08  13.281876 22.8781238 0.0000000
+## VC:2-VC:0.5   18.16  13.361876 22.9581238 0.0000000
+## VC:1-OJ:1     -5.93 -10.728124 -1.1318762 0.0073930
+## OJ:2-OJ:1      3.36  -1.438124  8.1581238 0.3187361
+## VC:2-OJ:1      3.44  -1.358124  8.2381238 0.2936430
+## OJ:2-VC:1      9.29   4.491876 14.0881238 0.0000069
+## VC:2-VC:1      9.37   4.571876 14.1681238 0.0000058
+## VC:2-OJ:2      0.08  -4.718124  4.8781238 1.0000000</code></pre>
+</div>
+<div id="r2-eta2" class="section level2">
+<h2><span class="math inline">\(R^2\)</span> (<span class="math inline">\(\eta^2\)</span>)</h2>
+<p><span class="math display">\[
+\begin{aligned}
+R^2&amp;=1-\frac{SS_E}{SS_T}\\
+&amp;=1-\frac{712.11}{205.35+2426.43+108.32+712.11}\\
+&amp;=1-\frac{712.11}{3452.21}\\
+&amp;=.794
+\end{aligned}
+\]</span></p>
+<pre class="r"><code>summary(fit)$r.sq</code></pre>
+<pre><code>## [1] 0.7937246</code></pre>
+<pre class="r"><code>summary(fit)$adj.r.sq</code></pre>
+<pre><code>## [1] 0.774625</code></pre>
+</div>
+<div id="type-iiiiii-sums-of-squares" class="section level2">
+<h2>Type I/II/III sums of squares</h2>
+<p>Since you are reading about two-way ANOVA, chances are good that you have come across the terms <em>Type I</em>, <em>Type II</em>, and <em>Type II</em> sums of squares. This issue does not effect one-way ANOVA, but when you have multiple factors competing to explain a pool of total variance, there are a few different ways you can do it. <strong>When the design is balanced</strong> (i.e., when you have a equal number of observations in each cell, as in the guinea pig data above), <strong>the type of sums of squares</strong> you use won’t matter (they <strong>will all be the same</strong>; I’ll show you why in a sec). However, in unbalanced designs, different sums of squares can lead to different F-tests, which can lead a factor to appear significant in some circumstances (e.g., using Type I SS), but not significant in others (e.g., using Type III SS). I’ll show you an example of this as well. There is no <em>correct</em> way (it all depends on the question you want to ask), but you should certainly be aware of the distinction and report your results accordingly!</p>
+<p>By way of an overview, Type I sums of squares are <em>sequential</em>. This</p>
+<p>Let’s keep it simple and just use the <code>mtcars</code> dataset (if you are unfamiliar, run <code>?mtcars</code>). We will look to see whether the impact of two factors on a car’s gas mileage: transmission type (<code>am</code>, automatic or manual) and number of cylinders. Notice the unbalanced design.</p>
+<pre class="r"><code>cars&lt;-mtcars%&gt;%select(mpg,cyl,am)%&gt;%mutate(cyl=as.factor(cyl),am=as.factor(am))
+
+cars%&gt;%count(cyl,am)</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   cyl   am        n
+##   &lt;fct&gt; &lt;fct&gt; &lt;int&gt;
+## 1 4     0         3
+## 2 4     1         8
+## 3 6     0         4
+## 4 6     1         3
+## 5 8     0        12
+## 6 8     1         2</code></pre>
+<div id="type-i-ss" class="section level3">
+<h3>Type I SS</h3>
+<p>By default, the <code>anova()</code> function in R will report Type I SS.</p>
+<pre class="r"><code>options(contrasts=c(&quot;contr.sum&quot;,&quot;contr.poly&quot;)) #this will only affect type III; I&#39;ll explain shortly
+
+fit12&lt;-lm(mpg~am*cyl,data=cars)
+fit21&lt;-lm(mpg~cyl*am,data=cars)
+
+anova(fit12)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: mpg
+##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## am         1 405.15  405.15 44.0641 4.847e-07 ***
+## cyl        2 456.40  228.20 24.8190 9.355e-07 ***
+## am:cyl     2  25.44   12.72  1.3832    0.2686    
+## Residuals 26 239.06    9.19                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>anova(fit21)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: mpg
+##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## cyl        2 824.78  412.39 44.8517 3.725e-09 ***
+## am         1  36.77   36.77  3.9988   0.05608 .  
+## cyl:am     2  25.44   12.72  1.3832   0.26861    
+## Residuals 26 239.06    9.19                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Wow, vastly different answers depending on which factor you enter first! Why is this? First, notice that the raw sums of squares calculations for each factor (using the formulas from above) do not add up to the total:</p>
+<pre class="r"><code>cars%&gt;%mutate(grand_mean=mean(mpg))%&gt;%
+  group_by(am,cyl)%&gt;%mutate(cell_mean=mean(mpg))%&gt;%ungroup()%&gt;%
+  group_by(am)%&gt;%mutate(am_mean=mean(mpg))%&gt;%ungroup()%&gt;%
+  group_by(cyl)%&gt;%mutate(cyl_mean=mean(mpg))%&gt;%ungroup()%&gt;%
+  summarize(SS_am=sum((am_mean-grand_mean)^2),
+            SS_cyl=sum((cyl_mean-grand_mean)^2),
+            SS_T=sum((mpg-grand_mean)^2),
+            SS_E=sum((mpg-cell_mean)^2))</code></pre>
+<pre><code>## # A tibble: 1 x 4
+##   SS_am SS_cyl  SS_T  SS_E
+##   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  405.   825. 1126.  239.</code></pre>
+<p>This happens in unbalanced designs!</p>
+<div id="why-does-this-happen" class="section level4">
+<h4>Why does this happen?</h4>
+<p>In standard ANOVA, an assumption is made that the factors are orthogonal (i.e., uncorrelated). Indeed, if this is not so, then the ratio of between-to-within variances will not follow an F distribution. In an unbalanced design, unequal cell sizes induce a dependence between factors: this means the simplified SS calculations above will not work!</p>
+</div>
+<div id="writing-out-anova-models" class="section level4">
+<h4>Writing out ANOVA models</h4>
+<p>To see why this is, think about all of the possible ANOVA models for our outcome data, where <span class="math inline">\(\mu\)</span> is the grand mean, <span class="math inline">\(\alpha_j\)</span> is the effect for level <span class="math inline">\(j\)</span> of factor A (e.g., <code>am</code>), <span class="math inline">\(\beta_k\)</span> is the effect for level <span class="math inline">\(k\)</span> of factor B (e.g., <code>cyl</code>), <span class="math inline">\((\alpha\beta)_{jk}\)</span> is the effect for cell <span class="math inline">\(j,k\)</span>, and <span class="math inline">\(e_{ijk}\)</span> is the error term for person <span class="math inline">\(i\)</span>, (i.e., for the full model, <span class="math inline">\(e_{ijk}=y_{ijk}-[\mu+\alpha_j+\beta_k+(\alpha\beta)_{jk}]\)</span>). Here, let the effect of transmission (<code>am</code>) be <span class="math inline">\(\alpha\)</span> and the effect of cylinder (<code>cyl</code>) be <span class="math inline">\(\beta\)</span>.</p>
+<p><span class="math display">\[
+\begin{array}{r c l}
+y_{ijk}&amp;=&amp;\mu+\alpha_j+\beta_k+(\alpha\beta)_{jk} &amp; (1) \\
+y_{ijk}&amp;=&amp;\mu+\alpha_j+\beta_k+e_{ijk} &amp; (2) \\
+y_{ijk}&amp;=&amp;\mu+\alpha_j+(\alpha\beta)_{jk}+e_{ijk} &amp; (3) \\
+y_{ijk}&amp;=&amp;\mu+\beta_k+(\alpha\beta)_{jk}+e_{ijk} &amp; (4) \\
+y_{ijk}&amp;=&amp;\mu+\alpha_j+e_{ijk} &amp; (5) \\
+y_{ijk}&amp;=&amp;\mu+\beta_k+e_{ijk} &amp; (6) \\
+y_{ijk}&amp;=&amp;\mu+e_{ijk} &amp; (7) \\
+\end{array}
+\]</span></p>
+<p>We will say that any model (2-7) is a <code>reduced</code> form of any model above it (1-6).</p>
+<p>For unbalanced designs, the typical F test (<span class="math inline">\(\frac{MSX}{MSE}\)</span>) does not work. Instead, this F statistic is used to compare two models</p>
+<p><span class="math display">\[
+F=\frac{SSE_{Reduced}-SSE_{Full}}{df_{Reduced}-df_{Full}}\div \frac{SSE_{Full}}{df_{Reduced}}
+\]</span></p>
+<p>For example, to compare models 6 and 7, we do</p>
+<pre class="r"><code>mod7&lt;-lm(mpg~1,data=cars)
+mod6&lt;-lm(mpg~cyl,data=cars)
+anova(mod7,mod6)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: mpg ~ 1
+## Model 2: mpg ~ cyl
+##   Res.Df     RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1     31 1126.05                                  
+## 2     29  301.26  2    824.78 39.697 4.979e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Here, confusingly, RSS is the same as SSE (i.e., the error SS in each model). The reduction in SSE is how much additional error the full model accounts for over the reduced model. Notice that by adding the factor <code>cyl</code> we have accounted for 824.78 sums of squares more than the null model (i.e., using nothing). You can do this for any single factor, and this is what you would get from a standard one-way ANOVA:</p>
+<pre class="r"><code>summary(aov(mpg~cyl,data=cars))</code></pre>
+<pre><code>##             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## cyl          2  824.8   412.4    39.7 4.98e-09 ***
+## Residuals   29  301.3    10.4                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>When you add cylinders first, there are only 301.3 SS left over. How many of those can transmission type account for? We need to compare model 6 (the one with cylinders) to model 2 (the one with main effects of transmission and cylinders):</p>
+<pre class="r"><code>mod2&lt;-lm(mpg~cyl+am,data=cars)
+anova(mod6,mod2)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: mpg ~ cyl
+## Model 2: mpg ~ cyl + am
+##   Res.Df    RSS Df Sum of Sq      F  Pr(&gt;F)  
+## 1     29 301.26                              
+## 2     28 264.50  1    36.767 3.8922 0.05846 .
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>It accounts for 36.767 of the remaining SS.</p>
+<!--We can do manually too, just for clarity's sake. Let's manually remove the effect of cylinder (i.e., subtract the cylinder mean from each observation, $y_{ijk}-[\mu+\beta_k]$) and, having removed the cylinder effect, see how much of the residual variation in `mpg` we can account for using `am`.
+
+
+```r
+cars%>%mutate(grand_mean=mean(mpg))%>%
+  group_by(am)%>%mutate(am_mean=mean(mpg))%>%ungroup()%>%
+  group_by(cyl)%>%mutate(cyl_mean=mean(mpg))%>%ungroup()%>%
+  mutate(mpg_res=mpg-cyl_mean)%>% #remove effect of cylinders
+  mutate(grand_mean=mean(mpg_res))%>%
+  group_by(am)%>%mutate(am_mean=mean(mpg_res))%>%ungroup()%>%
+  summarize(sum((am_mean-grand_mean)^2))
+```
+
+```
+## # A tibble: 1 x 1
+##   `sum((am_mean - grand_mean)^2)`
+##                             <dbl>
+## 1                            26.7
+```
+
+```r
+anova(lm(mod6$residuals~am,data=cars))
+```
+
+```
+## Analysis of Variance Table
+## 
+## Response: mod6$residuals
+##           Df  Sum Sq Mean Sq F value Pr(>F)  
+## am         1  26.724 26.7241  2.9203 0.0978 .
+## Residuals 30 274.538  9.1513                 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+-->
+<p>An insignificant amount, above and beyond the effect of cylinders! But if you remove the effect of transmission first, cylinders is still significant. We can test it by comparing model 5 (just <code>am</code>) to model 2 (<code>am</code> and <code>cyl</code>)</p>
+<pre class="r"><code>mod5&lt;-lm(mpg~am,data=cars)
+anova(mod5,mod2)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: mpg ~ am
+## Model 2: mpg ~ cyl + am
+##   Res.Df   RSS Df Sum of Sq      F   Pr(&gt;F)    
+## 1     30 720.9                                 
+## 2     28 264.5  2     456.4 24.158 8.01e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>This is exactly what we got for the SS with <code>fit12</code> above. The interaction test an can be gotten by comparing models (1) and (2)</p>
+<pre class="r"><code>mod1&lt;-lm(mpg~am*cyl,data=cars)
+anova(mod2,mod1)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: mpg ~ cyl + am
+## Model 2: mpg ~ am * cyl
+##   Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
+## 1     28 264.50                           
+## 2     26 239.06  2    25.436 1.3832 0.2686</code></pre>
+<p>Notice that it doesn’t matter whether we enter <code>am</code> or <code>cyl</code> first: we are interested in how much of what is left (after entering <em>both</em> separately) can be accounted for by their interaction. Indeed, the interaction SS will always be the same (for Type I, II, and III SS) because it is always entered last.</p>
+<div id="type-ii-ss" class="section level5">
+<h5>Type II SS</h5>
+<p>We saw that Type I sums of squares are sequential, and the corresponding F-tests reflect a test of whether a significant amount of variation is explained by each additional term/factor added to the model. Type II sums of squares tests the effect of factor A <em>after B is in the model</em> and the effect of factor B <em>after A is in the model</em>. It’s like both factors are tested as the second step of a Type I SS calculation. Above, we saw that when <code>am</code> was entered second, its SS was 36.8, while when <code>cyl</code> was entered second, its SS was 456.4.</p>
+<pre class="r"><code>Anova(fit12,type=2)</code></pre>
+<pre><code>## Anova Table (Type II tests)
+## 
+## Response: mpg
+##           Sum Sq Df F value    Pr(&gt;F)    
+## am         36.77  1  3.9988   0.05608 .  
+## cyl       456.40  2 24.8190 9.355e-07 ***
+## am:cyl     25.44  2  1.3832   0.26861    
+## Residuals 239.06 26                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Type II SS give you these (order of entry does not matter). Notice that the SS for the interaction does not change! Notice also that neither of the main effects includes/controls for the interaction. Just to illustrate, the Type II SS can be computed by comparing model 2 with models 5 and 6.</p>
+<pre class="r"><code>anova(mod5,mod2)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: mpg ~ am
+## Model 2: mpg ~ cyl + am
+##   Res.Df   RSS Df Sum of Sq      F   Pr(&gt;F)    
+## 1     30 720.9                                 
+## 2     28 264.5  2     456.4 24.158 8.01e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>anova(mod6,mod2)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: mpg ~ cyl
+## Model 2: mpg ~ cyl + am
+##   Res.Df    RSS Df Sum of Sq      F  Pr(&gt;F)  
+## 1     29 301.26                              
+## 2     28 264.50  1    36.767 3.8922 0.05846 .
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>If the interaction is not significant, then Type II gives more powerful tests of the main effects than does Type III.</p>
+</div>
+<div id="type-iii-ss" class="section level5">
+<h5>Type III SS</h5>
+<p>Type III SS (also known as <em>partial</em> SS) is the most commonly reported SS. The only difference between it and Type II is that in addition to the effect not being test, the interaction is entered before testing the effect of interest. This means when you test the effect of factor A, you are looking at how much variability factor A alone can explain <em>after</em> removing variability associated with factor B <em>and</em> the <span class="math inline">\(A\times B\)</span> interaction. Essentially, Type III tests each main effect and interaction after <em>everything else</em> has been included in the model.</p>
+<p>This is kind of weird: we are violating the (principle of marginality[<a href="https://en.wikipedia.org/wiki/Principle_of_marginality" class="uri">https://en.wikipedia.org/wiki/Principle_of_marginality</a>]) when we leave out the main effect of a term but include its interaction. This actually has important consequences we will consider below.</p>
+<p>The Type III SS for each main effect will be lower than in the Type II scenario:</p>
+<pre class="r"><code>options(contrasts=c(&quot;contr.sum&quot;,&quot;contr.poly&quot;))
+
+Anova(lm(mpg~am*cyl,data=cars),type=3)</code></pre>
+<pre><code>## Anova Table (Type III tests)
+## 
+## Response: mpg
+##             Sum Sq Df  F value    Pr(&gt;F)    
+## (Intercept) 9027.2  1 981.7986 &lt; 2.2e-16 ***
+## am            29.9  1   3.2484    0.0831 .  
+## cyl          410.5  2  22.3210 2.274e-06 ***
+## am:cyl        25.4  2   1.3832    0.2686    
+## Residuals    239.1 26                       
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>We went from 36.8 to 29.9 for the main effect of <code>am</code> and from 456.4 to 410.5 for the main effect of <code>cyl</code>. The interaction SS is unchanged because it is always calculated last. Using our model notation above, we would compare model 1 (full model with interaction) to models 3 and 4 (models dropping one main effect at a time).</p>
+</div>
+</div>
+<div id="whats-the-deal-with-the-contr.sum" class="section level4">
+<h4>What’s the deal with the <code>contr.sum</code>?</h4>
+<p>Type III SS remove the effect of the interaction when testing each main effect, thus violating the priciple of marginality. The only way this works in R is if you use orthogonal (independent) contrasts. In matrix algebra, two vectors are orthogonal when their dot product is zero. Let’s show that dummy coding does not produce this desideratum, while effect coding (“sum” contrasts) does. First, what does our Type III SS ANOVA look like when we use traditional dummy coding (i.e., “treatment” contrasts)?</p>
+<pre class="r"><code>options(contrasts=c(&quot;contr.treatment&quot;,&quot;contr.poly&quot;)) #These are the default contrasts in R
+
+Anova(lm(mpg~am*cyl,data=cars),type=3)</code></pre>
+<pre><code>## Anova Table (Type III tests)
+## 
+## Response: mpg
+##              Sum Sq Df  F value    Pr(&gt;F)    
+## (Intercept) 1573.23  1 171.1040 6.057e-13 ***
+## am            58.43  1   6.3549 0.0181761 *  
+## cyl          167.71  2   9.1200 0.0009978 ***
+## am:cyl        25.44  2   1.3832 0.2686140    
+## Residuals    239.06 26                       
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Very different answers than before! Specifically, using this incorrect specification, results show that <code>am</code> is significant. Let’s see what the design matrix looks like.</p>
+<pre class="r"><code>mod&lt;-model.matrix(lm(mpg~am*cyl,data=cars))
+mod&lt;-unique(cbind(AM=cars$am,CYL=cars$cyl,mod))
+
+mod</code></pre>
+<pre><code>##    AM CYL (Intercept) am1 cyl6 cyl8 am1:cyl6 am1:cyl8
+## 1   2   2           1   1    1    0        1        0
+## 3   2   1           1   1    0    0        0        0
+## 4   1   2           1   0    1    0        0        0
+## 5   1   3           1   0    0    1        0        0
+## 8   1   1           1   0    0    0        0        0
+## 29  2   3           1   1    0    1        0        1</code></pre>
+<p>When dummy coding, the intercept represents the reference category for both variables (i.e., AM=1, CYL=1, which means an automatic transmission with 4 cylinders). To represent additional factor levels, columns representing each factor level include a 1 if applicable. However, these columns are not orthogonal to each other. For example, let’s look at the dot product for columns 3 and 4 (it’s non-zero, so these columns are no orthogonal). The products of the their coefficients does not sum to zero:</p>
+<pre class="r"><code>mod[,3]%*%mod[,4]</code></pre>
+<pre><code>##      [,1]
+## [1,]    3</code></pre>
+<p>What would the design matrix look like for sum contrasts?</p>
+<pre class="r"><code>options(contrasts=c(&quot;contr.sum&quot;,&quot;contr.poly&quot;))
+
+mod&lt;-model.matrix(lm(mpg~am*cyl,data=cars))
+mod&lt;-unique(cbind(AM=cars$am,CYL=cars$cyl,mod))
+
+mod</code></pre>
+<pre><code>##    AM CYL (Intercept) am1 cyl1 cyl2 am1:cyl1 am1:cyl2
+## 1   2   2           1  -1    0    1        0       -1
+## 3   2   1           1  -1    1    0       -1        0
+## 4   1   2           1   1    0    1        0        1
+## 5   1   3           1   1   -1   -1       -1       -1
+## 8   1   1           1   1    1    0        1        0
+## 29  2   3           1  -1   -1   -1        1        1</code></pre>
+<p>Notice that each row sums to zero. In a regression framework, this makes the tested effects deviations from the grand mean, rather than deviations from the baseline/reference category mean. In this way of coding, however, the columns are of the design matrix are independent.</p>
+<pre class="r"><code>mod[,3]%*%mod[,4]</code></pre>
+<pre><code>##      [,1]
+## [1,]    0</code></pre>
+<p>For Type III SS, since the principle of marginality is violated, we must use orthogonal contrasts.</p>
+</div>
+</div>
+</div>
+</div>

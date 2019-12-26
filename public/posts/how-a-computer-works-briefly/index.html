@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.60.1" />
+
+    
+    
+    
+
+<title>How a computer works, briefly. • Nathaniel Woodward</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How a computer works, briefly."/>
+<meta name="twitter:description" content="This post is going to be a long one, because I need to be thorough and deliberate if I am to be understood; my target audience consists of people who don&#39;t know much about computers, and frankly I&#39;m just a dilettante with no formal training on the subject."/>
+
+<meta property="og:title" content="How a computer works, briefly." />
+<meta property="og:description" content="This post is going to be a long one, because I need to be thorough and deliberate if I am to be understood; my target audience consists of people who don&#39;t know much about computers, and frankly I&#39;m just a dilettante with no formal training on the subject." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/how-a-computer-works-briefly/" />
+<meta property="article:published_time" content="2014-02-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2014-02-02T00:00:00+00:00" /><meta property="og:site_name" content=" " />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.b35dd3e835aecd417af94297503d23c4aa8c639318e0f4ae65e8a1caaaf41707.css" integrity="sha256-s13T6DWuzUF6&#43;UKXUD0jxKqMY5MY4PSuZeihyqr0Fwc=">
+
+
+<link rel="stylesheet" href="/scss/print.8c61428a4ae8b36c028e9198876312a2de5a2b3c80bbbdcceb98d738691c4f6b.css" integrity="sha256-jGFCikros2wCjpGYh2MSot5aKzyAu73M65jXOGkcT2s=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+    
+
+</head>
+
+
+    <body class="theme-base-09 ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+    
+      
+        
+        
+        
+        
+        <div class="author-image">
+           <a href="/"><img src="/img/headshot_cropped_f2019.png" alt="Nathaniel Woodward" class="img--circle img--headshot element--center"></a>
+        </div>
+        
+      
+      <p class="site__description">
+         Nathaniel Woodward 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Nathaniel Woodward</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/portfolio/">
+						<span>Portfolio</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="cv.pdf">
+						<span>Vitae</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <br>
+        <section class="social">
+	
+	<a href="https://twitter.com/Distributino" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="https://github.com/nraley" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<a href="https://last.fm/user/raleywoodward" rel="me"><i class="fab fa-lastfm fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://www.goodreads.com/user/show/44370058-nathaniel" rel="me"><i class="fab fa-goodreads fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="mailto:nathaniel.raley@utexas.edu" rel="me"><i class="fas fa-at fa-lg" aria-hidden="true"></i></a>
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2019  
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>How a computer works, briefly.</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Feb 2, 2014
+    
+    
+    
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 18 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>This post is going to be a long one, because I need to be  thorough and deliberate if I am to be understood; my target audience  consists of people who <a href="http://www.youtube.com/watch?v=UE_czPc7o5Y">don't know much about computers</a>, and frankly I'm just a dilettante with no formal training on the subject. But disqualification on both ends notwithstanding let's forge ahead and see what comes of it. First, you have probably noticed that computers are everywhere: to use a colorful, if somewhat perplexing, expression,  you can't swing a cat without hitting one these days, and when I'm not  <a href="https://en.wikipedia.org/wiki/Computer_vision_syndrome">staring straight into one</a> of my own, I'm probably still using one in some  way or other:</p>
+<!-- raw HTML omitted -->
+<p>But despite their total ubiquity, I don't really know what they are. I certainly couldn't tell you how one works at any significant level of  detail. Sure, I put one together in the 6th grade with my stepdad's help, but beyond knowing the names and relative locations of hardware  components, I'm as good as clueless w.r.t. how the damn thing operates.</p>
+<p>At  least, I was until I read &ldquo;<a href="http://www.amazon.com/The-Elements-Computing-Systems-Principles/dp/0262640686">The Elements of Computing Systems</a>&rdquo; by Nisan  and Schocken, whence most of the foregoing figures, and indeed much of the discussion, is derived. This was a  great book, and feel like I learned a lot, but I want to confirm my  understanding by way of an explanation. So, I propose to explain to you  how a computer works. Here goes&hellip;</p>
+<h2 id="overview">Overview</h2>
+<p>First some broad  strokes: if you haven't ever popped open your computer case, you should  know that there's a big flat thing in there&mdash;usually green,  crisscrossed by circuitry, festooned with ribbony wires, bestudded with various slots and nubbins&mdash;to which all else appears attached: it is a breadboard so vital it was  christened the &ldquo;motherboard.&rdquo; Acting as the spinal cord of the computer,  it connects the CPU, the memory, and everything else together.</p>
+<!-- raw HTML omitted -->
+<p>For brevity, I'm going to limit this discussion to a  computer's essentials with little talk of peripheral devices, etc. The  CPU, a chip with over a million transistors in one integrated circuit,  is where all the magic happens (we will talk about transistors, too). It  is responsible for executing program instructions and it generates so  much heat thereby that it has its own fan attached to its backside. RAM,  a computer's main memory, comes in &ldquo;sticks&rdquo; and is used to store the  currently executing program and requisite data; typically, RAM (which we will discuss in greater detail below) is wiped  in the absence of power. Hard drives, which can store far greater quantities of material over long periods of time, encode data&mdash;a string of of binary information like <code>$...01001011...$</code>&mdash;as a sequence of differences in magnetization (conceptually, <code>$...+ - + + - + - - ...$</code>). Ugh, I feel like I'm getting ahead of myself, so lets start at the beginning with logic gates.</p>
+<h2 id="logic-gates">Logic Gates</h2>
+<p>Computers  take in input and give output based on a decision rule, or many such  rules chained together. They use the same logic you'd find in any high  school math textbook, in the chapter on probability, near the discussion of sets or Venn diagrams.</p>
+<!-- raw HTML omitted -->
+<p>The  man in this picture is <a href="https://en.wikipedia.org/wiki/George_Boole">George Boole</a>, and though you have <a href="https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz">Liebniz</a> to  thank for binary numbers, it was Boole's mathematical insights in the  mid 1800s that were most foundational to the development of computing, not to be fully realized until some 100 years after his  death. You may have heard of Boolean algebra, the variables of which  are truth values <code>1 = TRUE</code> or <code>0 = FALSE</code>, and the basic operations of  which are conjunction (<code>AND</code>), disjunction (<code>OR</code>), and negation (<code>NOT</code>). Think of each operation as taking two inputs and generating an output. For <code>x AND y</code> to equal <code>1</code>, both <code>x</code> and <code>y</code> must be <code>1</code>. For <code>x OR y</code> to equal <code>1</code>, either <code>x</code> or <code>y</code> (or both!) must equal <code>1</code>. For instance, with <code>AND</code>,</p>
+<!-- raw HTML omitted -->
+<p>Now  imagine that instead you have come up with a tiny device that  implements one of these functions (<code>OR</code>, say) with High/Low voltage (say <code>HI/LO</code>) representing <code>1,0</code> or <code>TRUE/FALSE</code>. Two wires going into it represent the input, and  the one wire coming out represents the output. So if the <code>OR</code> device gets  one high and one low voltage input, you get <code>(HI OR LO) = HI</code>, a high voltage output signifying <code>TRUE</code>, which can in turn can be fed into other devices (called &ldquo;logic gates&rdquo;) as input. So all you need are physical devices that can implement these  Boolean functions by acting as electronic switches&hellip; historically,  vacuum tubes and transistors etched in silicon have been used for this purpose, but the <a href="https://en.wikipedia.org/wiki/Unconventional_computing">possibilities are manifold</a>. This is what is meant by  &ldquo;digital&rdquo; electronics; there are two discrete voltage bands that allow for clean signalling. You can have many different inputs, but only a single output, which can act as the input signal for still other functions.</p>
+<p>It  gets better: you don't even need  <code>AND</code>, <code>OR</code>, and <code>NOT</code>. They can all be constructed from either the <code>NAND</code> function (short for &ldquo;not and&rdquo;, it has the opposite output as <code>AND</code>) or  the <code>NOR</code> function (&ldquo;not or&rdquo; has the opposite output as <code>OR</code>), so actually just <em>a single function can underlie an entire computer</em>.  For example, you can implement the <code>OR</code> function, the <code>NOT</code> function, and  the <code>AND</code> function using only <code>NAND</code>:</p>
+<pre><code>x OR y  = (x NAND x) NAND (y NAND y) 
+NOT x   = (x NAND x)  
+x AND y = (x NAND y) NAND (x NAND y) 
+</code></pre><p>This  property is known more technically as <a href="https://en.wikipedia.org/wiki/Functional_completeness">functional completeness</a>; every  possible logic gate or truth table can be assembled from <code>NAND</code> gates or <code>NOR</code> gates. Below is a complete list of the 16 possible functions for two inputs, <code>x</code> and <code>y</code>. The input values are shown on top, and the output values for each pair of inputs are shown for each function below.</p>
+<p><img src="http://mathurl.com/lqv5g45.png" alt=""></p>
+<p>Keep these functions in mind, because we will return to them shortly when we broach the subject of how to implement the arithmetic-logic unit. Before we do this, though, we ought to look a little more at how computers manage to do all of mathematics with just <code>0</code> and <code>1</code>.</p>
+<h2 id="bits-and-binary">Bits and Binary</h2>
+<p>At least on the face of it, this section should be more familiar: one thing everyone knows about computers is that their  &ldquo;language&rdquo; is binary, and that it consists of letters called &ldquo;bits&rdquo; that  can take either of two values, <code>0</code> and <code>1</code>. Though humans find it  convenient to represent numbers in base 10 form, computers prefer their information in base 2 (but think, if instead of 5 we had eight fingers on each hand, we'd all be fluent in hexidecimal). For instance, the number 25 would be represented  in memory (by a 32-bit computer) as <code>$$(000000000000000000000000000 \mathbf{11001})_2$$</code> because binary is calculated in base-2 <code>$(2s,4s,8s)$</code> instead of base-10 <code>$(10s, 100s, 1000s),$</code></p>
+<p><code>$$ \begin{align} 25 &amp;=   ...\mathbf{1}\times(2^4) +\mathbf{1}\times(2^3) + \mathbf{0}\times(2^2) +  \mathbf{0}\times(2^1) +  \mathbf{1}\times(2^0)\\ &amp;= ... 16 + 8 + 0 + 0 + 1 \\ \end{align} $$</code></p>
+<p>Binary  addition is a straightforwardly analogous to base 10 addition: put one  number on top of the other, and starting on the right-hand side, add  columns like you normally would. If you have a 0 and a 0, put a 0 below  the line; if you've got a 0 and a 1, put a 1 below the line. If you get a  1 and and 1, you know 1+1=2, and in binary this means you have to  carry, so put a zero below the line and carry a 1 over to the  next-right-most column. If you've got a 1 and a 1 <em>and another 1</em> that  was carried over, well, that makes three,  so leave 1 under the line  and carry once again to the next-right-most column. Here's a picture to  illustrate:</p>
+<p><img src="computerworks1.png" alt=""></p>
+<p>So  addition makes sense, and because you'll only have three inputs (top  bit, bottom bit, and carried bit) you can summarize the operation as  follows: if I the top, bottom, and carry bits are all 0, output 0. If  one of them is a 1, while the other two are 0, output 1. If two of them  are 1, output zero and carry 1 to the next column; If all three bits are  1, output 1 and carry 1 to the next column. All 23 input/output possibilities are shown below:</p>
+<p><img src="computerworks2.png" alt=""></p>
+<p>So  we can see that binary addition of two n-bit numbers can be formalized  by these simple input/output rules, which can them be effected in  material form using logic gates designed to calculate the sum of three  bits&mdash;a pair of bits plus a carry bit. Good. What about subtraction? If  we had positive numbers, we could just pipe those into the &ldquo;adder&rdquo;&hellip;what about negative numbers? Here's where things get  interesting. Though there are many methods of representing negative  numbers in computing, the most common by far is one called the &ldquo;2's  complement&rdquo; or &ldquo;radix complement&rdquo; method. It represents a negative  number, say <code>$-x$</code>, as <code>$2n-x$</code>. So, say you are using an 8-bit system, and you want to represent <code>-3</code> (negative <code>00000011</code>). You go <code>28-3</code>,  which equals <code>253</code>, which is <code>11111101</code> in binary. The reason for doing it  this way is that <code>00000011 + 11111101 = (1)00000000</code>. Below is a table  showing the first few positive/negative integers in a 4-bit system.  Notice that all negative numbers begin with 1, whiel all positive  numbers begin with 0. In general, if you have x and want to know -x,  leave all of the trailing zeros and the first 1 intact, but flip the  values of all the rest.</p>
+<p><img src="computerworks3.png" alt=""></p>
+<p>The arithmetic-logic unit (ALU) is the centerpiece chip that executes all the arithmetic and logical operations performed by the computer, but you may not have heard of it. That's because we typically just talk about the central processing unit (CPU), which includes the ALU, a set of local registers, and a control unit. The control unit has a switchboard-type task; it must decode instructions and use the information to signal the various hardware devices (ALU, registers, etc.) how to execute the instruction. The CPU operates in a continuous loop known as a fetch-execute cycle: fetch an instruction from memory, decode it, execute it&hellip; fetch the next instruction, decode it, execute it&hellip; Instruction execution could be &ldquo;have the ALU compute some value&rdquo;, &ldquo;copy the contents from register 13 to register 14&rdquo;, &ldquo;write a word to memory&rdquo;, etc&hellip;</p>
+<p>The ALU, though, is where the rubber meets the road; it is responsible for computing elementary operations using a more complicated version of the addition chip (&ldquo;Full Adder&rdquo; in the figure above). I'm going to describe for you an efficient, completely functional ALU with two 16-bit inputs <code>$(x,y)$</code> and one 16-bit output <code>$(out)$</code> that is capable of computing a fixed set of arithmetical or logical functions <code>$(f)$</code>, where <code>$out = f(x,y)$</code>.</p>
+<p><img src="computerworks4.png" alt=""></p>
+<p>We tell the ALU which function to compute by setting six input bits, called control bits, to selected binary values (top of the figure above). These settings specify the following logical steps which carry out the function they encode (see big figure below).</p>
+<p><code>$$ \begin{align} if \ \ (zx = 1) \ &amp;then \ (x = 0) \phantom{xxxxxxxxx..} (e.g., \ 11001101011010111 \rightarrow 0000000000000000)  \\ if\ \ (nx = 1) \ &amp;then \ (x = NOT \ x) \phantom{xxxxxx}(e.g., \ 0000111100001111 \rightarrow 1111000011110000)  \\ if\ \ (zy = 1) \ &amp;then \ (y = 0)   \\ if\ \ (ny = 1) \ &amp;then \ (y = NOT \ y) \\  if\ \ (f = 1) \ &amp;then \ (out = x+ y) \phantom{xxxxxxxxxx.} \text{(binary addition as we described it above)}\\    if\ \ (f = 0) \ &amp;then \ (out = x \ \&amp; \ y)\phantom{xxxxxxxxxxxxxxxxxxxxxxxxxxxxx} \text{(AND operation)}  \\ if\ \ (no = 1) \ &amp;then \ (out = NOT \ out)   \\ if\ \ (out = 0) \ &amp;then \ (zr = 1, else \ zr = 0)\phantom{xxxxxxxxxxxxxxxxx} \text{(tests if the output is zero)}  \\ if\ \ (out \lt 0) \ &amp;then \ (ng = 1, else \ ng = 0)\phantom{xxxxxxxxxxxxx.} \text{(tests if the output is negative)} \\ \end{align} $$</code></p>
+<p>The table below is confusingly arranged, but it actually contains the values that each control bit should be set at to achieve a given function (the far right column).</p>
+<!-- raw HTML omitted -->
+<p>Let's walk through one, just to see. Say our data inputs are</p>
+<p><code>$$   \begin{align} x &amp;= 0000001111101000 \ \ \ \text{   (the number 1,000 in base-10)} \\   y &amp;= 0000000001111011 \ \ \ \text{   (the number 123 in base-10)} \\ \end{align} $$</code></p>
+<p>&hellip;and we want to compute <code>x - y</code>. We could find the settings for our control bits by going to to far right column (&ldquo;Resulting ALU output&rdquo;), locating <code>x - y</code>, and reading off the settings for our six control bits listed in the row (<code>zx = 0, nx = 1, zy = 0, ny = 0, f = 1, no = 1</code>). Since <code>zx = 0</code>, we do not zero the <code>x</code> input. Because <code>nx = 1</code>, we do switch all of the bits around in <code>x</code>. now we have</p>
+<p><code>$$ x = 1111110000010111 $$</code></p>
+<p>We don't have to zero the bits from the y input because <code>zy = 0</code>, nor do we have to switch them around (<code>ny = 0</code>). The next control bit, <code>f = 1</code>, tells us to compute <code>x+y</code> (using something like the &ldquo;Full Adder&rdquo; above).</p>
+<p>`$$
+\begin{array}{c c}
+&amp; 1111110000010111 \</p>
+<ul>
+<li>&amp;  0000000001111011 \<br>
+\hline
+&amp; 1111110010010010 \<br>
+\end{array}
+$$`</li>
+</ul>
+<p>Finally, because <code>no = 1</code> we have to flip all the bits of the output. Doing so results in the following:</p>
+<p><code>$$ 1111110010010010 \rightarrow 0000001101101101 $$</code></p>
+<p>&hellip;which is the number 877 in the base-10 system (1000 - 123 = 877). In this way, our ALU is able to compute all of basic arithmetical operations (the one in your computer does essentially the same thing). You could, if you which, verify that this is true for the other operations by setting your control bits according to row of interest, but I assure you that it works out. Our ALU lacks support for multiplication, division, floating point arithmetic, etc., but these operations can be implemented on top of the hardware at the level of the operating system.</p>
+<h2 id="ticktocks-flipflops">Tick-Tocks, Flip-Flops</h2>
+<!-- raw HTML omitted -->
+<p>So  far, we have been processing information, computing functions based on  different combinations of input. But then what? How is it stored? As it  stands, a logical function is performed and <em>poof</em>, the result is gone.  Computers have to maintain state; they have to preserve data over time; they have to <em>remember</em>. Such memory elements are built from sequential chips. Let us now talk about  tick-tocks and flip-flops, yes I mean timekeeping and no, not the  footwear.</p>
+<p>Most computers have a master clock that  delivers a continuous oscillating signal, a &ldquo;tick&rdquo; and then a &ldquo;tock&rdquo;,  which together constitute a cycle. These ticks and tocks are represented  by a binary signal (<code>$...1...0...1...0...$</code>) which is broadcast throughout  the computer.</p>
+<p>OK, now flip-flops; get excited, because  if you thought logic gates were cool, you're going to flip-flop your  shit here. Flip-flops are the <em>mechanical incarnation of memory</em>.  All they do is take their input at <code>$time = t$</code> and output it at <code>$time= t+1$</code>;  the magic of this is that you can feed the output at <code>$time= t+1$</code> back into  the input at <code>$time = t+2$</code>. If nothing has been changed (no new inputs to  consider), then the value is maintained in a continuous cycle of inputs  and outputs&hellip; through this recursion, the information is preserved over  time. What I've just described is actually a register, but the  flip-flop is the central component. Have a look at the image below. Say  we ask this 1-bit register to remember the value 1 for a while; our <code>in</code>  is <code>1</code>, and it gets loaded into the flip-flop (<code>DFF</code> in the figure). If we don't  give the register any new inputs, then it remembers <code>1</code> in an infinite  cycle of <code>output 1</code>, <code>input 1</code>, <code>output 1</code>, <code>input 1</code>&hellip; to the beat of the master clock's metronome. Recognize how important this idea is: registers, memory counters&hellip; they are all based on flip-flops! How many GHz is your processor? My laptop says 2.9GHz&hellip;which is to say, almost three billion tick-tock/flip-flops per second!</p>
+<!-- raw HTML omitted -->
+<p>Now  that we have a way of remembering a single bit over time, we can  remember much more information by putting many such single-bit registers  side-by-side in an array. Stack 8, 16, 32, or 64 such 1-bit registers  together, and you've got a multi-bit register. Say we need to hold the  integer 14 in memory: we could send <code>00001110</code> to an eight-bit register (a  byte) and each 1-bit register would be responsible for remembering the  value it was assigned.</p>
+<!-- raw HTML omitted -->
+<p> While  computers typically work with multiple-bit quantities at the same time  (ASCII text characters like these are each 8 or 16 bits long; screen  pixels and floating-point numbers can be up to 32 bits long), amazingly,  much data gets sent and received <em>literally bit by bit</em>: I/O devices like keyboards, mice, printers etc.; even USB and Firewire (&ldquo;serial ports&rdquo;) transfer just one bit at a time.</p>
+<!-- raw HTML omitted -->
+<p>Stack  a bunch of these multi-bit registers together, and you've got RAM. Sort  of. Because now that there's so many bits being stored, how are you  ever going to find the ones you need? Fortunately, each memory register  is given a unique address according to which it can be accessed. RAM  takes three inputs: the data input, the address, and a load bit (if you  just want to &ldquo;read&rdquo; the register, then the load=0; if you want to  &ldquo;write&rdquo; a new value to the register, load=1). The schematic to the left  is misleading: the size of each &ldquo;register&rdquo; in your RAM is 32- or 64-bits  wide, and there are hundreds of millions of them!</p>
+<p>Even if we ask nicely, all these <code>NAND</code> gates and flip-flops aren't just going to stand at attention, receive their orders, and happily do our bidding; we have to specify precisely what it is we want the hardware to do, and for that we need &ldquo;machine language&rdquo;. Let's say we've got a 16-bit computer and we want to tell it something. We'd use an instruction like <code>1010000110010011</code>; at first blush, it would never occur to us that this string could mean &ldquo;add the contents of register 1 to the contents of register 9 and store the sum in register 3&rdquo;. But it could! Each instruction like this one could consist of 4-bit fields, and each field could have a distinct function. The first field could specify an operation, like <code>ADD</code> or <code>AND</code>, the second and third fields could specify input registers, and the final field could specify the output register. If the operation &ldquo;<code>ADD</code>&rdquo; has been given the code &ldquo;<code>1010</code>&rdquo;, then it is clear what this string is instructing.</p>
+<p><code>$$ \begin{array}{c | c | c | c } add&amp;reg1&amp;reg9&amp;reg3\\ \hline 1010&amp;0001&amp;1001&amp;0011\\ \end{array} $$</code></p>
+<p>To be sure, this example is quite simplistic: if you only had four bits with which to specify the address of a register, you could only have a maximum of <code>$2^4=16$</code> addresses in memory! Your computer, the one you're using now, has billions! But, for illustrative purposes this is gist of machine language. It's got <em>computation</em> instructions, <em>location/destination</em> instructions, and <em>jump</em> instructions (which tell it what to do next).</p>
+<h2 id="io">I/O</h2>
+<p>No discussion of computers would be complete without at least superficial coverage of some input/output devices, the two most necessary of which are the screen and the keyboard. The screen, a very visible and impressive part of any computer, is deceptively basic hardware-wise. This is especially true if we stipulate, for our explanation, a few simplifying assumptions, like that the monitor is black and white. Let's also go ahead and say that your computer is a 16-bit computer, and that your resolution is really, really bad (say <code>$512 \times 256$</code>); now, I want you to imagine 512 columns, each containing 256 pixels. Equivalently, you could think of 256 rows, each comprising 512 pixels. Either way, you've got a total of 131,072 pixels in the screen. Each row of pixels in the physical screen, starting in the top left corner, is represented in memory as 32 consecutive 16-bit &ldquo;words&rdquo;, and each one of these 16 bits controls a single pixel. Since the size of each &ldquo;register&rdquo; in your computer's RAM is 16 bits, there are <code>$32 \times 256 = 8192$</code> consecutive RAM &ldquo;registers&rdquo; that correspond sequentially to the pixels row by row from top-left to bottom-right. Because of a technique called <a href="https://en.wikipedia.org/wiki/Memory-mapped_I/O">memory-mapped input/output</a>, the pixels on the screen are a direct mapping of the binary values stored in memory: each bit corresponds to a specific pixel on the screen; a given pixel is lit up if its value in memory is <code>1</code>, and dark if its value is changed to <code>0</code>. This mapping is made to continuously reflect the physical state of the hardware, so as I type &ldquo;this&rdquo;, a bunch of bits in RAM suddenly do something like this (squint at it)</p>
+<pre><code>111111111110111111001111111110111111111111111111111111111111 
+111111111110011111101111111111111110001111111111111111111111  
+111111111000000111101001111100111101111111111111111111111111
+111111111110011111100110111110111110001111111111111111111111
+111111111110010111101110111110111001110111111111111111111111  
+111111111111001111001110011100011110001111111111111111111111
+</code></pre><p>which is mirrored in turn by the lighting of the pixels in the screen. Keyboards are even simpler in principle; each time a key is pressed, the <a href="https://en.wikipedia.org/wiki/Ascii_code#ASCII_printable_characters">ASCII code</a> corresponding to the requesting character appears in a spot in memory reserved for keyboard input.</p>
+<p>There is so much more to know about computers, but I am coming perilously close to the edges of my own understanding. Like I said, I'm a total layman with this stuff, writing for a hypothetical audience of people just like me-before-I-had-read-an-informative-book-on-the-subject. I may add more to this later, but I'm done for now. Actually, <em>I had written more,</em> but Blogger's blasted auto-save screwed me hard and overwrote everything to whitespace somehow, so I want to go ahead and publish before it decides to do it again. I hope I have been able to give you some small insight into these things that are destined to determine, and possibly become, our future.</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/this-week-in-r-cluster-analyses/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">This Week in R: Cluster Analyses</span>
+    </a>
+    
+    
+    <a href="/posts/idea-density-or-teenage-essays-predict-old-age-alzheimers/" class="navigation-next">
+      <span class="navigation-tittle">Idea Density, or, &#34;teenage essays predict old-age Alzheimer&#39;s&#34;</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+    
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

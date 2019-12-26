@@ -1,0 +1,154 @@
+---
+title: "SDS 328M Biostatistics Lab 12 - General Linear Models"
+author: "Department of Statistics and Data Sciences, UT Austin"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r global_options, echo=FALSE}
+knitr::opts_chunk$set(fig.height=4.5, fig.width=5.5, warning=FALSE, tidy=TRUE, tidy.opts=list(width.cutoff=60))
+```
+
+***
+##**Introduction**
+
+In this lab, we'll learn how to run General Linear Models (GLM), also known as multiple regression models.  These models can test the effects of multiple numeric and categorical explanatory variables on a numeric response variable. 
+
+***
+
+###**Lab Objectives**
+
+* Fit a general linear model and interpret the results.
+* Mean-center numeric explanatory variables.
+* Fit a general linear model with interaction and interpret the results.
+
+***
+
+##**Dataset**
+
+<img style="float: right;" src="Images2/Handout12_crab.jpg">
+
+The dataset for this handout is from a morphological survey (cited below) conducted by two Australian biologists, Dr. N.A. Campbell and Dr. R.J. Mahon.  They studied a sample of rock crabs, _Leptograpsus variegatus_, from Freemantle, Australia, including both blue and orange crabs. In addition to the sex of each crab, they recorded various measurements (all in mm) of the carapace, which is the upper section of exoskeleton.
+
+***
+
+"A Multivariate Study of Variation in Two Species of Rock Crab of the Genus _Leptograpsus_" by N.A. Campbell and R.J. Mahon. _Australian Zoology_ Vol. 22 (1974), pp. 417-425.
+
+***
+
+Download __Handout12_crabs.csv__ from Canvas and save it in your _working directory_.  Then, import it into RStudio and call the data frame _crabs_:
+
+```{r}
+crabs <- read.csv('Handout12_crabs.csv') 
+summary(crabs)
+```
+
+The final five variables contain all of the carapace measurements (in mm): frontal lip (FL), rear width (RW), carapace length (CL), carapace width (CW), and body depth (BD).  We are interested in predicting a rock crab's frontal lip size, as it is an indicator of the size of their brain.
+
+***
+
+##**Research Questions**
+
+> _RQ1: Does crab color and rear width predict frontal lip size?_
+
+> _RQ3: Is there an interaction between crab color and rear width on frontal lip size?_
+
+***
+
+##**General Linear Model**
+
+We can answer _RQ1_ by building a GLM that includes both color and rear width as explanatory variables.  To do this, we'll use the same function, _lm()_, that we used for regression models with a single predictor:
+
+```{r}
+#Define our GLM
+my_glm <- lm(FL ~ Color + RW, data=crabs)
+```
+
+###**Assessing Assumptions**
+
+Before we carry out the analysis, we need to visually check the relevant assumptions:
+
+```{r}
+#Confirm linearity of numeric predictors
+plot(crabs$RW, crabs$FL, xlab='Crab Rear Width (mm)', ylab= 'Crab Frontal Lip Size (mm)', main='Crab Rear Width and Frontal Lip Size', pch=20)
+#Confirm normality of residuals
+hist(my_glm$residuals, main='Model Residuals', xlab='Residual', col='light grey', right=F)
+#Confirm equal variance
+plot(my_glm$fitted.values, my_glm$residuals, xlab= 'Fitted Values', ylab='Residuals', main='Residual Plot', pch=20)
+abline(h=0, col='red') 
+```
+
+The scatterplot doesn't show any violation of the linearity assumption, and the model residuals are roughly symmetric.  But the funneling pattern in the residual plot indicates that there is a violation of the equal variance assumption.  We will want to report this as a limitation when we interpret the GLM results.
+
+###**Conduct a GLM (no interaction)**
+
+We need to write a set of hypotheses for each effect we are testing in the model:
+
+_Hypothesis Set 1_ -  
+$H_0:$ Controlling for color, rear width does not explain variation in frontal lip size in rock crabs.   
+$H_A:$ Controlling for color, rear width does explain variation in frontal lip size in rock crabs.  
+
+_Hypothesis Set 2_ -  
+$H_0:$ Controlling for rear width, blue and orange crabs have an equal mean frontal lip size in rock crabs.   
+$H_A:$ Controlling for rear width, blue and orange crabs do not have an equal mean frontal lip size in rock crabs.  
+
+We'll use the summary() function to view the results of our GLM regression model:
+
+```{r}
+#View results of GLM
+summary(my_glm)
+```
+
+Controlling for color, rear width size is a significant predictor of frontal lip size (t = 29.18, df = 197, p < 0.001). While holding color constant, for each 1 mm increase in rear width, frontal lip size increases by 1.16 mm, on average.  
+
+Controlling for rear width size, there is a significant difference in mean frontal lip size between orange and blue rock crabs (t = 5.75, df = 197, p < 0.001). On average, orange crabs have a frontal lip size that is 1.17 mm larger than blue crabs, while holding rear width size constant.
+
+###**Effect Size**
+
+Because we have more than one explanatory variable in our model, we'll want to use the _Adjusted R-squared_ to talk about model fit.  
+
+```{r}
+#Adjusted R-squared
+summary(my_glm)$adj.r.squared
+```
+
+Our model explains 84.7% of the variation in frontal lip size.
+
+##**Testing for an Interaction in GLM**
+
+Similar to a multi-factor ANOVA model, an interaction in a GLM will tell us if the effect of one explanatory variable on the response variable differs across the other explanatory variable.  
+
+###**Mean-Centering Numeric Explanatory Variables**
+
+Before we run the GLM with an interaction, we'll need to __mean-center__ our numeric explanatory variable, _RW_.  To center a variable at its mean, just subtract the mean from every value in the dataset.
+
+_It is important to mean-center numeric variables that are part of interaction terms in regression models because it makes the main effects of the variables, as well as the intercept, more interpretable._
+
+```{r}
+#Create centered RW
+crabs$RW_c <- crabs$RW - mean(crabs$RW)
+```
+
+###**Conduct a GLM with interaction**
+
+No additional assumptions need to be checked, but we'll need another set of hypotheses for the interaction effect: 
+
+_Hypothesis Set 3_ -  
+$H_0:$ There is no interaction between color and rear width on frontal lip size.   
+$H_A:$ There is an interaction between color and rear width on frontal lip size.  
+
+We can now test for the interaction by changing the $+$ in the model statement to $*$ and replacing _RW_ with the mean-centered variable:
+
+```{r}
+#Run a GLM with interaction
+my_glm_int <- lm(FL ~ Color*RW_c, data=crabs)
+summary(my_glm_int)
+```
+
+We found no significant interaction between crab color and rear width size on frontal lip size (t = -0.65, df = 196, p = 0.51).  This means that the effect of rear width size on frontal lip size is the same for orange and blue crabs.  
+
+> _Note: When an interaction term between two variables is present in a GLM, we must interpret their __main effects__ at a value of zero for the other variable._
+
+For blue crabs, for a 1 mm increase in rear width, frontal lip size increases by an average of 1.19 mm (t = 19.68, df = 196, p < 0.001).  For crabs with an average rear width size, orange crabs have a frontal lip size that is 1.17 mm greater than blue crabs, on average (t = 5.71, df = 196, p < 0.001). Overall, our model explains 84.6% of the variation in frontal lip size.

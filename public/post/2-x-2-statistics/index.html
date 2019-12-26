@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.60.1" />
+
+    
+    
+    
+
+<title>2 x 2 Statistics • Nathaniel Woodward</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="2 x 2 Statistics"/>
+<meta name="twitter:description" content="Modern data analysis has gotten very complicated! Let&#39;s forget all that for a moment. I wanted to take this opportunity to examine several useful statistical techniques and measures of association that involve nothing more than a 2x2 contingency table."/>
+
+<meta property="og:title" content="2 x 2 Statistics" />
+<meta property="og:description" content="Modern data analysis has gotten very complicated! Let&#39;s forget all that for a moment. I wanted to take this opportunity to examine several useful statistical techniques and measures of association that involve nothing more than a 2x2 contingency table." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2-x-2-statistics/" />
+<meta property="article:published_time" content="2014-10-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2014-10-31T00:00:00+00:00" /><meta property="og:site_name" content=" " />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.4733d07e620800a3e95c172a10d18626c442980942fcf389b804765f7627385c.css" integrity="sha256-RzPQfmIIAKPpXBcqENGGJsRCmAlC/POJuAR2X3YnOFw=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+    
+
+</head>
+
+
+    <body class="theme-base-09 ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+    
+      
+        
+        
+        
+        
+        <div class="author-image">
+           <a href="/"><img src="/img/headshot_cropped_f2019.png" alt="Nathaniel Woodward" class="img--circle img--headshot element--center"></a>
+        </div>
+        
+      
+      <p class="site__description">
+         Nathaniel Woodward 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Nathaniel Woodward</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/portfolio/">
+						<span>Portfolio</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="cv.pdf">
+						<span>Vitae</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/Distributino" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="https://github.com/nraley" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<a href="https://last.fm/user/raleywoodward" rel="me"><i class="fab fa-lastfm fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://www.goodreads.com/user/show/44370058-nathaniel" rel="me"><i class="fab fa-goodreads fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="mailto:nathaniel.raley@utexas.edu" rel="me"><i class="fas fa-at fa-lg" aria-hidden="true"></i></a>
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2019  
+  
+    <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>2 x 2 Statistics</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Oct 31, 2014
+    
+    
+    
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 9 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>Modern data analysis has gotten very complicated! Let's forget all that for a moment. I wanted to take this opportunity to examine several useful statistical techniques and measures of association that involve nothing more than a 2x2 contingency table. A 2x2 contingency table (also called a cross tabulation or cross tab) is a simple grid that displays the frequency distribution given two variables&ndash;one variable for the columnsand one variable for the rows. Suppose, for instance, that one variable is sex (male or female) and one variable is handedness (right- or left-handed). Lets say we took a random sample of 100 people and determined both their sex and their handedness. We could then take this data and create a contingency table. There are 2 possibilities for sex and 2 possibilities for handedness, resulting in 4 unique combinations: right-handed males, right-handed females, left-handed males, and left-handed females:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Here, if the proportions of individuals in different columns vary significantly between rows (or if the proportions in different rows vary between columns), we say there is a &ldquo;contingency&rdquo; between the two variables, and thus they are not independent of each other. This is multivariate statistics in its most basic, two-variable form, but many useful analyses arise from it. Chances are good that you've heard of most of them, and you may have even had occasion to use a few of them before! They are often spotted on the fringes of SPSS output but rarely ever talked about. But many can be quite useful! I'm going to talk about Chi-squared tests, Fisher-exact tests, odds ratios, and several approaches to the humble correlation coefficient (Phi, Rho, biserial, point biserial). Take a look!</p>
+<h3 id="chisquared-test">Chi-Squared Test</h3>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>The above table provides a framework for the examples here to  come. Let's say we give a test consisting of just 2 questions (Q1 and Q2) to a total of N students: in the table above, <strong>a</strong> is the number who got Q1 right and Q2 wrong,<strong>b</strong> is the number who got  both Q1 and Q2 wrong, <strong>c</strong> is the number who got both Q1 and Q2 right, and <strong>d</strong> is the number who got Q1 wrong and Q2 right. Thus, a+b+c+d = <strong>N</strong>. Also note that <strong>a+c</strong> is the total number of students who got Q1 right, <strong>b+d</strong> is the total number who got Q1 wrong,<strong>a+b</strong> is the total getting Q2 wrong, and <strong>c+d</strong> is the total getting Q2 right. These numbers are found along the margin of the contingency table.</p>
+<p>Now, let's say we were interested to know whether students who got Q1 correct were more likely to get Q2 correct; that is, we want to know if scores on Q1 are correlated with scores on Q2. Let's say we give the test to N=100 students, and here are their scores:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Start at the top rightmost cell (Q2 wrong, Q1 right). Assuming that we know only the totals, we would expect that since 49/100 (49%) of students got Q2 wrong, and since 55/100 (55%) of students got Q1 right, then 49% of 55% of the 100 students got Q2 wrong and Q1 right. Thus .49*.55*100 = **27** students. Using the totals, we can subtract 27 to calculate all of the other frequency values:</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>These are the frequencies we would expect to get if Q1 and Q2 were independent of each other (that is, uncorrelated). But this is not what we saw!</p>
+<p>To see if these expected frequencies are significantly different from the numbers we observed, we compute a chi-squared test statistic like so:</p>
+<p><img src="http://mathurl.com/ngxx2po.png" alt=""></p>
+<p>Thus, for each cell, we subtract the expected frequency from the observed frequency, square that quantity, and divide by the expected frequency. Then we add them all up. This gives us a measure of how much our sample deviates from the expectation.</p>
+<p><img src="http://mathurl.com/losdqkm.png" alt=""></p>
+<p>Our test statistic is 27.3; this seems big, but we need to look at a chi-squared distribution with (#rows-1)*(#cols-1) degrees of freedom. Here, that's just 1.<br>
+Instead of going to a table of critical values, I'll use R to make a pretty graph:</p>
+<pre><code>&lt;code style=&quot;color:black;word-wrap:normal;&quot;&gt; &gt; qchisq(.95,1)  &lt;br&gt;&lt;/br&gt; [1] 3.841459  &lt;br&gt;&lt;/br&gt; &gt; cord.x&lt;-c(0, seq(0.001,3.84,.01),3.84)  &lt;br&gt;&lt;/br&gt; &gt; cord.y&lt;-c(0,dchisq(seq(0.001,3.84,.01),1),0)  &lt;br&gt;&lt;/br&gt; &gt; curve(dchisq(x,1),xlim=c(0,10),main='Chi-Squared, df=1, a=.05')  &lt;br&gt;&lt;/br&gt; &gt; polygon(cord.x,cord.y,col=&quot;skyblue&quot;)  &lt;br&gt;&lt;/br&gt;&lt;/code&gt;
+</code></pre>
+<p><a href="https://nrwoodward.files.wordpress.com/2014/10/ec57e-chisq.png"><img src="https://nrwoodward.files.wordpress.com/2014/10/ec57e-chisq.png" alt=""></a></p>
+<p>If the data were independent, there is a less than 5% chance of observing a test statistic larger than 3.84; our test statistic was much larger, 27.3! Thus, it is extremely unlikely that we would observe a value that large if our data were uncorrelated. So, we reject that possibility.</p>
+<p>Another, perhaps quicker way of computing the chi-squared test statistic is worth mentioning here.</p>
+<p><a href="http://mathurl.com/l3tfkyy.png"><img src="http://mathurl.com/l3tfkyy.png" alt=""></a></p>
+<p>Check out the squared quantity on top: look familiar? You've got a determinant here! If that quantity (ad-bc) were zero, you would know that responses to the two questions were perfectly independent. It would also be the case that the 2x2 table is &ldquo;rank one&rdquo; meaning that all rows are scalar multiples of the first nonzero row. To illustrate this briefly,</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Multiply the top row by 2 to get the bottom row, right? Also ac-bd = 24-24=0. So here there is no association between scores on Q1 and on Q2.</p>
+<p>But wait, back to our original example.</p>
+<h3 id="measuring-the-extent-of-the-relationship-with-correlations">Measuring the extent of the relationship with correlations</h3>
+<h4 id="phi-coefficient">Phi coefficient</h4>
+<p>Once you have your chi-squared test statistic, and you know that there is a relationship between your two categorical variables, you can easily use this number to calculate phi, which results in the same value as a correlation coefficient. If we take our chi-squared test statistic (27.3 above), divide it by the total number of people, and take the square root of that quantity, we get  the phi coefficient:</p>
+<p><img src="http://mathurl.com/mkhnw53.png" alt=""></p>
+<p>Doing this here yields <code>$\sqrt{27.3/100}=0.522$</code>, which is a moderate correlation. Note that this is exactly the same value as would Pearson's r. Here's a helpful table to help you pick the measure of association that's right for you!</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h4 id="odds-ratios">Odds Ratios</h4>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>An odds ratio is another way of quantifying the size of the effect detected by chi-square significance tests of dichotomous variables. Think of the &ldquo;odds&rdquo; of an event as the probability of the event happening divided by the probability of it not happening. If you got Q1 right (first column), the odds of a correct answer on Q2 are (41 right)/(14 wrong), or 2.93, meaning that almost 3 times as many people got it right as got it wrong, so getting it correct is 2.93 times as likely (the odds are 2.93 to 1). We can calculate other three &lsquo;odds&rsquo; in the same manner; of the people who got Q1 wrong (second column): 35 got Q2 right and 10 got Q2 wrong, so the odds of a right answer to Q2 given you got Q1 wrong are (10 right)/(35 wrong)=.29; thus, if you get Q1 wrong, you are more than three times as likely to get Q2 wrong than you are to get Q2 right.</p>
+<p>Now, the odds ratio is just what it sounds like: the odds of an event happening in one group divided by the odds of it happening in another group. The ratio of two odds tells us how much more likely an event is to happen in one group versus another. Using the calculations above, we can ask, &ldquo;how much more likely are the students who got Q1 right than those who got Q1 wrong to get Q2 right ?&rdquo; To do this, divide the first odds of a correct Q2 of the first group (those who got Q1 right) by the odds of a correct Q2 of the second group (those who got Q1 wrong). Doing so yields <code>$(2.93/0.29)=10.1$</code>, which means that those who got Q1 right are 10 times more likely to get Q2 right than are those who got Q1 wrong.</p>
+<p><a href="http://mathurl.com/kbr2tr6.png"><img src="http://mathurl.com/kbr2tr6.png" alt=""></a></p>
+<p>If an odds ratio is greater than 1, then &ldquo;A&rdquo; is associated with &ldquo;B&rdquo; in the sense that having &ldquo;A&rdquo; raises the odds of having &ldquo;B&rdquo; (relative to not having &ldquo;A&rdquo;). In the present example, &ldquo;Q1 Right&rdquo; raises the odds of &ldquo;Q2 Right&rdquo; (relative to &ldquo;Q1 Wrong&rdquo;).</p>
+<h4 id="heading"></h4>
+<h4 id="fishers-exact-test">Fisher's exact test</h4>
+<p>OK, quick aside. Imagine you have an urn containing 10 balls; 3 of them are black and 7 of them are red. If you choose 5 balls at random, what is the probability that all 5 are red? If you know a little about combinatorics, you know that there are &ldquo;10 choose 5&rdquo;, or 252 ways to choose 5 balls from 10:</p>
+<h4 id="heading1"></h4>
+<p><img src="http://mathurl.com/kold6v7.png" alt=""></p>
+<p>This tells us that there are 252 unique 5-ball combinations; now how many of those have 5 red balls and 0 red balls? Well, how many such combinations are there? How many ways are there to choose 5 red balls from 7 red balls? Say &ldquo;7 choose 5&rdquo;. Now, how many ways are there to choose 0 black balls from 3 black balls? &ldquo;3 choose 0.&rdquo; The product of these two combinations (7 C 5) and (3 C 0) give us the number of possible 5-ball combinations in which all 5 are red (and zero are black). </p>
+<p><img src="http://mathurl.com/q2395wd.png" alt=""></p>
+<p>Now then, these what proportion of the total number of possible 5-ball draws (total=252) will have 5 red and 3 black (total=21)? Well,</p>
+<p><img src="http://mathurl.com/m5q4tbp.png" alt=""></p>
+<p>Where <strong>N</strong> is the total number of balls in the urn, <strong>R</strong> is the total number of red balls in the urn, <strong>n</strong> is the total number we select, <code>$N-R$</code> is the number of black balls in the urn, <strong>r</strong> is the number of red balls in our selection, and <code>$n-r$</code> is the number of black balls in our selection. Experiments of this kind follow a hypergeometric distribution, we can this method to analyze our 2x2 contingency table.<br>
+Now, instead of balls and urns, we have right and wrong. Instead of asking, &ldquo;what is the probability of getting 5 red balls and 0 black balls when I draw 5 balls at random from a population that contains 7 red balls and 3 black balls&rdquo; we ask &ldquo;what is the probability that 14 people got Q1 right/ Q2 wrong and 35 people got Q1 wrong/ Q2 right if we draw 49 balls at random from a population where 55 got Q1 right and 45 got Q1 wrong.&rdquo; That is, we want the probability of observing the given set of frequencies 14, 35, 41, 10 in a 2x2 contingency table <em>given fixed row and column marginal totals.</em></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h4 id="heading2"></h4>
+<p><img src="http://mathurl.com/mrvufm7.png" alt=""></p>
+<h4 id="heading3"></h4>
+<p>This probability is vanishingly small, but what we are really interested in is this: given our marginal frequencies, what is the chance of observing a difference <em>at least this extreme</em>? More extreme configurations can be generated by  locating the smallest (or largest) frequency in the table, subtracting 1 (or adding 1), and then  computing the remaining items given the observed marginal frequencies. When you find the collective probability of observing a combination of frequencies at least as extreme as this one, you get something smaller than <code>$1/10,000,000$</code>. Thus, we can conclude that answering question 1 right is associated with answering question 2 right.</p>
+<p>Fisher's <a href="http://en.wikipedia.org/wiki/Exact_test">exact test</a> is interesting because it depends on no parametric assumptions and works for any sample size.</p>
+<h4 id="heading4"></h4>
+<p>I may add more to this post in the future, but that's enough for now!</p>
+<!-- raw HTML omitted -->
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/post/the-math-of-secrecy-rsa-cryptography-and-shapes-you-can-draw/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">The Math of Secrecy: RSA Cryptography (and Shapes You Can Draw!)</span>
+    </a>
+    
+    
+    <a href="/post/important-peculiarities-of-memory/" class="navigation-next">
+      <span class="navigation-tittle">&#34;Important Peculiarities&#34; of Memory</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+    
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

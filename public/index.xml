@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nathaniel Woodward</title>
+    <link>/</link>
+    <description>Recent content on Nathaniel Woodward</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 24 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Binary and Count Prediction</title>
+      <link>/posts/logistic-and-poisson-regression/</link>
+      <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/logistic-and-poisson-regression/</guid>
+      <description>Let’s enrich our previous discussion of linear regression by considering outcome data that is binary/dichotomous (e.g., success/failure, whether someone recovered or not) and data that is count-based (e.g., number of distinct species per survey site).</description>
+    </item>
+    
+    <item>
+      <title>Repeated Measures ANOVA in R</title>
+      <link>/posts/repeated-measures-anova-in-r/</link>
+      <pubDate>Sun, 14 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/repeated-measures-anova-in-r/</guid>
+      <description>One Within-Subjects Factor Partitioning the Total Sum of Squares (SST)  Naive analysis (not accounting for repeated measures) Mixed-effects model of same data Checking Assumptions Effect size  One between, one within (a two-way split plot design) Two within-subjects factors Real Example   Hello again!</description>
+    </item>
+    
+    <item>
+      <title>MANOVA and A Cool Thing Called PERMANOVA</title>
+      <link>/posts/a-cool-thing-called-permanova/</link>
+      <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/a-cool-thing-called-permanova/</guid>
+      <description>MANOVA MANOVA stands for Multivariate (or Multiple) Analysis of Variance, and it’s just what it sounds like. You have multiple response variables, and you want to test whether any of them differ across levels of your explanatory variable(s) (i.</description>
+    </item>
+    
+    <item>
+      <title>World&#39;s Greatest Monty Hall Simulation App</title>
+      <link>/posts/worlds-greatest-monty-hall-simulation-app/</link>
+      <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/worlds-greatest-monty-hall-simulation-app/</guid>
+      <description>A couple months ago a colleague and I volunteered for some outreach at a local science museum. It was for an 21+ night (i.e., lots of nerdy adults drinking beers together) and the theme was “Get Your Game On”.</description>
+    </item>
+    
+    <item>
+      <title>Basic Stats U Need #5: Two-Way ANOVA</title>
+      <link>/posts/basic-stats-u-need-5-two-way-anova/</link>
+      <pubDate>Sat, 18 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/basic-stats-u-need-5-two-way-anova/</guid>
+      <description>Two-Way ANOVA Assumptions Partitioning the Total Sum of Squares (\(SS_T\)) Two-Way ANOVA Table Mechanics of Two-Way ANOVA Interactions in Two-Way ANOVA: 8 Possibilities  Full Example: Effect of Vitamin C on Guinea Pig Tooth Growth Sum of Squares Calculations Example: Two-Way ANOVA, no Interaction Calculation of Dose \(\times\) Supplement Interaction Effect Example: Two-Way ANOVA with Interaction Full ANOVA table for Guinea Pig example Post Hoc Tests (only do comparisons of interest!</description>
+    </item>
+    
+    <item>
+      <title>Monty Hall Explanation</title>
+      <link>/montyhallexp/</link>
+      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/montyhallexp/</guid>
+      <description>The Monty Hall Problem is Very Counterintuitive  If you still don’t believe it, you are in good company:       Simplest Explanation  Your first choice has a 1/3 chance of having the car So there’s a 2/3 it is behind one of the other doors     Monty will never open the door with the car behind it After he opens a door, the entire 2/3 probability shifts to the other closed door     Monty is Key!</description>
+    </item>
+    
+    <item>
+      <title>Sample Means and Shrinkage Estimators</title>
+      <link>/posts/sample-means-and-shrinkage-estimators/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/sample-means-and-shrinkage-estimators/</guid>
+      <description>Why do we use sample means? The sample mean, \(\bar x = \frac 1 N\sum x_i\), is a workhorse of modern statistics. For example, t tests compare two sample means to judge if groups are likely different at the population level, and ANOVAs compare sample means of more groups to achieve something similar.</description>
+    </item>
+    
+    <item>
+      <title>Enemy Tank Problem</title>
+      <link>/posts/enemy-tank-problem/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/enemy-tank-problem/</guid>
+      <description>Enemy Tank Problem: Estimating Population Size  In wartime, it is advantageous to know how well-equipped your adversary is. Ideally, you would like to have full knowledge of their armory: exactly how many tanks, planes, and ships they have that are currently battle-ready.</description>
+    </item>
+    
+    <item>
+      <title>Educational Practices in Large College Classrooms— What Really Goes On?</title>
+      <link>/portfolio/dissertation1/</link>
+      <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/dissertation1/</guid>
+      <description>A large-scale characterization of normative educational practices (e.g., course structure, teaching methods, learning activities) across more than 1,000 high-enrollment undergraduate courses at a large public institution over the last 5 years.</description>
+    </item>
+    
+    <item>
+      <title>Estimating the Causal Effect of Retrieval Practice on Future Course Performance</title>
+      <link>/portfolio/dissertation2/</link>
+      <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/dissertation2/</guid>
+      <description>This research builds directly upon my descriptive analysis (see below) by combining the syllabus dataset with student records to assess how prerequisite-course features affect student performance in their subsequent courses. Specifically, introductory courses high and low in retrieval-practice requirements were compared in terms of their students subsequent success using inverse propensity-score weighted logistic regressions with cluster-robust standard errors to improve causal inference.</description>
+    </item>
+    
+    <item>
+      <title>Basic Stats U Need #4: Correlation &amp; Regression</title>
+      <link>/posts/basic-stats-u-need-4-correlation-and-regression/</link>
+      <pubDate>Wed, 09 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/basic-stats-u-need-4-correlation-and-regression/</guid>
+      <description>Correlation demonstration! Regression Why normally distributed errors?  Normal-errors assumption and homoskedasticity Confidence (and prediction) intervals for a given X What’s the relationship between correlation and regression? Multiple regression: multiple predictors Multiple \(R\) and \(R^2\) \(R^2\) in one bang using correlation matricies  Semipartial and Partial Correlations Semipartial correlations: the residuals approach Increments to \(R^2\) when adding predictors Multicollinearity  Regression assumptions Partial correlations   .</description>
+    </item>
+    
+    <item>
+      <title>Validity in Research</title>
+      <link>/posts/statistical-validity/</link>
+      <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/statistical-validity/</guid>
+      <description>What is an Experiment? Research in a Perfect World What is Validity? Internal Validity Threats to Internal Validity Random Assignment  External Validity Threats to External Validity  Construct Validity Threats to Construct Validity  Statistical Validity Threats to Statistical Validity Power!</description>
+    </item>
+    
+    <item>
+      <title>Basic Stats U Need #3: ANOVA</title>
+      <link>/posts/basic-stats-u-need-3-anova/</link>
+      <pubDate>Sun, 27 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/basic-stats-u-need-3-anova/</guid>
+      <description>One-Way ANOVA by way of Two-Sample T-Test Calculations Sums of Squares Plot Effect Size Assumptions Post Hoc Tests   One-Way ANOVA by way of Two-Sample T-Test If the hero of our last post was William “Student” Gosset, then the hero of this and the next few posts will be Sir Ronald Fisher.</description>
+    </item>
+    
+    <item>
+      <title>Basic Stats U Need #2: T-Test</title>
+      <link>/posts/basic-stats-u-need-t-test/</link>
+      <pubDate>Wed, 23 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/basic-stats-u-need-t-test/</guid>
+      <description>Part 2: the t-Distribution We saw in the previous post that if X is a random variable and the population distribution of X is normal with mean \(\mu\) and standard deviation \(\sigma\) (variance \(\sigma^2\)), then the distribution of the sample mean \(\bar{X}\) for samples of a given size \(n\) is normal, with mean \(\mu\) and standard deviation of \(\frac{\sigma}{\sqrt{n}}\), which we can write \(\bar{X}_n \sim N(\mu,\frac{\sigma}{\sqrt{n}})\).</description>
+    </item>
+    
+    <item>
+      <title>Basic Stats U Need #1: Z-Scores, Sampling Distns, LLN, CLT</title>
+      <link>/posts/basic-stats-u-need-z-scores/</link>
+      <pubDate>Tue, 08 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/basic-stats-u-need-z-scores/</guid>
+      <description>Hello! This is the first in a series of posts that cover topics typically encountered on any Introduction to Statistics course syllabus (yes, that is to say frequentist). The idea was born out of a desire to blog about the Analysis of Variance and its many forms, but I soon found myself addressing pre-requisites, which led to tangents and lemmas that took on lives of (and ballooned into posts of) their own.</description>
+    </item>
+    
+    <item>
+      <title>Swapping an HDD for an SSD in a Low-End 2017 Laptop</title>
+      <link>/posts/swapping-an-hdd-for-an-ssd-in-a-low-end-2017-laptop/</link>
+      <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/swapping-an-hdd-for-an-ssd-in-a-low-end-2017-laptop/</guid>
+      <description>In less than two day&#39;s time, I was able to purchase my third computer from a perfect-craigslist-stranger (without issue!) and replace the hard disk with a solid state drive, and I wanted to take a minute to document the experience here; if you are interested only in a rough guide for SSD installation for a 2017 HP laptop, you are heartily encouraged to skip down several paragraphs.</description>
+    </item>
+    
+    <item>
+      <title>Cleaning and Operating a 100-Year-Old Sewing Machine</title>
+      <link>/posts/cleaning-and-operating-a-100-year-old-sewing-machine/</link>
+      <pubDate>Thu, 04 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/cleaning-and-operating-a-100-year-old-sewing-machine/</guid>
+      <description>My wife Lindsay let me co-blog about fixing up a century-old sewing machine!
+Check it out here:
+http://www.lindsaywoodward.com/2016/07/cleaning-and-operating-a-100-year-old-sewing-machine.html/</description>
+    </item>
+    
+    <item>
+      <title>DIY e-books: Manipulating scanned PDFs with command-line tools</title>
+      <link>/posts/diy-e-books-manipulating-scanned-pdfs-with-command-line-tools/</link>
+      <pubDate>Wed, 01 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/diy-e-books-manipulating-scanned-pdfs-with-command-line-tools/</guid>
+      <description>The Memory Dynamics Laboratory is having something of a book club this summer, but the crucial volume was proving difficult to find; it had been out of print for many years and the UT library system only has a single copy!</description>
+    </item>
+    
+    <item>
+      <title>Learning Analytics in Large College Classrooms</title>
+      <link>/portfolio/masters/</link>
+      <pubDate>Mon, 30 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/masters/</guid>
+      <description>Recently, a large undergraduate course at the University of Texas has implemented a new class structure that replaces high-stakes tests with daily quizzes administered during class via computer. I propose an algorithmic innovation to optimize content delivery to improve learning outcomes.</description>
+    </item>
+    
+    <item>
+      <title>♫ Summer Running: Not Very Fast! / Summer Running: Pain in my Ass! ♫</title>
+      <link>/posts/summer-running-not-very-fast-summer-running-pain-in-my-ass/</link>
+      <pubDate>Sun, 30 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/summer-running-not-very-fast-summer-running-pain-in-my-ass/</guid>
+      <description>Every couple of days I force myself to go outside and run about 2-4 miles. I do not enjoy it. It makes me feel like I am dying every time; I gasp and wheeze and, even after showering I stay uncomfortably sweaty for a few hours.</description>
+    </item>
+    
+    <item>
+      <title>Summary/Review of &#34;How Can The Mind Occur in The Physical Universe?&#34;</title>
+      <link>/posts/summaryreview-of-how-can-the-mind-occur-in-the-physical-universe/</link>
+      <pubDate>Sat, 29 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/summaryreview-of-how-can-the-mind-occur-in-the-physical-universe/</guid>
+      <description>I found out about John R. Anderson almost immediately upon discovering intelligent tutoring systems a few years ago; he and his research group at Carnegie Mellon have blazed the way forward with these technologies.</description>
+    </item>
+    
+    <item>
+      <title>I Finally Read &#34;A New Kind of Science&#34;</title>
+      <link>/posts/i-finally-read-a-new-kind-of-science/</link>
+      <pubDate>Wed, 01 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/i-finally-read-a-new-kind-of-science/</guid>
+      <description>This book made me think new thoughts; this is rare, so I am posting about it.
+If you read nothing else in the post, read the end.
+&amp;ldquo;A New Kind of Science&amp;rdquo; is a 13-year-old book preceded, and regrettably often prejudged, by its reputation.</description>
+    </item>
+    
+    <item>
+      <title>Laudato Si Pope-pourri</title>
+      <link>/posts/laudato-si-pope-pourri/</link>
+      <pubDate>Sun, 21 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/laudato-si-pope-pourri/</guid>
+      <description>It&#39;s not everyday that I want to read something a Pope wrote. In fact, today, June 19, 2015 was the only day I have ever wanted that, if memory serves. Today I read Papa Francesca&#39;s second encyclical, entitled &amp;ldquo;Laudato Si &amp;ndash; On Care For Our Common Home&amp;quot;.</description>
+    </item>
+    
+    <item>
+      <title>Forgetting as &#34;Interference&#34; during Consolidation and Retrieval</title>
+      <link>/posts/forgetting-as-interference-during-consolidation-and-retrieval/</link>
+      <pubDate>Sun, 14 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/forgetting-as-interference-during-consolidation-and-retrieval/</guid>
+      <description>The singular exception is provided by the human ability to remember past happenings. When one thinks today about what one did yesterday, time’s arrow is bent into a loop. The rememberer has mentally traveled back into her past and thus violated the law of the irreversibility of the flow of time.</description>
+    </item>
+    
+    <item>
+      <title>How many times I &#34;googled it&#34;, June 2012 to present</title>
+      <link>/posts/how-many-times-i-googled-it-june-2012-to-present/</link>
+      <pubDate>Fri, 03 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/how-many-times-i-googled-it-june-2012-to-present/</guid>
+      <description>Today at 4:13 pm I got the urge to google &amp;ldquo;google search history&amp;rdquo;.
+I figured that google was keeping all kinds of tabs on me, but at google.com/searchhistory you can find a nice browsable catalog of everything you&#39;ve ever searched for while logged into your google account.</description>
+    </item>
+    
+    <item>
+      <title>Thoughts from one American mind upon closing &#34;Closing of the American Mind&#34;</title>
+      <link>/posts/thoughts-from-one-american-mind-upon-closing-closing-of-the-american-mind/</link>
+      <pubDate>Tue, 27 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/thoughts-from-one-american-mind-upon-closing-closing-of-the-american-mind/</guid>
+      <description>I have just finished reading a very strange book, and I want to try to make some personal sense out of it because it was a little unsettling. I&#39;m really not sure what I just read, and I don&#39;t think I agree with much of it.</description>
+    </item>
+    
+    <item>
+      <title>&#34;The Greatest Equation of All Time&#34;</title>
+      <link>/posts/the-greatest-equation-of-all-time/</link>
+      <pubDate>Fri, 19 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/the-greatest-equation-of-all-time/</guid>
+      <description>Sorry to have been so long away from the blog! The purpose of this post is to give some intuition for Euler&#39;s identity (&amp;ldquo;the most beautiful theorem in mathematics&amp;rdquo;) to those who haven&#39;t seen it before or to those for whom it is meaningless because they lack the math background.</description>
+    </item>
+    
+    <item>
+      <title>&#34;Important Peculiarities&#34; of Memory</title>
+      <link>/posts/important-peculiarities-of-memory/</link>
+      <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/important-peculiarities-of-memory/</guid>
+      <description>In my high school psychology class I was told that human memory capacity was unlimited &amp;hellip;and it has bothered me ever since. How, I mean? Aside from the physical limitations on information storage, how could a system that remembers everything forever be evolutionarily advantageous?</description>
+    </item>
+    
+    <item>
+      <title>2 x 2 Statistics</title>
+      <link>/posts/2-x-2-statistics/</link>
+      <pubDate>Fri, 31 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2-x-2-statistics/</guid>
+      <description>Modern data analysis has gotten very complicated! Let&#39;s forget all that for a moment. I wanted to take this opportunity to examine several useful statistical techniques and measures of association that involve nothing more than a 2x2 contingency table.</description>
+    </item>
+    
+    <item>
+      <title>The Math of Secrecy: RSA Cryptography (and Shapes You Can Draw!)</title>
+      <link>/posts/the-math-of-secrecy-rsa-cryptography-and-shapes-you-can-draw/</link>
+      <pubDate>Sun, 13 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/the-math-of-secrecy-rsa-cryptography-and-shapes-you-can-draw/</guid>
+      <description>When Gauss was 19, he discovered that of the infinite number of polygons that have a prime number of sides, a mere five of them can be constructed with a ruler and compass (i.</description>
+    </item>
+    
+    <item>
+      <title>Circling the Square &amp; Squaring the Circle!</title>
+      <link>/posts/circling-the-square-squaring-the-circle/</link>
+      <pubDate>Thu, 26 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/circling-the-square-squaring-the-circle/</guid>
+      <description>In A Mathematician&#39;s Lament, Paul Lockhart roundly decries the way our school system sucks the soul out of mathematics; what was forced down most of our throats was an insipid husk of repetitive calculation, plug-in formulae, and rigid formality, all of which we were called upon biweekly to regurgitate.</description>
+    </item>
+    
+    <item>
+      <title>Smart Drugs: Special Topics in The Neurobiology of Learning/Memory I</title>
+      <link>/posts/smart-drugs-special-topics-in-the-neurobiology-of-learningmemory-i/</link>
+      <pubDate>Sat, 21 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/smart-drugs-special-topics-in-the-neurobiology-of-learningmemory-i/</guid>
+      <description>Smart Drugs &amp;amp; LTP: Enhancement of Long-term Potentiation Through Actions on AMPA-Receptor Initiation and CREB Consolidation Unlike the previous installment, this post presumes a great deal of background knowledge on the part of its readers.</description>
+    </item>
+    
+    <item>
+      <title>Base-10 Blocks to a Billion!</title>
+      <link>/posts/base-10-blocks-to-a-billion/</link>
+      <pubDate>Wed, 18 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/base-10-blocks-to-a-billion/</guid>
+      <description>Everybody who went to public elementary school in the USA after the mass production of plastics (1940s and 1950s) and before, say, the advent of the iPad, knows what these things are:</description>
+    </item>
+    
+    <item>
+      <title>Miles and Miles!</title>
+      <link>/posts/miles-and-miles/</link>
+      <pubDate>Tue, 17 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/miles-and-miles/</guid>
+      <description>This post considers the humble mile. You know, the unit of distance. 5,280 feet&amp;hellip; 1,760 yards&amp;hellip; 8 furlongs of 660 feet a piece&amp;hellip; Have you ever thought about how nicely divisible our mile is?</description>
+    </item>
+    
+    <item>
+      <title>How Caffeine Does the Things It Does.</title>
+      <link>/posts/how-caffeine-does-the-things-it-does/</link>
+      <pubDate>Sat, 14 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/how-caffeine-does-the-things-it-does/</guid>
+      <description>I waste a lot of time preparing and drinking coffee. My coffee ritual (cleaning the press, filling it anew, boiling water, brewing, plunging the grounds, pouring) takes around 3 minutes of active attention, and I perform this holy rite 2-3 times each day.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to the Neurochemical Foundations of Learning and Memory for Non-Science Majors</title>
+      <link>/posts/introduction-to-the-neurochemical-foundations-of-learning-and-memory-for-non-science-majors/</link>
+      <pubDate>Wed, 04 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/introduction-to-the-neurochemical-foundations-of-learning-and-memory-for-non-science-majors/</guid>
+      <description>This first in a series of posts about the biology of learning and memory has been written plainly, with much care taken to ensure its general-audience accessibility.
+TL;DR: neurons communicate with other neurons by releasing chemicals called neurotransmitters onto them; these chemicals bind to receptors on the neighboring neurons.</description>
+    </item>
+    
+    <item>
+      <title>Productive Procrastination - gnuplot GIFs</title>
+      <link>/posts/productive-procrastination-gnuplot-gifs/</link>
+      <pubDate>Sat, 03 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/productive-procrastination-gnuplot-gifs/</guid>
+      <description>As the semester draws to a close, assignments have this way of becoming suddenly due and needing immediately to be done&amp;hellip; while everything else, literally anything besides these assignments has this perverse way of becoming, in equal measure, more enticing, distracting, rewarding&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>About Hugo</title>
+      <link>/about/</link>
+      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Hugo is a static site engine written in Go.
+It makes use of a variety of open source projects including:
+ Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>
+    </item>
+    
+    <item>
+      <title>The Piteous and Worsening State of Keller&#39;s Academic Decathlon Program</title>
+      <link>/posts/the-piteous-and-worsening-state-of-kellers-academic-decathlon-program/</link>
+      <pubDate>Thu, 27 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/the-piteous-and-worsening-state-of-kellers-academic-decathlon-program/</guid>
+      <description>I am writing to voice my concern about the seriously decrepit state of Keller High School&#39;s once eminent Academic Decathlon team.
+It&#39;s been six years since I competed, but every February, about three weeks in, some sort of high school atavism reminds my unconscious that Academic Decathlon just had its Texas State meet and urges me online to acadecscores (which may be down; the servers are spotty this time of year&amp;hellip;) to review the damage.</description>
+    </item>
+    
+    <item>
+      <title>Hey, Eigenface! (DIY face recognition)</title>
+      <link>/posts/hey-eigenface-diy-face-recognition/</link>
+      <pubDate>Sat, 15 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/hey-eigenface-diy-face-recognition/</guid>
+      <description>I&#39;ve been recently acquainted with a statistical technique of amazing utility and versatility that has its roots in matrix decomposition, a basic&amp;mdash;though profound&amp;mdash;concept in linear algebra.
+For the purposes of this discussion, we&#39;re going to consider it a very elegant way of taking a large, confusing dataset with many variables and transforming it so that you can find patterns based on the correlations among the variables, thus allowing you to describe your data with fewer of them.</description>
+    </item>
+    
+    <item>
+      <title>Idea Density, or, &#34;teenage essays predict old-age Alzheimer&#39;s&#34;</title>
+      <link>/posts/idea-density-or-teenage-essays-predict-old-age-alzheimers/</link>
+      <pubDate>Tue, 11 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/idea-density-or-teenage-essays-predict-old-age-alzheimers/</guid>
+      <description>Yesterday in the car I caught a couple intriguing snatches of NPR&#39;s Radiolab, a program that has been, in my experience, very hit-or-miss (though I guess it&#39;s got something for everyone).</description>
+    </item>
+    
+    <item>
+      <title>How a computer works, briefly.</title>
+      <link>/posts/how-a-computer-works-briefly/</link>
+      <pubDate>Sun, 02 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/how-a-computer-works-briefly/</guid>
+      <description>This post is going to be a long one, because I need to be thorough and deliberate if I am to be understood; my target audience consists of people who don&#39;t know much about computers, and frankly I&#39;m just a dilettante with no formal training on the subject.</description>
+    </item>
+    
+    <item>
+      <title>This Week in R: Cluster Analyses</title>
+      <link>/posts/this-week-in-r-cluster-analyses/</link>
+      <pubDate>Tue, 28 Jan 2014 05:50:00 +0000</pubDate>
+      
+      <guid>/posts/this-week-in-r-cluster-analyses/</guid>
+      <description>No Content Found</description>
+    </item>
+    
+    <item>
+      <title>KIC Scanners and one of Lindsay&#39;s pictures</title>
+      <link>/posts/kic-scanners-and-one-of-lindsays-pictures/</link>
+      <pubDate>Wed, 22 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/kic-scanners-and-one-of-lindsays-pictures/</guid>
+      <description>Earlier this month I presciently looked up and checked out the only non-reserve copy of a book that was required for one of my upcoming courses. Then, a few days ago, I got the dreaded but by now familiar recalled email, prompted by someone else&#39;s request (doubtlessly someone else in my class who is just now getting around to reading the syllabus).</description>
+    </item>
+    
+    <item>
+      <title>New Zealand: Late Updates</title>
+      <link>/posts/new-zealand-late-updates/</link>
+      <pubDate>Thu, 16 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/new-zealand-late-updates/</guid>
+      <description>I love it here! This really is an amazing country!
+We got into Auckland in the early afternoon on NYE. Everything is beautiful: all of the plants are unique-looking and typical road-side terrain&amp;mdash;berms and such&amp;mdash;are often breathtaking.</description>
+    </item>
+    
+    <item>
+      <title>Going to New Zealand! Today!</title>
+      <link>/posts/going-to-new-zealand-today/</link>
+      <pubDate>Sun, 29 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/going-to-new-zealand-today/</guid>
+      <description>These next few posts will chart our impending journey to New Zealand, which begins on a CapMetro bus this morning at 9:30am and ends with our arrival to Auckland Int. Airport at 12:50pm on December 31 (for us, there is no December 30th&amp;hellip;) Along the way, we have two excellent layovers (Los Angeles &amp;amp; Nadi, Fiji) so expect to hear more about these places as well.</description>
+    </item>
+    
+    <item>
+      <title>Ode to an Autobus</title>
+      <link>/posts/ode-to-an-autobus/</link>
+      <pubDate>Tue, 17 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/ode-to-an-autobus/</guid>
+      <description>I enjoy riding buses and trains; I like their consistency&amp;mdash;the same times, the same drivers&amp;mdash;but I also like their novelty&amp;mdash;the strange new people you are exposed to from the safety of your seat.</description>
+    </item>
+    
+    <item>
+      <title>Typing Speed and the Woes of 1-β</title>
+      <link>/posts/typing-speed-and-the-woes-of-1-%ce%b2/</link>
+      <pubDate>Wed, 11 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/typing-speed-and-the-woes-of-1-%ce%b2/</guid>
+      <description>My six-year-old macbook (a black one, before the pro) is still operational, but it has burned through (literally) several batteries, and, unless I pay apple the $129.00 they want for a new one, it is going to remain about as portable as your average desktop PC.</description>
+    </item>
+    
+    <item>
+      <title>Blog-nauguration, take 2</title>
+      <link>/posts/blog-nauguration-take-2/</link>
+      <pubDate>Sun, 08 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/blog-nauguration-take-2/</guid>
+      <description>**Digital Citizenship as Identity-formation ** A few weeks ago, presaging (if not precipitating) my own entry into the blogosphere, I read a paper by Siles (2012) entitled &amp;ldquo;Web Technologies of the Self: The Arising of the &amp;ldquo;Blogger&amp;rdquo; Identity.</description>
+    </item>
+    
+    <item>
+      <title>ELM-ART, an online LISP Tutor</title>
+      <link>/posts/elm-art-an-online-lisp-tutor/</link>
+      <pubDate>Sat, 07 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/elm-art-an-online-lisp-tutor/</guid>
+      <description>A free web-based Intelligent Tutoring System that teaches you the basics of the LISP programming language: ELM-ART (http://art2.ph-freiburg.de/Lisp-Course)</description>
+    </item>
+    
+    <item>
+      <title>First post: a couple links</title>
+      <link>/posts/first-post-a-couple-links/</link>
+      <pubDate>Sat, 07 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/first-post-a-couple-links/</guid>
+      <description>&amp;ldquo;O Muses, O high genius, aid me now!&amp;rdquo; -Inferno, Canto II
+ While I&#39;ve nothing interesting to say right now, I do have a few things to show you: a few tools I&#39;ve found.</description>
+    </item>
+    
+    <item>
+      <title>About About</title>
+      <link>/aboutabout/</link>
+      <pubDate>Wed, 31 Dec 1969 18:33:33 -0600</pubDate>
+      
+      <guid>/aboutabout/</guid>
+      <description>###Second-order self-presentation: a conceit on conceitedness
+I used to take great pleasure in writing these “About Me” minibios, primping my digital appearance for hours on end. In my misspent youth I agonized over a Xanga, a MySpace, a LiveJournal, a Facebook… leaving behind a digital footprint so contrived you can see the pedicure.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Hello and welcome! My name is Nathaniel Woodward (né Raley)
+I am a Lecturer in Statistics and Data Sciences at UT Austin, where I have previously worked as a researcher and statistical consultant.</description>
+    </item>
+    
+    <item>
+      <title>Feedback</title>
+      <link>/feedback/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/feedback/</guid>
+      <description>If you are/were a student of mine, please give me some anonymous feedback about the course (please note which course and, if not current, the year/semester). I truly appreciate it, good or bad: I use this information to make changes to future versions of the course!</description>
+    </item>
+    
+    <item>
+      <title>Karaoke</title>
+      <link>/karaoke/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/karaoke/</guid>
+      <description>The Songs I’ve Sung (Last Updated 1/22/2019) To-Sing List (Also Slowly Growing)   In Fall 2018 I discovered that I enjoy a certain kind of bar-style karaoke: Karaoke Underground specializes in tracks from somewhat obscure indie and punk artists, though there are a fair number of more popular jams.</description>
+    </item>
+    
+    <item>
+      <title>Research</title>
+      <link>/research/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/research/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Songs</title>
+      <link>/songs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/songs/</guid>
+      <description>I love learning about new music!
+Submit your music recommendations/requests to me through the google forms link below:
+https://goo.gl/forms/gSnEckR1pvYp9g5g2</description>
+    </item>
+    
+    <item>
+      <title>Teaching</title>
+      <link>/portfolio/teaching/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/teaching/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Teaching</title>
+      <link>/teaching/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/teaching/</guid>
+      <description>This page is under construction!
+For now, here are twenty-five heuristics for promoting learning.
+From: Winne &amp;amp; Nesbit (2010). The Psychology of Academic Achievement. Ann.. Rev. of Psych., 61(1), 653–678</description>
+    </item>
+    
+  </channel>
+</rss>
