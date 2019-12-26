@@ -50,8 +50,6 @@ In both my teaching and my research, my guiding purpose is to improve lifetime l
 
 ---
 
-
-
 <script type="text/javascript" src="/bigfoot.min.js"></script>
 <script type="text/javascript" src="/bigfoot.js"></script>
 <script type="text/javascript">

@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1577323722015.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1899811225",
+    "id" : "34C88A6D",
+    "lastKnownWriteTime" : 1577323726,
+    "last_content_update" : 1577323726779,
+    "path" : "~/Desktop/website/static/barefoot.min.js",
+    "project_path" : "static/barefoot.min.js",
+    "properties" : {
+        "cursorPosition" : "1,0",
+        "scrollLine" : "1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 21,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "js"
+}
