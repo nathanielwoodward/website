@@ -1,8 +1,8 @@
 {{ define "header" }}
   {{ partial "header.html" . }}
 {{ end }}
-
 {{ define "content" }}
+<img src="/about_files/figure-html/unnamed-chunk-1-1.png">
   <div class="post-list">
     {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" site.Params.mainSections) }}
     {{ range $paginator.Pages }}

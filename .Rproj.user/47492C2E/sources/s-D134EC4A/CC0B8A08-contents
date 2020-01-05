@@ -7,6 +7,7 @@
     $.bigfoot();
 </script>
 <!--
+<img src="/about_files/figure-html/unnamed-chunk-1-1.png" width=50% hspace="200">
 <script type="text/javascript" src="https://raw.githubusercontent.com/philgruneich/barefoot/master/dist/js/barefoot.min.js"></script>
 <script>
   lf = new BareFoot();
