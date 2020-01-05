@@ -59,7 +59,7 @@ $code-fence-font-size: .8rem;
 $code-line-height: 1.4;
 
 // links
-$link-color: $purple;
+$link-color: #fed8b1;
 $link-hover-color: $body-color;
 
 // section

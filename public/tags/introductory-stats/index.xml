@@ -17,7 +17,7 @@
       <pubDate>Wed, 23 Aug 2017 00:00:00 +0000</pubDate>
       
       <guid>/posts/basic-stats-u-need-t-test/</guid>
-      <description>Part 2: the t-Distribution We saw in the previous post that if X is a random variable and the population distribution of X is normal with mean \(\mu\) and standard deviation \(\sigma\) (variance \(\sigma^2\)), then the distribution of the sample mean \(\bar{X}\) for samples of a given size \(n\) is normal, with mean \(\mu\) and standard deviation of \(\frac{\sigma}{\sqrt{n}}\), which we can write \(\bar{X}_n \sim N(\mu,\frac{\sigma}{\sqrt{n}})\).</description>
+      <description>Part 2: the t-Distribution We saw in the previous post that if X is a random variable and the population distribution of X is normal with mean \(\mu\) and standard deviation \(\sigma\) (variance \(\sigma^2\)), then the distribution of the sample mean \(\bar{X}\) for samples of a given size \(n\) is normal, with mean \(\mu\) and standard deviation of \(\frac{\sigma}{\sqrt{n}}\), which we can write \(\bar{X}_n \sim N(\mu,\frac{\sigma}{\sqrt{n}})\).1 More exciting, we saw that by the Central Limit Theorem, the sampling distribution will be normal regardless of the original population distribution if the sample size is large enough.</description>
     </item>
     
   </channel>

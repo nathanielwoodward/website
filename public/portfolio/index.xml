@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Projects on Nathaniel Woodward</title>
+    <title>Selected Projects and Publications on Nathaniel Woodward</title>
     <link>/portfolio/</link>
-    <description>Recent content in Projects on Nathaniel Woodward</description>
+    <description>Recent content in Selected Projects and Publications on Nathaniel Woodward</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 17 Aug 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/portfolio/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Teaching</title>
+      <link>/portfolio/teaching/</link>
+      <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/teaching/</guid>
+      <description>I am an expert in the science of learning and I have been plying my trade (i.e., teaching) in various capacities (high school classes, private tutoring, statistics short courses, training seminars, research consulting, college courses) for about 10 years now. Click to learn more about my pedagogical background and outlook.</description>
+    </item>
+    
+    <item>
+      <title>Toward Consilience in The Use of Task-Level Feedback to Promote Learning</title>
+      <link>/portfolio/feedback/</link>
+      <pubDate>Mon, 12 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/feedback/</guid>
+      <description>A literature review and theoretical framework for understanding how people learn from feedback. Three main findings are situated within their respective theoretical accounts and then integrated: feedback messages should convey information about correctness, highlight the correct answer, and provide additional context for why the answer is correct; errors made with higher confidence are more likely to be corrected (the &amp;ldquo;hypercorrection effect&amp;rdquo;&amp;quot;), and the finding that delayed feedback produces better long-term learning than immediate feedback.</description>
+    </item>
     
     <item>
       <title>Educational Practices in Large College Classrooms— What Really Goes On?</title>
@@ -17,7 +35,7 @@
       <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/portfolio/dissertation1/</guid>
-      <description>A large-scale characterization of normative educational practices (e.g., course structure, teaching methods, learning activities) across more than 1,000 high-enrollment undergraduate courses at a large public institution over the last 5 years.</description>
+      <description>A large-scale characterization of normative educational practices (e.g., course structure, teaching methods, learning activities) across more than 1,000 high-enrollment undergraduate courses at a large public institution over the last 5 years. I assess the extent to which course features reflect educational best-practices by systematically reviewing course syllabi—documenting the type, quantity, and grade- weight of all work assigned in each course as well as the prevalence and variability of teaching practices such as group activities, retrieval practice, and in-class active learning.</description>
     </item>
     
     <item>
@@ -26,25 +44,25 @@
       <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/portfolio/dissertation2/</guid>
-      <description>This research builds directly upon my descriptive analysis (see below) by combining the syllabus dataset with student records to assess how prerequisite-course features affect student performance in their subsequent courses. Specifically, introductory courses high and low in retrieval-practice requirements were compared in terms of their students subsequent success using inverse propensity-score weighted logistic regressions with cluster-robust standard errors to improve causal inference.</description>
+      <description>This research builds directly upon my descriptive analysis (see below) by combining the syllabus dataset with student records to assess how prerequisite-course features affect student performance in their subsequent courses. Specifically, introductory courses high and low in retrieval-practice requirements were compared in terms of their students subsequent success using inverse propensity-score weighted logistic regressions with cluster-robust standard errors to improve causal inference. Results showed that additional retrieval practice improved students’ performance in their subsequent courses.</description>
     </item>
     
     <item>
-      <title>Learning Analytics in Large College Classrooms</title>
+      <title>Retrieving and Applying Knowledge to Different Examples Promotes Transfer of Learning</title>
+      <link>/portfolio/rockstar/</link>
+      <pubDate>Fri, 15 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/rockstar/</guid>
+      <description>Introducing variability during learning can facilitate transfer to new contexts (i.e., generalization). We explore the concept of variability in an area of research where its effects have received little attention: learning through retrieval practice. In four experiments, we investigate whether retrieval practice with different examples of a concept promotes greater transfer than repeated retrieval practice with the same example. All four experiments showed that variability during retrieval practice produced superior transfer of knowledge to new examples.</description>
+    </item>
+    
+    <item>
+      <title>Responsive Learning Analytics in Large College Classrooms</title>
       <link>/portfolio/masters/</link>
       <pubDate>Mon, 30 May 2016 00:00:00 +0000</pubDate>
       
       <guid>/portfolio/masters/</guid>
-      <description>Recently, a large undergraduate course at the University of Texas has implemented a new class structure that replaces high-stakes tests with daily quizzes administered during class via computer. I propose an algorithmic innovation to optimize content delivery to improve learning outcomes.</description>
-    </item>
-    
-    <item>
-      <title>Teaching</title>
-      <link>/portfolio/teaching/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/portfolio/teaching/</guid>
-      <description></description>
+      <description>A large undergraduate course at the University of Texas implemented a new class structure that replaces high-stakes tests with daily quizzes administered during class via computer. I propose an innovation to optimize content delivery to improve learning outcomes. Given graded student quiz data from one semester of this course, I use multidimensional item response theory (MIRT) and sparse factor analysis (SPARFA) to jointly estimate concepts underlying the items and each students’ mastery of these concepts, demonstrating the efficacy of this approach in real-world example.</description>
     </item>
     
   </channel>

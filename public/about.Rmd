@@ -1,6 +1,7 @@
 ---
 author: "Nathaniel Woodward"
 showpagemeta: false
+postnavigation: false
 output:
   blogdown::html_page:
     toc: false
@@ -44,7 +45,12 @@ dat%>%transmute(theta=theta,a=1-b1, b=b1-b2,c=b2-b3,d=b3)%>%
 
 My name is Nathaniel Woodward (*né* Raley)
 
-I am a Lecturer in Statistics and Data Sciences at UT Austin, where I have previously worked as a researcher and statistical consultant.
+I am currently a Lecturer in the [Department of Statistics and Data Sciences at UT Austin](https://stat.utexas.edu/), where I earned both PhD (2018) and MS (2016) and where I previously worked as a researcher and statistical consultant.
+
+I am interested in modern statistical approaches to causal inference, especially as they apply to evaluations of human learning and memory. In my research, I have used institutional data to investigate teaching effectiveness, curriculum redesign, students' pathways through college, and other questions important to university stakeholders. 
+
+Furthermore, I have experience modeling the causal effect of large-scale interventions, including a nation-wide randomized effectiveness trial. I have also conducted laboratory studies with human subjects to test interventions designed to improve long-term retention and transfer of learning to new contexts. For some examples of my work, see the [portfolio](/portfolio/) page.
+
 
 In both my teaching and my research, my guiding purpose is to improve lifetime learning outcomes---to create meaningful learning experiences that lead to durable, flexible knowledge; to show how enjoyable learning can be to motivate the pursuit of knowledge for its own sake; to help assemble the cognitive and metacognitive skillset needed for a life of independent inquiry.
 
@@ -63,21 +69,20 @@ Students who love to learn will seek meaning, truth, and enjoyment in everything
 
 # Site
 
-Why [blog](/post/)? Initially it was just to have a place to externalize ideas so I wouldn't forget them---a digital creel to take fishing in the stream of consciousness. Life's too short for fleeting thoughts; here I could pin them all down side by side and, under the loupe of scrutiny, come to determine (and revise!) what it is I believe.[^14] Good old Plato would've called sites like these [hypomnemata](https://en.wikipedia.org/wiki/Hypomnema); they work like a prosthetic memory for one's musings (the amusing, bemusing, c-musing...), serving as a record of the person I was for the people I will become. I can now look back and see how, in each post or upload, I have unconsciously embedded aspects of my identity-at-the-time. When we write, the billions of experiences we've had since birth are brought to bear, and so the author leaves a residue even as he is changed by the process itself.
+Why [blog](/post/)? Initially it was just to have a place to externalize ideas so I wouldn't forget them---a digital creel to take fishing in the stream of consciousness. Life's too short for fleeting thoughts; here I could pin them all down side by side and, under the loupe of scrutiny, come to determine (and revise!) what it is I believe.[^14] Good old Plato would've called sites like these [hypomnemata](https://en.wikipedia.org/wiki/Hypomnema); they work like a prosthetic memory for one's musings (amusing, bemusing), serving as a record of the person I was for the people I will become. I can now look back and see how, in each post or upload, I have unconsciously embedded aspects of my identity-at-the-time. When we write, the billions of experiences we've had since birth are brought to bear, and so the author leaves a residue even as he is changed by the process itself.
 
 > "How can I tell what I think until I see what I say?" <br>
 > --E.M. Forster, Aspects of the Novel
 
 You too can see what I say: the internet has created a sort of reverse-voyeurism where I get to say [Important Things](/post/) behind a one-way (or is it two-way?) mirror and pretend you're watching...  even an imagined audience can cause [reactivity](https://en.wikipedia.org/wiki/Reactivity_(psychology)) and I'm a people-pleaser besides! [Sunk costs](https://en.wikipedia.org/wiki/Sunk_cost) being what they are (e.g., domain registration fee, hours of my life getting this thing up and running), I hope to channel [loss-aversion](https://en.wikipedia.org/wiki/Loss_aversion) into regular updates and upkeep so drop by and hold me to account[^12] (or I can just imagine that you've been by)!
 
-In August 2017, I migrated my blog and personal website from blogger/AWS to GitHub/Netlify so I could blog stats stuff more simply straight from R Studio using the [**blogdown**](https://github.com/rstudio/blogdown) package developed by Yihui Xie. Indeed, this site is adapted from [his](https://github.com/yihui/hugo-lithium-theme) adaptation of [J. Rutheiser's original](https://github.com/jrutheiser/hugo-lithium-theme) theme. I have tweaked it considerably (and wasted much time in doing so), including the addition of bigfootjs for fun footnotes.[^20]
+In August 2017, I migrated my blog and personal website from blogger/AWS to GitHub/Netlify so I could blog stats stuff more simply straight from R Studio using the [**blogdown**](https://github.com/rstudio/blogdown) package developed by Yihui Xie. I was originally using his theme as well, but the current theme is adapted from [htr3n's](https://github.com/htr3n/hyde-hyde) adaptation of [spf13's](https://github.com/spf13/hyde) theme. I have tweaked it considerably (and wasted much time in doing so), including the addition of bigfootjs for fun footnotes.[^20]
 
-![](/classclown.jpg)
 
 # Personal
 
-<center>![](/static/howIfeelwhen_meme1.png)
-<figcaption><font size="1">Three ways I usually feel inside watching or participating in social interactions.</font></figcaption>
+<center>![](/howIfeelwhen_meme1.png)
+<figcaption><font size="1">Actual picture of my brain processing a social interaction</font></figcaption>
 </center>
 
 Despite the impression you may have gotten from my prose style,[^25] I am extremely economical and I abominate wastes of any kind, especially those of time (the thing I value most highly) and money (which I have to sell my time to get).[^13]
@@ -85,36 +90,35 @@ Despite the impression you may have gotten from my prose style,[^25] I am extrem
 > "Oh, I've plenty of time. My time is entirely my own." <br>
 > --Prince Myshkin 
 
-I am also very risk-averse, so I seldom go out anywhere unless compelled by strong arguments: the chances of my meeting an untimely end (or of having my time/money wasted!) go up dramatically when I leave the hearthstones cooling behind me and venture out among my fellow man,[^19] so I try my best to avoid it.
+I am also quite risk-averse, so I seldom go out anywhere unless compelled by strong arguments: the chances of my meeting an untimely end (or of having my time/money wasted!) go up dramatically when I leave the hearthstones cooling behind me and venture out among my fellow man,[^19] so I try my best to avoid it.
 
 > "It's a dangerous business, Frodo, going out of your door. You step into the Road, and if you don't keep your feet, there is no knowing where you might be swept off to. Do you realize that this is the very path that goes through Mirkwood, and that if you let it, it might take you to the Lonely Mountain or even further and to worse places?" <br>
 > --Bilbo Baggins
 
-Besides, I like indoor activities best! I enjoy pestering my[^6] three[^7] cats,[^8] juggling,[^9] puzzling (sweeping mines,[^2] crossing words[^16]), [quizzing](https://utexas.campuslabs.com/engage/organization/QuizBowl), recreational [reading](https://www.goodreads.com/user/show/44370058-nathaniel) and mathematics (here's [a fun one I saw recently](https://www.janestreet.com/join-jane-street/open-positions/?utm_content=sierpinski)), eating spicy and/or fermented[^3] things in accordance with lax (read: lapsed) veganism[^21] (basically, I eat cheese if it's free, going to waste, difficult to avoid, etc.). 
+<center>
+![](/lisa_myinterests.jpg)
+<figcaption><font size="1">Pretty much same.</font></figcaption>
+</center>
+
+Besides, I like indoor activities best! I enjoy pestering my[^6] three[^7] cats,[^8] juggling,[^9] puzzling (sweeping mines,[^2] crossing words[^16]), [quizzing](https://utexas.campuslabs.com/engage/organization/QuizBowl), recreational [reading](https://www.goodreads.com/user/show/44370058-nathaniel) and mathematics (here's [a fun one I saw recently](https://www.janestreet.com/join-jane-street/open-positions/?utm_content=sierpinski)), eating spicy and/or fermented[^3] things in accordance with lax (read: lapsed) veganism[^21] (basically, I eat cheese if it's free, going to waste, difficult to avoid, etc.). As of August 2019, I now have two hens (Nina and Maria), both of whom lay eggs, which I also eat!
 
 <center>
-![](../static/lisa_myinterests.jpg)
-<figcaption><font size="1">Same.</font></figcaption>
+![](/nina-shakes.gif){width=50%}
+<figcaption><font size="1">Nina doing a maneuver</font></figcaption>
 </center>
 
 If I were a nonhuman animal, I have it on good authority that I would be an umbrella cockatoo.[^4] 
-I am a proponent of the Nordic theory of love.[^23]
-
-My sense of *fremdschämen* on behalf of humanity can be socially crippling, and I get positively irate about the residue left behind after peeling stickers off of jars. Yes I like to juxtapose, but give me the [unity of opposites](https://en.wikipedia.org/wiki/Unity_of_opposites) any day.
-
-I prefer my content in text form, and with few exceptions I don't like movies or TV.[^22] I especially hated the film Amadeus (but I very much enjoyed Wall\*E). [Vis-à-vis fiction](https://www.goodreads.com/user/show/44370058-nathaniel), the Recognitions is gospel and Suttree my book of sacred psalms. And though their respective Apostles have been perennially passed over for the prize (add Nabokov to their number), I think [Chris Onstad](http://www.ohnorobot.com/random.pl?comic=636) deserves the next Literature Nobel solely for his achievements in the genre of webcomics. 
-
-
+I am a strong proponent of the Nordic theory of love[^23] and I am highly susceptible to *fremdschämen*. I get positively irate about the residue left behind after peeling stickers off of jars. Yes I like to juxtapose, but give me the [unity of opposites](https://en.wikipedia.org/wiki/Unity_of_opposites) any day. I prefer my content in text form, and with few exceptions I don't like movies or TV.[^22] [Vis-à-vis fiction](https://www.goodreads.com/user/show/44370058-nathaniel), the Recognitions is gospel and Suttree my book of sacred psalms. And though their respective Apostles have been perennially passed over for the prize (add Nabokov to their number), I think [Chris Onstad](http://www.ohnorobot.com/random.pl?comic=636) deserves the next Literature Nobel solely for his achievements in the genre of webcomics. 
 
 
 [^1]: I also love learning about learning about learning, but it probably ends there (see ["Yudkowsky's Law of Ultrafinite Recursion"](https://www.facebook.com/yudkowsky/posts/10154119438404228))
-[^2]: <img src="minesweeper.png" width="250">
+[^2]: <img src="/minesweeper.png" width="250">
 [^3]: sourdough, tempeh, beer, kombucha, wine, idli, dosas, pickles, gochujang, miso, kimchi, sauerkraut...  
-[^4]: <img src="umbrella_cockatoo.jpg" width="250">
+[^4]: <img src="/umbrella_cockatoo.jpg" width="250">
 [^5]: whether *in vivo, in vitro,* or *in silico*
-[^6]: <img src="lady.png">
+[^6]: ![](/lady.png)
 [^7]: <img src="https://i.imgur.com/YQKgyfK.gif">
-[^8]: <img src="upsidedinge.png">
+[^8]: <img src="/upsidedinge.png">
 [^9]: <iframe width="320" height="180" src="https://www.youtube.com/embed/FKU1p5SUlIc?list=PL3kcOofui6JZj6iFqsLzC-APKj8t4-V-T" frameborder="0" allowfullscreen></iframe>
 [^10]: for the first time in 12 years of formal schooling...
 [^11]: turns out [she's impossibly impressive](www.lindsaywoodward.com)... but impossible to impress.
@@ -132,15 +136,14 @@ C: Absolutely <br>
 <br>
 I don't believe other animals, even other mammals, have anything like human consciousness. Nor do I believe they should be accorded human rights. But I know that at the end of the day, biologically I am a mammal; if you're warm-blooded and you've got hair and a neocortex, then I'm really going to avoid hurting/killing you. If you have a spine and a pulse, I'm giving you the benefit of the doubt (especially since the benefits of eating meat are... what again?)
 [^14]: sorry about all these weird animal-hobby metaphors...
-[^16]: <img src="crossword.jpg"> <br>I sporadically worked the NYT puzzle in college; I happened to sit down to this one on the morning of my 20th birthday and came across my first name (24 across) and former middle name (76 across) were in it! It also features one of my favorite movies.
+[^16]: <img src="/crossword.jpg"> <br>I sporadically worked the NYT puzzle in college; I happened to sit down to this one on the morning of my 20th birthday and came across my first name (24 across) and former middle name (76 across) were in it! It also features one of my favorite movies.
 [^18]: and < .001% of the humans. Ah but don't worry, I like you though!
 [^19]: who, if not always actively menacing, are always unpredictable and are usually texting while driving!
 [^20]: So fun!
-[^22]: And despite their being "active" passtimes, I don't like "video games" much either, but if I did, I would like real-time strategy games or RPGs
-[^23]: “That authentic love and friendship are possible only between individuals who are independent and equal.” 
-[^24]: ...when Girl Talk released *Feed The Animals* and *All Day*, Lady Gaga was everywhere and everything, the New Pornographers had at least 3 amazing albums, Das Racist was still together...
+[^22]: I especially hated the film Amadeus (but I very much enjoyed Wall\*E). Despite their being "active" passtimes, I don't like video games much either, but if I did, I would like real-time strategy games or RPGs
+[^23]: “That authentic love and friendship are possible only between individuals who are independent and equal.” For more about this, see [Anu Partanen's awesome book](https://www.goodreads.com/book/show/28014216-the-nordic-theory-of-everything)
 [^25]: For more on that, see: [http://www.nathanielwoodward.com/aboutabout](http://www.nathanielwoodward.com/aboutabout)
-[^26]: No seriously,<br> <img src="classclown.jpg" height="250">
+[^26]: No seriously,<br> <img src="/classclown.jpg" height="250">
 [^17]: Candidates include old standards such as <br>
 * What is the meaning of life?  
 * Why are we here?  

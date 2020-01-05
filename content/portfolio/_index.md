@@ -1,3 +1,3 @@
 ---
-title: Projects
+title: Selected Projects and Publications
 ---

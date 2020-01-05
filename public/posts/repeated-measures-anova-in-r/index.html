@@ -22,10 +22,10 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Repeated Measures ANOVA in R"/>
-<meta name="twitter:description" content="One Within-Subjects Factor Partitioning the Total Sum of Squares (SST)  Naive analysis (not accounting for repeated measures) Mixed-effects model of same data Checking Assumptions Effect size  One between, one within (a two-way split plot design) Two within-subjects factors Real Example   Hello again!"/>
+<meta name="twitter:description" content="One Within-Subjects Factor Partitioning the Total Sum of Squares (SST)  Naive analysis (not accounting for repeated measures) Mixed-effects model of same data Checking Assumptions Effect size  One between, one within (a two-way split plot design) Two within-subjects factors Real Example   Hello again! In previous posts I have talked about one-way ANOVA, two-way ANOVA, and even MANOVA (for multiple response variables). But in practice, there is yet another way of partitioning the total variance in the outcome that allows you to account for repeated measures on the same subjects."/>
 
 <meta property="og:title" content="Repeated Measures ANOVA in R" />
-<meta property="og:description" content="One Within-Subjects Factor Partitioning the Total Sum of Squares (SST)  Naive analysis (not accounting for repeated measures) Mixed-effects model of same data Checking Assumptions Effect size  One between, one within (a two-way split plot design) Two within-subjects factors Real Example   Hello again!" />
+<meta property="og:description" content="One Within-Subjects Factor Partitioning the Total Sum of Squares (SST)  Naive analysis (not accounting for repeated measures) Mixed-effects model of same data Checking Assumptions Effect size  One between, one within (a two-way split plot design) Two within-subjects factors Real Example   Hello again! In previous posts I have talked about one-way ANOVA, two-way ANOVA, and even MANOVA (for multiple response variables). But in practice, there is yet another way of partitioning the total variance in the outcome that allows you to account for repeated measures on the same subjects." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/repeated-measures-anova-in-r/" />
 <meta property="article:published_time" content="2019-07-14T00:00:00+00:00" />
@@ -44,7 +44,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.d91fc46280735dccf4bc7d1a48b2f39736eb858ee52263759a8016f69198a726.css" integrity="sha256-2R/EYoBzXcz0vH0aSLLzlzbrhY7lImN1moAW9pGYpyY=">
+<link rel="stylesheet" href="/scss/hyde-hyde.027b01c8166f75f9184cefa87ff2cddc1aebe4702c54be81ebee4cd633cd52de.css" integrity="sha256-AnsByBZvdfkYTO&#43;of/LN3Brr5HAsVL6B6&#43;5M1jPNUt4=">
 
 
 <link rel="stylesheet" href="/scss/print.8c61428a4ae8b36c028e9198876312a2de5a2b3c80bbbdcceb98d738691c4f6b.css" integrity="sha256-jGFCikros2wCjpGYh2MSot5aKzyAu73M65jXOGkcT2s=" media="print">
@@ -89,8 +89,8 @@
         
       
       <p class="site__description">
-         Nathaniel Woodward 
-      </p>
+      <a href="mailto:nathanielraley@gmail.com"> Nathaniel Woodward 
+      </a></p>
     </div>
     <div class="collapsible-menu">
       <input type="checkbox" id="menuToggle">
@@ -126,6 +126,14 @@
 		 
 			 
 				<li>
+					<a href="/teaching/">
+						<span>Teaching</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
 					<a href="cv.pdf">
 						<span>Vitae</span>
 					</a>
@@ -150,6 +158,8 @@
 	
 	
 	
+	<a href="https://linkedin.com/in/nathanielraley" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
 	
 	
 	
@@ -163,8 +173,6 @@
 	
 	
 	
-	<a href="mailto:nathaniel.raley@utexas.edu" rel="me"><i class="fas fa-at fa-lg" aria-hidden="true"></i></a>
-	
 	
 </section>
 
@@ -172,7 +180,7 @@
     </div>
     
 <div class="copyright">
-  &copy; 2019  
+  &copy; 2020  
   
     <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>
   
@@ -201,7 +209,7 @@
     
     
     <br/>
-    <i class="fas fa-clock"></i> 44 min read
+    <i class="fas fa-clock"></i> 43 min read
 </div>
 
 
@@ -228,7 +236,8 @@
 </div>
 
 <p>Hello again! In previous posts I have talked about one-way ANOVA, two-way ANOVA, and even MANOVA (for multiple response variables). But in practice, there is yet another way of partitioning the total variance in the outcome that allows you to account for repeated measures on the same subjects. These designs are very popular, but there is surpisingly little good information out there about conducting them in R. (Cue this post!)</p>
-<p>Imagine that you have one group of subjects, and you want to test whether their heart rate is different before and after drinking a cup of coffee. Well, you would measure each person’s pulse (bpm) before the coffee, and then again after (say, five minutes after consumption). But this gives you two measurements per person, which violates the independence assumption. Thus, you would use a dependent (or paired) samples t test! In this example, the treatment (coffee) was administered <em>within subjects</em>: each person has a no-coffee pulse measurement, and then a coffee pulse measurement. This same treatment could have been administered <em>between subjects</em> (half of the sample would get coffee, the other half would not). However, you lose the each-person-acts-as-their-own-control feature <em>and</em> you need twice as many subjects, making it a less powerful design.</p>
+<p>Imagine that you have one group of subjects, and you want to test whether their heart rate is different before and after drinking a cup of coffee. Well, you would measure each person’s pulse (bpm) before the coffee, and then again after (say, five minutes after consumption). But this gives you two measurements per person, which violates the independence assumption. Thus, you would use a dependent (or paired) samples t test!
+In this example, the treatment (coffee) was administered <em>within subjects</em>: each person has a no-coffee pulse measurement, and then a coffee pulse measurement. This same treatment could have been administered <em>between subjects</em> (half of the sample would get coffee, the other half would not). However, you lose the each-person-acts-as-their-own-control feature <em>and</em> you need twice as many subjects, making it a less powerful design.</p>
 <p>The repeated-measures ANOVA is a generalization of this idea. Imagine you had a third condition which was the effect of <em>two cups of coffee</em> (participants had to drink two cups of coffee and then measure then pulse). A repeated-measures ANOVA would let you ask if any of your conditions (none, one cup, two cups) affected pulse rate.</p>
 <div id="one-within-subjects-factor" class="section level2">
 <h2>One Within-Subjects Factor</h2>
@@ -327,10 +336,7 @@ SST=\sum_i^N\sum_j^K (Y_{ij}-\bar Y_{\bullet \bullet})^2 \phantom{xxxx} SSB=N\su
 SSbs=K\sum_i^N (\bar Y_{i\bullet}-\bar Y_{\bullet \bullet})^2
 \]</span></p>
 <p>Look at the left side of the diagram below: it gives the additive relations for the sums of squares.</p>
-<div class="figure">
-<img src="../../static/repeated_ss.png" />
-
-</div>
+<p><img src="/repeated_ss.png" /></p>
 <p>There is another way of looking at the <span class="math inline">\(SS\)</span> decomposition that some find more intuitive. Starting with the <span class="math inline">\(SST\)</span>, you could instead break it into a part due to differences between subjects (the <span class="math inline">\(SSbs\)</span> we saw before) and a part left over within subjects (<span class="math inline">\(SSws\)</span>). The <span class="math inline">\(SSws\)</span> is quantifies the variability of the students three test scores around their average test score, namely</p>
 <p><span class="math display">\[
 SSws=\sum_i^N\sum_j^K (\bar Y_{ij}-\bar Y_{i \bullet})^2
@@ -369,9 +375,9 @@ DF_B=K-1, DF_W=DF_{ws}=K(N-1),DF_{bs}=N-1,$ and $DD_E=(K-1)(N-1)
 pf(Fstat, df1 = 2, df2 = 14, lower.tail = F)</code></pre>
 <pre><code>## [1] 0.0002486745</code></pre>
 <pre class="r"><code>plot(curve(df(x,2,14),from=0, to=20), type=&quot;line&quot;)</code></pre>
-<p><img src="/post/2019-07-14-repeated-measures-anova-in-r_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/posts/2019-07-14-repeated-measures-anova-in-r_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>abline(v=Fstat,h=0,add=T)</code></pre>
-<p><img src="/post/2019-07-14-repeated-measures-anova-in-r_files/figure-html/unnamed-chunk-5-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/posts/2019-07-14-repeated-measures-anova-in-r_files/figure-html/unnamed-chunk-5-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Wow, looks very unusual to see an <span class="math inline">\(F\)</span> this big if the treatment has no effect! Let’s confirm our calculations by using the repeated-measures ANOVA function in base R. Notice that you must specify the error term yourself. It will always be of the form <code>Error(unit with repeated measures/ within-subjects variable)</code>. Take a minute to confirm the correspondence between the table below and the sum of squares calculations above.</p>
 <pre class="r"><code>anova1&lt;-aov(Y ~ factorA + Error(subj/factorA), data=data)
 summary(anova1)</code></pre>
@@ -665,10 +671,7 @@ data</code></pre>
 ## # … with 14 more rows</code></pre>
 <p>Same as before, we will use these group means to calculate sums of squares. Since we have two factors, it no longer makes sense to talk about sum of squares between conditions and within conditions (since we have to sets of conditions to keep separate). Thus, a <strong>notation change</strong> is necessary: let <span class="math inline">\(SSA\)</span> refer to the between-groups sum of squares for factor A and let <span class="math inline">\(SSB\)</span> refer to the between groups sum of squares for factor B. (Notice, perhaps confusingly, that <span class="math inline">\(SSB\)</span> <em>used to</em> refer to what we are now calling <span class="math inline">\(SSA\)</span>).</p>
 <p>To keep things somewhat manageable, let’s start by partitioning the <span class="math inline">\(SST\)</span> into between-subjects and within-subjects variability (<span class="math inline">\(SSws\)</span> and <span class="math inline">\(SSbs\)</span>, respectively). Now, variability within subjects can be broken down into the variation due to the within-subjects factor A (<span class="math inline">\(SSA\)</span>), the interaction sum of squares <span class="math inline">\(SSAB\)</span>, and the residual error <span class="math inline">\(SSE\)</span>. The between-subjects sum of squares <span class="math inline">\(SSbs\)</span> can be decomposed into an effect of the between-subjects variable (<span class="math inline">\(SSB\)</span>) and the leftover noise within each between-subjects level (i.e., how far each subject’s mean is from the mean for the between-subjects factor, squared, and summed up).</p>
-<div class="figure">
-<img src="../../static/diagram_between_within.png" />
-
-</div>
+<p><img src="/diagram_between_within.png" /></p>
 <p>The sums of squares calculations are defined as above, except we are introducing a couple new ones. Let’s write the test score for student <span class="math inline">\(i\)</span> in level <span class="math inline">\(j\)</span> of factor A and level <span class="math inline">\(k\)</span> of factor B as <span class="math inline">\(Y_{ijk}\)</span>. The mean test score for student <span class="math inline">\(i\)</span> is denoted <span class="math inline">\(\bar Y_{i\bullet \bullet}\)</span>. The mean test score for a student in level <span class="math inline">\(j\)</span> of factor A and level <span class="math inline">\(k\)</span> of factor by is denoted <span class="math inline">\(\bar Y_{\bullet jk}\)</span>. The mean test score for level <span class="math inline">\(j\)</span> of factor A is denoted <span class="math inline">\(\bar Y_{\bullet j \bullet}\)</span>, and the mean score for level <span class="math inline">\(k\)</span> of factor B is <span class="math inline">\(\bar Y_{\bullet \bullet k}\)</span>.</p>
 <p>Two of these we havent seen before: <span class="math inline">\(SSs(B)\)</span> and <span class="math inline">\(SSAB\)</span>. Let’s have a look at their formulas. The first is the sum of squared deviations of subject means around their group mean for the between-groups factor (factor B):</p>
 <p><span class="math display">\[
@@ -683,7 +686,8 @@ SS_{AB}&amp;=n_{AB}\sum_i\sum_j\sum_k(\text{cellmean - (grand mean + effect of }
 &amp;=n_{AB}\sum\sum\sum(\bar Y_{\bullet jk} - (\bar Y_{\bullet j \bullet}  + \bar Y_{\bullet \bullet k} - \bar Y_{\bullet \bullet \bullet}) ))^2 \\
 &amp;=n_{AB}\sum\sum\sum(\bar Y_{\bullet jk} - \bar Y_{\bullet j \bullet}  - \bar Y_{\bullet \bullet k} + \bar Y_{\bullet \bullet \bullet} ))^2 \\
 \end{aligned}
-\]</span> Where <span class="math inline">\(N_{AB}\)</span> is the number of responses each cell, assuming cell sizes are equal.</p>
+\]</span>
+Where <span class="math inline">\(N_{AB}\)</span> is the number of responses each cell, assuming cell sizes are equal.</p>
 <p>This formula is interesting. It says, take the grand mean… now add the effect of being in level <span class="math inline">\(j\)</span> of factor A (i.e., how much higher/lower than the grand mean is it?)…now add the effect of being in level <span class="math inline">\(k\)</span> of factor B (i.e., how much higher/lower than the grand mean is it?). Now, <strong>that’s what we would expect the cell mean to be if there was no interaction</strong> (only the separate, additive effects of factors A and B). To find how much of each cell is due to the interaction, you look at how far the cell mean is from this expected value. If it is zero, for instance, then that cell contributes nothing to the interaction sum of squares.</p>
 <p>Let’s do a quick example. The grand mean is <span class="math inline">\(\bar Y_{\bullet \bullet \bullet}=25\)</span>. The mean test score for group B1 is <span class="math inline">\(\bar Y_{\bullet \bullet 1}=28.75\)</span>, which is <span class="math inline">\(3.75\)</span> above the grand mean (this is the effect of being in group B1); for group B2 it is <span class="math inline">\(\bar Y_{\bullet \bullet 2}=21.25\)</span>, which is .375 lower than the grand mean (effect of group B2). The means for the within-subjects factor are the same as before: <span class="math inline">\(\bar Y_{\bullet 1 \bullet}=27.5\)</span>, <span class="math inline">\(\bar Y_{\bullet 2 \bullet}=23.25\)</span>, <span class="math inline">\(\bar Y_{\bullet 3 \bullet}=17.25\)</span>. Subtracting the grand mean gives the effect of each condition: A1 effect$ = +2.5$, A2 effect <span class="math inline">\(= +1.25\)</span>, A3 effect <span class="math inline">\(= -3.75\)</span>.</p>
 <p>So if you are in condition A1 and B1, with no interaction we expect the cell mean to be <span class="math inline">\(\text{grand mean + effect of A1 + effect of B1}=25+2.5+3.75=31.25\)</span>. However, the actual cell mean for cell A1,B1 (i.e., the average of the test scores for the four observations in that condtion) is <span class="math inline">\(\bar Y_{\bullet 1 1}=\frac{31+33+28+35}{4}=31.75\)</span>. Thus, the interaction effect for cell A1,B1 is the difference between 31.75 and the expected 31.25, or 0.5. Do this for all six cells, square them, and add them up, and you have your interaction sum of squares! If this is big enough, you will be able to reject the null hypothesis of no interaction!</p>
@@ -703,10 +707,7 @@ $$
 \end{tabular}
 $$
 -->
-<div class="figure">
-<img src="../../static/splitplottable.png" />
-
-</div>
+<p><img src="/%20splitplottable.png" /></p>
 <p>All of the required means are illustrated in the table above. I think it is a really helpful way to think about it (columns are the within-subjects factor A, small rows are each individual students, grouped into to larger rows representing the two levels of the between-subjects factor).</p>
 <p>Let’s use these means to calculate the sums of squares in R:</p>
 <pre class="r"><code>data%&gt;%summarize(SST=sum((Y-grand_mean)^2),
@@ -800,7 +801,7 @@ anova(fit)</code></pre>
 <p>We can visualize these using an interaction plot!</p>
 <pre class="r"><code>library(ggplot2)
 data%&gt;%ggplot(aes(y=meanAB, x=factorA, color=factorB, group=factorB))+geom_point()+geom_line()</code></pre>
-<p><img src="/post/2019-07-14-repeated-measures-anova-in-r_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/posts/2019-07-14-repeated-measures-anova-in-r_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>This is simply a plot of the cell means. It is important to realize that the means would still be the same if you performed a plain two-way ANOVA on this data: the only thing that changes is the error-term calculations! Notice that female students (B1) always score higher than males, and the A1 (pre) and A2 (post) are higher than A3 (control). However, in line with our results, there doesn’t appear to be an interaction (distance between the dots/lines stays pretty constant). To get all comparisons of interest, you can use the <code>emmeans</code> package. Notice that emmeans corrects for multiple comparisons (Tukey adjustment) right out of the box.</p>
 <pre class="r"><code>emmeans(fit,pairwise~factorA)</code></pre>
 <pre><code>## $emmeans
@@ -1053,25 +1054,23 @@ SS_{BSubj}&amp;={n_B}\sum_i\sum_j\sum_k(\text{mean of } Subj_i\text{ in }B_k - \
 \end{aligned}
 \]</span></p>
 <p>Finally the interaction error term. This is the last (and longest) formula. Basically, it sums up the squared deviations of each test score <span class="math inline">\(Y_{ijk}\)</span> from what we would predict based on the mean score of person <span class="math inline">\(i\)</span> in level <span class="math inline">\(j\)</span> of A and level <span class="math inline">\(k\)</span> of B.</p>
+<p>$$
+\begin{aligned}
+SS_{ABsubj}&amp;=<em>i<em>j<em>k( Subj_iA_j, B_k - A_j + B_k + Subj_i+AB</em>{jk}+SB</em>{ik} +SA</em>{ij}))^2 \
+&amp;=(Y - (Y_{} + (Y_{j } - Y_{}) + (Y_{i}-Y_{})+ (Y_{k}-Y_{})
++[Y_{jk}-(Y_{} + (Y_{j }-Y_{})+(Y_{k}-Y_{}))]\
+&amp;+[Y_{ ij}-(Y_{} + ( Y_{i }-Y_{})+(Y_{j }-Y_{}))]+
+[Y_{ik}-(Y_{} + (Y_{i }-Y_{})+(Y_{k}-Y_{}))]^2\</p>
+<p>&amp;=(Y - (Y_{} + Y_{j } - Y_{} + Y_{i}-Y_{}+ Y_{k}-Y_{}
++[Y_{jk}- Y_{j }-Y_{k}+Y_{}]
+\&amp;+[Y_{ ij}-Y_{i }-Y_{j }+Y_{}]+
+[Y_{ ik} -Y_{i }- Y_{k}+Y_{}]
+)^2\</p>
+<p>&amp;=(Y -(Y_{} - Y_{j }- Y_{i }-Y_{k}+Y_{jk}+Y_{ij }+Y_{ik}))^2\</p>
+<p>&amp;=(Y -Y_{} + Y_{j }+ Y_{i }+Y_{k}-Y_{jk}-Y_{ij }-Y_{ik}))^2
+\end{aligned}
 $$
-<span class="math display">\[\begin{aligned}
-SS_{ABsubj}&amp;=\sum_i\sum_j\sum_k(\text{score for } Subj_i\text{ in }A_j, B_k - \text{(grand mean + effect of }A_j + \text{effect of }B_k + \text{effect of }Subj_i+\text{effect of }AB_{jk}+\text{effect of }SB_{ik} +\text{effect of }SA_{ij}))^2 \\
-&amp;=\sum\sum\sum(Y - (\bar Y_{\bullet \bullet \bullet} + (\bar Y_{\bullet j \bullet} - \bar Y_{\bullet \bullet \bullet}) + (\bar Y_{i\bullet \bullet}-\bar Y_{\bullet \bullet \bullet})+ (\bar Y_{\bullet \bullet k}-\bar Y_{\bullet \bullet \bullet})
-+[\bar Y_{\bullet jk}-(\bar Y_{\bullet \bullet \bullet} + (\bar Y_{\bullet j \bullet}-\bar Y_{\bullet \bullet \bullet})+(\bar Y_{\bullet \bullet k}-\bar Y_{\bullet \bullet \bullet}))]\\
-&amp;+[\bar Y_{ ij\bullet}-(\bar Y_{\bullet \bullet \bullet} + ( \bar Y_{i \bullet \bullet}-\bar Y_{\bullet \bullet \bullet})+(\bar Y_{\bullet j \bullet}-\bar Y_{\bullet \bullet \bullet}))]+
-[\bar Y_{i\bullet k}-(\bar Y_{\bullet \bullet \bullet} + (\bar Y_{i \bullet \bullet}-\bar Y_{\bullet \bullet \bullet})+(\bar Y_{\bullet \bullet k}-\bar Y_{\bullet \bullet \bullet}))]^2\\
-
-&amp;=\sum\sum\sum(Y - (\bar Y_{\bullet \bullet \bullet} + \bar Y_{\bullet j \bullet} - \bar Y_{\bullet \bullet \bullet} + \bar Y_{i\bullet \bullet}-\bar Y_{\bullet \bullet \bullet}+ \bar Y_{\bullet \bullet k}-\bar Y_{\bullet \bullet \bullet}
-+[\bar Y_{\bullet jk}- \bar Y_{\bullet j \bullet}-\bar Y_{\bullet \bullet k}+\bar Y_{\bullet \bullet \bullet}]
-\\&amp;+[\bar Y_{ ij\bullet}-\bar Y_{i \bullet \bullet}-\bar Y_{\bullet j \bullet}+\bar Y_{\bullet \bullet \bullet}]+
-[\bar Y_{ i\bullet k} -\bar Y_{i \bullet \bullet}- \bar Y_{\bullet \bullet k}+\bar Y_{\bullet \bullet \bullet}]
-)^2\\
-
-&amp;=\sum\sum\sum(Y -(\bar Y_{\bullet \bullet \bullet} - \bar Y_{\bullet j \bullet}- \bar Y_{i \bullet \bullet}-\bar Y_{\bullet \bullet k}+\bar Y_{\bullet jk}+\bar Y_{ij \bullet}+\bar Y_{i\bullet k}))^2\\
-
-&amp;=\sum\sum\sum(Y -\bar Y_{\bullet \bullet \bullet} + \bar Y_{\bullet j \bullet}+ \bar Y_{i \bullet \bullet}+\bar Y_{\bullet \bullet k}-\bar Y_{\bullet jk}-\bar Y_{ij \bullet}-\bar Y_{i\bullet k}))^2
-\end{aligned}\]</span>
-<p>$$ Let’s have R calculate the sums of squares for us:</p>
+Let’s have R calculate the sums of squares for us:</p>
 <pre class="r"><code>data%&gt;%summarize(SST=sum((Y-grand_mean)^2),
                  SSA=sum((meanA-grand_mean)^2),
                  SSB=sum((meanB-grand_mean)^2),
@@ -1241,12 +1240,13 @@ anova(fit1,type=1)</code></pre>
 <p>Regardless of the precise approach, we find that photos with glasses are rated as more intelligent that photos without glasses (see plot below: the average of the three dots on the right is different than the average of the three dots on the left). We don’t need to do any post-hoc tests since there are just two levels.</p>
 <pre class="r"><code>glasses%&gt;%group_by(Correction,PhotoGlasses)%&gt;%summarize(Rating=mean(Rating))%&gt;%
   ggplot(aes(PhotoGlasses,Rating,color=Correction,group=Correction))+geom_point()+geom_line()</code></pre>
-<p><img src="/post/2019-07-14-repeated-measures-anova-in-r_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/posts/2019-07-14-repeated-measures-anova-in-r_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We can see that people with glasses tended to give higher ratings overall, and people with no vision correction tended to give lower ratings overall, but despite these trends there was no main effect of vision correction. There is no interaction either: the effect of PhotoGlasses is roughly the same for every Correction type.</p>
 </div>
 
   </div>
   
+
 
 <div class="navigation navigation-single">
     
@@ -1257,7 +1257,7 @@ anova(fit1,type=1)</code></pre>
     
     
     <a href="/posts/logistic-and-poisson-regression/" class="navigation-next">
-      <span class="navigation-tittle">Binary and Count Prediction</span>
+      <span class="navigation-title">Binary and Count Prediction</span>
       <i aria-hidden="true" class="fa fa-chevron-right"></i>
     </a>
     

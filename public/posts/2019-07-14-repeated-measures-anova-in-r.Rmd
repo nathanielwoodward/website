@@ -91,7 +91,7 @@ $$
 
 Look at the left side of the diagram below: it gives the additive relations for the sums of squares.
 
-![](../../static/repeated_ss.png)
+![](/repeated_ss.png)
 
 There is another way of looking at the $SS$ decomposition that some find more intuitive. Starting with the $SST$, you could instead break it into a part due to differences between subjects (the $SSbs$ we saw before) and a part left over within subjects ($SSws$). The $SSws$ is quantifies the variability of the students three test scores around their average test score, namely
 
@@ -281,7 +281,7 @@ Same as before, we will use these group means to calculate sums of squares. Sinc
 
 To keep things somewhat manageable, let's start by partitioning the $SST$ into between-subjects and within-subjects variability ($SSws$ and $SSbs$, respectively). Now, variability within subjects can be broken down into the variation due to the within-subjects factor A ($SSA$), the interaction sum of squares $SSAB$, and the residual error $SSE$. The between-subjects sum of squares $SSbs$ can be decomposed into an effect of the between-subjects variable ($SSB$) and the leftover noise within each between-subjects level (i.e., how far each subject's mean is from the mean for the between-subjects factor, squared, and summed up).
 
-![](../../static/diagram_between_within.png)
+![](/diagram_between_within.png)
 
 The sums of squares calculations are defined as above, except we are introducing a couple new ones. Let's write the test score for student $i$ in level $j$ of factor A and level $k$ of factor B as $Y_{ijk}$. The mean test score for student $i$ is denoted $\bar Y_{i\bullet \bullet}$. The mean test score for a student in level $j$ of factor A and level $k$ of factor by is denoted $\bar Y_{\bullet jk}$. The mean test score for level $j$ of factor A is denoted $\bar Y_{\bullet j \bullet}$, and the mean score for level $k$ of factor B is $\bar Y_{\bullet \bullet k}$.
 
@@ -328,7 +328,7 @@ $$
 $$
 -->
 
-![](../../static/splitplottable.png)
+![](/ splitplottable.png)
 
 
 All of the required means are illustrated in the table above. I think it is a really helpful way to think about it (columns are the within-subjects factor A, small rows are each individual students, grouped into to larger rows representing the two levels of the between-subjects factor).

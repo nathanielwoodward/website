@@ -13,8 +13,13 @@
 }
 
 .project__image {
-  border: 1px solid $gray-2;
-  box-shadow: 1px 1px $gray-2;
+/*display: block;
+margin-left: auto;
+margin-right: auto;
+*/
+width: 75%;
+border: 1px solid $gray-2;
+box-shadow: 1px 1px $gray-2; 
 }
 
 .project__title {

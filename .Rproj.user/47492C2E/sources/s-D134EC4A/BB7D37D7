@@ -5,16 +5,16 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1516691072",
+    "hash" : "0",
     "id" : "BB7D37D7",
-    "lastKnownWriteTime" : 1577326258,
-    "last_content_update" : 1577326258258,
+    "lastKnownWriteTime" : 1578194759,
+    "last_content_update" : 1578194759494,
     "path" : "~/Desktop/website/content/about.Rmd",
     "project_path" : "content/about.Rmd",
     "properties" : {
-        "cursorPosition" : "50,3",
+        "cursorPosition" : "143,245",
         "last_setup_crc32" : "D134EC4A47b2ec32",
-        "scrollLine" : "48"
+        "scrollLine" : "135"
     },
     "read_only" : false,
     "read_only_alternatives" : [

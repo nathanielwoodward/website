@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1577909331345.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "5EF88FBE",
+    "lastKnownWriteTime" : 1578193859,
+    "last_content_update" : 1578193859828,
+    "path" : "~/Desktop/website/content/teaching.Rmd",
+    "project_path" : "content/teaching.Rmd",
+    "properties" : {
+        "cursorPosition" : "37,69",
+        "scrollLine" : "13"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 25,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

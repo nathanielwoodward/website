@@ -17,7 +17,7 @@
       <pubDate>Wed, 09 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/posts/basic-stats-u-need-4-correlation-and-regression/</guid>
-      <description>Correlation demonstration! Regression Why normally distributed errors?  Normal-errors assumption and homoskedasticity Confidence (and prediction) intervals for a given X What’s the relationship between correlation and regression? Multiple regression: multiple predictors Multiple \(R\) and \(R^2\) \(R^2\) in one bang using correlation matricies  Semipartial and Partial Correlations Semipartial correlations: the residuals approach Increments to \(R^2\) when adding predictors Multicollinearity  Regression assumptions Partial correlations   .</description>
+      <description>Correlation demonstration! Regression Why normally distributed errors?  Normal-errors assumption and homoskedasticity Confidence (and prediction) intervals for a given X What’s the relationship between correlation and regression? Multiple regression: multiple predictors Multiple \(R\) and \(R^2\) \(R^2\) in one bang using correlation matricies  Semipartial and Partial Correlations Semipartial correlations: the residuals approach Increments to \(R^2\) when adding predictors Multicollinearity  Regression assumptions Partial correlations   .table { margin-left:auto; margin-right:auto; width: 60%; text-align:center; }  #Correlation People are often interested in how different variables are related to each other.</description>
     </item>
     
   </channel>

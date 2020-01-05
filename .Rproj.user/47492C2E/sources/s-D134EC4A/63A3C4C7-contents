@@ -4,15 +4,15 @@ languageCode = "en"
 
 title = "Nathaniel Woodward"
 theme = "hyde-hyde"
+enableEmoji = true
 
 ## Hugo Built-in Features
 # disqusShortname = "your-disqus-shortname"
 # googleAnalytics = "your-google-analytics-id"
 # enableRobotsTXT = true
 
-summarylength = 30
-paginate = 5
-enableEmoji = true
+#summarylength = 30
+#paginate = 5
 
 ## Site Settings
 [params]
@@ -46,9 +46,9 @@ enableEmoji = true
 [params.social]
     github = "nraley"
     twitter = "Distributino"
-    email = "nathaniel.raley@utexas.edu"
     lastfm = "raleywoodward"
     goodreads = "44370058-nathaniel"
+    linkedin = "nathanielraley"
     # gravatar = "your-email@example.com"
 
 ## Main Menu
@@ -67,6 +67,11 @@ enableEmoji = true
     identifier = "portfolio"
     weight = 300
     url = "/portfolio/"
+[[menu.main]]
+    name = "Teaching"
+    identifier = "teaching"
+    weight = 400
+    url = "/teaching/"    
 [[menu.main]]
     name = "Vitae"
     identifier = "cv"

@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1577932843584.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "1E8DF11A",
+    "lastKnownWriteTime" : 1563470940,
+    "last_content_update" : 1563470940,
+    "path" : "~/Desktop/website/content/posts/2017-08-27-basic-stats-u-need-3-anova.Rmd",
+    "project_path" : "content/posts/2017-08-27-basic-stats-u-need-3-anova.Rmd",
+    "properties" : {
+        "cursorPosition" : "7,0",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 28,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -1,6 +1,6 @@
 ---
 date: "2018-08-17"
-description: Does taking a class with lots of quizzing opportunities produce better retention and transfer of learning?
+description: Does taking a class with frequent quizzing opportunities produce better retention and transfer of learning?
 layout: portfolio
 link: dissertation.pdf
 screenshot: lasso.png

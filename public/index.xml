@@ -6,10 +6,19 @@
     <description>Recent content on Nathaniel Woodward</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 24 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Teaching</title>
+      <link>/portfolio/teaching/</link>
+      <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/teaching/</guid>
+      <description>I am an expert in the science of learning and I have been plying my trade (i.e., teaching) in various capacities (high school classes, private tutoring, statistics short courses, training seminars, research consulting, college courses) for about 10 years now. Click to learn more about my pedagogical background and outlook.</description>
+    </item>
     
     <item>
       <title>Binary and Count Prediction</title>
@@ -17,7 +26,9 @@
       <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/logistic-and-poisson-regression/</guid>
-      <description>Let’s enrich our previous discussion of linear regression by considering outcome data that is binary/dichotomous (e.g., success/failure, whether someone recovered or not) and data that is count-based (e.g., number of distinct species per survey site).</description>
+      <description>Let’s enrich our previous discussion of linear regression by considering outcome data that is binary/dichotomous (e.g., success/failure, whether someone recovered or not) and data that is count-based (e.g., number of distinct species per survey site).
+In a regular linear regression, we model an outcome \(Y\) as a linear function of explanatory variables \(X_i\) and error \(e\), like this
+\[ Y=\beta_0+\beta_1X_1+\dots+\beta_nX_n+e, \phantom{xxxxx} e\sim N(0,\sigma) \] Let’s focus on the case of just a single predictor,</description>
     </item>
     
     <item>
@@ -26,7 +37,7 @@
       <pubDate>Sun, 14 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/repeated-measures-anova-in-r/</guid>
-      <description>One Within-Subjects Factor Partitioning the Total Sum of Squares (SST)  Naive analysis (not accounting for repeated measures) Mixed-effects model of same data Checking Assumptions Effect size  One between, one within (a two-way split plot design) Two within-subjects factors Real Example   Hello again!</description>
+      <description>One Within-Subjects Factor Partitioning the Total Sum of Squares (SST)  Naive analysis (not accounting for repeated measures) Mixed-effects model of same data Checking Assumptions Effect size  One between, one within (a two-way split plot design) Two within-subjects factors Real Example   Hello again! In previous posts I have talked about one-way ANOVA, two-way ANOVA, and even MANOVA (for multiple response variables). But in practice, there is yet another way of partitioning the total variance in the outcome that allows you to account for repeated measures on the same subjects.</description>
     </item>
     
     <item>
@@ -35,7 +46,7 @@
       <pubDate>Mon, 01 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/a-cool-thing-called-permanova/</guid>
-      <description>MANOVA MANOVA stands for Multivariate (or Multiple) Analysis of Variance, and it’s just what it sounds like. You have multiple response variables, and you want to test whether any of them differ across levels of your explanatory variable(s) (i.</description>
+      <description>MANOVA MANOVA stands for Multivariate (or Multiple) Analysis of Variance, and it’s just what it sounds like. You have multiple response variables, and you want to test whether any of them differ across levels of your explanatory variable(s) (i.e., your groups). The null hypothesis here is that the means of each response variable are equal at every level of the explanatory variable(s); the alternative is that at least one response variable differs.</description>
     </item>
     
     <item>
@@ -44,7 +55,7 @@
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/worlds-greatest-monty-hall-simulation-app/</guid>
-      <description>A couple months ago a colleague and I volunteered for some outreach at a local science museum. It was for an 21+ night (i.e., lots of nerdy adults drinking beers together) and the theme was “Get Your Game On”.</description>
+      <description>A couple months ago a colleague and I volunteered for some outreach at a local science museum. It was for an 21+ night (i.e., lots of nerdy adults drinking beers together) and the theme was “Get Your Game On”. As we are both faculty in the Department of Statistics and Data Sciences, we were spoiled for choice, but finally decided to set up a Monty Hall station where people would come by and play a version of the notoriously confusing Let’s Make a Deal game (the original car/goat scenario).</description>
     </item>
     
     <item>
@@ -71,7 +82,8 @@
       <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/sample-means-and-shrinkage-estimators/</guid>
-      <description>Why do we use sample means? The sample mean, \(\bar x = \frac 1 N\sum x_i\), is a workhorse of modern statistics. For example, t tests compare two sample means to judge if groups are likely different at the population level, and ANOVAs compare sample means of more groups to achieve something similar.</description>
+      <description>Why do we use sample means? The sample mean, \(\bar x = \frac 1 N\sum x_i\), is a workhorse of modern statistics. For example, t tests compare two sample means to judge if groups are likely different at the population level, and ANOVAs compare sample means of more groups to achieve something similar. But does \(\bar x\) actually deserve the great stature is has inherited?
+I recently heard a talk by Dr.</description>
     </item>
     
     <item>
@@ -80,7 +92,17 @@
       <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/posts/enemy-tank-problem/</guid>
-      <description>Enemy Tank Problem: Estimating Population Size  In wartime, it is advantageous to know how well-equipped your adversary is. Ideally, you would like to have full knowledge of their armory: exactly how many tanks, planes, and ships they have that are currently battle-ready.</description>
+      <description>Enemy Tank Problem: Estimating Population Size  In wartime, it is advantageous to know how well-equipped your adversary is. Ideally, you would like to have full knowledge of their armory: exactly how many tanks, planes, and ships they have that are currently battle-ready.
+Unfortunately, there is no good way to get this information. Imagine, however, that you have managed to capture \(k\) tanks from the enemy. Furthermore, each enemy tank has a serial number stamped on it.</description>
+    </item>
+    
+    <item>
+      <title>Toward Consilience in The Use of Task-Level Feedback to Promote Learning</title>
+      <link>/portfolio/feedback/</link>
+      <pubDate>Mon, 12 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/feedback/</guid>
+      <description>A literature review and theoretical framework for understanding how people learn from feedback. Three main findings are situated within their respective theoretical accounts and then integrated: feedback messages should convey information about correctness, highlight the correct answer, and provide additional context for why the answer is correct; errors made with higher confidence are more likely to be corrected (the &amp;ldquo;hypercorrection effect&amp;rdquo;&amp;quot;), and the finding that delayed feedback produces better long-term learning than immediate feedback.</description>
     </item>
     
     <item>
@@ -89,7 +111,7 @@
       <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/portfolio/dissertation1/</guid>
-      <description>A large-scale characterization of normative educational practices (e.g., course structure, teaching methods, learning activities) across more than 1,000 high-enrollment undergraduate courses at a large public institution over the last 5 years.</description>
+      <description>A large-scale characterization of normative educational practices (e.g., course structure, teaching methods, learning activities) across more than 1,000 high-enrollment undergraduate courses at a large public institution over the last 5 years. I assess the extent to which course features reflect educational best-practices by systematically reviewing course syllabi—documenting the type, quantity, and grade- weight of all work assigned in each course as well as the prevalence and variability of teaching practices such as group activities, retrieval practice, and in-class active learning.</description>
     </item>
     
     <item>
@@ -98,7 +120,7 @@
       <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>/portfolio/dissertation2/</guid>
-      <description>This research builds directly upon my descriptive analysis (see below) by combining the syllabus dataset with student records to assess how prerequisite-course features affect student performance in their subsequent courses. Specifically, introductory courses high and low in retrieval-practice requirements were compared in terms of their students subsequent success using inverse propensity-score weighted logistic regressions with cluster-robust standard errors to improve causal inference.</description>
+      <description>This research builds directly upon my descriptive analysis (see below) by combining the syllabus dataset with student records to assess how prerequisite-course features affect student performance in their subsequent courses. Specifically, introductory courses high and low in retrieval-practice requirements were compared in terms of their students subsequent success using inverse propensity-score weighted logistic regressions with cluster-robust standard errors to improve causal inference. Results showed that additional retrieval practice improved students’ performance in their subsequent courses.</description>
     </item>
     
     <item>
@@ -107,7 +129,16 @@
       <pubDate>Wed, 09 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/posts/basic-stats-u-need-4-correlation-and-regression/</guid>
-      <description>Correlation demonstration! Regression Why normally distributed errors?  Normal-errors assumption and homoskedasticity Confidence (and prediction) intervals for a given X What’s the relationship between correlation and regression? Multiple regression: multiple predictors Multiple \(R\) and \(R^2\) \(R^2\) in one bang using correlation matricies  Semipartial and Partial Correlations Semipartial correlations: the residuals approach Increments to \(R^2\) when adding predictors Multicollinearity  Regression assumptions Partial correlations   .</description>
+      <description>Correlation demonstration! Regression Why normally distributed errors?  Normal-errors assumption and homoskedasticity Confidence (and prediction) intervals for a given X What’s the relationship between correlation and regression? Multiple regression: multiple predictors Multiple \(R\) and \(R^2\) \(R^2\) in one bang using correlation matricies  Semipartial and Partial Correlations Semipartial correlations: the residuals approach Increments to \(R^2\) when adding predictors Multicollinearity  Regression assumptions Partial correlations   .table { margin-left:auto; margin-right:auto; width: 60%; text-align:center; }  #Correlation People are often interested in how different variables are related to each other.</description>
+    </item>
+    
+    <item>
+      <title>Retrieving and Applying Knowledge to Different Examples Promotes Transfer of Learning</title>
+      <link>/portfolio/rockstar/</link>
+      <pubDate>Fri, 15 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/rockstar/</guid>
+      <description>Introducing variability during learning can facilitate transfer to new contexts (i.e., generalization). We explore the concept of variability in an area of research where its effects have received little attention: learning through retrieval practice. In four experiments, we investigate whether retrieval practice with different examples of a concept promotes greater transfer than repeated retrieval practice with the same example. All four experiments showed that variability during retrieval practice produced superior transfer of knowledge to new examples.</description>
     </item>
     
     <item>
@@ -116,7 +147,7 @@
       <pubDate>Mon, 04 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>/posts/statistical-validity/</guid>
-      <description>What is an Experiment? Research in a Perfect World What is Validity? Internal Validity Threats to Internal Validity Random Assignment  External Validity Threats to External Validity  Construct Validity Threats to Construct Validity  Statistical Validity Threats to Statistical Validity Power!</description>
+      <description>What is an Experiment? Research in a Perfect World What is Validity? Internal Validity Threats to Internal Validity Random Assignment  External Validity Threats to External Validity  Construct Validity Threats to Construct Validity  Statistical Validity Threats to Statistical Validity Power! Ways to Increase Power    In this post I reboot a page I had written for my old website back in 2013. It is based almost entirely on the excellent text by Shadish, Cook, and Campbell (2002).</description>
     </item>
     
     <item>
@@ -125,7 +156,7 @@
       <pubDate>Sun, 27 Aug 2017 00:00:00 +0000</pubDate>
       
       <guid>/posts/basic-stats-u-need-3-anova/</guid>
-      <description>One-Way ANOVA by way of Two-Sample T-Test Calculations Sums of Squares Plot Effect Size Assumptions Post Hoc Tests   One-Way ANOVA by way of Two-Sample T-Test If the hero of our last post was William “Student” Gosset, then the hero of this and the next few posts will be Sir Ronald Fisher.</description>
+      <description>One-Way ANOVA by way of Two-Sample T-Test Calculations Sums of Squares Plot Effect Size Assumptions Post Hoc Tests   One-Way ANOVA by way of Two-Sample T-Test If the hero of our last post was William “Student” Gosset, then the hero of this and the next few posts will be Sir Ronald Fisher. After Student had derived the t distribution, he sent it to Fisher along with an historically ironic note: “I am sending you a copy of Student’s Tables as you are the only man that’s ever likely to use them!</description>
     </item>
     
     <item>
@@ -134,7 +165,7 @@
       <pubDate>Wed, 23 Aug 2017 00:00:00 +0000</pubDate>
       
       <guid>/posts/basic-stats-u-need-t-test/</guid>
-      <description>Part 2: the t-Distribution We saw in the previous post that if X is a random variable and the population distribution of X is normal with mean \(\mu\) and standard deviation \(\sigma\) (variance \(\sigma^2\)), then the distribution of the sample mean \(\bar{X}\) for samples of a given size \(n\) is normal, with mean \(\mu\) and standard deviation of \(\frac{\sigma}{\sqrt{n}}\), which we can write \(\bar{X}_n \sim N(\mu,\frac{\sigma}{\sqrt{n}})\).</description>
+      <description>Part 2: the t-Distribution We saw in the previous post that if X is a random variable and the population distribution of X is normal with mean \(\mu\) and standard deviation \(\sigma\) (variance \(\sigma^2\)), then the distribution of the sample mean \(\bar{X}\) for samples of a given size \(n\) is normal, with mean \(\mu\) and standard deviation of \(\frac{\sigma}{\sqrt{n}}\), which we can write \(\bar{X}_n \sim N(\mu,\frac{\sigma}{\sqrt{n}})\).1 More exciting, we saw that by the Central Limit Theorem, the sampling distribution will be normal regardless of the original population distribution if the sample size is large enough.</description>
     </item>
     
     <item>
@@ -152,7 +183,8 @@
       <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
       
       <guid>/posts/swapping-an-hdd-for-an-ssd-in-a-low-end-2017-laptop/</guid>
-      <description>In less than two day&#39;s time, I was able to purchase my third computer from a perfect-craigslist-stranger (without issue!) and replace the hard disk with a solid state drive, and I wanted to take a minute to document the experience here; if you are interested only in a rough guide for SSD installation for a 2017 HP laptop, you are heartily encouraged to skip down several paragraphs.</description>
+      <description>In less than two day&#39;s time, I was able to purchase my third computer from a perfect-craigslist-stranger (without issue!) and replace the hard disk with a solid state drive, and I wanted to take a minute to document the experience here; if you are interested only in a rough guide for SSD installation for a 2017 HP laptop, you are heartily encouraged to skip down several paragraphs.
+The computer in question is an HP 15-ba113cl that the original owner bought in February 2017 from our local Costco for around $400.</description>
     </item>
     
     <item>
@@ -172,16 +204,16 @@ http://www.lindsaywoodward.com/2016/07/cleaning-and-operating-a-100-year-old-sew
       <pubDate>Wed, 01 Jun 2016 00:00:00 +0000</pubDate>
       
       <guid>/posts/diy-e-books-manipulating-scanned-pdfs-with-command-line-tools/</guid>
-      <description>The Memory Dynamics Laboratory is having something of a book club this summer, but the crucial volume was proving difficult to find; it had been out of print for many years and the UT library system only has a single copy!</description>
+      <description>The Memory Dynamics Laboratory is having something of a book club this summer, but the crucial volume was proving difficult to find; it had been out of print for many years and the UT library system only has a single copy! I proudly volunteered to do the hunting-up and ferreting-out because I have at my disposal a skill-set unique to the hyper-stingy tech-savvy long-term student, i.e., time-honored and hard-won methods for coaxing any book I please from the depths of the internet (way too many hyphens going on here).</description>
     </item>
     
     <item>
-      <title>Learning Analytics in Large College Classrooms</title>
+      <title>Responsive Learning Analytics in Large College Classrooms</title>
       <link>/portfolio/masters/</link>
       <pubDate>Mon, 30 May 2016 00:00:00 +0000</pubDate>
       
       <guid>/portfolio/masters/</guid>
-      <description>Recently, a large undergraduate course at the University of Texas has implemented a new class structure that replaces high-stakes tests with daily quizzes administered during class via computer. I propose an algorithmic innovation to optimize content delivery to improve learning outcomes.</description>
+      <description>A large undergraduate course at the University of Texas implemented a new class structure that replaces high-stakes tests with daily quizzes administered during class via computer. I propose an innovation to optimize content delivery to improve learning outcomes. Given graded student quiz data from one semester of this course, I use multidimensional item response theory (MIRT) and sparse factor analysis (SPARFA) to jointly estimate concepts underlying the items and each students’ mastery of these concepts, demonstrating the efficacy of this approach in real-world example.</description>
     </item>
     
     <item>
@@ -190,7 +222,7 @@ http://www.lindsaywoodward.com/2016/07/cleaning-and-operating-a-100-year-old-sew
       <pubDate>Sun, 30 Aug 2015 00:00:00 +0000</pubDate>
       
       <guid>/posts/summer-running-not-very-fast-summer-running-pain-in-my-ass/</guid>
-      <description>Every couple of days I force myself to go outside and run about 2-4 miles. I do not enjoy it. It makes me feel like I am dying every time; I gasp and wheeze and, even after showering I stay uncomfortably sweaty for a few hours.</description>
+      <description>Every couple of days I force myself to go outside and run about 2-4 miles. I do not enjoy it. It makes me feel like I am dying every time; I gasp and wheeze and, even after showering I stay uncomfortably sweaty for a few hours. Worse still, I do not feel &amp;ldquo;energized&amp;rdquo; or whatever other vital sensations people claim to derive from exercise; if anything, I feel especially fatigued afterwards, and this only gets more pronounced as the day progresses.</description>
     </item>
     
     <item>
@@ -199,7 +231,7 @@ http://www.lindsaywoodward.com/2016/07/cleaning-and-operating-a-100-year-old-sew
       <pubDate>Sat, 29 Aug 2015 00:00:00 +0000</pubDate>
       
       <guid>/posts/summaryreview-of-how-can-the-mind-occur-in-the-physical-universe/</guid>
-      <description>I found out about John R. Anderson almost immediately upon discovering intelligent tutoring systems a few years ago; he and his research group at Carnegie Mellon have blazed the way forward with these technologies.</description>
+      <description>I found out about John R. Anderson almost immediately upon discovering intelligent tutoring systems a few years ago; he and his research group at Carnegie Mellon have blazed the way forward with these technologies. Their Cognitive Tutor, for example, is currently #5 out of 39 interventions in mathematics education, as evaluated by the US Department of Education&#39;s &amp;ldquo;What Works Clearing House&amp;quot;. I learned that, notwithstanding these educational pursuits, his life&#39;s work had been more about developing a &amp;ldquo;cognitive architecture&amp;rdquo; &amp;ndash; a model of how the structure of the mind and its components work together to achieve human cognition.</description>
     </item>
     
     <item>
@@ -210,7 +242,7 @@ http://www.lindsaywoodward.com/2016/07/cleaning-and-operating-a-100-year-old-sew
       <guid>/posts/i-finally-read-a-new-kind-of-science/</guid>
       <description>This book made me think new thoughts; this is rare, so I am posting about it.
 If you read nothing else in the post, read the end.
-&amp;ldquo;A New Kind of Science&amp;rdquo; is a 13-year-old book preceded, and regrettably often prejudged, by its reputation.</description>
+&amp;ldquo;A New Kind of Science&amp;rdquo; is a 13-year-old book preceded, and regrettably often prejudged, by its reputation. Many of the criticisms that have come to define the work are valid, so let&#39;s get that part out in the open. The book can be read in its entirety here; it is enormous, both physically (~1,200 pages) and in scope, which has led to a limited and specialized readership lodging many legitimate, though mostly technical, complaints.</description>
     </item>
     
     <item>
@@ -219,7 +251,7 @@ If you read nothing else in the post, read the end.
       <pubDate>Sun, 21 Jun 2015 00:00:00 +0000</pubDate>
       
       <guid>/posts/laudato-si-pope-pourri/</guid>
-      <description>It&#39;s not everyday that I want to read something a Pope wrote. In fact, today, June 19, 2015 was the only day I have ever wanted that, if memory serves. Today I read Papa Francesca&#39;s second encyclical, entitled &amp;ldquo;Laudato Si &amp;ndash; On Care For Our Common Home&amp;quot;.</description>
+      <description>It&#39;s not everyday that I want to read something a Pope wrote. In fact, today, June 19, 2015 was the only day I have ever wanted that, if memory serves. Today I read Papa Francesca&#39;s second encyclical, entitled &amp;ldquo;Laudato Si &amp;ndash; On Care For Our Common Home&amp;quot;. It was a unique experience to navigate to w2.vatican.va, download an essay the Pope just wrote about environmentalism, and then read it on my computer.</description>
     </item>
     
     <item>
@@ -228,7 +260,7 @@ If you read nothing else in the post, read the end.
       <pubDate>Sun, 14 Jun 2015 00:00:00 +0000</pubDate>
       
       <guid>/posts/forgetting-as-interference-during-consolidation-and-retrieval/</guid>
-      <description>The singular exception is provided by the human ability to remember past happenings. When one thinks today about what one did yesterday, time’s arrow is bent into a loop. The rememberer has mentally traveled back into her past and thus violated the law of the irreversibility of the flow of time.</description>
+      <description>The singular exception is provided by the human ability to remember past happenings. When one thinks today about what one did yesterday, time’s arrow is bent into a loop. The rememberer has mentally traveled back into her past and thus violated the law of the irreversibility of the flow of time. She has not accomplished the feat in physical reality, of course, but rather in the reality of the mind, which, as everyone knows, is at least as important for human beings as is the physical reality.</description>
     </item>
     
     <item>
@@ -238,7 +270,7 @@ If you read nothing else in the post, read the end.
       
       <guid>/posts/how-many-times-i-googled-it-june-2012-to-present/</guid>
       <description>Today at 4:13 pm I got the urge to google &amp;ldquo;google search history&amp;rdquo;.
-I figured that google was keeping all kinds of tabs on me, but at google.com/searchhistory you can find a nice browsable catalog of everything you&#39;ve ever searched for while logged into your google account.</description>
+I figured that google was keeping all kinds of tabs on me, but at google.com/searchhistory you can find a nice browsable catalog of everything you&#39;ve ever searched for while logged into your google account. Many people disabled this feature when they noticed that they were getting targeted ads and personalized search results, but all my ads are blocked and I&#39;ve never been bothered enough to disable it.</description>
     </item>
     
     <item>
@@ -247,7 +279,7 @@ I figured that google was keeping all kinds of tabs on me, but at google.com/sea
       <pubDate>Tue, 27 Jan 2015 00:00:00 +0000</pubDate>
       
       <guid>/posts/thoughts-from-one-american-mind-upon-closing-closing-of-the-american-mind/</guid>
-      <description>I have just finished reading a very strange book, and I want to try to make some personal sense out of it because it was a little unsettling. I&#39;m really not sure what I just read, and I don&#39;t think I agree with much of it.</description>
+      <description>I have just finished reading a very strange book, and I want to try to make some personal sense out of it because it was a little unsettling. I&#39;m really not sure what I just read, and I don&#39;t think I agree with much of it. But I know that there were some extremely provocative ideas presented here and intellectual honesty compels me to confront them, hence the present post.</description>
     </item>
     
     <item>
@@ -256,7 +288,8 @@ I figured that google was keeping all kinds of tabs on me, but at google.com/sea
       <pubDate>Fri, 19 Dec 2014 00:00:00 +0000</pubDate>
       
       <guid>/posts/the-greatest-equation-of-all-time/</guid>
-      <description>Sorry to have been so long away from the blog! The purpose of this post is to give some intuition for Euler&#39;s identity (&amp;ldquo;the most beautiful theorem in mathematics&amp;rdquo;) to those who haven&#39;t seen it before or to those for whom it is meaningless because they lack the math background.</description>
+      <description>Sorry to have been so long away from the blog! The purpose of this post is to give some intuition for Euler&#39;s identity (&amp;ldquo;the most beautiful theorem in mathematics&amp;rdquo;) to those who haven&#39;t seen it before or to those for whom it is meaningless because they lack the math background.
+This was never introduced to me in any class, and unless you majored in math or physics the same is probably true for you.</description>
     </item>
     
     <item>
@@ -265,7 +298,8 @@ I figured that google was keeping all kinds of tabs on me, but at google.com/sea
       <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
       
       <guid>/posts/important-peculiarities-of-memory/</guid>
-      <description>In my high school psychology class I was told that human memory capacity was unlimited &amp;hellip;and it has bothered me ever since. How, I mean? Aside from the physical limitations on information storage, how could a system that remembers everything forever be evolutionarily advantageous?</description>
+      <description>In my high school psychology class I was told that human memory capacity was unlimited &amp;hellip;and it has bothered me ever since. How, I mean? Aside from the physical limitations on information storage, how could a system that remembers everything forever be evolutionarily advantageous?
+This is a question I hope to explore in a deeper way sometime soon; for now, I want to talk to you about a few &amp;ldquo;peculiarities of human memory&amp;rdquo; that begin to shed some light on the situation (Bjork &amp;amp; Bjork, 1992).</description>
     </item>
     
     <item>
@@ -274,7 +308,7 @@ I figured that google was keeping all kinds of tabs on me, but at google.com/sea
       <pubDate>Fri, 31 Oct 2014 00:00:00 +0000</pubDate>
       
       <guid>/posts/2-x-2-statistics/</guid>
-      <description>Modern data analysis has gotten very complicated! Let&#39;s forget all that for a moment. I wanted to take this opportunity to examine several useful statistical techniques and measures of association that involve nothing more than a 2x2 contingency table.</description>
+      <description>Modern data analysis has gotten very complicated! Let&#39;s forget all that for a moment. I wanted to take this opportunity to examine several useful statistical techniques and measures of association that involve nothing more than a 2x2 contingency table. A 2x2 contingency table (also called a cross tabulation or cross tab) is a simple grid that displays the frequency distribution given two variables&amp;ndash;one variable for the columnsand one variable for the rows.</description>
     </item>
     
     <item>
@@ -283,7 +317,9 @@ I figured that google was keeping all kinds of tabs on me, but at google.com/sea
       <pubDate>Sun, 13 Jul 2014 00:00:00 +0000</pubDate>
       
       <guid>/posts/the-math-of-secrecy-rsa-cryptography-and-shapes-you-can-draw/</guid>
-      <description>When Gauss was 19, he discovered that of the infinite number of polygons that have a prime number of sides, a mere five of them can be constructed with a ruler and compass (i.</description>
+      <description>When Gauss was 19, he discovered that of the infinite number of polygons that have a prime number of sides, a mere five of them can be constructed with a ruler and compass (i.e., using only straight lines and circles). These prime-sided polygons can have 3, 5, 17, 257, or 65537 sides, but only these five are possible (probably).
+
+Indeed, the only shapes you can draw with an odd number of equal-length sides are the multiples of these 5 primes: 3, 5, 15, 17, 51, 85,&amp;hellip;, 4294967295</description>
     </item>
     
     <item>
@@ -292,7 +328,8 @@ I figured that google was keeping all kinds of tabs on me, but at google.com/sea
       <pubDate>Thu, 26 Jun 2014 00:00:00 +0000</pubDate>
       
       <guid>/posts/circling-the-square-squaring-the-circle/</guid>
-      <description>In A Mathematician&#39;s Lament, Paul Lockhart roundly decries the way our school system sucks the soul out of mathematics; what was forced down most of our throats was an insipid husk of repetitive calculation, plug-in formulae, and rigid formality, all of which we were called upon biweekly to regurgitate.</description>
+      <description>In A Mathematician&#39;s Lament, Paul Lockhart roundly decries the way our school system sucks the soul out of mathematics; what was forced down most of our throats was an insipid husk of repetitive calculation, plug-in formulae, and rigid formality, all of which we were called upon biweekly to regurgitate. Most painful for him to see is the way geometry is taught:
+If you haven&#39;t read the Lament yet, definitely stop what you&#39;re doing and take the next 30 minutes to do so; if you have any interest at all in mathematics or education, it will be one of the best-spent half-hours of your life.</description>
     </item>
     
     <item>
@@ -301,7 +338,7 @@ I figured that google was keeping all kinds of tabs on me, but at google.com/sea
       <pubDate>Sat, 21 Jun 2014 00:00:00 +0000</pubDate>
       
       <guid>/posts/smart-drugs-special-topics-in-the-neurobiology-of-learningmemory-i/</guid>
-      <description>Smart Drugs &amp;amp; LTP: Enhancement of Long-term Potentiation Through Actions on AMPA-Receptor Initiation and CREB Consolidation Unlike the previous installment, this post presumes a great deal of background knowledge on the part of its readers.</description>
+      <description>Smart Drugs &amp;amp; LTP: Enhancement of Long-term Potentiation Through Actions on AMPA-Receptor Initiation and CREB Consolidation Unlike the previous installment, this post presumes a great deal of background knowledge on the part of its readers. My intended audience has taken a class in general biology, neuroscience, or physiology at the college level and are familiar with terms like synapse, action potential (depolarization, ion channel, electrochemical gradient), neurotransmission (axons, dendrites, receptors, ligands, inhibition (IPSP), excitation (EPSP)), neurotransmitters (especially glutamate, GABA, acetylcholine, dopamine, serotonin, epinephrine), and gene transcription/translation.</description>
     </item>
     
     <item>
@@ -310,7 +347,8 @@ I figured that google was keeping all kinds of tabs on me, but at google.com/sea
       <pubDate>Wed, 18 Jun 2014 00:00:00 +0000</pubDate>
       
       <guid>/posts/base-10-blocks-to-a-billion/</guid>
-      <description>Everybody who went to public elementary school in the USA after the mass production of plastics (1940s and 1950s) and before, say, the advent of the iPad, knows what these things are:</description>
+      <description>Everybody who went to public elementary school in the USA after the mass production of plastics (1940s and 1950s) and before, say, the advent of the iPad, knows what these things are:
+In case any of my readers do not meet the above criterion, these blue (sometime orange) plastic blocks are manipulatives used in classrooms to help teach kids all sorts of mathematical concepts, from addition and subtraction to place value and volume.</description>
     </item>
     
     <item>
@@ -319,7 +357,7 @@ I figured that google was keeping all kinds of tabs on me, but at google.com/sea
       <pubDate>Tue, 17 Jun 2014 00:00:00 +0000</pubDate>
       
       <guid>/posts/miles-and-miles/</guid>
-      <description>This post considers the humble mile. You know, the unit of distance. 5,280 feet&amp;hellip; 1,760 yards&amp;hellip; 8 furlongs of 660 feet a piece&amp;hellip; Have you ever thought about how nicely divisible our mile is?</description>
+      <description>This post considers the humble mile. You know, the unit of distance. 5,280 feet&amp;hellip; 1,760 yards&amp;hellip; 8 furlongs of 660 feet a piece&amp;hellip; Have you ever thought about how nicely divisible our mile is? I have two principal goals in writing this post; they are, in order of ascending importance, (1) to talk about the history of the mile, and (2) to demonstrate an effective algorithm for finding all the factors of a number.</description>
     </item>
     
     <item>
@@ -328,7 +366,8 @@ I figured that google was keeping all kinds of tabs on me, but at google.com/sea
       <pubDate>Sat, 14 Jun 2014 00:00:00 +0000</pubDate>
       
       <guid>/posts/how-caffeine-does-the-things-it-does/</guid>
-      <description>I waste a lot of time preparing and drinking coffee. My coffee ritual (cleaning the press, filling it anew, boiling water, brewing, plunging the grounds, pouring) takes around 3 minutes of active attention, and I perform this holy rite 2-3 times each day.</description>
+      <description>I waste a lot of time preparing and drinking coffee. My coffee ritual (cleaning the press, filling it anew, boiling water, brewing, plunging the grounds, pouring) takes around 3 minutes of active attention, and I perform this holy rite 2-3 times each day. Reckoning roughly, at this rate I spend ~48 hours &amp;ndash;two full days out of each year&amp;ndash; making coffee, and this figure likely an underestimate&amp;hellip;
+Worse still, I don&#39;t even notice the caffeine anymore!</description>
     </item>
     
     <item>
@@ -338,7 +377,7 @@ I figured that google was keeping all kinds of tabs on me, but at google.com/sea
       
       <guid>/posts/introduction-to-the-neurochemical-foundations-of-learning-and-memory-for-non-science-majors/</guid>
       <description>This first in a series of posts about the biology of learning and memory has been written plainly, with much care taken to ensure its general-audience accessibility.
-TL;DR: neurons communicate with other neurons by releasing chemicals called neurotransmitters onto them; these chemicals bind to receptors on the neighboring neurons.</description>
+TL;DR: neurons communicate with other neurons by releasing chemicals called neurotransmitters onto them; these chemicals bind to receptors on the neighboring neurons. When a neuron repeatedly &amp;ldquo;fires&amp;rdquo; on another neuron, this triggers the latter to produce additional receptors and can even stimulate physical growth toward the former; thus, the latter becomes especially sensitive to the former and more likely to fire when the former does.</description>
     </item>
     
     <item>
@@ -347,7 +386,8 @@ TL;DR: neurons communicate with other neurons by releasing chemicals called neur
       <pubDate>Sat, 03 May 2014 00:00:00 +0000</pubDate>
       
       <guid>/posts/productive-procrastination-gnuplot-gifs/</guid>
-      <description>As the semester draws to a close, assignments have this way of becoming suddenly due and needing immediately to be done&amp;hellip; while everything else, literally anything besides these assignments has this perverse way of becoming, in equal measure, more enticing, distracting, rewarding&amp;hellip;</description>
+      <description>As the semester draws to a close, assignments have this way of becoming suddenly due and needing immediately to be done&amp;hellip; while everything else, literally anything besides these assignments has this perverse way of becoming, in equal measure, more enticing, distracting, rewarding&amp;hellip;
+So, having just completed a final project for my C/Fortran programming course, and as other deadlines loom like so much Damoclean cutlery, I just can&#39;t quit tinkering with gnuplot!</description>
     </item>
     
     <item>
@@ -387,7 +427,7 @@ For the purposes of this discussion, we&#39;re going to consider it a very elega
       <pubDate>Tue, 11 Feb 2014 00:00:00 +0000</pubDate>
       
       <guid>/posts/idea-density-or-teenage-essays-predict-old-age-alzheimers/</guid>
-      <description>Yesterday in the car I caught a couple intriguing snatches of NPR&#39;s Radiolab, a program that has been, in my experience, very hit-or-miss (though I guess it&#39;s got something for everyone).</description>
+      <description>Yesterday in the car I caught a couple intriguing snatches of NPR&#39;s Radiolab, a program that has been, in my experience, very hit-or-miss (though I guess it&#39;s got something for everyone). Anyway, the day&#39;s topic was aging and dementia and they were reporting in their pop-sciencey way on findings from the &amp;ldquo;Nun Study&amp;quot;&amp;mdash;a longitudinal study funded by the National Institute of Aging to examine the onset of Alzheimer&#39;s disease in a population of some 700 nuns who have been participating in the study since 1986 (the youngest at the time was 75).</description>
     </item>
     
     <item>
@@ -396,7 +436,7 @@ For the purposes of this discussion, we&#39;re going to consider it a very elega
       <pubDate>Sun, 02 Feb 2014 00:00:00 +0000</pubDate>
       
       <guid>/posts/how-a-computer-works-briefly/</guid>
-      <description>This post is going to be a long one, because I need to be thorough and deliberate if I am to be understood; my target audience consists of people who don&#39;t know much about computers, and frankly I&#39;m just a dilettante with no formal training on the subject.</description>
+      <description>This post is going to be a long one, because I need to be thorough and deliberate if I am to be understood; my target audience consists of people who don&#39;t know much about computers, and frankly I&#39;m just a dilettante with no formal training on the subject. But disqualification on both ends notwithstanding let&#39;s forge ahead and see what comes of it. First, you have probably noticed that computers are everywhere: to use a colorful, if somewhat perplexing, expression, you can&#39;t swing a cat without hitting one these days, and when I&#39;m not staring straight into one of my own, I&#39;m probably still using one in some way or other:</description>
     </item>
     
     <item>
@@ -414,7 +454,7 @@ For the purposes of this discussion, we&#39;re going to consider it a very elega
       <pubDate>Wed, 22 Jan 2014 00:00:00 +0000</pubDate>
       
       <guid>/posts/kic-scanners-and-one-of-lindsays-pictures/</guid>
-      <description>Earlier this month I presciently looked up and checked out the only non-reserve copy of a book that was required for one of my upcoming courses. Then, a few days ago, I got the dreaded but by now familiar recalled email, prompted by someone else&#39;s request (doubtlessly someone else in my class who is just now getting around to reading the syllabus).</description>
+      <description>Earlier this month I presciently looked up and checked out the only non-reserve copy of a book that was required for one of my upcoming courses. Then, a few days ago, I got the dreaded but by now familiar recalled email, prompted by someone else&#39;s request (doubtlessly someone else in my class who is just now getting around to reading the syllabus). I&#39;ve got to return the book by the 28th, and I&#39;m miffed about it.</description>
     </item>
     
     <item>
@@ -424,7 +464,7 @@ For the purposes of this discussion, we&#39;re going to consider it a very elega
       
       <guid>/posts/new-zealand-late-updates/</guid>
       <description>I love it here! This really is an amazing country!
-We got into Auckland in the early afternoon on NYE. Everything is beautiful: all of the plants are unique-looking and typical road-side terrain&amp;mdash;berms and such&amp;mdash;are often breathtaking.</description>
+We got into Auckland in the early afternoon on NYE. Everything is beautiful: all of the plants are unique-looking and typical road-side terrain&amp;mdash;berms and such&amp;mdash;are often breathtaking. Driving on the left-hand side is like learning to drive all over again&amp;mdash;not difficult really, but you feel that familiar tenseness and vigilance, with the car tending far too close to the curb. The weather is perfect, with both cool breezes and toasty sunshine.</description>
     </item>
     
     <item>
@@ -433,7 +473,8 @@ We got into Auckland in the early afternoon on NYE. Everything is beautiful: all
       <pubDate>Sun, 29 Dec 2013 00:00:00 +0000</pubDate>
       
       <guid>/posts/going-to-new-zealand-today/</guid>
-      <description>These next few posts will chart our impending journey to New Zealand, which begins on a CapMetro bus this morning at 9:30am and ends with our arrival to Auckland Int. Airport at 12:50pm on December 31 (for us, there is no December 30th&amp;hellip;) Along the way, we have two excellent layovers (Los Angeles &amp;amp; Nadi, Fiji) so expect to hear more about these places as well.</description>
+      <description>These next few posts will chart our impending journey to New Zealand, which begins on a CapMetro bus this morning at 9:30am and ends with our arrival to Auckland Int. Airport at 12:50pm on December 31 (for us, there is no December 30th&amp;hellip;) Along the way, we have two excellent layovers (Los Angeles &amp;amp; Nadi, Fiji) so expect to hear more about these places as well.
+Below is a thingum I made that roughly maps out (and even animates!</description>
     </item>
     
     <item>
@@ -442,7 +483,8 @@ We got into Auckland in the early afternoon on NYE. Everything is beautiful: all
       <pubDate>Tue, 17 Dec 2013 00:00:00 +0000</pubDate>
       
       <guid>/posts/ode-to-an-autobus/</guid>
-      <description>I enjoy riding buses and trains; I like their consistency&amp;mdash;the same times, the same drivers&amp;mdash;but I also like their novelty&amp;mdash;the strange new people you are exposed to from the safety of your seat.</description>
+      <description>I enjoy riding buses and trains; I like their consistency&amp;mdash;the same times, the same drivers&amp;mdash;but I also like their novelty&amp;mdash;the strange new people you are exposed to from the safety of your seat. I like riding my bike, too, but only sometimes, and not too far. There again, the bus provides: a pull-down bike-rack hangs off of the front of each one and there is usually a vacant slot.
+The car-as-status-symbol is lower-middle class at best; the upper crust has developed more effective ways of signifying social clout.</description>
     </item>
     
     <item>
@@ -451,7 +493,7 @@ We got into Auckland in the early afternoon on NYE. Everything is beautiful: all
       <pubDate>Wed, 11 Dec 2013 00:00:00 +0000</pubDate>
       
       <guid>/posts/typing-speed-and-the-woes-of-1-%ce%b2/</guid>
-      <description>My six-year-old macbook (a black one, before the pro) is still operational, but it has burned through (literally) several batteries, and, unless I pay apple the $129.00 they want for a new one, it is going to remain about as portable as your average desktop PC.</description>
+      <description>My six-year-old macbook (a black one, before the pro) is still operational, but it has burned through (literally) several batteries, and, unless I pay apple the $129.00 they want for a new one, it is going to remain about as portable as your average desktop PC. That&#39;s fine for around-the-house applications, but when your academic adviser (who is retiring this year) asks, &amp;ldquo;Where&#39;s your computer!&amp;rdquo; every time you have a meeting with her, you know it&#39;s about time to get a new, backpack-friendly means of computing.</description>
     </item>
     
     <item>
@@ -460,7 +502,7 @@ We got into Auckland in the early afternoon on NYE. Everything is beautiful: all
       <pubDate>Sun, 08 Dec 2013 00:00:00 +0000</pubDate>
       
       <guid>/posts/blog-nauguration-take-2/</guid>
-      <description>**Digital Citizenship as Identity-formation ** A few weeks ago, presaging (if not precipitating) my own entry into the blogosphere, I read a paper by Siles (2012) entitled &amp;ldquo;Web Technologies of the Self: The Arising of the &amp;ldquo;Blogger&amp;rdquo; Identity.</description>
+      <description>**Digital Citizenship as Identity-formation ** A few weeks ago, presaging (if not precipitating) my own entry into the blogosphere, I read a paper by Siles (2012) entitled &amp;ldquo;Web Technologies of the Self: The Arising of the &amp;ldquo;Blogger&amp;rdquo; Identity.&amp;rdquo; This article examines the emergence of online diarists and bloggers in the late 1990s through the lens of Foucauldian &amp;ldquo;technologies of the self&amp;rdquo; by considering the role of websites as artifacts in the process of self-formation online.</description>
     </item>
     
     <item>
@@ -479,7 +521,8 @@ We got into Auckland in the early afternoon on NYE. Everything is beautiful: all
       
       <guid>/posts/first-post-a-couple-links/</guid>
       <description>&amp;ldquo;O Muses, O high genius, aid me now!&amp;rdquo; -Inferno, Canto II
- While I&#39;ve nothing interesting to say right now, I do have a few things to show you: a few tools I&#39;ve found.</description>
+ While I&#39;ve nothing interesting to say right now, I do have a few things to show you: a few tools I&#39;ve found.
+If you use the &amp;ldquo;highlighter&amp;rdquo; function in a .pdf reader, you might find this service helpful (sumnotes.net); with a click, it copies all of the text you&#39;ve highlighted and combines it into a single file. This is certainly nontrivial, and it took me a good half-an-hour to find.</description>
     </item>
     
     <item>
@@ -489,7 +532,7 @@ We got into Auckland in the early afternoon on NYE. Everything is beautiful: all
       
       <guid>/aboutabout/</guid>
       <description>###Second-order self-presentation: a conceit on conceitedness
-I used to take great pleasure in writing these “About Me” minibios, primping my digital appearance for hours on end. In my misspent youth I agonized over a Xanga, a MySpace, a LiveJournal, a Facebook… leaving behind a digital footprint so contrived you can see the pedicure.</description>
+I used to take great pleasure in writing these “About Me” minibios, primping my digital appearance for hours on end. In my misspent youth I agonized over a Xanga, a MySpace, a LiveJournal, a Facebook… leaving behind a digital footprint so contrived you can see the pedicure. Social networking? Pshaw! I just wanted a billboard for my posturing, and this was some prime ad space!</description>
     </item>
     
     <item>
@@ -499,7 +542,8 @@ I used to take great pleasure in writing these “About Me” minibios, primping
       
       <guid>/about/</guid>
       <description>Hello and welcome! My name is Nathaniel Woodward (né Raley)
-I am a Lecturer in Statistics and Data Sciences at UT Austin, where I have previously worked as a researcher and statistical consultant.</description>
+I am currently a Lecturer in the Department of Statistics and Data Sciences at UT Austin, where I earned both PhD (2018) and MS (2016) and where I previously worked as a researcher and statistical consultant.
+I am interested in modern statistical approaches to causal inference, especially as they apply to evaluations of human learning and memory. In my research, I have used institutional data to investigate teaching effectiveness, curriculum redesign, students’ pathways through college, and other questions important to university stakeholders.</description>
     </item>
     
     <item>
@@ -508,7 +552,8 @@ I am a Lecturer in Statistics and Data Sciences at UT Austin, where I have previ
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/feedback/</guid>
-      <description>If you are/were a student of mine, please give me some anonymous feedback about the course (please note which course and, if not current, the year/semester). I truly appreciate it, good or bad: I use this information to make changes to future versions of the course!</description>
+      <description>If you are/were a student of mine, please give me some anonymous feedback about the course (please note which course and, if not current, the year/semester). I truly appreciate it, good or bad: I use this information to make changes to future versions of the course! Click through to the google forms page below:
+https://goo.gl/forms/GwQGneCLc48O5bsj2</description>
     </item>
     
     <item>
@@ -517,7 +562,7 @@ I am a Lecturer in Statistics and Data Sciences at UT Austin, where I have previ
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/karaoke/</guid>
-      <description>The Songs I’ve Sung (Last Updated 1/22/2019) To-Sing List (Also Slowly Growing)   In Fall 2018 I discovered that I enjoy a certain kind of bar-style karaoke: Karaoke Underground specializes in tracks from somewhat obscure indie and punk artists, though there are a fair number of more popular jams.</description>
+      <description>The Songs I’ve Sung (Last Updated 1/22/2019) To-Sing List (Also Slowly Growing)   In Fall 2018 I discovered that I enjoy a certain kind of bar-style karaoke: Karaoke Underground specializes in tracks from somewhat obscure indie and punk artists, though there are a fair number of more popular jams. See here for the slowly growing song list. Below, I list the songs I have sung by date in chronological order.</description>
     </item>
     
     <item>
@@ -542,22 +587,11 @@ https://goo.gl/forms/gSnEckR1pvYp9g5g2</description>
     
     <item>
       <title>Teaching</title>
-      <link>/portfolio/teaching/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/portfolio/teaching/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Teaching</title>
       <link>/teaching/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/teaching/</guid>
-      <description>This page is under construction!
-For now, here are twenty-five heuristics for promoting learning.
-From: Winne &amp;amp; Nesbit (2010). The Psychology of Academic Achievement. Ann.. Rev. of Psych., 61(1), 653–678</description>
+      <description>Courses Teaching Statement Why Math and Statistics?   Courses  Computational Biology and Bioinformatics – SDS 348 Biostatistics – SDS 328M Data Analysis for the Health Sciences – SDS 302 Cognition, Human Learning, and Motivation – ALD 320  Short Courses  Bayesian Statistics — UT Summer Statistics Institute, 2020 Introduction to Causal Inference — UT Summer Statistics Institute, 2019 Introduction to Causal Inference — UT Summer Statistics Institute, 2018   Graduate-Level Courses (TA)  Instructional Psychology – EDP 382D (Butler, Spring 2016) Complex Cognitive Processes – EDP 382D (Butler, Fall 2015) Social Psychology – EDP 381M (Falbo, Fall 2014)   Other Teaching and Tutoring  GRE &amp;amp; GMAT Tutor – NextStep Test Prep (Austin TX, 2015-2018) Mathematics Instructor – Mathnasium (Austin TX, 2014-2015) SAT/ACT Tutor – Huntington Learning Center (Arlington TX, 2012-13) Long-Term Substitute – Birdville, Grapevine-Colleyville ISDs (2012-13) Library Research Assistant – Reed College Library (Portland OR, 2010-12)    Teaching Statement Preface I know what it is you are looking for here.</description>
     </item>
     
   </channel>
