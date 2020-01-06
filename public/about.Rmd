@@ -45,12 +45,15 @@ dat%>%transmute(theta=theta,a=1-b1, b=b1-b2,c=b2-b3,d=b3)%>%
 
 My name is Nathaniel Woodward (*né* Raley)
 
-I am currently a Lecturer in the [Department of Statistics and Data Sciences at UT Austin](https://stat.utexas.edu/), where I earned both PhD (2018) and MS (2016) and where I previously worked as a researcher and statistical consultant.
+I am a Lecturer in the [Department of Statistics and Data Sciences at UT Austin](https://stat.utexas.edu/), where I earned both PhD (2018) and MS (2016) and where I previously worked as a researcher and statistical consultant.
 
 I am interested in modern statistical approaches to causal inference, especially as they apply to evaluations of human learning and memory. In my research, I have used institutional data to investigate teaching effectiveness, curriculum redesign, students' pathways through college, and other questions important to university stakeholders. 
 
-Furthermore, I have experience modeling the causal effect of large-scale interventions, including a nation-wide randomized effectiveness trial. I have also conducted laboratory studies with human subjects to test interventions designed to improve long-term retention and transfer of learning to new contexts. For some examples of my work, see the [portfolio](/portfolio/) page.
+I have experience modeling the causal effect of large-scale interventions, including a nation-wide randomized effectiveness trial. I have also conducted laboratory studies with human subjects to test interventions designed to improve long-term retention and transfer of learning to new contexts. 
 
+I am also interested in human--computer interaction, and I have experience applying psychometric techniques to adapively model latent traits (such as ability and mastery) based on peoples' interactions with technology (e.g., click-stream and other log data, biometric measurements) and using such models to inform predictions and to optimize training.
+
+For some examples of my work, see the [portfolio](/portfolio/) page.
 
 In both my teaching and my research, my guiding purpose is to improve lifetime learning outcomes---to create meaningful learning experiences that lead to durable, flexible knowledge; to show how enjoyable learning can be to motivate the pursuit of knowledge for its own sake; to help assemble the cognitive and metacognitive skillset needed for a life of independent inquiry.
 
@@ -108,7 +111,11 @@ Besides, I like indoor activities best! I enjoy pestering my[^6] three[^7] cats,
 </center>
 
 If I were a nonhuman animal, I have it on good authority that I would be an umbrella cockatoo.[^4] 
-I am a strong proponent of the Nordic theory of love[^23] and I am highly susceptible to *fremdschämen*. I get positively irate about the residue left behind after peeling stickers off of jars. Yes I like to juxtapose, but give me the [unity of opposites](https://en.wikipedia.org/wiki/Unity_of_opposites) any day. I prefer my content in text form, and with few exceptions I don't like movies or TV.[^22] [Vis-à-vis fiction](https://www.goodreads.com/user/show/44370058-nathaniel), the Recognitions is gospel and Suttree my book of sacred psalms. And though their respective Apostles have been perennially passed over for the prize (add Nabokov to their number), I think [Chris Onstad](http://www.ohnorobot.com/random.pl?comic=636) deserves the next Literature Nobel solely for his achievements in the genre of webcomics. 
+In my relationships with people, I am a strong proponent of the Nordic theory of love[^23] and I am highly susceptible to *fremdschämen*. I get positively irate about the residue left behind after peeling stickers off of jars. Yes I like to juxtapose, but give me the [unity of opposites](https://en.wikipedia.org/wiki/Unity_of_opposites) any day. I love words themselves[^32] and I like to play word-games; I have been known to [coopt rapgenius for literary annotations/glosses I can't find elsewhere](https://genius.com/anhinga).
+
+I prefer my words in text form, and with few exceptions I don't like movies or TV.[^22] [Vis-à-vis fiction](https://www.goodreads.com/user/show/44370058-nathaniel), the Recognitions is gospel and Suttree my book of sacred psalms. And though their respective Apostles have been perennially passed over for the prize (add Nabokov to their number), I think [Chris Onstad](http://www.ohnorobot.com/random.pl?comic=636) deserves the next Literature Nobel solely for his achievements in the genre of webcomics. My sense of humor is literally just Achewood and P.G. Wodehouse and that's all.
+
+For some reason I have been listening to a lot of modern [music](/music) lately, and though indie rock and art pop predominate my streams, my tastes are pretty genre-catholic. I generally prefer music (catchy, orchestral, ethereal, weird, virtuosic) over lyrics.[^30] Lyrics that are overly literal are often quotidian and cringey to me and there is no surer way to spoil an otherwise-great song: Sometimes I'll really like a song until I understand the lyrics.[^31]  If I *have* to understand the words themselves, I like for them to be non-narrative, evocative, and imagery-rich (think Neutral Milk Hotel) or free-associationy melodic word-salad packed with references (think Das Racist, Panda Bear), or so vapid as to be entirely ignorable vectors for sound (most modern radio pop), or meaningful-sounding yet mostly meaningless stuff whose ambiguity lends itself to endless hermenuetics, particularly stuff of the sad-dad variety (think The National).
 
 
 [^1]: I also love learning about learning about learning, but it probably ends there (see ["Yudkowsky's Law of Ultrafinite Recursion"](https://www.facebook.com/yudkowsky/posts/10154119438404228))
@@ -134,7 +141,7 @@ O: So you have worked at not working? <br>
 C: Absolutely <br>
 [^21]: My own personal voice-inside-my-head reasons for a plant-based diet are ethical in nature and can be summarized as follows: "I am an animal, but a unique kind of animal who can understand what it means to feel pain and to die and who doesn't want that to happen to himself or to any other animals. My unique kind of animal can also live a [happy](https://en.wikipedia.org/wiki/Vegetarian_cuisine#Cuisine_that_is_traditionally_vegetarian), [healthy](https://en.wikipedia.org/wiki/Vegetarianism#Health_effects) life *at very little personal expense* without causing other animals to feel pain or to die."
 <br>
-I don't believe other animals, even other mammals, have anything like human consciousness. Nor do I believe they should be accorded human rights. But I know that at the end of the day, biologically I am a mammal; if you're warm-blooded and you've got hair and a neocortex, then I'm really going to avoid hurting/killing you. If you have a spine and a pulse, I'm giving you the benefit of the doubt (especially since the benefits of eating meat are... what again?)
+I don't believe other animals, even other mammals, have anything like human consciousness. Nor do I believe they should be accorded human rights. But I do know that at the end of the day, biologically I am a mammal; if you're warm-blooded and you've got hair and a neocortex, then I'm really going to avoid hurting/killing you. If you have a spine and a pulse, I'm giving you the benefit of the doubt (especially since the benefits of eating meat are... what again?)
 [^14]: sorry about all these weird animal-hobby metaphors...
 [^16]: <img src="/crossword.jpg"> <br>I sporadically worked the NYT puzzle in college; I happened to sit down to this one on the morning of my 20th birthday and came across my first name (24 across) and former middle name (76 across) were in it! It also features one of my favorite movies.
 [^18]: and < .001% of the humans. Ah but don't worry, I like you though!
@@ -144,6 +151,9 @@ I don't believe other animals, even other mammals, have anything like human cons
 [^23]: “That authentic love and friendship are possible only between individuals who are independent and equal.” For more about this, see [Anu Partanen's awesome book](https://www.goodreads.com/book/show/28014216-the-nordic-theory-of-everything)
 [^25]: For more on that, see: [http://www.nathanielwoodward.com/aboutabout](http://www.nathanielwoodward.com/aboutabout)
 [^26]: No seriously,<br> <img src="/classclown.jpg" height="250">
+[^30]: With rare exceptions, I'd rather the human voice be used instrumentally: When it's beautiful language I'm after, I'll read some poetry. 
+[^31]:If Sigur Ros sang in english, I would probably hate it.
+[^32]: Both as signifiers (words as such) and signifieds (the things or ideas they refer to)
 [^17]: Candidates include old standards such as <br>
 * What is the meaning of life?  
 * Why are we here?  

@@ -1,0 +1,96 @@
+---
+title: "Music"
+author: "Nathaniel Raley"
+output:
+  blogdown::html_page:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 2019
+
+This year I did a lot more musical exploration than I have in the past! It has been really fun and really fruitful! Here is my wildly inaccurate Spotify Wrapped
+
+<center>
+<img src="/wrapped2019.png" width=70%>
+</center>
+
+Spotify only includes songs streamed between January 1 and October 31: anything you listen to during November and December is excluded altogether (even from next year's, I think)! Also, apparently they use some kind of sampling rather than relying on total listen-counts for each person. Finally, they do not count plays from local files (i.e., files that are not on Spotify); I listened to Joanna Newsom's album Divers a zillion times this year via the Spotify app, but it doesn't count at all since she is not on Spotify. For these reasons, I recently rebooted my old Last.fm account to get more accurate data on my listening habits.
+
+That being said, Spotify is still a great service and I would recommend it for anyone interested in music exploration. A good chunk of my musical finds this year came from the Discover Weekly playlist and various Daily Mixes that Spotify generates and personalizes for you each week. 
+
+Spotify is also really great for making playlists. [Here is a playlist of my top 100 songs of the year](https://open.spotify.com/playlist/1wYnhYPdolVrFWrc3TrJIV) (i.e., released in 2019). I painstainkingly winnowed it down to exactly 100 (from just over 200 listens). From this, I have taken the following [10 or so favorite songs of the year](https://open.spotify.com/playlist/5sZRPRYB5hg449x1i5Olyf), in no particular order:
+
+baglaens - Lowly  
+UFOF - Big Thief  
+Cattails - Big Thief  
+Not - Big Thief  
+1972 - Broken Social Scene  
+[Eternal](https://www.youtube.com/watch?v=r4sROgbaeOs) - Holly Herndon  
+[The Whole of the Moon](https://www.youtube.com/watch?v=KP5UtxxBObU) - Kirin Callinan  
+Rylan - The National  
+[Comeback Kid](https://www.youtube.com/watch?v=h4mewwymxbI) - Sharon Van Etten  
+[Confessions](https://www.youtube.com/watch?v=Zgjrt12QTVQ) - Sudan Archives  
+[Movies](https://www.youtube.com/watch?v=RFtRq6t3jOo) - Weyes Blood  
+[Door](https://www.youtube.com/watch?v=7w6R4I7I3wA) - Caroline Polachek  
+
+You will notice that there are actually 12 songs. I wanted no more than 1 song from a given artist (10 distinct artists here), but UFOF and Cattails from Big Thief's album UFOF, and Not, from their second album released this year, Two Hands, all really need to be on there and I can't in good conscience choose just one (I tried: it is impossible).
+
+## 2018
+
+This was the first year I really started to listen to music again (since college, really). I'm not sure what happened; Lindsay and I had just gotten completely used to a music-free lifestyle over the past few years. In the car, it was almost always news radio, we liked quiet around the house, etc. So what was the impetus for the renewed interest? Well, it was two-fold!
+
+First, Lindsay started listening to Arcade Fire very seriously, a band who I knew several songs from (particularly the hits on the album Funeral, like Wake Up). I always suspected this band was worth a try, because some genius set [the dramatic final scene (spoilers!) of Once Upon a Time in the West to their song My Body is Cage](https://www.youtube.com/watch?v=Pyp34v6Lmcc), a mash-up that I encountered back in 2008 and which remains one of the best things I have ever seen on the internet. Through mere exposure from Lindsay's listening, I began to come around to them more and more myself, and I eventually found myself binging the entire discography. The song that really did it for me was [Put Your Money on Me](https://www.youtube.com/watch?v=W7SPIFAwwGA) from their most recent (2017) album Everything Now, a poppier departure from their earlier albums that polarized fans. Intervention was another early favorite, from the astounding second LP Neon Bible. Finally, the song [Reflektor](https://www.youtube.com/watch?v=7E0fVfectDo) (from the eponymous 2013 album, released before Everything Now) really sealed the deal, so much so that for Halloween 2018 I dressed as the mirror guy from the music video![^1] 
+
+Second, a friend invited Lindsay and I to go try bar karaoke; at first, it was a hard pass from me, but I was prevailed upon to go and, if not actively participate, at least observe from a distance. [Karaoke Underground](http://karaokeunderground.com/) is Austin, TX bar karaoke created, organized, and emceed by an guy named Kaleb. What appealed to me about it at first was their relatively small, obscure song list (mainly old punk and indie; no bands signed to major labels). I am very prone to indecision, and on jukeboxes and karaoke machines with literally every song in existence analysis paralysis afflicts me hard; this, however, was totally doable, since I only knew a handful of songs on the [list](http://karaokeunderground.com/?page_id=16). For my debut song, I sang Bikini Kill's Capri Pants, a short song from a [Riot Grrrl](https://en.wikipedia.org/wiki/Riot_grrrl) band fronted by Kathleen Hanna (of later Le Tigre fame) that I used to listen to back in my middle school punkrock days. I was hooked! If you are curious about all the songs I have sung, check out the [karaoke page](/karaoke) where I keep a running tally. Watching people passionately (often drunkenly) croon the songs they love to a room full of strangers really broadened my musical horizons, and before I knew it I had explored most of the songlist!
+
+I also started using Spotify at the end of 2018, but there is not much to talk about here; most of my streams were karaoke-related!
+
+
+## Live shows 
+
+It's probably a good idea to keep track of the live shows I go to see (since ticket stubs are a thing of the past). I'll do so here, but I will also try to do so on [soundkick](https://www.songkick.com/users/nathaniel-21/gigography).
+
+|Artist| Date| Location| Notes |
+|:---------|:----|:-----|:----|
+|Sleater-Kinney| Nov 9, 2019| ACL Live Moody |Great venue|
+|Titus Andronicus|Nov 6, 2019| Barracuda ||
+|Big Thief w/ Palehound| Nov 4, 2019| Stubbs Outdoor ||
+|The National w/ Alvvays|Sep 10 2019| Austin360 ||
+|Julia Holter w/ Pelvis Wrestley|July 24, 2019| Antone's   |Great  venue|
+|Charly Bliss|July 3, 2019| Stubbs Indoor |Bad venue |
+|Chrysta Bell|June 25, 2019| Hotel Vegas | Terrible venue|
+|Operators|June 21, 2019| 3ten ACL Live||
+|Weyes Blood|June 8, 2019|Antone's| Great venue|
+|Chromatics| May 11, 2019| Emo's||
+|Hatchie and Girlpool| May 7, 2019| Mohawk ||
+|U.S. Girls|April 23, 2019| Barracuda||
+|Kanaval Ball: DJ Windows 98 (i.e., Win Butler), Perservational Hall Jazz Band, Major Lazer, Diplo|Feb 22, 2019| NOLA ||
+|Soccer Mommy with Hovvdy|Feb 8, 2019| Mohawk||
+|SXSW: Unlikely Candidates, Broken Social Scene (x2), Haelos, White Denim, Lowly, CHAI, Death By Ungabunga, ShitKid| March, 2019| Various||
+|Mitski w/ Overcoats | Nov 10, 2018|Emo's||
+|ACL 2018: David Byrne, Janelle Monae, St Vincent, Paul McCartney, Blood Orange, Father John Misty, Sylvan Esso, CHVRCHES, Sofi Tucker, Camila Cabello, Metalica| Oct 5-7, 2018|
+| Turn out for Texas Rally: Willie Nelson (and company), Leon Bridges |Sep 29, 2018|Zilker Park ||
+| Arcade Fire w/ Grizzly Bear|Sep 22, 2018|Berkeley Greek Theatre||
+| Superorganism| Sep 19, 2018|Emo's||
+|New Pornographers w/ Waxahatchee | May 6, 2017| Stubbs Outdoor||
+|New Pornographers| May 16, 2017 | Loppen, Copenhagen| Poor venue | 
+|Fun Fun Fun Fest: Girl Talk, Modest Mouse, The New Pornographers, First Aid Kit, San Fermin, Jello Biafra | Nov 7-9, 2014 |Zilker Park||
+| The Mountain Goats | June 18, 2011 |Aladdin, Portland ||
+| The Mountain Goats | March 21, 2009|Sixth & I Synogogue, DC|Awesome venue|
+|Battles| June 25, 2007|Hailey's Club, Denton||
+
+## Song suggestions!
+
+
+I love learning about new music! 
+
+Submit your music recommendations/requests to me through the google forms link below:
+
+[https://goo.gl/forms/gSnEckR1pvYp9g5g2](https://goo.gl/forms/gSnEckR1pvYp9g5g2)
+
+
+[^1]: ![](/reflektor.gif)

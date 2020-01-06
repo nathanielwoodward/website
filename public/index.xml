@@ -542,7 +542,7 @@ I used to take great pleasure in writing these “About Me” minibios, primping
       
       <guid>/about/</guid>
       <description>Hello and welcome! My name is Nathaniel Woodward (né Raley)
-I am currently a Lecturer in the Department of Statistics and Data Sciences at UT Austin, where I earned both PhD (2018) and MS (2016) and where I previously worked as a researcher and statistical consultant.
+I am a Lecturer in the Department of Statistics and Data Sciences at UT Austin, where I earned both PhD (2018) and MS (2016) and where I previously worked as a researcher and statistical consultant.
 I am interested in modern statistical approaches to causal inference, especially as they apply to evaluations of human learning and memory. In my research, I have used institutional data to investigate teaching effectiveness, curriculum redesign, students’ pathways through college, and other questions important to university stakeholders.</description>
     </item>
     
@@ -566,23 +566,22 @@ https://goo.gl/forms/GwQGneCLc48O5bsj2</description>
     </item>
     
     <item>
+      <title>Music</title>
+      <link>/music/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/music/</guid>
+      <description>2019 2018 Live shows Song suggestions!   2019 This year I did a lot more musical exploration than I have in the past! It has been really fun and really fruitful! Here is my wildly inaccurate Spotify Wrapped
+  Spotify only includes songs streamed between January 1 and October 31: anything you listen to during November and December is excluded altogether (even from next year’s, I think)!</description>
+    </item>
+    
+    <item>
       <title>Research</title>
       <link>/research/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/research/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Songs</title>
-      <link>/songs/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/songs/</guid>
-      <description>I love learning about new music!
-Submit your music recommendations/requests to me through the google forms link below:
-https://goo.gl/forms/gSnEckR1pvYp9g5g2</description>
     </item>
     
     <item>
