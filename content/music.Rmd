@@ -24,18 +24,18 @@ That being said, Spotify is still a great service and I would recommend it for a
 
 Spotify is also really great for making playlists. [Here is a playlist of my top 100 songs of the year](https://open.spotify.com/playlist/1wYnhYPdolVrFWrc3TrJIV) (i.e., released in 2019). I painstainkingly winnowed it down to exactly 100 (from just over 200 listens). From this, I have taken the following [10 or so favorite songs of the year](https://open.spotify.com/playlist/5sZRPRYB5hg449x1i5Olyf), in no particular order:
 
-baglaens - Lowly  
-UFOF - Big Thief  
-Cattails - Big Thief  
-Not - Big Thief  
-1972 - Broken Social Scene  
-[Eternal](https://www.youtube.com/watch?v=r4sROgbaeOs) - Holly Herndon  
-[The Whole of the Moon](https://www.youtube.com/watch?v=KP5UtxxBObU) - Kirin Callinan  
-Rylan - The National  
-[Comeback Kid](https://www.youtube.com/watch?v=h4mewwymxbI) - Sharon Van Etten  
-[Confessions](https://www.youtube.com/watch?v=Zgjrt12QTVQ) - Sudan Archives  
-[Movies](https://www.youtube.com/watch?v=RFtRq6t3jOo) - Weyes Blood  
-[Door](https://www.youtube.com/watch?v=7w6R4I7I3wA) - Caroline Polachek  
+baglaens[^2] - Lowly  
+UFOF[^3] - Big Thief  
+Cattails[^4] - Big Thief  
+Not[^5] - Big Thief  
+1972[^6] - Broken Social Scene  
+[Eternal](https://www.youtube.com/watch?v=r4sROgbaeOs)[^7] - Holly Herndon  
+[The Whole of the Moon](https://www.youtube.com/watch?v=KP5UtxxBObU)[^8] - Kirin Callinan
+Rylan[^9] - The National  
+[Comeback Kid](https://www.youtube.com/watch?v=h4mewwymxbI)[^10] - Sharon Van Etten  
+[Confessions](https://www.youtube.com/watch?v=Zgjrt12QTVQ)[^11] - Sudan Archives  
+[Movies](https://www.youtube.com/watch?v=RFtRq6t3jOo)[^12] - Weyes Blood  
+[Door](https://www.youtube.com/watch?v=7w6R4I7I3wA)[^13] - Caroline Polachek  
 
 You will notice that there are actually 12 songs. I wanted no more than 1 song from a given artist (10 distinct artists here), but UFOF and Cattails from Big Thief's album UFOF, and Not, from their second album released this year, Two Hands, all really need to be on there and I can't in good conscience choose just one (I tried: it is impossible).
 
@@ -94,3 +94,15 @@ Submit your music recommendations/requests to me through the google forms link b
 
 
 [^1]: ![](/reflektor.gif)
+[^2]: This Danish band played at the House of Scandinavia at SXSW in 2019, where I first heard of them; I absolutely adore this song, a standout off their new album Hifalutin: "dramatic dream-pop" is pretty apt, and those vocals are so unique I can't even
+[^3]: UFOF is probably my favorite song of the year, the title track on BT's first (and best, IMO) album of the year. Everything about this song is subtle and beautiful
+[^4]: Cattails is another incredible BT song off the same album; indeed, it is the very next track, which makes for an intersting contrast. It is much folkier and it absolutely thumps; lyrics are great too ("Caroline," and many other references in the song, point to to Adrienne Lenker's grandmother)
+[^5]: Sorry for all the BT: this is my favorite track of their second album of the year, Two Hands. It is fast, simple, repetitive, but so poignant and effective. 
+[^6]: BSS released two EPs this year (Let's Try The After Vol 1 and Vol 2). This is my favorite track from either of them, though Can't Find My Heart is a close second, and Big Couches is great too
+[^7]: This is without a doubt the most interesting song of the year: apparently the Stanford trained academic composure used computers to generate some of the music. Do yourself a favor and watch the music video for this one: it doesn't disappoint. Check out the whole album PROTO, which is her most accessible work to date. Frontier is another really, really cool track
+[^8]: Found out about this prankster from Spotify's Discover Weekly. His music teeters back and forth between "wow, this is amazingly musically" and "wait is this guy just trolling" in a way that is confusingly effective. This song sounds like an 80s smash that was never released and popped out of a time capsule this year. Music video is great too!
+[^9]: Sheesh, so I just got into the National this year, and their most recent album I am Easy to Find is an absolute tour de force. The only problem is, it is almost a concept album in that the songs seem to lean on eachother. Lots of guest vocalists, including Gail Ann Dorsey and Sharon van Etten. They released an accompanying [short film of the same name](https://www.youtube.com/watch?v=ifElv18k2O8) directed by Mike Mills (of REM fame) that is totally worth a watch! So many other great songs here, including Oblivions, You Had Your Soul With You and Where is Her Head.
+[^10]: This is my favorite track on SVE's album Remind Me Tomorrow, though Seventeen is a close second. Check out her [Tiny Desk Concert](https://www.youtube.com/watch?v=eztrJeHyP_8) for absolutely knock-out live performances of both. Can't wait to see her live in April here in ATX!
+[^11]: Brittney Parks, who hails from Cincinnati, is a classical violinist and frontwoman of Sudan Archives who incorporates elements of R&B, electronica, and Sudanese fiddle music into her empowering tracks. This one is killer! Check out Glorious too. 
+[^12]: I got to see Weyes Blood (Natalie Mering) at Antone's last fall and her voice is just as amazing in real life; this song in particular, however, shines a bit brighter on the album (the production quality really adds something). It is a phenomenal song, eerie and moving and beautiful. It builds really wonderfuly too! Check out Andromeda from the same acclaimed album, Titanic Rising
+[^13]: I heard this song in a Discover Weekly as well, and when it came on, it took me about 5 seconds before I thought, "this has to be Chairlift!" Well, I was sort-of right. The frontwoman of the erstwhile band Chairlift (check out their album Moth) has a voice that is unmistakable. I adored Chairlift and was super bummed to learn they broke up. I didn't know she was embarking on such an excellent solo album, Pang, which is out now! Check out Ocean of Tears too (with accompanying music video).
