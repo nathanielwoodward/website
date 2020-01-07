@@ -54,7 +54,7 @@ text(2,.3,labels=&quot;1.555555&quot;)}</code></pre>
 <pre><code>## [1] 0.9500042</code></pre>
 <p>OK, now back to STUDENT:</p>
 <center>
-<img src="student1.png" />
+<img src="/student1.png" />
 </center>
 <p><br></p>
 <p>Here’s what he means. Let’s take repeated samples of 10 students’ heights and calculate the <span class="math inline">\(\bar{X}\)</span> and <span class="math inline">\(s\)</span> for each.</p>
@@ -85,7 +85,7 @@ s3.s</code></pre>
 <p>Yikes, now the population mean falls outside our 95% confidence interval 20.59% of the time; clearly, assuming normality is inappropriate when samples are small and we are using <span class="math inline">\(s\)</span> instead of <span class="math inline">\(\sigma\)</span>.</p>
 <p>This problem was solved by William Sealy Gosset (“Student”&quot;) in 1908, whose paper is excerpted throughout this post</p>
 <center>
-<img src="student3.png" />
+<img src="/student3.png" />
 </center>
 <p><br></p>
 <p>The “alternative” he furnishes is none other than the <span class="math inline">\(t\)</span> distribution.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> I will walk us through the derivations in his celebrated paper at the bottom, but as makes for an enormous, excruciating tangent, I will give a brief overview:</p>
@@ -180,16 +180,16 @@ s3t.s</code></pre>
 <p>#Student’s “Simulations”</p>
 <p>Thanks to computers, we can easily check the results of our derivations by using monte carlo sampling techniques. Gosset obviously could not do this. Perhaps the most remarkable thing about his paper, however, is that it <em>does</em> contain one of the earliest simulation studies in history. He did this by hand, with “3000 pieces of cardbord, which were very thoroughly shuffled and drawn out at random.”</p>
 <center>
-<img src="student5.png" />
+<img src="/student5.png" />
 </center>
 <p><br></p>
 <p>Below, he plots the observed distribution of the standard deviations of his samples of size <span class="math inline">\(n=4\)</span> and overlays his curve:</p>
 <center>
-<img src="studentplot1.png" />
+<img src="/studentplot1.png" />
 </center>
 <p>And here below, he plots his observed distribution of <span class="math inline">\(z=\frac{\bar{X}-\mu}{s/\sqrt{n}}\)</span>, where his <span class="math inline">\(s\)</span> divides by <span class="math inline">\(n\)</span> instead of <span class="math inline">\(n-1\)</span>,</p>
 <center>
-<img src="studentplot2.png" />
+<img src="/studentplot2.png" />
 </center>
 <p>#Hypothesis Testing with the T-Test</p>
 <p>The development of the <em>t</em> distribution was hugely important because it gave the enabled the t-test, commonly used as a location test for the mean. Recall that the <em>t</em> statistic <span class="math inline">\(t=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\)</span> follows a t-distribution (with <span class="math inline">\(n-1\)</span> degrees of freedom). Now, given that we have some data, the only unknown here is the parameter <span class="math inline">\(\mu\)</span>, the population mean. Let’s generate a null hypothesis: let <span class="math inline">\(\mu=\mu_0=0\)</span> and <span class="math inline">\(n=10\)</span>; this gives a distribution of the sample mean <span class="math inline">\(\bar{X}\)</span> for samples of size 10 around a “true” population mean of <span class="math inline">\(\mu_0=0\)</span>, while accounting for uncertainty in the sample variance. Thus, we can ask how likely we are to observe our sample mean <span class="math inline">\(\bar{X}_{10}\)</span>, given that the true population mean is actually 0. Let’s do this; we will take a random sample of size from a normal distribution with a mean of 1 and a standard deviation of 1; we will then calculate the mean and ask how likely this value would be if the true mean was actually equal to 0.</p>
@@ -212,25 +212,37 @@ abline(v=tstat,lty=2)}</code></pre>
 <pre class="r"><code>2*(1-pt(tstat,df=9))</code></pre>
 <pre><code>## [1] 0.02300813</code></pre>
 <p>The probability of observing a sample mean (i.e., a <em>t</em> statistic) at least this extreme (in either direction!) is .016 (this is the sum of the black areas under the <em>t</em> curve). The area under the curve to the right of our observed statistic is only <code>round(1-pt(tstat,df=9),3)</code>, but we have to double it to account for a just as extreme or more extreme observation happening in the other direction. We do this because we didn’t have any <em>a priori</em> hypothesis about the direction of the effect: our default alternative hypothesis was that <span class="math inline">\(\mu \ne 0\)</span>, or <span class="math inline">\(prob \gt |t|=p \lt -t + p &gt; t\)</span> where <em>t</em> is our observerd t-statistic <code>tstat</code>. The area shown in gray <em>plus</em> the area in black is equal to 5% of the distribution, 2.5% on each side. This represents the standard “rejection region” with a significance level of 0.05; thus, even if the null hypothesis is true and there is no effect (i.e., <span class="math inline">\(\mu =0\)</span>), 5% of the time we would still observe sample means that are at least this extreme: namely, more than <span class="math inline">\(t^*_{(1-\frac{\alpha}{2}=.975,n-1=9)}=2.262\)</span> sample standard deviation away from the true mean.</p>
-<p>#Assumptions: Independence, Normality, and Equality of Variances</p>
+</div>
+<div id="assumptions-independence-normality-and-equality-of-variances" class="section level1">
+<h1>Assumptions: Independence, Normality, and Equality of Variances</h1>
 <p>When the t-test is used to compare samples from two populations, the main assumptions that need to be met for this purpose are that the populations are (1) independent of one another, are (2) both normally distributed, and (3) both have the same variance. The first of these can often be fixed using a paired t-test (see below). The second–normality–is usually met in practice thanks to the central limit theorem, but if non-normality is a problem then non-parametric tests such as the Mann-Whitney <em>U</em> test can be used instead. The third–unequal variances–can be tricky, but there are fixes here as well (see Welch’s t-test below).</p>
 <p>In order to test for differences between two sample means, we need to find the distribution of <span class="math inline">\(\bar{X}_1 - \bar{X}_2\)</span>. For large samples (or when we know the populations are normal), we find that <span class="math inline">\(\bar{X}_1 - \bar{X}_2\)</span> is normally distributed, with a mean of <span class="math inline">\(\mu_1-\mu_2\)</span> and a pooled variance equal to <span class="math inline">\(\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}\)</span>. But when we don’t know <span class="math inline">\(\sigma\)</span> (which is like, always) and when samples are small (&lt; 30 or so, which is common), this becomes a t-test. Assuming the independence, normality, and equal variance (a.k.a. <em>homoscedasticity</em>) assumptions are met, you would compare two groups with sample means <span class="math inline">\(\bar{X}_1, \bar{X}_2\)</span>, sample standard deviations <span class="math inline">\(s_1, s_2\)</span>, and sample sizes <span class="math inline">\(n_1, n_2\)</span> using the statistic <span class="math inline">\(t=\frac{\bar{X}_1-\bar{X}_2}{s_p \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}\)</span>, where <span class="math inline">\(s_p\)</span> equals
 <span class="math display">\[
 s_p=\sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}}
 \]</span></p>
-<p>###Don’t Have Equal Variances? Welch’s
-If the assumption of equal variances is violated, you need to use what is often called <em>Welch’s t-test</em>, which uses the test statistic <span class="math inline">\(t=\frac{\bar{X_1}-\bar{X_2}}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}\)</span>. This formula may look pretty straightforward, but there’s a catch! The degrees of freedom you use are no longer <span class="math inline">\(n-1\)</span>, but are adjusted in the following manner
+<div id="dont-have-equal-variances-welchs" class="section level3">
+<h3>Don’t Have Equal Variances? Welch’s</h3>
+<p>If the assumption of equal variances is violated, you need to use what is often called <em>Welch’s t-test</em>, which uses the test statistic <span class="math inline">\(t=\frac{\bar{X_1}-\bar{X_2}}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}\)</span>. This formula may look pretty straightforward, but there’s a catch! The degrees of freedom you use are no longer <span class="math inline">\(n-1\)</span>, but are adjusted in the following manner
 $$
 df= </p>
 <p>$$</p>
 <p>This isn’t too hard to calculate by hand but most software will do it for you. You use the t-distribution with these <em>df</em> rounded down to the nearest whole number. A more conservative, albeit much faster, choice of <em>df</em> is to use the smaller of <span class="math inline">\(n-1\)</span> and <span class="math inline">\(n-2\)</span>.</p>
-<p>###Don’t Have Independence? Paired t-Test
-If the assumption of independence is violated, it is usually done so on purpose: for example, you may have collected pre-test scores before an intervention, and then afterwards given everyone a post-test. Here, your <span class="math inline">\(\bar{X}_{post}\)</span> is dependent on your <span class="math inline">\(\bar{X}_{pre}\)</span>, since students who had a higher score at pre-test will tend to have higher scores at post-test and vice versa. To get around the issue of dependent data, we use a dependent-samples (or “paired”) t-test. We subtract away any interdependence by calculating <em>n</em> “difference scores” (<span class="math inline">\(x_{1,post}-x_{1,pre}, ..., x_{n,post}-x_{n,pre}\)</span>) between the depedent samples (e.g., for each person, subtract their pre-test score from their post-test score). This gets rid of any person-specific effects and leaves of with a bunch of differences, of which we take the mean <span class="math inline">\(\bar{X}_D\)</span> and the sample standard deviation <span class="math inline">\(s_D\)</span> before calculating a t-statistic identical to a one-sample t-test: <span class="math inline">\(\frac{\bar{X}_D-\mu_0}{s_D/\sqrt{n}}\)</span>. The degrees of freedom, etc., are all just the same as in the one-sample case. Usually, <span class="math inline">\(\mu_0=0\)</span> because the null hypothesis is that the means do not differ between time 1 and time 2.</p>
-<p>###No Normality? Non-Parametrics
-Finally, if the assumption of normality is violated, we can use a nonparametric test (a test that, by definition, makes no distributional assumptions). Commonly, the <a href="https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test">Mann-Whitney <em>U</em> test</a> is used. Here, you calculate a <span class="math inline">\(U\)</span> for each sample by counting up the number of times a given observation <span class="math inline">\(x_i\)</span> from one sample is greater than each of the observations in the other sample (counting 0.5 for a tie). The sum of these <em>n</em> counts gives you the <span class="math inline">\(U\)</span> for one sample, and the <span class="math inline">\(U\)</span> for the other is calculated equivalently. Then you can look up the <a href="http://math.usask.ca/~laverty/S245/Tables/wmw.pdf">critical value of the U statistic</a>. Interestingly, for <span class="math inline">\(n&gt;20\)</span> <em>U</em> is approximately normally distributed, with <span class="math inline">\(z=\frac{U-m_U}{\sigma_U}\)</span>, where <span class="math inline">\(m_U=n_1n_2/2\)</span> and <span class="math inline">\(\sigma_U=\sqrt{\frac{n_1n_2(n_1+n_2+1)}{12}}\)</span>, unless there are lots of ties, in which case a correction exists for the term in the denominator.</p>
-<p>###No Normality or Independence
-In this case, another non-parametric tests can help: the <a href="https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test">Wilcoxon signed-rank test</a>.</p>
-<p>#Derivation</p>
+</div>
+<div id="dont-have-independence-paired-t-test" class="section level3">
+<h3>Don’t Have Independence? Paired t-Test</h3>
+<p>If the assumption of independence is violated, it is usually done so on purpose: for example, you may have collected pre-test scores before an intervention, and then afterwards given everyone a post-test. Here, your <span class="math inline">\(\bar{X}_{post}\)</span> is dependent on your <span class="math inline">\(\bar{X}_{pre}\)</span>, since students who had a higher score at pre-test will tend to have higher scores at post-test and vice versa. To get around the issue of dependent data, we use a dependent-samples (or “paired”) t-test. We subtract away any interdependence by calculating <em>n</em> “difference scores” (<span class="math inline">\(x_{1,post}-x_{1,pre}, ..., x_{n,post}-x_{n,pre}\)</span>) between the depedent samples (e.g., for each person, subtract their pre-test score from their post-test score). This gets rid of any person-specific effects and leaves of with a bunch of differences, of which we take the mean <span class="math inline">\(\bar{X}_D\)</span> and the sample standard deviation <span class="math inline">\(s_D\)</span> before calculating a t-statistic identical to a one-sample t-test: <span class="math inline">\(\frac{\bar{X}_D-\mu_0}{s_D/\sqrt{n}}\)</span>. The degrees of freedom, etc., are all just the same as in the one-sample case. Usually, <span class="math inline">\(\mu_0=0\)</span> because the null hypothesis is that the means do not differ between time 1 and time 2.</p>
+</div>
+<div id="no-normality-non-parametrics" class="section level3">
+<h3>No Normality? Non-Parametrics</h3>
+<p>Finally, if the assumption of normality is violated, we can use a nonparametric test (a test that, by definition, makes no distributional assumptions). Commonly, the <a href="https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test">Mann-Whitney <em>U</em> test</a> is used. Here, you calculate a <span class="math inline">\(U\)</span> for each sample by counting up the number of times a given observation <span class="math inline">\(x_i\)</span> from one sample is greater than each of the observations in the other sample (counting 0.5 for a tie). The sum of these <em>n</em> counts gives you the <span class="math inline">\(U\)</span> for one sample, and the <span class="math inline">\(U\)</span> for the other is calculated equivalently. Then you can look up the <a href="http://math.usask.ca/~laverty/S245/Tables/wmw.pdf">critical value of the U statistic</a>. Interestingly, for <span class="math inline">\(n&gt;20\)</span> <em>U</em> is approximately normally distributed, with <span class="math inline">\(z=\frac{U-m_U}{\sigma_U}\)</span>, where <span class="math inline">\(m_U=n_1n_2/2\)</span> and <span class="math inline">\(\sigma_U=\sqrt{\frac{n_1n_2(n_1+n_2+1)}{12}}\)</span>, unless there are lots of ties, in which case a correction exists for the term in the denominator.</p>
+</div>
+<div id="no-normality-or-independence" class="section level3">
+<h3>No Normality or Independence</h3>
+<p>In this case, another non-parametric tests can help: the <a href="https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test">Wilcoxon signed-rank test</a>.</p>
+</div>
+</div>
+<div id="derivation" class="section level1">
+<h1>Derivation</h1>
 <p>He begins by deriving the distribution of the sample standard deviation <em>s</em> for samples of a given size <em>n</em> drawn from a standard normal distribution.
 If <span class="math inline">\(x_1, x_2, ...,x_n\)</span> is one of these samples then, using a property we derived in the previous post, for one sample we have</p>
 <p><span class="math display">\[

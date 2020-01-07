@@ -80,7 +80,7 @@ pnorm(1.96)-pnorm(-1.96)
 
 OK, now back to STUDENT:
 
-<center>![](student1.png)</center>
+<center>![](/student1.png)</center>
 <br>
 
 Here's what he means. Let's take repeated samples of 10 students' heights and calculate the $\bar{X}$ and $s$ for each.
@@ -127,7 +127,7 @@ Yikes, now the population mean falls outside our 95% confidence interval `r s3.s
 This problem was solved by William Sealy Gosset ("Student"") in 1908, whose paper is excerpted throughout this post 
 
 
-<center>![](student3.png)</center>
+<center>![](/student3.png)</center>
 <br>
 
 The "alternative" he furnishes is none other than the $t$ distribution.[^2] I will walk us through the derivations in his celebrated paper at the bottom, but as makes for an enormous, excruciating tangent, I will give a brief overview:
@@ -254,17 +254,17 @@ Yay! Assuming a t-distribution, the population mean falls outside our 95% confid
 
 Thanks to computers, we can easily check the results of our derivations by using monte carlo sampling techniques. Gosset obviously could not do this. Perhaps the most remarkable thing about his paper, however, is that it *does* contain one of the earliest simulation studies in history. He did this by hand, with "3000 pieces of cardbord, which were very thoroughly shuffled and drawn out at random."
 
-<center>![](student5.png)</center>
+<center>![](/student5.png)</center>
 <br>
 
 Below, he plots the observed distribution of the standard deviations of his samples of size $n=4$ and overlays his curve:
 
-<center>![](studentplot1.png)</center>
+<center>![](/studentplot1.png)</center>
 
 
 And here below, he plots his observed distribution of $z=\frac{\bar{X}-\mu}{s/\sqrt{n}}$, where his $s$ divides by $n$ instead of $n-1$,
 
-<center>![](studentplot2.png)</center>
+<center>![](/studentplot2.png)</center>
 
 
 #Hypothesis Testing with the T-Test
@@ -295,7 +295,7 @@ abline(v=tstat,lty=2)}
 The probability of observing a sample mean (i.e., a *t* statistic) at least this extreme (in either direction!) is .016 (this is the sum of the black areas under the *t* curve). The area under the curve to the right of our observed statistic is only `round(1-pt(tstat,df=9),3)`, but we have to double it to account for a just as extreme or more extreme observation happening in the other direction. We do this because we didn't have any *a priori* hypothesis about the direction of the effect: our default alternative hypothesis was that $\mu \ne 0$, or  $prob \gt |t|=p \lt -t + p > t$ where *t* is our observerd t-statistic `tstat`. The area shown in gray *plus* the area in black is equal to 5% of the distribution, 2.5% on each side. This represents the standard "rejection region" with a significance level of 0.05; thus, even if the null hypothesis is true and there is no effect (i.e., $\mu =0$), 5% of the time we would still observe sample means that are at least this extreme: namely, more than $t^*_{(1-\frac{\alpha}{2}=.975,n-1=9)}=2.262$ sample standard deviation away from the true mean.
 
 
-#Assumptions: Independence, Normality, and Equality of Variances
+# Assumptions: Independence, Normality, and Equality of Variances
 
 When the t-test is used to compare samples from two populations, the main assumptions that need to be met for this purpose are that the populations are (1) independent of one another, are (2) both normally distributed, and (3) both have the same variance. The first of these can often be fixed using a paired t-test (see below). The second--normality--is usually met in practice thanks to the central limit theorem, but if non-normality is a problem then non-parametric tests such as the Mann-Whitney *U* test can be used instead. The third--unequal variances--can be tricky, but there are fixes here as well (see Welch's t-test below).
 
@@ -305,7 +305,7 @@ $$
 s_p=\sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}}
 $$
 
-###Don't Have Equal Variances? Welch's
+### Don't Have Equal Variances? Welch's
 If the assumption of equal variances is violated, you need to use what is often called *Welch's t-test*, which uses the test statistic $t=\frac{\bar{X_1}-\bar{X_2}}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}$. This formula may look pretty straightforward, but there's a catch! The degrees of freedom you use are no longer $n-1$, but are adjusted in the following manner
 $$
 df= \frac{\left( \frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}\right)^2}{\frac{(s_1^2/n_1)^2}{n_1-1}+\frac{(s_2^2/n_2)^2}{n_2-1}}
@@ -314,17 +314,17 @@ $$
 
 This isn't too hard to calculate by hand but most software will do it for you. You use the t-distribution with these *df* rounded down to the nearest whole number. A more conservative, albeit much faster, choice of *df* is to use the smaller of $n-1$ and $n-2$.
 
-###Don't Have Independence? Paired t-Test
+### Don't Have Independence? Paired t-Test
 If the assumption of independence is violated, it is usually done so on purpose: for example, you may have collected pre-test scores before an intervention, and then afterwards given everyone a post-test. Here, your $\bar{X}_{post}$ is dependent on your $\bar{X}_{pre}$, since students who had a higher score at pre-test will tend to have higher scores at post-test and vice versa. To get around the issue of dependent data, we use a dependent-samples (or "paired") t-test. We subtract away any interdependence by calculating *n* "difference scores" ($x_{1,post}-x_{1,pre}, ..., x_{n,post}-x_{n,pre}$) between the depedent samples (e.g., for each person, subtract their pre-test score from their post-test score). This gets rid of any person-specific effects and leaves of with a bunch of differences, of which we take the mean $\bar{X}_D$ and the sample standard deviation $s_D$ before calculating a t-statistic identical to a one-sample t-test: $\frac{\bar{X}_D-\mu_0}{s_D/\sqrt{n}}$. The degrees of freedom, etc., are all just the same as in the one-sample case. Usually, $\mu_0=0$ because the null hypothesis is that the means do not differ between time 1 and time 2.
 
-###No Normality? Non-Parametrics
+### No Normality? Non-Parametrics
 Finally, if the assumption of normality is violated, we can use a nonparametric test (a test that, by definition, makes no distributional assumptions). Commonly, the [Mann-Whitney *U* test](https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test) is used. Here, you calculate a $U$ for each sample by counting up the number of times a given  observation $x_i$ from one sample is greater than each of the observations in the other sample (counting 0.5 for a tie). The sum of these *n* counts gives you the $U$ for one sample, and the $U$ for the other is calculated equivalently. Then you can look up the [critical value of the U statistic](http://math.usask.ca/~laverty/S245/Tables/wmw.pdf). Interestingly, for $n>20$ *U* is approximately normally distributed, with $z=\frac{U-m_U}{\sigma_U}$, where $m_U=n_1n_2/2$ and $\sigma_U=\sqrt{\frac{n_1n_2(n_1+n_2+1)}{12}}$, unless there are lots of ties, in which case a correction exists for the term in the denominator.
 
-###No Normality or Independence
+### No Normality or Independence
 In this case, another non-parametric tests can help: the [Wilcoxon signed-rank test](https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test). 
 
 
-#Derivation
+# Derivation
 
 He begins by deriving the distribution of the sample standard deviation *s* for samples of a given size *n* drawn from a standard normal distribution. 
 If $x_1, x_2, ...,x_n$ is one of these samples then, using a property we derived in the previous post, for one sample we have

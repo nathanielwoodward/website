@@ -47,9 +47,9 @@ My name is Nathaniel Woodward (*né* Raley)
 
 I am a Lecturer in the [Department of Statistics and Data Sciences at UT Austin](https://stat.utexas.edu/), where I earned both PhD (2018) and MS (2016) and where I previously worked as a researcher and statistical consultant.
 
-I am interested in modern statistical approaches to causal inference, especially as they apply to evaluations of human learning and memory. In my research, I have used institutional data to investigate teaching effectiveness, curriculum redesign, students' pathways through college, and other questions important to university stakeholders. 
+I am interested in modern statistical approaches to causal inference, especially as they apply to evaluations of human learning and memory. In my research, I have used institutional data to investigate teaching effectiveness, curriculum redesign, pathways through college, and other questions important to university stakeholders. 
 
-I have experience modeling the causal effect of large-scale interventions, including a nation-wide randomized effectiveness trial. I have also conducted laboratory studies with human subjects to test interventions designed to improve long-term retention and transfer of learning to new contexts. 
+I have experience modeling the causal effect of large-scale interventions, including a nationwide randomized effectiveness trial. I have also conducted laboratory studies with human subjects to test interventions designed to improve long-term retention and transfer of learning to new contexts. 
 
 I am also interested in human--computer interaction and have experience applying psychometric techniques to adaptively model latent traits (such as ability and mastery) based on peoples' interactions with technology (e.g., click-stream and other log data, biometric measurements) and using such models to inform predictions and to optimize training regimens.
 
@@ -115,7 +115,7 @@ In my relationships with people, I am a strong proponent of the Nordic theory of
 
 I prefer my words in text form, and with few exceptions I don't like movies or TV.[^22] [Vis-à-vis fiction](https://www.goodreads.com/user/show/44370058-nathaniel), the Recognitions is gospel and Suttree my book of sacred psalms. And though their respective Apostles have been perennially passed over for the prize (add Nabokov to their number), I think [Chris Onstad](http://www.ohnorobot.com/random.pl?comic=636) deserves the next Literature Nobel solely for his achievements in the genre of webcomics. My sense of humor is literally just Achewood and P.G. Wodehouse and that's all.
 
-For some reason I have been listening to a lot of modern [music](/music) lately, and though indie rock and art pop predominate my streams, my tastes are pretty genre-catholic. I generally prefer music (catchy, orchestral, ethereal, weird, virtuosic) over lyrics.[^30] Lyrics that are overly literal are often quotidian and cringey to me and there is no surer way to spoil an otherwise-great song: Sometimes I'll really like a song until I understand the lyrics.[^31]  If I *have* to understand the words themselves, I like for them to be non-narrative, evocative, and imagery-rich (think Neutral Milk Hotel) or free-associationy melodic word-salad packed with references (think Das Racist, Panda Bear), or so vapid as to be entirely ignorable vectors for sound (most modern radio pop), or meaningful-sounding yet mostly meaningless stuff whose ambiguity lends itself to endless hermenuetics, particularly stuff of the sad-dad variety (think The National).
+For some reason I have been listening to a lot of modern [music](/music) lately, and though indie rock and art pop predominate my streams, my tastes are pretty genre-catholic. I generally prefer music (catchy, orchestral, ethereal, outre, virtuosic) over lyrics.[^30] Lyrics that are overly literal are often quotidian and cringey to me and there is no surer way to spoil an otherwise-great song: Sometimes I'll really like a song until I understand the lyrics.[^31]  If I *have* to understand the words themselves, I like for them to be non-narrative, evocative, and imagery-rich (think Neutral Milk Hotel), or grand-sounding fantasy gibberish (King Crimson, Yes[^33]), or affectedly erudite (Joanna Newsom, Decemberists), or free-associationy melodic word-salad with pop-culture references (think Das Racist, Panda Bear), or so vapid as to be entirely ignorable vectors for sound (most modern pop, e.g., Katy Perry), or delivered in a unique and sufficiently distracting voice (like Coheed, Grimes, Bon Iver), or meaningful-sounding yet mostly meaningless stuff whose ambiguity lends itself to endless hermenuetics, particularly stuff of the sad-dad variety (think The National).
 
 
 [^1]: I also love learning about learning about learning, but it probably ends there (see ["Yudkowsky's Law of Ultrafinite Recursion"](https://www.facebook.com/yudkowsky/posts/10154119438404228))
@@ -152,8 +152,9 @@ I don't believe other animals, even other mammals, have anything like human cons
 [^25]: For more on that, see: [http://www.nathanielwoodward.com/aboutabout](http://www.nathanielwoodward.com/aboutabout)
 [^26]: No seriously,<br> <img src="/classclown.jpg" height="250">
 [^30]: With rare exceptions, I'd rather the human voice be used instrumentally: When it's beautiful language I'm after, I'll read some poetry. 
-[^31]:If Sigur Ros sang in english, I would probably hate it.
+[^31]:If Sigur Ros sang in english, I would probably hate it. Here's another good example of a song I never want to understand: <iframe width="560" height="315" src="https://www.youtube.com/embed/dlF1KxtArCg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 [^32]: Both as signifiers (words as such) and signifieds (the things or ideas they refer to)
+[^33]: Check out Future Times / Rejoice (my favorite)
 [^17]: Candidates include old standards such as <br>
 * What is the meaning of life?  
 * Why are we here?  
