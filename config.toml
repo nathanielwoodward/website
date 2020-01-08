@@ -77,4 +77,4 @@ enableEmoji = true
     name = "Vitae"
     identifier = "cv"
     weight = 400
-    url = "/cv.pdf"
+    url = "/Resume.html"
