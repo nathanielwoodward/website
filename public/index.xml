@@ -541,9 +541,9 @@ I used to take great pleasure in writing these “About Me” minibios, primping
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>Hello and welcome! My name is Nathaniel Woodward (né Raley)
+      <description>.main-container { margin-top: -5px; padding: 0 }  Hello and welcome! My name is Nathaniel Woodward (né Raley)
 I am a Lecturer in the Department of Statistics and Data Sciences at UT Austin, where I earned both PhD (2018) and MS (2016) and where I previously worked as a researcher and statistical consultant.
-I am interested in modern statistical approaches to causal inference, especially as they apply to evaluations of human learning and memory. In my research, I have used institutional data to investigate teaching effectiveness, curriculum redesign, pathways through college, and other questions important to university stakeholders.</description>
+I am interested in modern statistical approaches to causal inference, especially as they apply to evaluations of human learning and memory.</description>
     </item>
     
     <item>

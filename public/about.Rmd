@@ -7,6 +7,13 @@ output:
     toc: false
 ---
 
+<style type="text/css">
+.main-container {
+  margin-top: -5px;
+  padding: 0
+}
+</style>
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning=F, message=F)
 ```
@@ -40,7 +47,8 @@ dat%>%transmute(theta=theta,a=1-b1, b=b1-b2,c=b2-b3,d=b3)%>%
   xlab(expression(theta))+
   scale_color_brewer(palette="PuOr")}
 ```
-<img src="/about_files/figure-html/unnamed-chunk-1-1.png" width=750px, height=130px>
+
+<img src="/about_files/figure-html/unnamed-chunk-1-1.png">
 
 # Hello and welcome!
 
