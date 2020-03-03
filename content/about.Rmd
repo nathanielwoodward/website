@@ -54,13 +54,13 @@ dat%>%transmute(theta=theta,a=1-b1, b=b1-b2,c=b2-b3,d=b3)%>%
 
 My name is Nathaniel Woodward (*né* Raley)
 
-I am a Lecturer in the [Department of Statistics and Data Sciences at UT Austin](https://stat.utexas.edu/), where I earned both PhD (2018) and MS (2016) and where I previously worked as a researcher and statistical consultant.
+I am a Lecturer in the [Department of Statistics and Data Sciences](https://stat.utexas.edu/) at UT Austin, where I earned both PhD (2018) and MS (2016) while working as a researcher and statistical consultant.
 
 I am interested in modern statistical approaches to causal inference, especially as they apply to evaluations of human learning and memory. In my research, I have used institutional data to investigate teaching effectiveness, curriculum redesign, pathways through college, and other questions important to university stakeholders. 
 
 I have experience modeling the causal effect of large-scale interventions, including a nationwide randomized effectiveness trial. I have also conducted laboratory studies with human subjects to test interventions designed to improve long-term retention and transfer of learning to new contexts. 
 
-I am also interested in human--computer interaction and have experience applying psychometric techniques to adaptively model latent traits (such as ability and mastery) based on peoples' interactions with technology (e.g., click-stream and other log data, biometric measurements) and using such models to inform predictions and to optimize training regimens.
+I am also interested in human--computer interaction and have experience applying psychometric techniques to adaptively model latent traits (such as ability and mastery) based on people's interactions with technology (e.g., click-stream and other log data, biometric measurements) and using such models to inform predictions and to optimize training regimens.
 
 For some examples of my work, see the [portfolio](/portfolio/) page.
 
