@@ -175,14 +175,14 @@ car1 * open3_car1 / (car1*open3_car1 + car2*open3_car2 + car3*open3_car3)
 car2 * open3_car2 / (car1*open3_car1+car2*open3_car2+car3*open3_car3)
 ```
 
-We can simulate this in R too:
+We can simulate this in R too (you can edit/run the code below):
 
 ```{R}
 #randomly assign cars and goats
 
 doors <- sample(c("goat","goat","car"))
 
-#you pick door 1 (change it to whatever you want)!
+#you pick door 1 (below you can change it to whatever you want)!
 
 yours <- 1
 
@@ -202,8 +202,9 @@ print(paste("Monty opened door",open,"revealing a",doors[open]))
 print(paste("If you kept your original door:", doors[1]))
 print(paste("If you switched:", doors[!c(1,2,3)%in%c(yours,open)]))
 
+######################################
 
-##Simulate the 5000 times
+##Simulate the game 5000 times
 
 results <- replicate(n = 5000, {
   
@@ -233,4 +234,8 @@ table(t(results)[,2])/5000
 
 ```
 
-<iframe width='100%' height='300' src='https://rdrr.io/snippets/embed/?code=%23randomly%20assign%20cars%20and%20goats%0A%0Adoors%20%3C-%20sample(c(%22goat%22%2C%22goat%22%2C%22car%22))%0A%0A%23you%20pick%20door%201%20(change%20it%20to%20whatever%20you%20want)!%0A%0Ayours%20%3C-%201%0A%0Aothers%20%3C-%20doors%5B-yours%5D%0A%20%20%0Aif(others%5B1%5D%3D%3D%22goat%22%20%26%20others%5B2%5D%3D%3D%22goat%22)%7B%0A%20%20open%20%3C-%20sample(c(1%2C2)%2Csize%3D1)%0A%7D%20else%20if(others%5B1%5D%3D%3D%22goat%22%20%26%20others%5B2%5D!%3D%22goat%22)%7B%0A%20%20open%20%3C-%201%0A%7D%20else%20%7B%0A%20%20open%20%3C-%202%0A%7D%0A%0Aopen%3Difelse(yours%3D%3D1%2Copen%2B1%2Cifelse(yours%3D%3D3%2Copen%2Cifelse(yours%3D%3D2%2Cfloor(open*3%2F2))))%0A%0Aprint(paste(%22Monty%20opened%20door%22%2Copen%2C%22revealing%20a%22%2Cdoors%5Bopen%5D))%0Aprint(paste(%22If%20you%20kept%20your%20original%20door%3A%22%2C%20doors%5B1%5D))%0Aprint(paste(%22If%20you%20switched%3A%22%2C%20doors%5B!c(1%2C2%2C3)%25in%25c(yours%2Copen)%5D))%0A%0A%0A%23%23Simulate%20the%205000%20times%0A%0Aresults%20%3C-%20replicate(n%20%3D%205000%2C%20%7B%0A%20%20%0A%20%20doors%20%3C-%20sample(c(%22goat%22%2C%22goat%22%2C%22car%22))%0A%20%20yours%20%3C-%202%0A%20%20others%20%3C-%20doors%5B-yours%5D%0A%20%20%0A%20%20if(others%5B1%5D%3D%3D%22goat%22%20%26%20others%5B2%5D%3D%3D%22goat%22)%7B%0A%20%20%20%20open%20%3C-%20sample(c(1%2C2)%2Csize%3D1)%0A%20%20%7D%20else%20if(others%5B1%5D%3D%3D%22goat%22%20%26%20others%5B2%5D!%3D%22goat%22)%7B%0A%20%20%20%20open%20%3C-%201%0A%20%20%7D%20else%20open%20%3C-%202%0A%0Aopen%20%3C-%20ifelse(yours%3D%3D1%2Copen%2B1%2Cifelse(yours%3D%3D3%2Copen%2Cifelse(yours%3D%3D2%2Cfloor(open*3%2F2))))%0A%0Areturn(c(stay%3Ddoors%5Byours%5D%2C%20switch%3Ddoors%5B!c(1%2C2%2C3)%25in%25c(yours%2Copen)%5D))%0A%7D)%0A%0A%23full%20results%0Ahead(t(results))%0A%0A%23proportions%20if%20you%20stay%0Atable(t(results)%5B%2C1%5D)%2F5000%0A%0A%23proportions%20if%20you%20switch%0Atable(t(results)%5B%2C2%5D)%2F5000%0A' frameborder='0'></iframe>
+### Try it!
+
+<br>
+<br>
+<iframe width='100%' height='300' src='https://rdrr.io/snippets/embed/?code=%23randomly%20assign%20cars%20and%20goats%0A%0Adoors%20%3C-%20sample(c(%22goat%22%2C%22goat%22%2C%22car%22))%0A%0A%23you%20pick%20door%201%20(change%20it%20to%20whatever%20you%20want)!%0A%0Ayours%20%3C-%201%0A%0Aothers%20%3C-%20doors%5B-yours%5D%0A%20%20%0Aif(others%5B1%5D%3D%3D%22goat%22%20%26%20others%5B2%5D%3D%3D%22goat%22)%7B%0A%20%20open%20%3C-%20sample(c(1%2C2)%2Csize%3D1)%0A%7D%20else%20if(others%5B1%5D%3D%3D%22goat%22%20%26%20others%5B2%5D!%3D%22goat%22)%7B%0A%20%20open%20%3C-%201%0A%7D%20else%20%7B%0A%20%20open%20%3C-%202%0A%7D%0A%0Aopen%3Difelse(yours%3D%3D1%2Copen%2B1%2Cifelse(yours%3D%3D3%2Copen%2Cifelse(yours%3D%3D2%2Cfloor(open*3%2F2))))%0A%0A%0Aprint(paste(%22Monty%20opened%20door%22%2Copen%2C%22revealing%20a%22%2Cdoors%5Bopen%5D))%0Aprint(paste(%22If%20you%20kept%20your%20original%20door%3A%22%2C%20doors%5B1%5D))%0Aprint(paste(%22If%20you%20switched%3A%22%2C%20doors%5B!c(1%2C2%2C3)%25in%25c(yours%2Copen)%5D))%0A%0Aprint(%22BEGIN%20SIMULATION%22)%0A%0Aprint(%22Simulate%20the%20game%205000%20times%22)%0A%0Aresults%20%3C-%20replicate(n%20%3D%205000%2C%20%7B%0A%20%20%0A%20%20doors%20%3C-%20sample(c(%22goat%22%2C%22goat%22%2C%22car%22))%0A%20%20yours%20%3C-%202%0A%20%20others%20%3C-%20doors%5B-yours%5D%0A%20%20%0A%20%20if(others%5B1%5D%3D%3D%22goat%22%20%26%20others%5B2%5D%3D%3D%22goat%22)%7B%0A%20%20%20%20open%20%3C-%20sample(c(1%2C2)%2Csize%3D1)%0A%20%20%7D%20else%20if(others%5B1%5D%3D%3D%22goat%22%20%26%20others%5B2%5D!%3D%22goat%22)%7B%0A%20%20%20%20open%20%3C-%201%0A%20%20%7D%20else%20open%20%3C-%202%0A%0Aopen%20%3C-%20ifelse(yours%3D%3D1%2Copen%2B1%2Cifelse(yours%3D%3D3%2Copen%2Cifelse(yours%3D%3D2%2Cfloor(open*3%2F2))))%0A%0Areturn(c(stay%3Ddoors%5Byours%5D%2C%20switch%3Ddoors%5B!c(1%2C2%2C3)%25in%25c(yours%2Copen)%5D))%0A%7D)%0A%0A%23full%20results%0Ahead(t(results))%0A%0Aprint(%22proportions%20if%20you%20stay%22)%0Atable(t(results)%5B%2C1%5D)%2F5000%0A%0Aprint(%22proportions%20if%20you%20switch%3A%22)%0Atable(t(results)%5B%2C2%5D)%2F5000%0A' frameborder='0'></iframe>
