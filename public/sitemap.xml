@@ -48,11 +48,6 @@
   </url>
   
   <url>
-    <loc>/montyhallexp/</loc>
-    <lastmod>2019-03-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/posts/sample-means-and-shrinkage-estimators/</loc>
     <lastmod>2019-01-11T00:00:00+00:00</lastmod>
   </url>
@@ -357,6 +352,10 @@
   
   <url>
     <loc>/karaoke/</loc>
+  </url>
+  
+  <url>
+    <loc>/montyhallexp/</loc>
   </url>
   
   <url>

@@ -1,7 +1,6 @@
 ---
 title: "Monty Hall Explanation"
 author: Nathaniel Raley Woodward
-date: '2019-03-01'
 output: html_document
 ---
 
@@ -13,9 +12,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - If you still don't believe it, you are in good company:
 
-<center>![](../images/erdos.png)</center>
+<center>![](/erdos.png)</center>
 
-<center>![](../images/erdos_montyhall.jpg){width=250px}</center>
+<center>![](/erdos_montyhall.jpg){width=250px}</center>
 
 
 ## Simplest Explanation
@@ -23,12 +22,12 @@ knitr::opts_chunk$set(echo = TRUE)
 - Your first choice has a 1/3 chance of having the car
 - So there's a 2/3 it is behind one of the other doors
 
-<center>![](../images/monty1.png)</center>
+<center>![](/monty1.png)</center>
 
 - Monty will never open the door with the car behind it 
 - After he opens a door, the entire 2/3 probability shifts to the other closed door 
 
-<center>![](../images/monty2.png)</center>
+<center>![](/monty2.png)</center>
 
 ## Monty is Key!
 
