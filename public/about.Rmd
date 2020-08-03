@@ -54,7 +54,7 @@ dat%>%transmute(theta=theta,a=1-b1, b=b1-b2,c=b2-b3,d=b3)%>%
 
 My name is Nathaniel Woodward (*né* Raley)
 
-I am a Lecturer in the [Department of Statistics and Data Sciences](https://stat.utexas.edu/) at UT Austin, where I earned both PhD (2018) and MS (2016) while working as a researcher and statistical consultant.
+I am an Assistant Professor of Instruction in [Statistics and Data Sciences](https://stat.utexas.edu/) at UT Austin, where I earned both PhD (2018) and MS (2016) while working as a researcher and statistical consultant.
 
 I am interested in modern statistical approaches to causal inference, especially as they apply to evaluations of human learning and memory. In my research, I have used institutional data to investigate teaching effectiveness, curriculum redesign, pathways through college, and other questions important to university stakeholders. 
 
@@ -97,7 +97,7 @@ In August 2017, I migrated my blog and personal website from blogger/AWS to GitH
 <figcaption><font size="1">Actual picture of my brain processing a social interaction</font></figcaption>
 </center>
 
-Despite the impression you may have gotten from my prose style,[^25] I am extremely economical and I abominate wastes of any kind, especially those of time (the thing I value most highly) and money (which I have to sell my time to get).[^13]
+Despite the impression you may have gotten from my overwrought prose style,[^25] I am extremely economical and I abominate wastes of any kind, especially those of time (the thing I value most highly) and money (which I have to sell my time to get).[^13]
 
 > "Oh, I've plenty of time. My time is entirely my own." <br>
 > --Prince Myshkin 
@@ -120,18 +120,18 @@ Besides, I like indoor activities best! I enjoy pestering my[^6] three[^7] cats,
 </center>
 
 If I were a nonhuman animal, I have it on good authority that I would be an umbrella cockatoo.[^4] 
-In my relationships with people, I am a strong proponent of the Nordic theory of love[^23] and I am highly susceptible to *fremdschämen*. I get positively irate about the residue left behind after peeling stickers off of jars.[^35] Yes I like to juxtapose, but give me the [unity of opposites](https://en.wikipedia.org/wiki/Unity_of_opposites) any day. I love words themselves[^32] and I like to play word-games; I have been known to [coopt rapgenius for literary annotations/glosses I can't find elsewhere](https://genius.com/anhinga).
+In my relationships with people, I am a strong proponent of the Nordic theory of love[^23] and I am highly susceptible to second-hand embarassment (Germans say *fremdschämen*). I get positively irate about the residue left behind after peeling stickers off of jars.[^35] Yes, I like a jarring juxtaposition, but give me the [unity of opposites](https://en.wikipedia.org/wiki/Unity_of_opposites) any day. I love words themselves[^32] and I like to play word games; I have been known to [coopt rapgenius for literary annotations/glosses I can't find elsewhere](https://genius.com/anhinga).
 
-I prefer my words in text form, and with few exceptions I don't like movies or TV.[^22] [Vis-à-vis fiction](https://www.goodreads.com/user/show/44370058-nathaniel), the Recognitions is gospel and Suttree my book of sacred psalms. And though their respective Apostles have been perennially passed over for the prize (add Nabokov to their number), I think [Chris Onstad](http://www.ohnorobot.com/random.pl?comic=636) deserves the next Literature Nobel solely for his achievements in the genre of webcomics. My sense of humor is literally just Achewood and P.G. Wodehouse and that's all.
+I prefer my words in text form, and with few exceptions I don't really like movies or TV.[^22] [Vis-à-vis fiction](https://www.goodreads.com/user/show/44370058-nathaniel), the Recognitions is gospel and Suttree my book of sacred psalms. And though their respective Apostles have been perennially passed over for the prize (add Nabokov to their number), I think [Chris Onstad](http://www.ohnorobot.com/random.pl?comic=636) deserves the next Literature Nobel solely for his achievements in the genre of webcomics. My sense of humor is literally just Achewood and P.G. Wodehouse and that's all.
 
-For some reason I have been listening to a lot of modern [music](/music) lately, and though indie rock and art pop predominate my streams, my tastes are pretty genre-catholic. That being said, I generally prefer music (catchy, orchestral, ethereal, outre, virtuosic) over lyrics.[^30] Lyrics that are overly literal are often quotidian and cringey to me and there is no surer way to spoil an otherwise-great song: As Joanna Newsom said in an interview when asked about her songs' literal meanings, *"If I could say it all the way [in words], I wouldn't have bothered making a record."*[^34]
+For some reason I have been listening to a lot of modern [music](/music) lately, and though indie rock and art pop predominate my streams, my tastes are pretty genre-catholic. That being said, I generally prefer music (catchy, orchestral, ethereal, outre, virtuosic) over lyrics.[^30] Lyrics that are overly literal are often insipid and cringey to me and there is no surer way to spoil an otherwise-great song (looking at you, T Swift). As Joanna Newsom said in an interview when asked about her songs' literal meanings, *"If I could say it all the way [in words], I wouldn't have bothered making a record."*[^34]
 
-<!--Most of what people have to communicate is boring and embarassing (the more so the more earnestly they believe that it isn't), and it follows that most lyrics are trash.--> Often, I'll really like a song until I understand the lyrics.[^31] If I *have* to understand the words themselves, I like for them to be impressionistic, non-narrative, evocative, and imagery-rich (think Neutral Milk Hotel)[^36], or grand-sounding fantasy gibberish (King Crimson, Yes[^33]), or free-associationy melodic word-salad with pop-culture references (think Das Racist, Panda Bear), or so vapid as to be entirely ignorable vectors for sound (most modern pop, e.g., Katy Perry), or delivered in a unique and sufficiently distracting voice (like Coheed, Grimes, Bon Iver), or meaningful-sounding yet impossible-to-pin-down polysemy whose ambiguity lends itself to endless hermenuetics, particularly stuff of the sad-dad variety (think The National).
+<!--Most of what people have to communicate is boring and embarassing (the more so the more earnestly they believe that it isn't), and it follows that most lyrics are trash.--> Often, I'll really like a song until I understand the lyrics.[^31] If I *have* to understand the words themselves, I like for them to be impressionistic, non-narrative, evocative, and imagery-rich (think Neutral Milk Hotel)[^36], or grand-sounding fantasy gibberish (King Crimson, Yes[^33]), or free-associationy melodic word-salad with pop-culture references (think Das Racist, Panda Bear), or so vapid as to be entirely ignorable vectors for sound (most modern radio pop), or delivered in a unique and sufficiently distracting voice (like Coheed, Grimes, Bon Iver), or meaningful-sounding yet impossible-to-pin-down polysemy whose ambiguity lends itself to endless hermenuetics, particularly stuff of the sad-dad variety (think The National).
 
 
 [^1]: I also love learning about learning about learning, but it probably ends there (see ["Yudkowsky's Law of Ultrafinite Recursion"](https://www.facebook.com/yudkowsky/posts/10154119438404228))
 [^2]: <img src="/minesweeper.png" width="250">
-[^3]: sourdough, tempeh, beer, kombucha, wine, idli, dosas, pickles, gochujang, miso, kimchi, sauerkraut...  
+[^3]: sourdough, tempeh, beer, kombucha, wine, idli, dosas, pickles, gochujang, miso, kimchi, sauerkraut...  All of which, with the exception of actual wine and gochujang, I've made from scratch (with varying success). If you want some tempeh or koji spores, hmu!
 [^4]: <img src="/umbrella_cockatoo.jpg" width="250">
 [^5]: whether *in vivo, in vitro,* or *in silico*
 [^6]: ![](/lady.png)
