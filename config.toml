@@ -46,8 +46,7 @@ enableEmoji = true
 [params.social]
     github = "nraley"
     twitter = "Distributino"
-    lastfm = "raleywoodward"
-    goodreads = "44370058-nathaniel"
+    lastfm = "ramimba"
     linkedin = "nathanielraley"
     genius = "anhinga"
     # gravatar = "your-email@example.com"
@@ -58,11 +57,6 @@ enableEmoji = true
     identifier = "about"
     weight = 100
     url = "/about/"
-[[menu.main]]
-    name = "Posts"
-    weight = 200
-    identifier = "posts"
-    url = "/posts/"
 [[menu.main]]
     name = "Portfolio"
     identifier = "portfolio"
