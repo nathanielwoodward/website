@@ -382,17 +382,6 @@ So, having just completed a final project for my C/Fortran programming course, a
     </item>
     
     <item>
-      <title>About Hugo</title>
-      <link>/about/</link>
-      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/about/</guid>
-      <description>Hugo is a static site engine written in Go.
-It makes use of a variety of open source projects including:
- Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>
-    </item>
-    
-    <item>
       <title>The Piteous and Worsening State of Keller&#39;s Academic Decathlon Program</title>
       <link>/posts/the-piteous-and-worsening-state-of-kellers-academic-decathlon-program/</link>
       <pubDate>Thu, 27 Feb 2014 00:00:00 +0000</pubDate>
@@ -532,9 +521,8 @@ I used to take great pleasure in writing these “About Me” minibios, primping
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>.main-container { margin-top: -5px; padding: 0 }  Hello and welcome! My name is Nathaniel Woodward (né Raley)
-I am an Assistant Professor of Instruction in Statistics and Data Sciences at UT Austin, where I earned both PhD (2018) and MS (2016) while working as a researcher and statistical consultant.
-I am interested in modern statistical approaches to causal inference, especially as they apply to evaluations of human learning and memory.</description>
+      <description>.main-container { margin-top: -5px; padding: 0 }  Hello and welcome! My name is Nathaniel Woodward (né Raley) and I am a data science professional and former faculty member in Statistics and Data Sciences at UT Austin, where I earned both PhD (2018) and MS (2016) while working as a researcher and statistical consultant.
+I am interested in modern statistical approaches to causal inference, especially as they apply to evaluations of human behavioral phenomena.</description>
     </item>
     
     <item>
@@ -590,7 +578,7 @@ https://goo.gl/forms/GwQGneCLc48O5bsj2</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/teaching/</guid>
-      <description>Courses Teaching Statement Why Math and Statistics?   Courses  Computational Biology and Bioinformatics – SDS 348 Biostatistics – SDS 328M Data Analysis for the Health Sciences – SDS 302 Cognition, Human Learning, and Motivation – ALD 320  Short Courses  Bayesian Statistics — UT Summer Statistics Institute, 2020 Introduction to Causal Inference — UT Summer Statistics Institute, 2019 Introduction to Causal Inference — UT Summer Statistics Institute, 2018   Graduate-Level Courses (TA)  Instructional Psychology – EDP 382D (Butler, Spring 2016) Complex Cognitive Processes – EDP 382D (Butler, Fall 2015) Social Psychology – EDP 381M (Falbo, Fall 2014)   Other Teaching and Tutoring  GRE &amp;amp; GMAT Tutor – NextStep Test Prep (Austin TX, 2015-2018) Mathematics Instructor – Mathnasium (Austin TX, 2014-2015) SAT/ACT Tutor – Huntington Learning Center (Arlington TX, 2012-13) Long-Term Substitute – Birdville, Grapevine-Colleyville ISDs (2012-13) Library Research Assistant – Reed College Library (Portland OR, 2010-12)    Teaching Statement Preface I know what it is you are looking for here.</description>
+      <description>Courses Teaching Statement Why Math and Statistics?   Courses  Elements of Data Science – SDS 322E (course creator, coordinator) Elements of Statistis – SDS 320E Computational Biology and Bioinformatics – SDS 348 Biostatistics – SDS 328M Data Analysis for the Health Sciences – SDS 302 Cognition, Human Learning, and Motivation – ALD 320  Short Courses  Bayesian Statistics — UT Summer Statistics Institute, 2020, 2021 Introduction to Causal Inference — UT Summer Statistics Institute, 2019 Introduction to Causal Inference — UT Summer Statistics Institute, 2018   Graduate-Level Courses (TA)  Instructional Psychology – EDP 382D (Butler, Spring 2016) Complex Cognitive Processes – EDP 382D (Butler, Fall 2015) Social Psychology – EDP 381M (Falbo, Fall 2014)   Other Teaching and Tutoring  GRE &amp;amp; GMAT Tutor – NextStep Test Prep (Austin TX, 2015-2018) Mathematics Instructor – Mathnasium (Austin TX, 2014-2015) SAT/ACT Tutor – Huntington Learning Center (Arlington TX, 2012-13) Long-Term Substitute – Birdville, Grapevine-Colleyville ISDs (2012-13) Library Research Assistant – Reed College Library (Portland OR, 2010-12)    Teaching Statement Preface I know what it is you are looking for here.</description>
     </item>
     
   </channel>

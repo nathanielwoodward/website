@@ -12,6 +12,8 @@ output:
 
 ## Courses
 
+- Elements of Data Science -- SDS 322E (*course creator, coordinator*)
+- Elements of Statistis -- SDS 320E
 - Computational Biology and Bioinformatics -- SDS 348
 - Biostatistics -- SDS 328M 
 - Data Analysis for the Health Sciences -- SDS 302
@@ -19,7 +21,7 @@ output:
 
 ### Short Courses
 
-- Bayesian Statistics --- *UT Summer Statistics Institute*, 2020
+- Bayesian Statistics --- *UT Summer Statistics Institute*, 2020, 2021
 - Introduction to Causal Inference --- *UT Summer Statistics Institute*, 2019
 - Introduction to Causal Inference --- *UT Summer Statistics Institute*, 2018
 
