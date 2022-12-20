@@ -52,9 +52,11 @@ dat%>%transmute(theta=theta,a=1-b1, b=b1-b2,c=b2-b3,d=b3)%>%
 
 # Hello and welcome!
 
-My name is Nathaniel Woodward (*né* Raley) and I am a data science professional and former faculty member in [Statistics and Data Sciences](https://stat.utexas.edu/) at UT Austin, where I earned both PhD (2018) and MS (2016) while working as a researcher and statistical consultant.
+My name is Nathaniel Woodward (*né* Raley) and I am a data science professional working at [Indeed.com](https://www.indeed.com), where every day I help people get jobs. 
 
-I am interested in modern statistical approaches to causal inference, especially as they apply to evaluations of human behavioral phenomena. In my research, I have drawn upon variety of data sources to investigate teaching effectiveness, curriculum redesign, pathways through college, and other questions important to university stakeholders. 
+Previously I was a faculty member in the [Department of Statistics and Data Sciences](https://stat.utexas.edu/) at UT Austin, where I earned both MS (2016) and PhD (2018) while working as a researcher and statistical consultant.
+
+I am skilled in experimentation and modern statistical approaches to and causal inference, especially as they apply to evaluations of human behavioral phenomena. In my research, I have drawn upon variety of data sources to investigate teaching effectiveness, curriculum redesign, pathways through college, and other questions important to university stakeholders.
 
 I have experience modeling the causal effect of large-scale interventions, including a nationwide randomized effectiveness trial. I have also conducted laboratory studies with human subjects to test interventions designed to improve long-term retention and transfer of learning to new contexts. 
 
@@ -110,11 +112,18 @@ I am also quite risk-averse, so I seldom go out anywhere unless compelled by str
 <figcaption><font size="1">Pretty much same.</font></figcaption>
 </center>
 
-Besides, I like indoor activities best! I enjoy pestering my[^6] three[^7] cats,[^8] juggling,[^9] puzzling (sweeping mines,[^2] crossing words[^16]), [quizzing](https://utexas.campuslabs.com/engage/organization/QuizBowl), recreational [reading](https://www.goodreads.com/user/show/44370058-nathaniel) and mathematics (here's [a fun one I saw recently](https://www.janestreet.com/join-jane-street/open-positions/?utm_content=sierpinski)), eating spicy and/or fermented[^3] things in accordance with lax (read: lapsed) veganism[^21] (basically, I eat cheese if it's free, going to waste, difficult to avoid, etc.). As of August 2019, I now have two hens (Nina and Maria), both of whom lay eggs, which I also eat!
+Besides, I like indoor activities best! I enjoy pestering my[^6] four [^7] cats[^8] juggling,[^9] puzzling (sweeping mines,[^2] crossing words[^16][^38]), [quizzing](https://www.naqt.com/stats/school/players.jsp?org_id=1009), recreational [reading](https://www.goodreads.com/user/show/44370058-nathaniel) and mathematics (here's [a fun one I saw recently](https://www.janestreet.com/join-jane-street/open-positions/?utm_content=sierpinski)), eating spicy and/or fermented[^3] things in accordance with lax (read: lapsed) veganism[^21] (basically, I'll eat cheese if it's going to waste or difficult to avoid). ~As of August 2019, I now have two hens (Nina and Maria), both of whom lay eggs, which I also eat!~ As of December 2022, I now have 7 hens (Nina, Big Buff, Little Buff, Ida, Franny, Tuppy, Olive), 2 roosters (Bertram and Cheddar), and 4 guinea fowl (Connor, Al, Egg, and Pepper).
 
-<center>
+
+<!-- <center>
 ![](/nina-shakes.gif){width=50%}
 <figcaption><font size="1">Nina doing a maneuver</font></figcaption>
+</center>
+-->
+
+<center>
+![](/cheddar_head.gif){width=50%}
+<figcaption><font size="1">Cheddar, the new roo</font></figcaption>
 </center>
 
 If I were a nonhuman animal, I have it on good authority that I would be an umbrella cockatoo.[^4] 
@@ -122,9 +131,9 @@ In my relationships with people, I am a strong proponent of the Nordic theory of
 
 I prefer my words in text form, and with few exceptions I don't really like movies or TV.[^22] [Vis-à-vis fiction](https://www.goodreads.com/user/show/44370058-nathaniel), the Recognitions is gospel and Suttree my book of sacred psalms. And though their respective Apostles have been perennially passed over for the prize (add Nabokov to their number), I think [Chris Onstad](http://www.ohnorobot.com/random.pl?comic=636) deserves the next Literature Nobel solely for his achievements in the genre of webcomics. My sense of humor is literally just Achewood and P.G. Wodehouse and that's all.
 
-For some reason I have been listening to a lot of modern [music](/music) lately, and though indie rock and art pop predominate my streams, my tastes are pretty genre-catholic. That being said, I generally prefer music (catchy, orchestral, ethereal, outre, virtuosic) over lyrics.[^30] Lyrics that are overly literal are often insipid and cringey to me and there is no surer way to spoil an otherwise-great song (looking at you, T Swift). As Joanna Newsom said in an interview when asked about her songs' literal meanings, *"If I could say it all the way [in words], I wouldn't have bothered making a record."*[^34]
+After a relatively quiet 10-year period, I have recently started listening to a lot of modern [music](/music), and though art pop and indie rock predominate my streams, my taste is pretty genre-catholic. That being said, I generally prefer music (catchy, orchestral, ethereal, outre, virtuosic) over lyrics.[^30] Lyrics that are overly literal are often insipid and cringey, and there is no surer way to spoil an otherwise-great song (looking at you, T Swift). As Joanna Newsom said in an interview when asked about her songs' literal meanings, *"If I could say it all the way [in words], I wouldn't have bothered making a record."*[^34]
 
-<!--Most of what people have to communicate is boring and embarassing (the more so the more earnestly they believe that it isn't), and it follows that most lyrics are trash.--> Often, I'll really like a song until I understand the lyrics.[^31] If I *have* to understand the words themselves, I like for them to be impressionistic, non-narrative, evocative, and imagery-rich (think Neutral Milk Hotel)[^36], or grand-sounding fantasy gibberish (King Crimson, Yes[^33]), or free-associationy melodic word-salad with pop-culture references (think Das Racist, Panda Bear), or so vapid as to be entirely ignorable vectors for sound (most modern radio pop), or delivered in a unique and sufficiently distracting voice (like Coheed, Grimes, Bon Iver), or meaningful-sounding yet impossible-to-pin-down polysemy whose ambiguity lends itself to endless hermenuetics, particularly stuff of the sad-dad variety (think The National).
+Often, I'll really like a song until I understand the lyrics.[^31] If I *have* to hear the words themselves, I like for them to be impressionistic, non-narrative, evocative, and imagery-rich (think Neutral Milk Hotel)[^36], or grand-sounding fantasy gibberish (King Crimson, Yes[^33]), or free-associationy melodic word-salad with pop-culture references (think Das Racist, Panda Bear), or so vapid as to be entirely ignorable vectors for sound (most modern radio pop), or delivered in a unique and sufficiently distracting voice (like Coheed and Cambria, Grimes), or protean polysemy that lends itself to endless reinterpretation, particularly stuff of the sad-dad variety (Destroyer, Bon Iver, The National).[^37]
 
 
 [^1]: I also love learning about learning about learning, but it probably ends there (see ["Yudkowsky's Law of Ultrafinite Recursion"](https://www.facebook.com/yudkowsky/posts/10154119438404228))
@@ -134,7 +143,7 @@ For some reason I have been listening to a lot of modern [music](/music) lately,
 [^5]: whether *in vivo, in vitro,* or *in silico*
 [^6]: ![](/lady.png)
 [^7]: <img src="https://i.imgur.com/YQKgyfK.gif">
-[^8]: <img src="/upsidedinge.png">
+[^8]: <img src="/tiney_and_dev.png">
 [^9]: <iframe width="320" height="180" src="https://www.youtube.com/embed/FKU1p5SUlIc?list=PL3kcOofui6JZj6iFqsLzC-APKj8t4-V-T" frameborder="0" allowfullscreen></iframe>
 [^10]: for the first time in 12 years of formal schooling...
 [^11]: turns out [she's impossibly impressive](www.lindsaywoodward.com)... but impossible to impress.
@@ -168,7 +177,10 @@ I don't believe other animals, even other mammals, have anything like human cons
 Q: Does heavy interpretation do a disservice to the music?
 Joanna: I love that there are people who listen at that level. It helps slightly soften the blow of the existential horror—it’s an incredibly creatively validating thing. But there’s not a wrong or a right way. I’m not comfortable with the idea that anyone needs to “get” the songs to get the songs. I don’t want to clomp all over that with my heavy-booted definitive statement on what it was supposed to be.
 [^35]: I collect jars. I have hundreds. I use them primarily to store spices and dried grains/legumes, but I have been known to use a really nice jar decoratively.
-[^36]: [Newsom](http://www.npr.org/2015/10/24/448996970/joanna-newsom-on-nabokov-songwriting-and-music-journalism): "It’s a little simplistic for me to say that I write down the images that are in my mind, because it’s not like I just have a frozen image that I’m illustrating with the language. But it’s maybe a set of, sort of, visual imperatives and feelings and ideas that feel connected to me, and feel like they’re waiting to be connected." 
+[^36]: [Newsom](http://www.npr.org/2015/10/24/448996970/joanna-newsom-on-nabokov-songwriting-and-music-journalism): 'It’s a little simplistic for me to say that I write down the images that are in my mind, because it’s not like I just have a frozen image that I’m illustrating with the language. But it’s maybe a set of, sort of, visual imperatives and feelings and ideas that feel connected to me, and feel like they’re waiting to be connected.'
+[^37]: These "or" statements are inclusive (i.e., not xor)
+[^38]: [Wife and I competed at the 2021 American Crossword Puzzle Tournament!](https://docs.google.com/spreadsheets/d/1lOyPqyAh6r2Q488U_Z_e2kUYerq0Op9QYBD_RBNwtn4/edit#gid=817209903)
+
 [^17]: Candidates include old standards such as <br>
 * What is the meaning of life?  
 * Why are we here?  
