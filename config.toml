@@ -56,7 +56,7 @@ enableEmoji = true
     name = "About"
     identifier = "about"
     weight = 100
-    url = "/about/"
+    url = "/"
 [[menu.main]]
     name = "Portfolio"
     identifier = "portfolio"
