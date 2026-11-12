@@ -1,0 +1,8 @@
+# Netlify build settings. Without HUGO_VERSION the build image has no `hugo` and every deploy
+# fails with "hugo: command not found". 0.107.0 is the version blogdown builds with locally.
+[build]
+  command = "hugo"
+  publish = "public"
+
+[build.environment]
+  HUGO_VERSION = "0.107.0"
